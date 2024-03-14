@@ -22,4 +22,4 @@ if(isset($_POST["a_login"]))
         $_SESSION['sa'] = $row['sa'];
         header("location: admin_landing.php");
     }
-}
+}?>
