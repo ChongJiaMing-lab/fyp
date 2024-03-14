@@ -117,16 +117,6 @@
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a>
     </div>
 
-    <!-- <details>
-        <summary>CPU</summary>
-        <select name="CPU" id="CPU">
-            <option selected disable>1</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </details> -->
 <form method='post'>
 <div class ="container">
     <div class ="product-container">
