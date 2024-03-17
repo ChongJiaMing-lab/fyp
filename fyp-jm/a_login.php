@@ -1,7 +1,7 @@
 <?php
 include 'databaseconnect.php';
 session_start();
-if(isset($_POST["a_login"]))123
+if(isset($_POST["a_login"]))
 {
     $id = $_POST["id"];
     $pw = $_POST["pw"];
