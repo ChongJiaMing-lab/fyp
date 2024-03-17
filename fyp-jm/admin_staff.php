@@ -127,19 +127,26 @@ tr
           $result = mysqli_query($connect,"SELECT * FROM staff");
           $count = mysqli_num_rows($result);
           
-          while($row = mysqli_fetch_assoc($result))
+          if(mysqli_num_rows($result) > 0)
           {
+            while($row = mysqli_fetch_assoc($result))
+            {
             ?>
-            <tr>
-              <th scope="row"><?php echo $row["staff_id"]; ?></th>
-              <td><img src = "image/<?php echo $row['p_pic'];?>"></td>
-              <td><?php echo $row["admin_id"];?></td>
-              <td><?php echo $row["staff_email"];?></td>
-              <td><?php echo $row["staff_tel"];?></td>
-              <td><?php echo $row["joined_time"];?></td>
-            </tr>
+              <tr>
+                <th scope="row"0><?php echo $row["staff_id"]; ?></th>
+                <td><img src = "image/<?php echo $row['p_pic'];?>"></td>
+                <td><?php echo $row["admin_id"];?></td>
+                <td><?php echo $row["staff_email"];?></td>
+                <td><?php echo $row["staff_tel"];?></td>
+                <td><?php echo $row["joined_time"];?></td>
+              </tr>
         <?php
+            }
           }
+        else
+        {
+          echo"No records found :(";
+        }
         ?>
         </tbody>
         </table>

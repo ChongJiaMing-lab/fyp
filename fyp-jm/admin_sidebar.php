@@ -56,12 +56,13 @@
                     <i class="lni lni-grid-alt"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">Admin</a>
+                    <a href="admin_landing.php">Admin</a>
                 </div>
             </div>
+
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="admin_staff.php" class="sidebar-link" id="admin">
+                <a href="#" class="sidebar-link" id="admin">
                         <img src= "image/<?php echo $_SESSION['pic'];?>">
                         <?php echo $_SESSION['admin_id']; ?>
                     </a>
@@ -69,9 +70,9 @@
                 <hr>
                 
                 <li class="sidebar-item">
-                <a href="admin_landing.php" class="sidebar-link">
+                <a href="admin_staff.php" class="sidebar-link" id="admin">
                         <i class="lni lni-user"></i>
-                        <span>Home/Dashboard</span>
+                        <span>Staff</span>
                     </a>
                 </li>
                 
@@ -83,43 +84,24 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" id="dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <i class="lni lni-layout"></i>
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="lni lni-protection"></i>
                         <span>Category</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" id="dropdown" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
+                            <a href="admin_b.php" class="sidebar-link">Brand</a>
                         </li>
-
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" id="dropdown" data-bs-toggle="collapse"
-                                data-bs-target="#multi-three" aria-expanded="false" aria-controls="multi-three">
-                                Two Links
-                            </a>
-                            <ul id="multi-three" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
+                            <a href="admin_pc.php" class="sidebar-link">Pc Components</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="admin_peri.php" class="sidebar-link">Peripherals</a>
                         </li>
                     </ul>
                 </li>
+                
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-popup"></i>
