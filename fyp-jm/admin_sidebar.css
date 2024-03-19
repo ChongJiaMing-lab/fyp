@@ -12,7 +12,13 @@
     position:fixed;
     top:60px;
     height:95%;
-    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+#sidebar::-webkit-scrollbar
+{
+    display:none;
 }
 #sidebar a.active:not(#dropdown):not(.sidebar-logo a)
 {
@@ -72,7 +78,7 @@ body {
 }
 
 .main {
-    min-height: 100vh;
+    min-height: 100%;
     width:100%;
     position:relative;
     top:60px;
