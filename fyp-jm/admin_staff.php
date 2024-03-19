@@ -61,7 +61,8 @@ tr
           ?>
       </div>
     </div>
-    <div class="modal" id="myModal">
+    <!-- modal start-->
+      <div class="modal" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <!-- Modal Header -->
@@ -70,35 +71,35 @@ tr
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <!-- Modal body -->
-        <form action="a_staff.php" method="POST">
-            <div class="modal-body">
-              <div class="form-group mb-4">
-                <label>Staff ID</label>
-                <input type="text" class="form-control" placeholder="staff id" name="id" required>
+            <form action="a_staff.php" method="POST">
+              <div class="modal-body">
+                  <div class="form-group mb-4">
+                    <label>Staff ID</label>
+                    <input type="text" class="form-control" placeholder="staff id" name="id" required>
+                  </div>
+                <div class="form-group mb-4">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="full name" name="name">
+                </div>
+                <div class="form-group mb-4">
+                  <label>Email</label>
+                  <input type="email" class="form-control" placeholder="email" name="email">
+                </div>
+                <div class="form-group mb-4">
+                  <label>Telephone Number</label>
+                  <input type="text" class="form-control" placeholder="tel.no" name="tel">
+                </div>
               </div>
-              <div class="form-group mb-4">
-                <label>Name</label>
-                <input type="text" class="form-control" placeholder="full name" name="name">
-              </div>
-              <div class="form-group mb-4">
-                <label>Email</label>
-                <input type="email" class="form-control" placeholder="email" name="email">
-              </div>
-              <div class="form-group mb-4">
-                <label>Telephone Number</label>
-                <input type="text" class="form-control" placeholder="tel.no" name="tel">
-              </div>
-            </div>
       
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="save_staff">Save</button>
-            </div>
-        </form>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="save_staff">Save</button>
+              </div>
+            </form>
           </div>
         </div>
-      </div>
+      </div><!-- modal end-->
     <hr>
     <?php 
     if(isset($_SESSION['msg']) && $_SESSION['msg'] != ''){
