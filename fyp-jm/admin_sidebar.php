@@ -63,7 +63,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
                 <a href="#" class="sidebar-link" id="admin">
-                        <img src= "image/<?php echo $_SESSION['pic'];?>">
+                        <img src= "image/<?php echo $_SESSION['pic'];?>" style="margin-right: 0 0 10px 10px;">
                         <?php echo $_SESSION['admin_id']; ?>
                     </a>
                 </li>

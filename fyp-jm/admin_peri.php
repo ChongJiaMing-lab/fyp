@@ -3,12 +3,13 @@
 <style>
 .action button 
 {
-    /* margin-right: 20px; */
+    margin-right: 20px;
 }
 
 .card
 {
     width:60%;
+    margin: 0 auto;
 }
 tr .action
 {
@@ -20,13 +21,52 @@ tr .action
     <div class="container fluid px-4">
         <div class="row mt-4">
             <div class="col-md-12">
-
                 <div class="card">
                         <div class="card-header">
                             <h4>Peripherals
-                                <a href="add_brand.php" class="btn btn-primary float-end">Add Peripherals</a>
+                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#myModal">Add Peripheral</button>
                             </h4>
                         </div>
+                        <!-- modal start-->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add Peripherals</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    
+                                    <form action="a_category.php" method="POST">
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="form-group mb-4">
+                                                <label>New Peripheral:</label>
+                                                <input type="text" class="form-control" placeholder="peripheral" name="peri" required>
+                                            </div>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" name="save_peri">Save</button>
+                                        </div>
+                                    </form>
+                                </div><!--content end-->
+                            </div><!-- modal-dialog-centered end-->
+                        </div><!-- modal end-->
+
+                        <?php 
+                        if(isset($_SESSION['msg']) && $_SESSION['msg'] != ''){
+                        ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Hey!</strong> <?php echo $_SESSION['msg']; ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php
+                        unset($_SESSION['msg']);
+                        }
+                        ?>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-stripe">
@@ -64,7 +104,6 @@ tr .action
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
