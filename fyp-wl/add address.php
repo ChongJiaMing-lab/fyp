@@ -128,7 +128,17 @@
 								</div>
 															</div>
 							
-							<div class="field-group">
+							
+
+		<?php				
+        }
+     }
+    else
+    {
+        echo"no records found :(";
+    }
+	?>
+		<div class="field-group">
 								<!-- COMPANY -->
 																<!-- COMPANY ID -->
 								
@@ -187,16 +197,6 @@
 									</div>
 																	</div>
 							</div>
-
-		<?php				
-        }
-     }
-    else
-    {
-        echo"no records found :(";
-    }
-	?>
-
 	
 						  
 							<!-- SUBMIT -->
@@ -241,7 +241,7 @@ if(isset($_POST["savebtn"]) && $_POST["savebtn"] == "Save") {
     $f = $_POST["city"];
     $g = $_POST["postcode"];
 
-     mysqli_query($con, "INSERT INTO user_information(name,contactnumber,address,country,state,city,postcode) VALUES ('$a', '$b', '$c','$d','$e','$f','$g')");
+     mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,country,state,city,postcode) VALUES ('$id','$a', '$b', '$c','$d','$e','$f','$g')");
      
    
 

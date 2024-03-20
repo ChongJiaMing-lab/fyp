@@ -92,7 +92,9 @@
                 <?php
     $id = $_GET['ID'];
     $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customor_id='$id'";
     $result = mysqli_query($connect, $query);
+	$result2 = mysqli_query($connect, $query2);
     if($result)
     {
         foreach($result as $row)
@@ -119,12 +121,32 @@
 									<div class="txt-info">Contact</div>
 									<div class="txt-data"><?php echo $row['contactnumber']?></div>
 								</div>
-								<div class="address-add">
-									<div class="txt-info">Address</div>
-									<div class="txt-data"><?php echo $row['address']?></div>
-								</div>
-							</div>
-         <?php                   
+		<?php
+		
+	
+		}
+		            
+     }
+    else
+    {
+        echo"no records found :(";
+    }
+    ?>
+	 <?php
+    $id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query = "SELECT * FROM user_address WHERE customer_id='$id'";
+    $result = mysqli_query($connect, $query);
+    if($result)
+    {
+        foreach($result as $row)
+        {?>
+			<div class="address-add">
+			<div class="txt-info">Address</div>
+			<div class="txt-data"><?php echo $row['address']?></div>
+		</div>
+	</div>					
+	<?php              
         }
      }
     else
