@@ -88,8 +88,27 @@ tr .action
                                                 <tr>
                                                     <td><?php echo $row["category_id"]; ?></td>
                                                     <td><?php echo $row["category"] ?></td>
-                                                    <td class="action"><button type="button" class="btn btn-warning">Edit</button>
-                                                    <button type="button" class="btn btn-danger">Delete</button></td>
+                                                    <td class="action"><button type="submit" class="btn btn-warning">Edit</button>
+                                                    <a href="d_category.php?category_id=<?php echo $row["category_id"]?>" class="btn btn-danger"
+                                                                data-bs-toggle="modal" data-bs-target="#<?php $row["category_id"]?>">Delete</a></td>
+
+                                                    <div class="modal fade" id="<?php $row["category_id"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                Do you really want to delete this category?:<br><?php echo $row["category"]?>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                    <button type="button" class="btn btn-primary">Yes</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </tr>
                                             <?php
                                             }

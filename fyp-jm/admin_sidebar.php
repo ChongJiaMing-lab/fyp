@@ -47,7 +47,8 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li><a class="dropdown-item" href="edit_staff.php?staff_id=<?php echo $_SESSION['id'];?>">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="a_logout.php">Logout</a></li>
-            </div>
+                    </ul>
+                </div>
         </div><!-- topbar-->
 
         <aside id="sidebar" class="sidebar">
