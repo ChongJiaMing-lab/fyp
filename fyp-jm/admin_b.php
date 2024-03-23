@@ -18,6 +18,28 @@ tr .action
 </style>
 <body>
 <div class="main p-3">
+            <?php 
+            if(isset($_SESSION['msg']) && $_SESSION['msg'] != ''){
+            ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong> <?php echo $_SESSION['msg']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php
+            unset($_SESSION['msg']);
+            }
+            ?>
+            <?php 
+            if(isset($_SESSION['d']) && $_SESSION['d'] != ''){
+            ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Hey!</strong> <?php echo $_SESSION['d']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php
+            unset($_SESSION['d']);
+            }
+            ?>
     <div class="container fluid px-4">
         <div class="row mt-4">
             <div class="col-md-12">
@@ -55,19 +77,6 @@ tr .action
                                 </div>
                             </div>
                         </div><!-- modal end-->
-
-                        <?php 
-                        if(isset($_SESSION['msg']) && $_SESSION['msg'] != ''){
-                        ?>
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>Hey!</strong> <?php echo $_SESSION['msg']; ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        <?php
-                        unset($_SESSION['msg']);
-                        }
-                        ?>
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-stripe">
@@ -89,8 +98,29 @@ tr .action
                                                 <tr>
                                                     <td><?php echo $row["brand_id"]; ?></td>
                                                     <td><?php echo $row["brand_name"] ?></td>
-                                                    <td class="action"><button type="button" class="btn btn-warning">Edit</button>
-                                                    <button type="button" class="btn btn-danger">Delete</button></td>
+                                                    <td class="action">
+                                                        <button type="submit" class="btn btn-warning">Edit</button>
+                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row["brand_id"]; ?>">
+                                                        Delete</button>
+
+                                                        <div class="modal fade" id="exampleModal<?php echo $row["brand_id"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                    Do you really want to delete this brand?:<br><?php echo $row["brand_name"]?>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                        <a href="d_category.php?brand_id=<?php echo $row["brand_id"]?>"><button type="button" class="btn btn-primary">Yes</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             <?php
                                             }
