@@ -94,7 +94,7 @@ button
                     <div class="card imgholder">
                         <label for="imgInput" class="upload">+</label>
                             <input type="file" name="pic" id="imgInput">
-                        <img src="image/<?php echo $row['p_pic']?>" width="200" height="200" class="img" id="picholder">
+                        <img src="image/<?php echo $row['p_pic']?>" width="100%" height="100%" class="img" id="picholder">
                         <?php $_SESSION['default'] = $row['p_pic']?>
                     </div>
                     <div class="inputField">

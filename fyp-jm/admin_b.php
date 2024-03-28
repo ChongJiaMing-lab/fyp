@@ -8,7 +8,7 @@
 
 .card
 {
-    width:60%;
+    width:100%;
     margin: 0 auto;
 } 
 tr .action
@@ -18,6 +18,10 @@ tr .action
 </style>
 <body>
 <div class="main p-3">
+            <div class="head" style="display:flex;">
+                <i class="lni lni-lineicons-symbol" style="font-size:50px;"></i>
+                <h1 style="margin: 12px 0 0 30px">Category : Peripheral</Category:Components></h1><hr>
+            </div>
             <?php 
             if(isset($_SESSION['msg']) && $_SESSION['msg'] != ''){
             ?>
@@ -46,7 +50,7 @@ tr .action
 
                 <div class="card">
                         <div class="card-header">
-                            <h4>Brands
+                            <h4>Brand List
                             <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#myModal">Add Brand</button>
                             </h4>
                         </div>
@@ -82,7 +86,7 @@ tr .action
                             <table class="table table-bordered table-stripe">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th style="width:10%;">#</th>
                                         <th>Brand</th>
                                         <th>Action</th>
                                     </tr>
