@@ -85,7 +85,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="admin_cust.php" class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span>User</span>
                     </a>
