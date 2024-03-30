@@ -20,7 +20,7 @@ tr .action
 <div class="main p-3">
             <div class="head" style="display:flex;">
                 <i  class="lni lni-stackoverflow" style="font-size:50px;"></i>
-                <h1 style="margin: 12px 0 0 30px">Category : PC Components</Category:Components></h1><hr>
+                <h1 style="margin: 12px 0 0 30px">Category : PC Components</h1><hr>
             </div>
             <?php 
             if(isset($_SESSION['msg']) && $_SESSION['msg'] != ''){
