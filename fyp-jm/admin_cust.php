@@ -41,7 +41,7 @@ tbody td
     <?php
           if (isset($_POST["search"])) 
           {
-                $search = mysqli_real_escape_string($connect, $_POST["search"]);
+                $search = $_POST["search"];
                 $q = "SELECT * FROM user WHERE name LIKE '%$search%'";
           } 
           else 
