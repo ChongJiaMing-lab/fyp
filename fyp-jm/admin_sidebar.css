@@ -35,7 +35,7 @@
     height:60px;
     padding:0 20px;
     display:grid;
-    grid-template-columns: 2fr 10fr 0.4fr 1fr;
+    grid-template-columns: 7fr 1fr;
     align-items: center;
     z-index:1;
 }
