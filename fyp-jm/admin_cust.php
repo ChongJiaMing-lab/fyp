@@ -26,6 +26,16 @@ tbody td
 {
     max-height:10px;
 }
+.top
+{
+    display:flex;
+    align-items: space-between;
+}
+.top button
+{
+    margin-left:30px;
+}
+
 </style>
 <body>
 <div class="main p-3">
@@ -34,10 +44,13 @@ tbody td
         <h1 style="margin: 12px 0 0 30px;">User List</Category:Components></h1><hr>
     </div>
     <hr>
-    <form method="POST" action="">
-        <input type="text" class="input" placeholder="Search with name" name="search">
-        <hr>
-    </form>
+    <div class="top">
+        <form method="POST" action="">
+            <input type="text" class="input" placeholder="Search with name" name="search">
+        </form>
+        <button type="button" class="btn btn-success">Export to PDF</button>
+    </div>
+    <hr>
     <?php
           if (isset($_POST["search"])) 
           {

@@ -85,7 +85,7 @@ button
         ?>
                      <div class="card">
                     <div class="card-header">
-                        <h5>You can update your information here.<h5>
+                        <h5>Update your information here.<h5>
                         <button type="button" class="btn btn-warning" onclick="history.back()">Back</button>
                     </div>
                     <div class="card-body">

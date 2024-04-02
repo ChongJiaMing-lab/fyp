@@ -3,5 +3,11 @@
 ?>
 
 <body>
-    <?php echo "Customer Details" ?>
+    <div class="main p-3">
+        <h1>This is cusotmer details page.</h1>
+        <?php 
+            if($_GET["user_id"])
+                $id = $_GET["user_id"]; 
+            echo "CUstomer ID is #"."$id \n"?>
+    </div>
 </body>
