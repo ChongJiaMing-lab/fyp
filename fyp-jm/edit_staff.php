@@ -11,7 +11,7 @@ include 'admin_sidebar.php';
 }
 .card
 {
-    width:70%;
+    width:100%;
 }
 .e-form
 {

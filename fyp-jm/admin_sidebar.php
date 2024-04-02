@@ -74,7 +74,7 @@
                 </li>
                 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="admin_product.php" class="sidebar-link">
                         <i class="lni lni-protection"></i>
                         <span>Product</span>
                     </a>
@@ -88,7 +88,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    <a href="#" class="sidebar-link cate collapsed has-dropdown" data-bs-toggle="collapse"
                         data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-protection"></i>
                         <span>Category</span>

@@ -48,7 +48,9 @@ tbody td
         <form method="POST" action="">
             <input type="text" class="input" placeholder="Search with name" name="search">
         </form>
-        <button type="button" class="btn btn-success">Export to PDF</button>
+        <form method="POST" action="generate_report.php">
+            <button type="submit" class="btn btn-success">Export to PDF</button>
+        </form>
     </div>
     <hr>
     <?php
@@ -98,7 +100,9 @@ tbody td
           }
           else
           {
-            echo"No records found :(";
+            ?>
+             <td colspan="4" style="text-align:center"><b>No record found :(</b></td>
+        <?php
           }
           ?>
         </tbody>

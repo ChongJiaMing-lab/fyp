@@ -20,7 +20,7 @@
 {
     display:none;
 }
-#sidebar a.active:not(#dropdown):not(.sidebar-logo a)
+#sidebar a.active:not(#dropdown):not(.sidebar-logo a):not(.cate)
 {
     background-color: red;
     color: white;
