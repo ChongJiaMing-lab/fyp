@@ -31,9 +31,11 @@ tbody td
     display:flex;
     align-items: space-between;
 }
-.top button
+.top .btn-group
 {
     margin-left:30px;
+    align-items: center;
+    margin-top:5px;
 }
 
 </style>
@@ -49,7 +51,15 @@ tbody td
             <input type="text" class="input" placeholder="Search with name" name="search">
         </form>
         <form method="POST" action="generate_report.php">
-            <button type="submit" class="btn btn-success">Export to PDF</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Export:
+            </button>
+            <ul class="dropdown-menu">
+                <li><button type="submit" class="dropdown-item" href="#" name="cust_pdf">PDF</a></li>
+                <li><button type="submit" class="dropdown-item" href="#" name="cust_excel">CSV</a></li>
+            </ul>
+        </div>
         </form>
     </div>
     <hr>
