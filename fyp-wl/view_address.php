@@ -132,7 +132,14 @@
 
                                                 <div class="btn-group">
                                                     <!-- EDIT BUTTON -->
-                                                    <a class="txt-interact txt-underline edit-btn" href="...">Edit</a>
+                                                    
+                                                    <?php
+                                                   if( isset($_SESSION['ID']))
+                                                   {
+                                                      ?>
+                                                      <a class="txt-interact txt-underline edit-btn" href="editaddress.php?ID=<?php echo $row2['address_id']; ?>" class="button btn-action">Edit</a>
+                                                      <?php
+                                                   }?>
                                                     <!-- DELETE BUTTON -->
                                                     <a class="txt-interact txt-underline delete-btn" href="...">Delete</a>
                                                 </div>

@@ -189,10 +189,16 @@
 	?>
 						<!-- EDIT -->
 						<div class="buttons">
-								
-							
-							<a href="https://www.techzone.com.my/account_edit" class="button btn-action">Edit profile</a>
-						</div>
+							<?php
+							 if( isset($_SESSION['ID']))
+							 {
+								?>
+								<a href="editprofile.php?ID=<?php echo $row['ID']; ?>" class="button btn-action">Edit profile</a>
+								<?php
+							 }?>
+							 
+						
+					</div>
 					</div>
 				</div>
 			</div>

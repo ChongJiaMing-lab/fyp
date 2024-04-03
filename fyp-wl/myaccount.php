@@ -82,38 +82,26 @@
         
 <section id="account-account" class="section container myaccounts">
 
-	<!-- BREADCUMB -->
-	<div id="breadcrumb">
-		<nav class="breadcrumb" aria-label="breadcrumbs">
-			<ul>
-								<li>
-					<a href="main_page.php">
-						<span>Home</span>
-					</a>
-				</li>
-								<li>
-					<a href="myaccount.php">
-						<span>Account</span>
-					</a>
-				</li>
-							</ul>
-		</nav>
-	</div>
+	
     
 	
 	<?php
 	$id = $_GET['ID'];
     $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
     $result = mysqli_query($connect, $query);
-    if($result)
+	$result2 = mysqli_query($connect, $query2);
+    if($result && $result2)
     {
-        foreach($result as $row)
-        {?>
-		<div id="sidebar-left">
+		
+        if ($row = mysqli_fetch_assoc($result)) 
+		{
+			?>
+			<div id="sidebar-left">
 		<div class="sidebar-nav-list">
 			<ul class="nav-container">
 				<li class="item">
-					<a class="txt-interact is-active" href="...">My account</a>
+					<a class="txt-interact is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
 					<ul class="item-container">
 						<li class="sub">
 							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
@@ -138,7 +126,14 @@
 						<div class="dashboard-frame">
 							<div class="dashboard-title">
 								<div class="sub-title">My profile</div>
-								<a class="edit-info txt-interact txt-underline" href="...">Edit</a>
+								<?php
+							 if( isset($_SESSION['ID']))
+							 {
+								?>
+								<a class="edit-info txt-interact txt-underline" href="editprofile.php?ID=<?php echo $row['ID']; ?>" class="button btn-action">Edit</a>
+								<?php
+							 }?>
+								
 							</div>
 							<div class="profile-info">
 								<div class="profile-info-detail">
@@ -154,18 +149,32 @@
 														
 						</div>
 					</div>
+					<?php
+        {
+			?>
+			<?php
+			 while ($row2 = mysqli_fetch_assoc($result2))
+			  {
+				?>
 					<div class="dashboard-address">
 						<div class="dashboard-frame">
 							<div class="dashboard-title">
 								<div class="sub-title">My default addresses</div>
-								<a class="edit-info txt-interact txt-underline" href="https://www.techzone.com.my/address">Edit</a>
+								<?php
+							 if( isset($_SESSION['ID']))
+							 {
+								?>
+								<a class="edit-info txt-interact txt-underline" href="editaddress.php?ID=<?php echo $row2['address_id']; ?>" class="button btn-action">Edit</a>
+								<?php
+							 }?>
+								
 							</div>
 							<div class="address-info txt-data">
 								<div class="shipping-info-detail">
-																		<div class="shipping-name">LAM LEONG</div>
-																		<div class="shipping-address-1"> </div>
-									<div class="shipping-address-2">   Albania</div>
-									<div class="shipping-telephone">+1111157155</div>
+																		<div class="shipping-name"><div class="txt-data"><?php echo $row2['name']; ?></div></div>
+																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['address']; ?></div> </div>
+									<div class="shipping-address-2"><div class="txt-data"><?php echo $row2['country']; ?></div></div>
+									<div class="shipping-telephone"><div class="txt-data"><?php echo $row2['contact_number']; ?></div></div>
 																	</div>
 							</div>
 						</div>
@@ -193,6 +202,8 @@
 
 		<?php				
         }
+	}
+}
      }
     else
     {
@@ -202,80 +213,7 @@
 							
 														
 
-<!-- ###AIO### -->
-        <!-- BACK TO TOP BUTTON -->
-        <button onclick="backToTop()" id="backToTop" title="Back to top"><i class="fa fa-chevron-up"></i></button>
 
-        <footer id="footer" class="footer ">
-            
-            <!-- ADD TO CART POPUP  -->
-            <input type="hidden" id="current_product_id"/>
-            <input type="hidden" id="config_cart_modal" value="1">
-            <!-- YOU MIGHT NEED THIS APP -->
-            <input type="hidden" id="you_might_need_this_status" value="0">
-
-            <!-- FOOTER MODULES -->
-            <div class="container">
-
-                <div class="el_1">
-                 
-
-                    <!-- PAGE CONTENT FOOTER  -->
-                    <div id="payment_method" class="module-container">
-                                                                                    
-    <div class="title">
-            </div>
-    <div>
-            </div>
-                                                                        </div>
-                    <!-- END PAGE CONTENT FOOTER  -->
-                </div>
-
-                <div class="el_2">
-                    <div id="el_2_logo">
-						                    </div>
-                    <div class="el_2_content">
-                                            </div>
-                </div>
-
-                <div class="el_3">
-                    <div id="additional_cms" class="module-container">
-                        <div class="title"></div>
-                                            </div>
-                </div>
-            </div>
-
-
-
-            
-        </footer>
-
-
-            
-         <!-- ==== SCRIPTS ==== -->
-        <!-- JQUERY -->
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer type="text/javascript" src="catalog/view/theme/aio/js/jquery-ui-1.12.1.min.js"></script>        
-        <!-- CAROUSEL -->
-        <script defer src="catalog/view/theme/aio/plugins/carousel/slick.min.js"></script>
-		<!-- CLIPBOARD -->
-		<script defer src="catalog/view/theme/aio/plugins/clipboard.min.js"></script>
-        <!-- FUNCTIONS -->
-        <script defer type="text/javascript" src="catalog/view/theme/aio/js/apps/notifyme.js"></script>
-        <!-- SWEET ALERT -->
-        <script defer src="catalog/view/theme/aio/plugins/sweetalert/sweetalert2.all.min.js"></script>
-		<!-- PRINTTHIS -->
-		<script defer src="catalog/view/theme/aio/plugins/printThis/printThis.js?ver=1.0"></script>
-        <!-- FLATPICKR -->
-        <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script defer src="catalog/view/theme/aio/plugins/flatpickr.js?ver=1.0"></script>
-        
-        <!-- BULMA CALENDAR -->
-        <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/doc.js"></script>
-        <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.js"></script>
-        <!-- <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/main.js"></script> -->
-        
-		<!-- UI CONTROL SCRIPT -->
-        <script defer src="catalog/view/theme/aio/js/ui-control.js?ver=1710131811"></script>
 
 		
         
