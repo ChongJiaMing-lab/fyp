@@ -11,7 +11,7 @@ include 'admin_sidebar.php';
 }
 .card
 {
-    width:70%;
+    width:100%;
 }
 .e-form
 {
@@ -85,7 +85,7 @@ button
         ?>
                      <div class="card">
                     <div class="card-header">
-                        <h5>You can update your information here.<h5>
+                        <h5>Update your information here.<h5>
                         <button type="button" class="btn btn-warning" onclick="history.back()">Back</button>
                     </div>
                     <div class="card-body">
@@ -94,7 +94,7 @@ button
                     <div class="card imgholder">
                         <label for="imgInput" class="upload">+</label>
                             <input type="file" name="pic" id="imgInput">
-                        <img src="image/<?php echo $row['p_pic']?>" width="200" height="200" class="img" id="picholder">
+                        <img src="image/<?php echo $row['p_pic']?>" width="100%" height="100%" class="img" id="picholder">
                         <?php $_SESSION['default'] = $row['p_pic']?>
                     </div>
                     <div class="inputField">
