@@ -2,6 +2,8 @@
     include 'databaseconnect.php';
 ?>
 
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <style>
 .input
 {
@@ -38,6 +40,15 @@ tbody td
     margin-top:5px;
 }
 
+ion-icon
+{
+    cursor:pointer;
+    position:absolute;
+    top:17%;
+    transform:translate(-50%);
+    font-size:30px;
+    left:34px;
+}
 </style>
 <body>
 <div class="main p-3">
@@ -48,6 +59,7 @@ tbody td
     <hr>
     <div class="top">
         <form method="POST" action="">
+            <ion-icon name="search-outline"></ion-icon>
             <input type="text" class="input" placeholder="Search with name" name="search">
         </form>
         <form method="POST" action="generate_report.php">
