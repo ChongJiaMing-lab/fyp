@@ -139,7 +139,7 @@
 
 							<!-- FORGOT PASSWORD -->
 							<div class="forget-password">
-								<a href="..." class="txt-interact txt-underline">Forgot password?</a>
+								<a href="forgot_password.php" class="txt-interact txt-underline">Forgot password?</a>
 							</div>
 
 														<!-- //JUST FUNCTION NOTHING WITH DESIGN// -->

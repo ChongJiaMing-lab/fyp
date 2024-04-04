@@ -86,47 +86,31 @@
         <!-- END HEADER -->
 <section id="account-forgotten" class="section container account-access">
 
-    <div id="contents">
-       
-        <div id="main-content">
-            <div class="holder"> 
-				<div id="forget-password">
-					<div class="account-access-header">
-						<div class="title">Reset your password</div>
-						<div class="title-message">Go back to <a class="txt-interact txt-underline" href="Login.php">login</a></div>
-					</div>
-                    
-					<form action="reset-request.php" method="post" enctype="multipart/form-data">
-						<div class="form-body">
-							<!-- EMAIL -->
-							<div class="field">
-								<label class="label ">
-									Email Address								</label>
-								<div class="control">
-									<input type="text" class="input " name="email" value="" />
-								</div>
-															</div>
-						</div>
+    <?php
 
-						<div class="form-footer field">
-							<input type="submit" name="reset-request-submit" value="Continue" class="button" />
-						</div>
-					</form>
-                    <?php
-                        if(isset($_GET["reset"]))
-                        {
-                            if($_GET["reset"] == "success")
-                            {
-                                echo'<p class="signupsuccess">Check  your e-mail!</p>';
-                            }
-                        }
-                        ?>
-				</div>
-			</div>
-		</div>
-		
-		
-    </div>
+        $selector =$_GET["selector"];
+        $validator =$_GET["validator"];
+
+        if(empty($selector) || empty($validator))
+        {
+            echo"Could not balidate your request!";
+        }else{
+            if(ctype_xdigit($selector) !==false && ctype_xdigit($validator) !==false )
+            {
+             ?>
+             <form action="reset-password.inc.php" method="post">
+
+                <input type="hidden" name="selector" value="<?php echo $selector ?>">;
+                <input type="hidden" name="validator" value="<?php echo $validator ?>">;
+                <input type="password" name="pwd" placeholder="Enter a new password...">;
+                <input type="password" name="pwd-repeat" placeholder="Repeat new password...">;
+                <button type="submit" name="reset-password-submit">Reset password</button>
+
+            </form>
+             <?php
+            }
+        }
+    ?>
 
 </section>
 
