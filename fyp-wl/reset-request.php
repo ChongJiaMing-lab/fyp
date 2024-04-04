@@ -3,8 +3,8 @@
 if(isset($_POST["reset-request-submit"]))
 {
 
-    $selector = bin2hex(random_bytes(8));
-    $token = random_bytes(32);
+    $selector = bin2hex(openssl_random_pseudo_bytes(8));
+    $token = openssl_random_pseudo_bytes(32);
 
     $url = ".../create-new-password.php?selector=" .$selector . "$validator=" . bin2hex($token);
 
