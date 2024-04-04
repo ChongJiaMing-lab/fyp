@@ -75,115 +75,95 @@
 <?php include"head.php"?>
 				
 						
-        <!-- END HEADER -->
+<!-- END HEADER -->
 <section id="account-address-list" class="section container myaccounts">
+    <div id="contents">
+        <div id="sidebar-left">
+            <div class="sidebar-nav-list"></div>
+        </div>
 
+        <div id="main-content" class="address-list">
+            <!-- ADD NEW ADDRESS BUTTON -->
+            
 
-
-	<div id="contents">
-		<div id="sidebar-left">
-			 			<div class="sidebar-nav-list"></div>
-		</div>
-
-		<div id="main-content" class="address-list">
+            <?php
+            $id = $_GET['ID'];
+			?>
+			<div class="myaccount-header">
+                <div class="title">Addresses</div>
+                <a href="add_address.php?ID=<?php echo $id;?>" class="button btn-address">Add New Address</a>
+            </div>
+			<?php
+            $query = "SELECT * FROM user_information WHERE ID='$id'";
+            $query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+            $result = mysqli_query($connect, $query);
+            $result2 = mysqli_query($connect, $query2);
 			
-			<!-- ADDRESS LIST -->
-			
-                <?php
-    $id = $_GET['ID'];
-    $query = "SELECT * FROM user_information WHERE ID='$id'";
-	$query2 = "SELECT * FROM user_address WHERE customor_id='$id'";
-    $result = mysqli_query($connect, $query);
-	$result2 = mysqli_query($connect, $query2);
-    if($result)
-    {
-        foreach($result as $row)
-        {?>
-        <div class="holder">
-				
-				<div class="myaccount-header">
-					<div class="title">Addresses</div>
-					<a href="add address.php?ID=<?php echo $id;?>" class="button btn-address">  Add New Address</a>
-				</div>
-            <div class="myaccount-body">
-																	<div class="address-container">
-							<div class="address-info">
-								<div class="address-name">
-									<div class="txt-info">Name</div>
-									<div class="txt-data">
-										<span>
-                                        <?php echo $row['name']?>
-																					</span>
-																					<div class="default-shipping">Default shipping</div>
-																													</div>
-								</div>
-								<div class="address-tel">
-									<div class="txt-info">Contact</div>
-									<div class="txt-data"><?php echo $row['contactnumber']?></div>
-								</div>
-		<?php
-		
-	
-		}
-		            
-     }
-    else
-    {
-        echo"no records found :(";
-    }
-    ?>
-	 <?php
-    $id = $_GET['ID'];
-    $query = "SELECT * FROM user_information WHERE ID='$id'";
-	$query = "SELECT * FROM user_address WHERE customer_id='$id'";
-    $result = mysqli_query($connect, $query);
-    if($result)
-    {
-        foreach($result as $row)
-        {?>
-			<div class="address-add">
-			<div class="txt-info">Address</div>
-			<div class="txt-data"><?php echo $row['address']?></div>
-		</div>
-	</div>					
-	<?php              
-        }
-     }
-    else
-    {
-        echo"no records found :(";
-    }
-    ?>
-				
-							<div class="address-btn">
-								<div class="address-btn-top">
-									<!-- EDIT BUTTON -->
-									<a class="txt-interact txt-underline" href="...">Edit</a>
-									<!-- DELETE BUTTON -->
-									<a class="txt-interact txt-underline" href="...">Delete</a>
-								</div>
-																	<div class="address-btn-bot">
-										<a class="address-btn-default" href="...">Set as default billing</a>
-									</div>
-															</div>
-						</div>
-															</div>
-			</div>
 
-		</div>
-		
-	</div>
+            if ($result && $result2) {
+                // Fetch user information
+                if ($row = mysqli_fetch_assoc($result)) {
+                    $user_name = $row['name'];
+                    $user_contactnumber = $row['contactnumber'];
 
+                    // Display user addresses
+                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                        ?>
+                        <!-- ADDRESS ENTRY -->
+                        <div class="holder">
+                            <div class="myaccount-body">
+                                <div class="address-container">
+                                    <div class="address-info">
+                                        <div class="address-name">
+                                            <div class="txt-info">Name</div>
+                                            <div class="txt-data"><?php echo $user_name; ?></div>
+                                        </div>
+                                        <div class="address-tel">
+                                            <div class="txt-info">Contact</div>
+                                            <div class="txt-data"><?php echo $user_contactnumber; ?></div>
+                                        </div>
+                                        <div class="address-add">
+                                            <div class="txt-info">Address</div>
+                                            <div class="txt-data"><?php echo $row2['address']; ?></div>
+                                        </div>
+										</div>
+                                        <div class="address-btn">
+                                            <div class="address-btn-top">
+
+                                                <div class="btn-group">
+                                                    <!-- EDIT BUTTON -->
+                                                    
+                                                    <?php
+                                                   if( isset($_SESSION['ID']))
+                                                   {
+                                                      ?>
+                                                      <a class="txt-interact txt-underline edit-btn" href="editaddress.php?ID=<?php echo $row2['address_id']; ?>" class="button btn-action">Edit</a>
+                                                      <?php
+                                                   }?>
+                                                    <!-- DELETE BUTTON -->
+                                                    <a class="txt-interact txt-underline delete-btn" href="...">Delete</a>
+                                                </div>
+                                            </div>
+                                            <div class="address-btn-bot">
+                                                <a class="address-btn-default" href="...">Set as default billing</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <?php
+                    }
+                }
+            } else {
+                echo "Error: " . mysqli_error($connect);
+            }
+            ?>
+        </div>
+    </div>
 </section>
 
 
 
-            
-
-
-            
-       
-		
-			
     </body>
 </html>
