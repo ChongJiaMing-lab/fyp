@@ -245,7 +245,7 @@
 
 							<div class="field">
 								<input type="hidden" name="agree" value="1" />
-								<input type="submit" id="btn_submit" name="Login" value="Confirm Register" class="button" />
+								<input type="submit" id="btn_submit" name="register" value="Confirm Register" class="button" />
             					
 							</div>
 
@@ -264,112 +264,13 @@
 
 
 </section>
-<!-- ###AIO### -->
-        <!-- BACK TO TOP BUTTON -->
-        <button onclick="backToTop()" id="backToTop" title="Back to top"><i class="fa fa-chevron-up"></i></button>
 
-        <footer id="footer" class="footer ">
-            
-            <!-- ADD TO CART POPUP  -->
-            <input type="hidden" id="current_product_id"/>
-            <input type="hidden" id="config_cart_modal" value="1">
-            <!-- YOU MIGHT NEED THIS APP -->
-            <input type="hidden" id="you_might_need_this_status" value="0">
-
-          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <!-- END FOOTER MENU -->
-
-                    <div id="newsletter_socialmedia" class="module-container" style="display:none;" >
-                                                    <div id="newsletter">
-                                <div class="title">Newsletter</div>
-                                <!-- Begin MailChimp Signup Form -->
-
-
-
-
-
-
-
-</script>
-<!--End mc_embed_signup-->                            </div>
-                        
-                        <!-- SOCIAL MEDIA -->
-                        <div id="socialmedia">
-                            <div class="title" >
-                                Follow Us                            </div>
-
-                            <div class="icons-social-media">
-                                <a id="footer-social-fb" class="icon" href="...  target="_blank">
-                                    <div class="mdi mdi-facebook"></div>
-                                </a>
-                                <a id="footer-social-youtube" class="icon" href="..."  target="_blank">
-                                    <div class="mdi mdi-youtube"></div>
-                                </a>
-                                <a id="footer-social-instagram" class="icon" href="..."  target="_blank">
-                                    <div class="mdi mdi-instagram"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- END SOCIAL MEDIA -->
-                    </div>
-
-
-                    <!-- PAGE CONTENT FOOTER  -->
-                    <div id="payment_method" class="module-container">
-                                                                                    
-    <div class="title">
-            </div>
-    <div>
-            </div>
-                                                                        </div>
-                
-
-
-
-            
-        </footer>
-
-
-            
-         <!-- ==== SCRIPTS ==== -->
-        <!-- JQUERY -->
-        <script defer type="text/javascript" src="catalog/view/theme/aio/js/jquery-ui-1.12.1.min.js"></script>        
-        <!-- CAROUSEL -->
-        <script defer src="catalog/view/theme/aio/plugins/carousel/slick.min.js"></script>
-		<!-- CLIPBOARD -->
-		<script defer src="catalog/view/theme/aio/plugins/clipboard.min.js"></script>
-        <!-- FUNCTIONS -->
-        <script defer type="text/javascript" src="catalog/view/theme/aio/js/apps/notifyme.js"></script>
-        <!-- SWEET ALERT -->
-        <script defer src="catalog/view/theme/aio/plugins/sweetalert/sweetalert2.all.min.js"></script>
-		<!-- PRINTTHIS -->
-		<script defer src="catalog/view/theme/aio/plugins/printThis/printThis.js?ver=1.0"></script>
-        <!-- FLATPICKR -->
-        <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script defer src="catalog/view/theme/aio/plugins/flatpickr.js?ver=1.0"></script>
-        
-        <!-- BULMA CALENDAR -->
-        <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/doc.js"></script>
-        <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.js"></script>
-        <!-- <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/main.js"></script> -->
-        
-		<!-- UI CONTROL SCRIPT -->
-        <script defer src="catalog/view/theme/aio/js/ui-control.js?ver=1710049660"></script>
-
-		
-
-        
-      
-            
-
-		
-			
     </body>
 </html>  
  
 <?php
 
-if( @ $_POST["Login"] == "Confirm Register")
+if( @ $_POST["register"] == "Confirm Register")
 {
 
 $con=mysqli_connect('localhost','root','','pc_store',3306);
@@ -385,12 +286,19 @@ $g=$_POST["dob_day"];
 $h=$_POST["dob_year"];
 $i=$g.'-'.$d.'-'.$h;
 
+if(empty($a) || empty($b) || empty($c) || empty($d) || empty($e) || empty($f) ||empty($g) ||empty($h) )
+{
+	
+	header('Location: Login.php') ;
+}
+else
+{
+	mysqli_query($con,"INSERT INTO user_information(email,name,contactnumber,dateofbirth,gender,password) VALUES('$a','$b','$c','$i','$e','$f')");
+}
 
 
-mysqli_query($con,"INSERT INTO user_information(email,name,contactnumber,dateofbirth,gender,password) VALUES('$a','$b','$c','$i','$e','$f')");
 
 
-sleep ( 5 );
 
 header('Location: Login.php') ;
 

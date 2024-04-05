@@ -88,12 +88,12 @@
 
     <?php
 
-        $selector =$_GET["selector"];
-        $validator =$_GET["validator"];
+        $selector = isset($_GET["selector"]) ? htmlspecialchars($_GET["selector"]) : "";
+        $validator = isset($_GET["validator"]) ? htmlspecialchars($_GET["validator"]) : "";
 
         if(empty($selector) || empty($validator))
         {
-            echo"Could not balidate your request!";
+            echo"Could not validate your request!";
         }else{
             if(ctype_xdigit($selector) !==false && ctype_xdigit($validator) !==false )
             {

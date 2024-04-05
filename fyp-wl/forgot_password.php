@@ -110,6 +110,7 @@
 
 						<div class="form-footer field">
 							<input type="submit" name="reset-request-submit" value="Continue" class="button" />
+							
 						</div>
 					</form>
                     <?php
