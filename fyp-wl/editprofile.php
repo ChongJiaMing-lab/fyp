@@ -206,11 +206,16 @@
 
 <?php
 
-
 if (isset($_GET['ID'])) {
     $product_id = mysqli_real_escape_string($connect, $_GET['ID']);
-    $result = mysqli_query($connect, "SELECT * FROM user_information WHERE ID = '$id'");
-    $row = mysqli_fetch_assoc($result);
+    // It seems like there's a mistake here. It should be $product_id instead of $id in the WHERE clause.
+    $result = mysqli_query($connect, "SELECT * FROM user_information WHERE ID = '$product_id'");
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Record found
+    } else {
+        echo "No record found.";
+        exit();
+    }
 } else {
     echo "Product ID not provided.";
     exit();
@@ -223,24 +228,29 @@ if (isset($_POST['updatebtn'])) {
     $dateofbirth = mysqli_real_escape_string($connect, $_POST['dateofbirth']);
     $gender = mysqli_real_escape_string($connect, $_POST['gender']);
 
-    $result = mysqli_query($connect, "  UPDATE user_information SET
-                                        name = '$name', 
-                                        email = '$email', 
-                                        contactnumber = '$contactnumber',
-                                        dateofbirth = '$dateofbirth',
-                                        gender = '$gender'
-                                        WHERE ID = '$id'");
-
-    if (!$result) {
-        die('Error: ' . mysqli_error($connect));
+    // Verify if email is already used by another user
+    $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email = '$email' AND ID != '$product_id'");
+    if (mysqli_num_rows($verify_query) > 0) {
+        echo "<script>alert('The email has already been used. Please choose another email.');</script>";
     } else {
-        
-        echo '<script>alert("Record updated successfully");</script>'; 
-        
-        echo "<script>window.location.href='myprofile.php';</script>";
-        
+        // Proceed with update if email is not found in other records
+        $result = mysqli_query($connect, "UPDATE user_information SET
+                                          name = '$name', 
+                                          email = '$email', 
+                                          contactnumber = '$contactnumber',
+                                          dateofbirth = '$dateofbirth',
+                                          gender = '$gender'
+                                          WHERE ID = '$product_id'");
+
+        if (!$result) {
+            die('Error: ' . mysqli_error($connect));
+        } else {
+            echo '<script>alert("Record updated successfully");</script>'; 
+            echo "<script>window.location.href='myprofile.php';</script>";
+        }
     }
 }
 ?>
+
 
 
