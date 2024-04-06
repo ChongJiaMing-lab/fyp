@@ -9,7 +9,7 @@ if(isset($_POST["save_brand"]))
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['msg'] = "Brand $b added successfully!";
+        $_SESSION['msg'] = "$b";
         header("location: admin_b.php");
     }
     else
