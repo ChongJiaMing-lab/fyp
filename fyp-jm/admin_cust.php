@@ -2,6 +2,9 @@
 include 'databaseconnect.php';
 ?>
 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <style>
@@ -66,7 +69,7 @@ include 'databaseconnect.php';
         <div class="top">
             <form method="POST" action="" class="searchbar">
                 <ion-icon class="magni" name="search-outline"></ion-icon>
-                <input type="text" class="input" placeholder="Search with name" name="search">
+                <input type="text" class="input" placeholder="Search with name" name="search" id="search">
             </form>
             <form method="POST" action="generate_report.php">
                 <div class="btn-group">
@@ -82,20 +85,7 @@ include 'databaseconnect.php';
             </form>
         </div>
         <hr>
-        <?php
-        if (isset($_POST["search"])) {
-            $search = $_POST["search"];
-            $q = "SELECT * FROM user WHERE name LIKE '%$search%'";
-        } else {
-            $q = "SELECT * FROM user";
-        }
-        $result = mysqli_query($connect, $q);
-        $count = mysqli_num_rows($result);
-        ?>
         <div class="card">
-            <p><b>Showing
-                    <?php echo $count ?> results.
-                </b></p>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -105,10 +95,15 @@ include 'databaseconnect.php';
                         <th scope="col">Age</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-body">
                     <?php
+                    $q = "SELECT * FROM user";
+
+                    $result = mysqli_query($connect, $q);
+                    $count = mysqli_num_rows($result);
+
                     if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_array($result)) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr onclick="window.location='cust_detail.php?user_id=<?php echo $row['user_id'] ?>';">
                                 <th scope="row">
@@ -141,6 +136,21 @@ include 'databaseconnect.php';
                     ?>
                 </tbody>
             </table>
+            <script>
+                $(document).ready(function () {
+                    $('input[name="search"]').on('keyup', function () {
+                        var value = $(this).val();
+                        $.ajax({
+                            url: 'run_query.php',
+                            method: 'POST',
+                            data: { cust: value },
+                            success: function (response) {
+                                $('#table-body').html(response);
+                            }
+                        });
+                    });
+                });
+            </script>
         </div><!-- end of card-->
     </div><!-- end of main-->
 </body>
