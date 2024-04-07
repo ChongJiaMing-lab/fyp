@@ -123,8 +123,7 @@
 										<input type="password" class="input " name="password" />
 									</div>
 									<div class="control">
-										<a class="button btn-view-password">
-											<span><i class="mdi mdi-eye-off"></i></span>
+									<a class="button view-password"><i class="mdi mdi-eye-off"></i></a>
 										</a>
 									</div>							
 								</div>
@@ -192,6 +191,26 @@
 		
 			
     </body>
+	<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            document.querySelector(".view-password").addEventListener("click", function() {
+                var passwordInput = document.getElementsByName("password")[0];
+                var eyeIcon = document.querySelector(".view-password i");
+
+                
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    eyeIcon.classList.remove("mdi-eye-off");
+                    eyeIcon.classList.add("mdi-eye");
+                } else {
+                    passwordInput.type = "password";
+                    eyeIcon.classList.remove("mdi-eye");
+                    eyeIcon.classList.add("mdi-eye-off");
+                }
+            });
+        });
+    </script>
 </html>
 
 

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="ready">
 
+<link defer rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <head>
 
 
@@ -96,67 +97,52 @@
     <script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 
 </head>
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #2196F3;
-  padding: 10px;
-}
-</style>
+
 <body class="body-style wide  clamp-1">
     <?php include "head.php" ?>
-
+    <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <div id="contents">
-        <div id="sidebar-left">
+					<div id="sidebar-left">
+				<!-- ###AIO### -->
+<div class="holder">
+            <div class="module-container">
             <!-- ###AIO### -->
-            <div class="holder">
-                <div class="module-container">
-                    <!-- ###AIO### -->
-                    <style>
-                        #module-price-sort .box-content {
-                            background-color: rgba(255, 255, 255, 1) !important;
-                        }
-                    </style>
-                    <div id="module-price-sort" class="box utilities">
+<style>
+#module-price-sort .box-content {
+			background-color:rgba(255, 255, 255, 1) !important;
+		}
+</style>
+<div id="module-price-sort" class="box utilities">
 
-                        <div class="title">
-                            Shop By Price </div>
-
-                        <div class="box-content">
-                            <ul>
-                                <div class="container">
-                                    <div class="row">
-                                        <br />
-                                        <h2 text-align="center">Product Filter</>
-                                            <br />
-                                            <div class="col-md-3">
-                                                <div class="list-group">
-                                                    <h3>Price</h3>
-                                                    <input type="hidden" id="hidder_minimum_price" value="0" />
-                                                    <input type="hidden" id="hidder_maximum_price" value="65000" />
-                                                    <p id="price_show">500 -65000</p>
-                                                    <div id="price_range"></div>
+	<div class="title">
+  		Shop By Price	</div>
+	
+	<div class="box-content">
+		                                        <div class="list-group">
+                                                    
+                                                    <input type="hidden" id="hidden_minimum_price" value="0" />
+                                                    <input type="hidden" id="hidden_maximum_price" value="20000" />
+                                                    <p id="price_show">150 -20000</p>
+                                                    <div id="price_range"></div> 
+                                                    
+                                                    
+                                             
                                                 </div>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="module-container">
-                    <!-- ###AIO### -->
-                    <style>
-                        #module-category .box-content {
-                            background-color: rgba(255, 255, 255, 1) !important;
-                        }
-                    </style>
-                    <div id="module-category" class="box utilities">
-                        <div class="title">Brand</div>
-                        <div class="box-content">
-                            <ul class="categories style4">
-                                <li>
-
-                                    <div class="list-group">
+	</div>
+	
+</div>
+        </div>
+            <div class="module-container">
+            <!-- ###AIO### -->
+<style>
+#module-category .box-content {
+			background-color:rgba(255, 255, 255, 1) !important;
+		}
+</style>
+<div id="module-category" class="box utilities">
+        <div class="title">Brand</div>
+    <div class="box-content">
+                    <div class="list-group">
                                         <?php
                                         $query = "SELECT DISTINCT p.brand_id, b.brand_name 
                 FROM products p
@@ -184,48 +170,12 @@
                                         }
                                         ?>
                                     </div>
-
-
-
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-
-        <div id="main-content">
-            <div class="holder">
-                <!-- ###AIO### -->
-
-                <!-- CATEGORY HEADER -->
-                <div class="category-header">
-
-                    <!-- CATEGORY THUMB -->
-                    <div class="category-thumb">
-                        <div class="category-thumb-frame">
-                            <img src="image/techzone/image/data/Untitled design (12).jpg" alt="Digital Memory" />
-                        </div>
-                        <div class="category-thumb-text">
-                            Digital Memory </div>
-                    </div>
-
-                </div>
-                <!-- END CATEGORY HEADER -->
-
-
-                <div class="category-refine-search">
-                    <div class="title">
-                        Refine Search </div>
+                                    
+    </div>
+    <div class="title">Category</div>
+    <div class="box-content">
                     <div class="list-group">
-
-                        <?php
+                    <?php
                         $query2 = "SELECT DISTINCT p.category_id, c.category
                                             FROM products p 
                                             INNER JOIN category c ON p.category_id = c.category_id
@@ -252,20 +202,99 @@
                             echo "Error executing query: " . $statement_category->error;
                         }
                         ?>
-                    </div>
-                </div>
-
-                <div class="box module-product product-listing ">
-						<div class="box-content">
-
-                    </div>
-                </div>
-            </div>
+                                    </div>
+                                    
+    </div>
+</div>
         </div>
     </div>
+ 			</div>
+				<div id="main-content">
+			<div class="holder">
+				<!-- ###AIO### -->
+
+				<!-- CATEGORY HEADER -->
+				<div class="category-header">
+					
+					<!-- CATEGORY THUMB -->
+					<div class="category-thumb">
+						<div class="category-thumb-frame">
+															<img src="image/techzone/image/data/Untitled design (12).jpg" alt="Digital Memory" />
+													</div>
+						<div class="category-thumb-text">
+							Digital Memory						</div>
+					</div>
+					
+									</div>
+				
 
 
-    <style>
+									
+				
+				<!-- PRODUCTS -->
+				
+					<!-- PRODUCT FILTER -->
+					<div class="product-filter">
+
+						<!-- PRODUCT VIEWS -->
+						<div class="display">
+							<i class="grid-view" onclick="display('grid')"></i>
+							<i class="list-view" onclick="display('list')"></i>
+						</div>
+
+						<div class="filter-options">
+							<!-- PRODUCT SORTING -->
+							<div class="product-sorting">
+								<div>Sort by</div>
+								<select onchange="location = this.value;">
+																										<option value="..." selected="selected">Default</option>
+																																			<option value="...">Name (A - Z)</option>
+																																			<option value="...">Name (Z - A)</option>
+																																			<option value="...">Price (Low &gt; High)</option>
+																																			<option value="...">Price (High &gt; Low)</option>
+																																			<option value="...">Rating (Highest)</option>
+																																			<option value="...">Rating (Lowest)</option>
+																																			<option value="...">Model (A - Z)</option>
+																																			<option value="...">Model (Z - A)</option>
+																																			<option value="...">Newest &gt; Oldest</option>
+																																			<option value="...">Oldest &gt; Newest</option>
+																									</select>
+							</div>
+							<!-- PRODUCT LIMITS -->
+							<div class="product-limits">
+								<div>Show result</div>
+								<select onchange="location = this.value;">
+																										<option value="..." selected="selected">1-15</option>
+																																			<option value="...">1-25</option>
+																																			<option value="...">1-50</option>
+																																			<option value="...">1-75</option>
+																																			<option value="...">1-100</option>
+																									</select>
+							</div>
+						</div>
+					</div>
+					<!-- END PRODUCT FILTER -->
+
+					<!-- PRODUCT LISTING -->
+					<div class="box module-product product-listing ">
+						<div class="box-content">
+															
+                                				
+						</div>
+					</div>
+
+
+								
+
+				<!-- EMPTY PRODUCT -->
+				
+				<!-- ###AIO### -->
+			</div>
+		</div>
+			</div>
+</section>
+
+<style>
         #loading {
             text-align: center;
             background: url('loading.gif') no-repeat center;
@@ -276,12 +305,12 @@
         $(document).ready(function () {
             filter_data();
             function filter_data() {
-                $('.filter_data').html('<div id="loading" style=""</div>');
+                $('.product-listing .box-content').html('<div id="loading"></div>'); 
                 var action = 'fetch_data';
                 var minimum_price = $('#hidden_minimum_price').val();
                 var maximum_price = $('#hidden_maximum_price').val();
                 var brand = get_filter('brand');
-                var category = get_filter('caterogy');
+                var category = get_filter('category');
                 $.ajax({
                     url: "fetch_data.php",
                     method: "POST",
@@ -289,7 +318,7 @@
                         action: action, minimum_price: minimum_price, maximum_price: maximum_price, brand: brand, category: category
                     },
                     success: function (data) {
-                        $('.box').html(data);
+                        $('.product-listing .box-content').html(data);
                     }
                 })
 
@@ -307,10 +336,24 @@
             $('.common_selector').click(function () {
                 filter_data();
             });
+            
+            $('#price_range').slider({
+        range:true,
+        min:150,
+        max:20000,
+        values:[150,20000],
+        step:100,
+        stop:function(event,ui)
+        {
+            $('#price_show').html(ui.values[0]+'-' + ui.values[1]);
+            $('#hidden_minimum_price').val(ui.values[0]);
+            $('#hidden_maximum_price').val(ui.values[1]);
+            filter_data();
+        }
+    });
         });
     </script>
-
-
-</body>
+    
+    </body>
 
 </html>
