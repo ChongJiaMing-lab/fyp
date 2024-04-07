@@ -248,11 +248,11 @@
     </body>
 </html>
 <?php
-
-
 if (isset($_GET['ID'])) {
     $product_id = mysqli_real_escape_string($connect, $_GET['ID']);
-    $result = "SELECT * FROM user_address WHERE address_id='$id'";
+    // Execute the SQL query and store the result set
+    $result = mysqli_query($connect, "SELECT * FROM user_address WHERE address_id='$product_id'");
+    // Fetch the associative array of the fetched row
     $row = mysqli_fetch_assoc($result);
 } else {
     echo "user ID not provided.";
@@ -260,15 +260,16 @@ if (isset($_GET['ID'])) {
 }
 
 if (isset($_POST['updatebtn'])) {
+    $id = mysqli_real_escape_string($connect, $_POST['id']);
     $name = mysqli_real_escape_string($connect, $_POST['name']);
-            $contact_number = mysqli_real_escape_string($connect, $_POST['contact_number']);
-            $address = mysqli_real_escape_string($connect, $_POST['address']);
-            $country = mysqli_real_escape_string($connect, $_POST['country_id']);
-            $state = mysqli_real_escape_string($connect, $_POST['state']);
-            $city = mysqli_real_escape_string($connect, $_POST['city']);
-            $postcode = mysqli_real_escape_string($connect, $_POST['postcode']);
+    $contact_number = mysqli_real_escape_string($connect, $_POST['contact_number']);
+    $address = mysqli_real_escape_string($connect, $_POST['address']);
+    $country = mysqli_real_escape_string($connect, $_POST['country_id']);
+    $state = mysqli_real_escape_string($connect, $_POST['state']);
+    $city = mysqli_real_escape_string($connect, $_POST['city']);
+    $postcode = mysqli_real_escape_string($connect, $_POST['postcode']);
             
-    $result = mysqli_query($connect, "  UPDATE user_address SET 
+    $result = mysqli_query($connect, "UPDATE user_address SET 
                                         name='$name', 
                                         contact_number='$contact_number', 
                                         address='$address', 
@@ -281,13 +282,9 @@ if (isset($_POST['updatebtn'])) {
     if (!$result) {
         die('Error: ' . mysqli_error($connect));
     } else {
-        
         echo '<script>alert("Record updated successfully");</script>'; 
-        
         echo "<script>window.location.href='view_address.php';</script>";
-        
     }
 }
 ?>
-
 		
