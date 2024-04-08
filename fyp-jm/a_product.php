@@ -2,7 +2,8 @@
 include 'databaseconnect.php';
 session_start();
 
-if(isset($_POST["save_product"]))
+//add product
+if (isset($_POST["save_product"])) 
 {
     $pd = $_POST["product_name"];
     $b = $_POST["brand"];
@@ -18,13 +19,46 @@ if(isset($_POST["save_product"]))
                 VALUES ('$c','$b','$status','$pd','$d','$img','$price','$qty','$type')";
     $run = mysqli_query($connect, $insert);
 
-    if($run)
-    {
-        echo "Product added successfully!";
+    if ($run) {
+        $_SESSION['img'] = "$img";
+        $_SESSION['title'] = "$pd";
+        $_SESSION['text'] = "successfully added!";
+        $_SESSION['icon'] = "success";
+        header("location:admin_product.php");
+    } else {
+        $_SESSION['img'] = "";
+        $_SESSION['title'] = "?";
+        $_SESSION['text'] = "Error!!!";
+        $_SESSION['icon'] = "question";
+        header("location:admin_product.php");
     }
-    else
+}
+
+//delete product
+if (isset($_GET["product_id"])) 
+{
+    $p = $_GET["product_id"];
+
+    $query = mysqli_query($connect, "SELECT product_name FROM products WHERE product_id = '$p'");
+    $row = mysqli_fetch_assoc($query);
+    $pn = $row['product_name'];
+
+    $del = "DELETE FROM products WHERE product_id = '$p'";
+    $query = mysqli_query($connect, $del);
+
+    if ($query) 
     {
-        echo "Failed to add staff :(";
+        $_SESSION['title'] = "$pn";
+        $_SESSION['text'] = "is deleted.";
+        $_SESSION['icon'] = "success";
+        header("location:admin_product.php");
+    } 
+    else 
+    {
+        $_SESSION['title'] = "$pn";
+        $_SESSION['text'] = "is failed to delete";
+        $_SESSION['icon'] = "error";
+        header("location:admin_product.php");
     }
 }
 ?>

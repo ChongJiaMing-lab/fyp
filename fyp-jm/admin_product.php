@@ -53,7 +53,6 @@
     <div class="main p-3">
         <h1>Product List</h1>
         <hr>
-
         <div class="top">
             <form method="POST" action="" class="searchbar">
                 <ion-icon class="magni" name="search-outline"></ion-icon>
@@ -62,6 +61,28 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add
                 Product</button>
         </div>
+        <?php
+        if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
+            ?>
+            <script>
+                Swal.fire({
+                    title: "<?php echo $_SESSION['title']; ?>",
+                    <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
+                                imageUrl: "image/<?php echo $_SESSION['img'] ?>",
+                        imageWidth: 400,
+                        imageHeight: 200,
+                    <?php } ?>
+                        text: "<?php echo $_SESSION['text']; ?>",
+                    icon: "<?php echo $_SESSION['icon']; ?>"
+                });
+            </script>
+            <?php
+            unset($_SESSION['img']);
+            unset($_SESSION['title']);
+            unset($_SESSION['text']);
+            unset($_SESSION['icon']);
+        }
+        ?>
         <!-- modal start-->
         <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -87,7 +108,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-4">
                                         <label>Brand:</label>
-                                        <select class="form-select" id="brand" aria-label="Default select example" name="brand">
+                                        <select class="form-select" id="brand" aria-label="Default select example"
+                                            name="brand">
                                             <?php
                                             $b = mysqli_query($connect, "SELECT * FROM brand");
                                             if (mysqli_num_rows($b) > 0) {
@@ -129,8 +151,8 @@
                                 <div class="col-md-5">
                                     <div class="form-group mb-4">
                                         <label>Category:</label>
-                                        <select class="form-select" id="category"
-                                            aria-label="Default select example" name="cate"></select>
+                                        <select class="form-select" id="category" aria-label="Default select example"
+                                            name="cate"></select>
                                     </div>
                                 </div>
 
@@ -197,7 +219,7 @@
     </div><!-- modal end-->
     <hr>
     <div class="card">
-        <p><b>Showing 10 results.</b></p>
+        <p><b>Showing .. results.</b></p>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -214,62 +236,105 @@
             </thead>
             <tbody>
                 <form action="a_product.php" method="POST" id="pd">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td><img src="image/3090.png" />&nbsp&nbsp&nbsp&nbsp&nbspNvidia 3090ti</td>
-                        <td>Nvidia</td>
-                        <td>Components</td>
-                        <td>Graphics Card</td>
-                        <td>RM 2000.00</td>
-                        <td>122<br>
-                            <div style="font-size:80%;">In Stock</div>
-                        </td>
-                        <td>Available</td>
+                    <?php
+                    $query = "SELECT 
+                                products.product_id, 
+                                products.product_name, 
+                                products.product_desc, 
+                                products.image, 
+                                products.price, 
+                                products.qty,
+                                product_status.product_status, 
+                                brand.brand_name, 
+                                category.category,
+                                product_type.type
+                                FROM products
+                                JOIN brand ON products.brand_id = brand.brand_id
+                                JOIN category ON products.category_id = category.category_id
+                                JOIN product_status ON products.product_status = product_status.p_status_id
+                                JOIN product_type ON products.product_type = product_type.type_id;";
+
+                    $result = mysqli_query($connect, $query);
+                    $_SESSION["count"] = mysqli_num_rows($result);
+                    $count = 1;
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                            <tr>
+                                <th scope="row">
+                                    <?php echo $row['product_id'] ?>
+                                </th>
+                                <td><img src="image/<?php echo $row['image'] ?>" />&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <?php echo $row['product_name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['brand_name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['type'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['category'] ?>
+                                </td>
+                                <td>RM
+                                    <?php echo $row['price'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['qty'] ?><br>
+                                    <div style="font-size:80%;">
+                                        <?php if ($row['qty'] < 1)
+                                            echo "Out of Stock";
+                                        else
+                                            echo "In Stock" ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    <?php echo $row['product_status'] ?>
+                                </td>
+                        </form>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="submit" class="btn btn-warning">Edit</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal<?php echo $row["product_id"]; ?>">
+                                    Delete</button>
+
+                                <div class="modal fade" id="exampleModal<?php echo $row["product_id"]; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    Confirmation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Confirm to delete?:<br>
+                                                <img src="image/<?php echo $row["image"] ?>">
+                                                <?php echo $row["product_name"] ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="a_product.php?product_id=<?php echo $row["product_id"] ?>"><button
+                                                        type="button" class="btn btn-primary">Yes</button></a>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td><img src="image/3090.png" />&nbsp&nbsp&nbsp&nbsp&nbspNvidia 3090ti</td>
-                        <td>Nvidia</td>
-                        <td>Components</td>
-                        <td>Graphics Card</td>
-                        <td>RM 2000.00</td>
-                        <td>0<br>
-                            <div style="font-size:80%;">Out of Stock</div>
-                        </td>
-                        <td>Available</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="submit" class="btn btn-warning">Edit</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td><img src="image/3090.png" />&nbsp&nbsp&nbsp&nbsp&nbspNvidia 3090ti</td>
-                        <td>Nvidia</td>
-                        <td>Components</td>
-                        <td>Graphics Card</td>
-                        <td>RM 2000.00</td>
-                        <td>122<br>
-                            <div style="font-size:80%;">In Stock</div>
-                        </td>
-                        <!-- <td><button type="submit" class="status" name="pd_status" style="background-color:blue;">Available</button></td> -->
-                        <td>Unavailable</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="submit" class="btn btn-warning">Edit</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                </form>
+                        </tr>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                    <td style="text-align:center"><b>No record found :(</b></td>
+                    <?php
+                    }
+                    ?>
             </tbody>
         </table>
     </div><!-- end of card-->

@@ -61,7 +61,7 @@
                             </h4>
                         </div>
                         <!-- modal start-->
-                        <div class="modal" id="myModal">
+                        <div class="modal fade" id="myModal">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <!-- Modal Header -->
@@ -141,6 +141,7 @@
                                                                             href="d_category.php?brand_id=<?php echo $row["brand_id"] ?>"><button
                                                                                 type="button"
                                                                                 class="btn btn-primary">Yes</button>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
