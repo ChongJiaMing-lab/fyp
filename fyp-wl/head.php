@@ -84,23 +84,23 @@ session_start();
 
 		
 		
-		<div id="modal-search-product" class="modal">
-		<div class="modal-background"></div>
-		<div class="modal-card">
-			<section class="modal-card-body">
-				<div class="search-input">
-					<input class="search-bar-input" id="modal_search" type="text" placeholder="Search" value="" oninput="$('#header_search').val($(this).val());" />
-					<i id="icon-search" class="mdi mdi-magnify"></i>
-				</div>
-			</section>
-			<footer class="modal-card-foot">
-				<button type="button" class="search-cancel" onclick="closeModals();">Cancel</button>
-				<button type="button" id="btn-search">Search</button>
-			</footer>
-		</div>
-	</div>
+<div id="modal-search-product" class="modal">
+    <div class="modal-background" onclick="closeModals()"></div>
+    <div class="modal-card">
+        <section class="modal-card-body">
+            <div class="search-input">
+                <input class="search-bar-input" id="modal_search" type="text" placeholder="Search" value="" oninput="$('#header_search').val($(this).val());" />
+                <i id="icon-search" class="mdi mdi-magnify"></i>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button type="button" class="search-cancel" onclick="closeModals();">Cancel</button>
+            <button type="button" id="btn-search" onclick="performSearch()">Search</button>
+        </footer>
+    </div>
+</div>
 		
-			<div id="modal-checkout-cartmodal"></div>                    
+			<div id="modal-checkout-cartmodal"></div>                        
 	
 		
 	
@@ -192,7 +192,7 @@ session_start();
                                                                                                                                                 <?php
                                                                                                                                                 if(isset($_SESSION['ID']))
                                                                                                                                                 {?>
-                                                                                                                                                   <a class="navbar-item" href="contact_us.php?ID=<?php echo $_SESSION['ID'];?>">Contact Us</a>;
+                                                                                                                                                   <a class="navbar-item" href="contact_us.php?ID=<?php echo $_SESSION['ID'];?>">Contact Us</a>
                                                                                                                                                  <?php   
                                                                                                                                                 }
                                                                                                                                                 else
@@ -212,19 +212,39 @@ session_start();
                 
                 <!-- SEARCH -->
                 <div id="search-toggle">
-                    <div class="search-bar-container">
-                        <i class="mdi mdi-magnify" onclick="search();"></i>
-                        <div id="search-bar">
-                            <input type="text" id="header_search" name="query" placeholder="Search" value="">
-                            <button type="submit">Search</button>
-                        </div>
+                <div class="search-bar-container">
+                    <i class="mdi mdi-magnify" onclick="openModal('modal-search-product');"></i>
+                    <div id="search-bar">
+                        <input type="text" id="header_search" name="search" placeholder="Search" value="" oninput="$('#search').val($(this).val());">
                     </div>
                 </div>
+            </div>
                 
-    
+                <script>
+    function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.classList.add("is-active");
+    }
+
+    function closeModals() {
+        var modals = document.querySelectorAll(".modal");
+        modals.forEach(function(modal) {
+            modal.classList.remove("is-active");
+        });
+    }
+
+    function performSearch() {
+        // 获取搜索关键词
+        var query = document.getElementById("modal_search").value;
+        // 执行搜索操作
+        console.log("Performing search for: " + query);
+        // 关闭模态框
+        closeModals();
+    }
+</script>
                 <!-- CURRENCY SELECTION -->
                 <!-- ###AIO### -->
-<div id="currency">
+                <div id="currency">
     <div class="dropdown is-right is-hoverable">
         <div class="dropdown-trigger">
             <a class="currency-dropdown" aria-haspopup="true">
@@ -233,11 +253,11 @@ session_start();
         </div>
         <div class="dropdown-menu" role="menu">
             <div class="dropdown-content">
-                <form action="..." method="post" enctype="multipart/form-data" id="currency_form">
+                <form action="https://www.techzone.com.my/index.php?route=module/currency" method="post" enctype="multipart/form-data" id="currency_form">
                                             <a class="dropdown-item" href="javascript:;" onclick="$('input[name=\'currency_code\']').attr('value', 'MYR'); $('#currency_form').submit();">
                             MYR                        </a>
                                         <input class="s_hidden" type="hidden" name="currency_code" value="" />
-                    <input class="s_hidden" type="hidden" name="redirect" value="..." />
+                    <input class="s_hidden" type="hidden" name="redirect" value="https://www.techzone.com.my/index.php?route=common/home" />
                 </form>
             </div>
         </div>
