@@ -38,10 +38,10 @@
         padding-left: 40px;
     }
 
-    .top .btn
-    {
-        float:right;
+    .top .btn {
+        float: right;
     }
+
     .form-control,
     .form-select,
     .form-check {
@@ -87,28 +87,42 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-4">
                                         <label>Brand:</label>
-                                        <select class="form-select" id="brand"
-                                            aria-label="Default select example"></select>
+                                        <select class="form-select" id="brand" aria-label="Default select example" name="brand">
+                                            <?php
+                                            $b = mysqli_query($connect, "SELECT * FROM brand");
+                                            if (mysqli_num_rows($b) > 0) {
+                                                while ($row = mysqli_fetch_assoc($b)) {
+                                                    ?>
+                                                    <option value="<?php echo $row['brand_id'] ?>">
+                                                        <?php echo $row['brand_name'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
-                                <!-- select a prodcuct category -->
+                                <!-- select a product category type-->
                                 <div class="col-md-3">
                                     <div class="form-group mb-4">
                                         <label>Type:</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radio"
-                                                id="flexRadioDefault1" value="1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Components
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radio"
-                                                id="flexRadioDefault2" value="2">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Peripherals
-                                            </label>
-                                        </div>
+                                        <?php
+                                        $type = mysqli_query($connect, "SELECT * FROM product_type");
+                                        if (mysqli_num_rows($type) > 0) {
+                                            while ($row = mysqli_fetch_assoc($type)) {
+                                                ?>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="radio"
+                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        <?php echo $row['type'] ?>
+                                                    </label>
+                                                </div>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                                 <!-- category -->
@@ -116,7 +130,7 @@
                                     <div class="form-group mb-4">
                                         <label>Category:</label>
                                         <select class="form-select" id="category"
-                                            aria-label="Default select example"></select>
+                                            aria-label="Default select example" name="cate"></select>
                                     </div>
                                 </div>
 
@@ -142,14 +156,14 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Description</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder="product desc"></textarea>
+                                                placeholder="product desc" name="desc"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="customFile">Product Image</label>
-                                        <input type="file" class="form-control" id="customFile" />
+                                        <input type="file" class="form-control" id="customFile" name="img" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -157,7 +171,7 @@
                                         <label class="form-label" for="price">Price:</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">RM</span>
-                                            <input type="text" class="form-control" id="price">
+                                            <input type="text" class="form-control" id="price" name="price">
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +179,7 @@
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="qty">Stock:</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="qty">
+                                            <input type="text" class="form-control" id="qty" name="qty">
                                             <span class="input-group-text">pcs</span>
                                         </div>
                                     </div>
