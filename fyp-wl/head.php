@@ -84,25 +84,11 @@ session_start();
 
 		
 		
-<div id="modal-search-product" class="modal">
-    <div class="modal-background" onclick="closeModals()"></div>
-    <div class="modal-card">
-        <section class="modal-card-body">
-            <div class="search-input">
-                <input class="search-bar-input" id="modal_search" type="text" placeholder="Search" value="" oninput="$('#header_search').val($(this).val());" />
-                <i id="icon-search" class="mdi mdi-magnify"></i>
-            </div>
-        </section>
-        <footer class="modal-card-foot">
-            <button type="button" class="search-cancel" onclick="closeModals();">Cancel</button>
-            <button type="button" id="btn-search" onclick="performSearch()">Search</button>
-        </footer>
-    </div>
-</div>
+
 		
 			<div id="modal-checkout-cartmodal"></div>                        
-	
-		
+
+
 	
 	
 	<div id="wrapper" class="clearfix">
@@ -211,37 +197,15 @@ session_start();
                 </div>
                 
                 <!-- SEARCH -->
-                <div id="search-toggle">
-                <div class="search-bar-container">
-                    <i class="mdi mdi-magnify" onclick="openModal('modal-search-product');"></i>
-                    <div id="search-bar">
-                        <input type="text" id="header_search" name="search" placeholder="Search" value="" oninput="$('#search').val($(this).val());">
+                        <div id="search-toggle">
+                    <div class="search-bar-container">
+                        <a href="search.php"> 
+                            <i class="mdi mdi-magnify"></i>
+                        </a>   
                     </div>
                 </div>
-            </div>
                 
-                <script>
-    function openModal(modalId) {
-        var modal = document.getElementById(modalId);
-        modal.classList.add("is-active");
-    }
-
-    function closeModals() {
-        var modals = document.querySelectorAll(".modal");
-        modals.forEach(function(modal) {
-            modal.classList.remove("is-active");
-        });
-    }
-
-    function performSearch() {
-        // 获取搜索关键词
-        var query = document.getElementById("modal_search").value;
-        // 执行搜索操作
-        console.log("Performing search for: " + query);
-        // 关闭模态框
-        closeModals();
-    }
-</script>
+                
                 <!-- CURRENCY SELECTION -->
                 <!-- ###AIO### -->
                 <div id="currency">
@@ -403,6 +367,6 @@ session_start();
 			</div>
 		</div>
 		
-  
+       
 </body>
 </html>
