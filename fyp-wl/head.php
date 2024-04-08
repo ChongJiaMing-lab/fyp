@@ -140,7 +140,7 @@ session_start();
                                                                                                                                                 <div class="navbar-item has-dropdown is-hoverable">
                                                                                                              
                                                                                                                                                 
-                                                                                                                            <a  class="navbar-link" href="..." ><span>Products</span></a>
+                                                                                                                            <a  class="navbar-link" href="product_list.php" ><span>Products</span></a>
 											                                                                                <i class="accordion"></i>
                                                                                                                             <div class="navbar-dropdown">
                                                                                                                                                         <div class="sub-menu-dropdown navbar-item is-hoverable">    
