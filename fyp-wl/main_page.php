@@ -1,19 +1,17 @@
-<?php include("data_connection.php");?>
+
+<!-- ###AIO### -->
+<!-- ###AIO### -->
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="">
 <head>
-	
- 
-        
 
-        
     <!-- BULMA -->
     <link defer href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet" type="text/css" />
     <link defer href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css" rel="stylesheet" type="text/css" />
 
 
     <!-- MAIN STYLESHEET -->
-    <link defer href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1710120688" rel="stylesheet" type="text/css" />
+    <link defer href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1712538365" rel="stylesheet" type="text/css" />
 
     <!-- CAROUSEL -->
     <link defer href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet" type="text/css" />
@@ -62,7 +60,7 @@
 	 
 	
     <!-- CUSTOMIZE -->
-    <link defer id="customize_css" href="https://www.techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710120688" rel="stylesheet" type="text/css" />
+    <link defer id="customize_css" href="https://www.techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1712538365" rel="stylesheet" type="text/css" />
 	
 		
 		<style>
@@ -75,92 +73,77 @@
 	<!-- TITLE -->
     <title>Tech Zone Computer Sdn Bhd | Best Computer Shop In Malaysia</title>
 
-			<script src="catalog/view/javascript/fbpixel-conversion-api.js"></script>
+			<script src="https://www.techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 						
 </head>
 
 <body class="body-style wide  clamp-1">
-	<?php include"head.php"?>
+<?php include"head.php"?>
 		
-				
-				
-					
-    <!-- END HEADER -->
-	<section id="home" class="section content container per-row-4">
+        <!-- END HEADER -->
+<section id="home" class="section content container per-row-4">
 	<div id="contents" class="home">
 				<div id="main-content">
 			<div class="holder">
 				
 											<style>
-																					#header-slideshow .header-slideshow-0 .heading{
+								#header-slideshow .header-slideshow-0 .heading
+								{
 									color: rgba(255, 255, 255, 1);
 								}
-								#header-slideshow .header-slideshow-0 .text{
+								#header-slideshow .header-slideshow-0 .text
+								{
 									color: rgba(255, 255, 255, 1);
 								}
-																					#header-slideshow .header-slideshow-1 .heading{
+								#header-slideshow .header-slideshow-1 .heading
+								{
 									color: rgba(255, 255, 255, 1);
 								}
-								#header-slideshow .header-slideshow-1 .text{
+								#header-slideshow .header-slideshow-1 .text
+								{
 									color: rgba(255, 255, 255, 1);
 								}
-																					#header-slideshow .header-slideshow-2 .heading{
+								#header-slideshow .header-slideshow-2 .heading
+								{
 									color: rgba(255, 255, 255, 1);
 								}
-								#header-slideshow .header-slideshow-2 .text{
+								#header-slideshow .header-slideshow-2 .text
+								{
 									color: rgba(255, 255, 255, 1);
 								}
+								.fadein
+								{
+									position:relative; height:600px;width:700px;margin:0 auto;
+									background: 
+									padding 10px;
+									
+								}
+								.fadein img {
+												position: absolute;
+												width: 150%; /* Set width to 100% to fill the container */
+												height: 150%; /* Set height to 100% to fill the container */
+												object-fit: contain; /* Maintain aspect ratio and fit within container */
+											}
 												</style>
-										
-					<div id="header-slideshow" class="slideInUp">
-						<div class="carousel">
-															
-									<div class="slideshow-content box header-slideshow-0">
-										 
-										<img src="https://www.techzone.com.my/image/techzone/image/cache/data/web_image/uLyy8nF11585899800-1920x1200.jpg" alt="TECH ZONE COMPUTER" title="TECH ZONE COMPUTER" />
+										<script src="http://ajax.googleapic.com/ajax/libs/jquery/1/jquery.min.js"></script>
+										<script>
+											$(function(){
+												$('.fadein img:gt(0)').hide();
+												setInterval(function(){$('.fadein :first-child').fadeOut().next('img').fadeIn().end().appendTo('.fadein');},3000);
+											});
+											</script>
+											<div class="fadein">
+												<?php
 
-										<div class="content-info">
-											<div class="alignment-wrapper">
-												<div class="heading">
-													TECH ZONE COMPUTER												</div>
-												<div class="text">
-													Professional IT Services & Consulting												</div>
-																							</div>
+												$dir = "./slider/";
+
+												$scan_dir = scandir($dir);;
+												foreach ($scan_dir as $img):
+													if(in_array($img, array(".",".."))) continue;
+													?>
+													<img src="<?php echo $dir.$img?>" alt="<?php echo $img ?>">
+													<?php endforeach; ?>
 										</div>
-
-									</div>
-								
-									<div class="slideshow-content box header-slideshow-1">
-										 
-										<img src="https://www.techzone.com.my/image/techzone/image/cache/data/web_image/haovKgsT1586170978-1920x1200.jpg" alt="" title="" />
-
-										<div class="content-info">
-											<div class="alignment-wrapper">
-												<div class="heading">
-																									</div>
-												<div class="text">
-																									</div>
-																							</div>
-										</div>
-
-									</div>
-								
-									<div class="slideshow-content box header-slideshow-2">
-										 
-										<img src="https://www.techzone.com.my/image/techzone/image/cache/data/web_image/F2m7Hjol1586019753-1920x1200.jpg" alt="PRO GAMING" title="PRO GAMING" />
-
-										<div class="content-info">
-											<div class="alignment-wrapper">
-												<div class="heading">
-													PRO GAMING												</div>
-												<div class="text">
-													PCs and Accessories												</div>
-																							</div>
-										</div>
-
-									</div>
-																					</div>
-					</div>  
 								<!-- ###AIO### -->
 <div class="module-container">
     <!-- ###AIO### -->
@@ -433,7 +416,20 @@
 									</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	checkSizeContent876();
+	$(window).resize(checkSizeContent876);
+});
 
+function checkSizeContent876() {
+	if($('.body-style').width() <= 480){
+		$('#module-content-876').parent('.module-container').css('display','none');
+	} else {
+		$('#module-content-876').parent('.module-container').css('display','');
+	}
+}
+</script>
 </div>
 <div class="module-container">
     <!-- ###AIO### -->
@@ -538,7 +534,31 @@
 									</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	checkSizeContent794();
+	$(window).resize(checkSizeContent794);
+});
 
+function checkSizeContent794() {
+	if($('.body-style').width() <= 480){
+		$('#module-content-794').parent('.module-container').css('display','none');
+	} else {
+		$('#module-content-794').parent('.module-container').css('display','');
+	}
+}
+</script>
+</div>
+<div class="module-container">
+    <!-- ###AIO### -->
+<style>
+#module-latest {
+			background-color:;
+		}
+#module-latest .frame{
+	background-color:rgba(0, 0, 0, 0);
+}
+</style>
 <div id="module-latest" class="box module-product ">
 
 	<div class="title">
@@ -546,6 +566,90 @@
 
 			<div class="box-content">
 			
+					<div>
+				<div class="frame">
+					<div class="item-img">
+						<a href="https://www.techzone.com.my/acer-15-6-ips-fhd-type-c-portable-monitor-pm161q-pm161q-b-4ms-60hz-amd-freesync-type-c-mini-hdmi">
+																<div class="image">
+										
+										
+																				
+										<img class="first-img lazy" src="https://www.techzone.com.my/image/techzone/image/cache/defaultlazyload-420x280.jpg" data-lazy="https://www.techzone.com.my/image/techzone/image/cache/data/all_product_images/product-3008/nHiwYsUL1711643212-420x280.jpg" alt="ACER 15.6&quot; IPS FHD TYPE-C PORTABLE MONITOR - PM161Q / PM161Q B  (4MS / 60HZ / AMD FREESYNC / TYPE-C + MINI HDMI)" />
+
+																			
+								</div>
+													</a>
+					</div>
+
+					<div class="item-info">
+
+						<div class="product-name">
+							<a href="https://www.techzone.com.my/acer-15-6-ips-fhd-type-c-portable-monitor-pm161q-pm161q-b-4ms-60hz-amd-freesync-type-c-mini-hdmi" title="ACER 15.6&quot; IPS FHD TYPE-C PORTABLE MONITOR - PM161Q / PM161Q B  (4MS / 60HZ / AMD FREESYNC / TYPE-C + MINI HDMI)">ACER 15.6&quot; IPS FHD TYPE-C PORTABLE MONITOR - PM161Q / PM161Q B  (4MS / 60HZ / AMD FREESYNC / TYPE-C + MINI HDMI)</a>
+						</div>
+					
+																					<div class="price">
+																		<div class="price-new">RM459.00</div>
+									<div class="price-old"></div> 
+								</div>
+																		
+													<div class="rating"> 
+									
+							</div>
+						
+						<div class="floating-cart-button">
+							
+															<div class="button">
+																														<span class="btn-outstock">
+												<span class="icon-outstock"></span>
+												<input type="button" value="Sold Out" />
+											</span>
+																		</div>
+													</div>
+					</div>
+				</div>
+			</div>
+					<div>
+				<div class="frame">
+					<div class="item-img">
+						<a href="https://www.techzone.com.my/fideco-ypz220c-usb-3-2-gen-1-type-c-to-sata-hdd-docking-station-for-2-5-3-5-sata-hdd-and-ssd">
+																<div class="image">
+										
+										
+																				
+										<img class="first-img lazy" src="https://www.techzone.com.my/image/techzone/image/cache/defaultlazyload-420x280.jpg" data-lazy="https://www.techzone.com.my/image/techzone/image/cache/data/all_product_images/product-3007/SUi0Th2Y1711105576-420x280.jpg" alt="FIDECO YPZ220C USB 3.2 Gen 1 (Type C) To SATA HDD Docking Station for 2.5&quot;/3.5&quot; SATA HDD And SSD" />
+
+																			
+								</div>
+													</a>
+					</div>
+
+					<div class="item-info">
+
+						<div class="product-name">
+							<a href="https://www.techzone.com.my/fideco-ypz220c-usb-3-2-gen-1-type-c-to-sata-hdd-docking-station-for-2-5-3-5-sata-hdd-and-ssd" title="FIDECO YPZ220C USB 3.2 Gen 1 (Type C) To SATA HDD Docking Station for 2.5&quot;/3.5&quot; SATA HDD And SSD">FIDECO YPZ220C USB 3.2 Gen 1 (Type C) To SATA HDD Docking Station for 2.5&quot;/3.5&quot; SATA HDD And SSD</a>
+						</div>
+					
+																					<div class="price">
+																		<div class="price-new">RM130.00</div>
+									<div class="price-old"></div> 
+								</div>
+																		
+													<div class="rating"> 
+									
+							</div>
+						
+						<div class="floating-cart-button">
+							
+															<div class="button">
+																			<span class="icon-add-cart"></span>
+										<span class="btn-add-cart">
+											<input type="button" value="Add to Cart" onclick="addToCart('3007');" />
+										</span>
+																	</div>
+													</div>
+					</div>
+				</div>
+			</div>
 					<div>
 				<div class="frame">
 					<div class="item-img">
@@ -798,90 +902,6 @@
 					</div>
 				</div>
 			</div>
-					<div>
-				<div class="frame">
-					<div class="item-img">
-						<a href="https://www.techzone.com.my/razer-blackwidow-v3-tenkeyless-green-switch-pokemon-edition-mechanical-keyboard-w-razer-chroma-rgb-rz03-03492700-r3a1">
-																<div class="image">
-										
-										
-																				
-										<img class="first-img lazy" src="https://www.techzone.com.my/image/techzone/image/cache/defaultlazyload-420x280.jpg" data-lazy="https://www.techzone.com.my/image/techzone/image/cache/data/all_product_images/product-2999/AEeSZd651704299367-420x280.jpg" alt="Razer BlackWidow V3 Tenkeyless Green Switch Pokemon Edition Mechanical keyboard w/ Razer Chroma RGB (RZ03-03492700-R3A1)" />
-
-																			
-								</div>
-													</a>
-					</div>
-
-					<div class="item-info">
-
-						<div class="product-name">
-							<a href="https://www.techzone.com.my/razer-blackwidow-v3-tenkeyless-green-switch-pokemon-edition-mechanical-keyboard-w-razer-chroma-rgb-rz03-03492700-r3a1" title="Razer BlackWidow V3 Tenkeyless Green Switch Pokemon Edition Mechanical keyboard w/ Razer Chroma RGB (RZ03-03492700-R3A1)">Razer BlackWidow V3 Tenkeyless Green Switch Pokemon Edition Mechanical keyboard w/ Razer Chroma RGB (RZ03-03492700-R3A1)</a>
-						</div>
-					
-																					<div class="price">
-																		<div class="price-new">RM879.00</div>
-									<div class="price-old"></div> 
-								</div>
-																		
-													<div class="rating"> 
-									
-							</div>
-						
-						<div class="floating-cart-button">
-							
-															<div class="button">
-																			<span class="icon-add-cart"></span>
-										<span class="btn-add-cart">
-											<input type="button" value="Add to Cart" onclick="addToCart('2999');" />
-										</span>
-																	</div>
-													</div>
-					</div>
-				</div>
-			</div>
-					<div>
-				<div class="frame">
-					<div class="item-img">
-						<a href="https://www.techzone.com.my/1st-player-ngdp-1000w-1300w-80-plus-platinum-full-modular-psu-ha-1000ba3-ha-1300ba3">
-																<div class="image">
-										
-										
-																				
-										<img class="first-img lazy" src="https://www.techzone.com.my/image/techzone/image/cache/defaultlazyload-420x280.jpg" data-lazy="https://www.techzone.com.my/image/techzone/image/cache/data/all_product_images/product-2998/aRSt2YEh1701927803-420x280.jpg" alt="1st Player NGDP 1000W/1300W 80 Plus Platinum Full Modular PSU HA-1000BA3 HA-1300BA3" />
-
-																			
-								</div>
-													</a>
-					</div>
-
-					<div class="item-info">
-
-						<div class="product-name">
-							<a href="https://www.techzone.com.my/1st-player-ngdp-1000w-1300w-80-plus-platinum-full-modular-psu-ha-1000ba3-ha-1300ba3" title="1st Player NGDP 1000W/1300W 80 Plus Platinum Full Modular PSU HA-1000BA3 HA-1300BA3">1st Player NGDP 1000W/1300W 80 Plus Platinum Full Modular PSU HA-1000BA3 HA-1300BA3</a>
-						</div>
-					
-																					<div class="price">
-																		<div class="price-new">RM759.00</div>
-									<div class="price-old"></div> 
-								</div>
-																		
-													<div class="rating"> 
-									
-							</div>
-						
-						<div class="floating-cart-button">
-							
-															<div class="button">
-																			<span class="icon-add-cart"></span>
-										<span class="btn-add-cart">
-											<input type="button" value="Add to Cart" onclick="addToCart('2998');" />
-										</span>
-																	</div>
-													</div>
-					</div>
-				</div>
-			</div>
 			</div>				
 </div>
 </div>
@@ -948,7 +968,20 @@
 					</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	checkSizeLargeContent551();
+	$(window).resize(checkSizeLargeContent551);
+});
 
+function checkSizeLargeContent551() {
+	if($('.body-style').width() <= 480){
+		$('#module-large-content-551').parent('.module-container').css('display','none');
+	} else {
+		$('#module-large-content-551').parent('.module-container').css('display','');
+	}
+}
+</script>
 </div>
 <div class="module-container">
     <!-- ###AIO### -->
@@ -1549,11 +1582,11 @@ function checkSizeLargeContent729() {
 						<div class="floating-cart-button">
 							
 															<div class="button">
-																														<span class="btn-outstock">
-												<span class="icon-outstock"></span>
-												<input type="button" value="Sold Out" />
-											</span>
-																		</div>
+																			<span class="icon-add-cart"></span>
+										<span class="btn-add-cart">
+											<input type="button" value="Add to Cart" onclick="addToCart('2517');" />
+										</span>
+																	</div>
 													</div>
 					</div>
 				</div>
@@ -1781,7 +1814,44 @@ function checkSizeLargeContent729() {
 	</div>
 
 <script>
+function blogmoduleSetting(){
+	$("#module-blog-module .carousel").not('.slick-initialized').slick({
+		dots: false,
+		infinite: true,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		cssEase: 'linear',
+		responsive: [
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+	});
+}
 
+$(document).ready(function() {
+	blogmoduleSetting();
+});
+</script>
+
+<script>
+$(document).ready(function() {
+	checkSizeBlogModule();
+	$(window).resize(checkSizeBlogModule);
+});
+
+function checkSizeBlogModule() {
+	if($('.body-style').width() <= 480){
+		$('#module-blog-module').parent('.module-container').css('display','none');
+	} else {
+		$('#module-blog-module').parent('.module-container').css('display','');
+	}
+}
+</script>
 </div>
 <div class="module-container">
     <!-- ###AIO### -->
@@ -1876,7 +1946,27 @@ function checkSizeLargeContent729() {
 	
 </div>
 
+<script>
+function Brands(){
+	$(".desktop #main-content #module-fmanufacturers .carousel").not('.slick-initialized').slick({
+		dots: false,
+		infinite: false,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+	});
+	
+	$(".tablet #main-content #module-fmanufacturers .carousel, .mobile #main-content #module-fmanufacturers .carousel").not('.slick-initialized').slick({
+		dots: false,
+		infinite: false,
+		slidesToShow: 2,
+		slidesToScroll: 2
+	});
+}
 
+$(document).ready(function() {
+	Brands();
+});
+</script>
 </div>
 				<!-- ###AIO### -->
 			</div>
@@ -1993,7 +2083,197 @@ function checkSizeLargeContent729() {
 	</div>	<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
 </form>
 </div>
+<script type="text/javascript">
+var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';
+try {
+    var jqueryLoaded=jQuery;
+    jqueryLoaded=true;
+} catch(err) {
+    var jqueryLoaded=false;
+}
+var head= document.getElementsByTagName('head')[0];
+if (!jqueryLoaded) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
+    head.appendChild(script);
+    if (script.readyState && script.onload!==null){
+        script.onreadystatechange= function () {
+              if (this.readyState == 'complete') mce_preload_check();
+        }    
+    }
+}
 
+var err_style = '';
+try{
+    err_style = mc_custom_error_style;
+} catch(e){
+    err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
+}
+var head= document.getElementsByTagName('head')[0];
+var style= document.createElement('style');
+style.type= 'text/css';
+if (style.styleSheet) {
+  style.styleSheet.cssText = err_style;
+} else {
+  style.appendChild(document.createTextNode(err_style));
+}
+head.appendChild(style);
+setTimeout('mce_preload_check();', 250);
+
+var mce_preload_checks = 0;
+function mce_preload_check(){
+    if (mce_preload_checks>40) return;
+    mce_preload_checks++;
+    try {
+        var jqueryLoaded=jQuery;
+    } catch(err) {
+        setTimeout('mce_preload_check();', 250);
+        return;
+    }
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://template.unicart.com/jquery.form-n-validate.js';
+    head.appendChild(script);
+    try {
+        var validatorLoaded=jQuery("#fake-form").validate({});
+    } catch(err) {
+        setTimeout('mce_preload_check();', 250);
+        return;
+    }
+    mce_init_form();
+}
+function mce_init_form(){
+    jQuery(document).ready( function($) {
+      var options = { errorClass: 'mce_inline_error', errorElement: 'div', onkeyup: function(){}, onfocusout:function(){}, onblur:function(){}  };
+      var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
+      $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
+      options = { url: 'https://unicart.us7.list-manage.com/subscribe/post-json?u=2e364e881ec06d67a9881aa62&id=4ad604240f&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
+                    beforeSubmit: function(){
+                        $('#mce_tmp_error_msg').remove();
+                        $('.datefield','#mc_embed_signup').each(
+                            function(){
+                                var txt = 'filled';
+                                var fields = new Array();
+                                var i = 0;
+                                $(':text', this).each(
+                                    function(){
+                                        fields[i] = this;
+                                        i++;
+                                    });
+                                $(':hidden', this).each(
+                                    function(){
+                                        var bday = false;
+                                        if (fields.length == 2){
+                                            bday = true;
+                                            fields[2] = {'value':1970};//trick birthdays into having years
+                                        }
+                                    	if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
+                                    		this.value = '';
+									    } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
+                                    		this.value = '';
+									    } else {
+									        if (/\[day\]/.test(fields[0].name)){
+    	                                        this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;									        
+									        } else {
+    	                                        this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+	                                        }
+	                                    }
+                                    });
+                            });
+                        $('.phonefield-us','#mc_embed_signup').each(
+                            function(){
+                                var fields = new Array();
+                                var i = 0;
+                                $(':text', this).each(
+                                    function(){
+                                        fields[i] = this;
+                                        i++;
+                                    });
+                                $(':hidden', this).each(
+                                    function(){
+                                        if ( fields[0].value.length != 3 || fields[1].value.length!=3 || fields[2].value.length!=4 ){
+                                    		this.value = '';
+									    } else {
+									        this.value = 'filled';
+	                                    }
+                                    });
+                            });
+                        return mce_validator.form();
+                    }, 
+                    success: mce_success_cb
+                };
+      $('#mc-embedded-subscribe-form').ajaxForm(options);
+      
+      
+    });
+}
+function mce_success_cb(resp){
+    $('#mce-success-response').hide();
+    $('#mce-error-response').hide();
+    if (resp.result=="success"){
+        $('#mce-'+resp.result+'-response').show();
+        $('#mce-'+resp.result+'-response').html(resp.msg);
+        $('#mc-embedded-subscribe-form').each(function(){
+            this.reset();
+    	});
+    } else {
+        var index = -1;
+        var msg;
+        try {
+            var parts = resp.msg.split(' - ',2);
+            if (parts[1]==undefined){
+                msg = resp.msg;
+            } else {
+                i = parseInt(parts[0]);
+                if (i.toString() == parts[0]){
+                    index = parts[0];
+                    msg = parts[1];
+                } else {
+                    index = -1;
+                    msg = resp.msg;
+                }
+            }
+        } catch(e){
+            index = -1;
+            msg = resp.msg;
+        }
+        try{
+            if (index== -1){
+                $('#mce-'+resp.result+'-response').show();
+                $('#mce-'+resp.result+'-response').html(msg);            
+            } else {
+                err_id = 'mce_tmp_error_msg';
+                html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
+                
+                var input_id = '#mc_embed_signup';
+                var f = $(input_id);
+                if (ftypes[index]=='address'){
+                    input_id = '#mce-'+fnames[index]+'-addr1';
+                    f = $(input_id).parent().parent().get(0);
+                } else if (ftypes[index]=='date'){
+                    input_id = '#mce-'+fnames[index]+'-month';
+                    f = $(input_id).parent().parent().get(0);
+                } else {
+                    input_id = '#mce-'+fnames[index];
+                    f = $().parent(input_id).get(0);
+                }
+                if (f){
+                    $(f).append(html);
+                    $(input_id).focus();
+                } else {
+                    $('#mce-'+resp.result+'-response').show();
+                    $('#mce-'+resp.result+'-response').html(msg);
+                }
+            }
+        } catch(e){
+            $('#mce-'+resp.result+'-response').show();
+            $('#mce-'+resp.result+'-response').html(msg);
+        }
+    }
+}
+
+</script>
 <!--End mc_embed_signup-->                            </div>
                         
                         <!-- SOCIAL MEDIA -->
@@ -2083,7 +2363,7 @@ function checkSizeLargeContent729() {
         <!-- <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/main.js"></script> -->
         
 		<!-- UI CONTROL SCRIPT -->
-        <script defer src="catalog/view/theme/aio/js/ui-control.js?ver=1710120688"></script>
+        <script defer src="catalog/view/theme/aio/js/ui-control.js?ver=1712538365"></script>
 
 		<!-- LAZYLOAD -->
 		<script>
