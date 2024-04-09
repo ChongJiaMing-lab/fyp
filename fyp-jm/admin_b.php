@@ -116,10 +116,10 @@
                                                     <td class="action">
                                                         <button type="submit" class="btn btn-warning">Edit</button>
                                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal<?php echo $row["brand_id"]; ?>">
+                                                            data-bs-target="#exampleModal">
                                                             Delete</button>
 
-                                                        <div class="modal fade" id="exampleModal<?php echo $row["brand_id"]; ?>"
+                                                        <div class="modal fade" id="exampleModal"
                                                             tabindex="-1" aria-labelledby="exampleModalLabel"
                                                             aria-hidden="true">
                                                             <div class="modal-dialog">

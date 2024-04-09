@@ -1,10 +1,6 @@
 <?php include 'databaseconnect.php' ?>
 <?php include 'admin_sidebar.php' ?>
 
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
-
 <style>
     .card {
         padding: 16px;
@@ -47,6 +43,10 @@
     .form-check {
         border-width: 3px;
     }
+
+    tr{
+        cursor:pointer;
+    }
 </style>
 
 <body>
@@ -68,11 +68,11 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                imageUrl: "image/<?php echo $_SESSION['img'] ?>",
+                                                                                                                        imageUrl: "image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 400,
                         imageHeight: 200,
                     <?php } ?>
-                        text: "<?php echo $_SESSION['text']; ?>",
+                                                                    text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
@@ -220,7 +220,7 @@
     <hr>
     <div class="card">
         <p><b>Showing .. results.</b></p>
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -252,7 +252,8 @@
                                 JOIN brand ON products.brand_id = brand.brand_id
                                 JOIN category ON products.category_id = category.category_id
                                 JOIN product_status ON products.product_status = product_status.p_status_id
-                                JOIN product_type ON products.product_type = product_type.type_id;";
+                                JOIN product_type ON products.product_type = product_type.type_id
+                                ORDER BY products.product_id";
 
                     $result = mysqli_query($connect, $query);
                     $_SESSION["count"] = mysqli_num_rows($result);
@@ -261,38 +262,88 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>
-                                <th scope="row">
+                                <div class="modal fade" id="v<?php echo $row["product_id"]; ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">View Product</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <div class="form-group mb-4">
+                                                    <label>
+                                                        <?php echo $row['product_name'] ?>
+                                                    </label>
+                                                    <img src="image/<?php echo $row['image'] ?>"
+                                                        style="width:200px; height:auto;" />
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <label>Description:</label><br>
+                                                    <?php echo $row['product_desc'] ?>
+                                                </div>
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- modal end-->
+
+                                <!-- first table row start-->
+                                <th scope="row" data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['product_id'] ?>
                                 </th>
-                                <td><img src="image/<?php echo $row['image'] ?>" />&nbsp&nbsp&nbsp&nbsp&nbsp
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
+                                    <img src="image/<?php echo $row['image'] ?>" />&nbsp&nbsp&nbsp&nbsp&nbsp
                                     <?php echo $row['product_name'] ?>
                                 </td>
-                                <td>
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['brand_name'] ?>
                                 </td>
-                                <td>
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['type'] ?>
                                 </td>
-                                <td>
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['category'] ?>
                                 </td>
-                                <td>RM
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
+                                    RM
                                     <?php echo $row['price'] ?>
                                 </td>
-                                <td>
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['qty'] ?><br>
-                                    <div style="font-size:80%;">
-                                        <?php if ($row['qty'] < 1)
-                                            echo "Out of Stock";
-                                        else
-                                            echo "In Stock" ?>
+                                    <?php
+                                    if ($row['qty'] < 1) { ?>
+                                        <div style="font-size:80%; color:green;">
+                                            <? echo "Out of Stock"; ?>
                                         </div>
-                                    </td>
-                                    <td>
+                                        <?php
+                                    } else { ?>
+                                        <div style="font-size:80%; color:red;">
+                                            <? echo "In Stock"; ?>
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
+
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['product_status'] ?>
                                 </td>
+
                         </form>
-                        <td>
+                        <td class="button-action">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <button type="submit" class="btn btn-warning">Edit</button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"

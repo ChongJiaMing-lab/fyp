@@ -61,4 +61,10 @@ if (isset($_GET["product_id"]))
         header("location:admin_product.php");
     }
 }
+
+//edit product
+if(isset($_GET["product_id"]))
+{
+    
+}
 ?>
