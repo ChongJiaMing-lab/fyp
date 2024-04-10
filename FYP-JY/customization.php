@@ -160,7 +160,7 @@ include "databaseconnect.php";
             <div class="toggleBtn">Monitor</div>
             <div class="content">
                 <?php 
-                    if(isset($monitor))
+                    if(!isset($monitor))
                     {
                         echo    "<a href='product_selection.php?c_id=1'>
                                 Add Component
