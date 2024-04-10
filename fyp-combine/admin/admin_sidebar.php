@@ -1,0 +1,167 @@
+<?php session_start();?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin sidebar</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="admin_sidebar.css">
+</head>
+
+<body>
+<?php
+//if(!isset($_SESSION["admin_id"]))
+//{
+?>
+    <!--<form action="admin_login.php">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert"
+            style="margin: auto auto auto auto;width:50%;">
+            <strong>Hey!</strong>You should login first before you enter admin panel !
+            <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </form> -->
+<?php
+//exit();
+//}
+?>
+    <div class="wrapper">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SKT PC</h2>
+            </div>
+            <div class="user">
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
+                    style="background-color:black; border:none;">
+                        <img src= "image/<?php echo $_SESSION['pic'];?>">
+                        <?php echo $_SESSION['admin_id']; ?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="edit_staff.php?staff_id=<?php echo $_SESSION['id'];?>">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="a_logout.php">Logout</a></li>
+                    </ul>
+                </div>
+        </div><!-- topbar-->
+
+        <aside id="sidebar" class="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="admin_landing.php">Admin</a>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                <a href="#" class="sidebar-link" id="admin">
+                        <img src= "image/<?php echo $_SESSION['pic'];?>" style="margin-right: 0 0 10px 10px;">
+                        <?php echo $_SESSION['admin_id']; ?>
+                    </a>
+                </li>
+                <hr>
+                
+                <li class="sidebar-item">
+                <a href="admin_staff.php" class="sidebar-link" id="admin">
+                        <i class="lni lni-user"></i>
+                        <span>Staff</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar-item">
+                    <a href="admin_product.php" class="sidebar-link">
+                        <i class="lni lni-protection"></i>
+                        <span>Product</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="admin_cust.php" class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span>User</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link cate collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="lni lni-protection"></i>
+                        <span>Category</span>
+                    </a>
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="admin_b.php" class="sidebar-link">Brand</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="admin_pc.php" class="sidebar-link">Pc Components</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="admin_peri.php" class="sidebar-link">Peripherals</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-popup"></i>
+                        <span>Order</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-cog"></i>
+                        <span>Sales Report</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+</body>
+</html>
+
+<script>
+const sidebar = document.querySelector("#sidebar");
+
+sidebar.addEventListener("mouseover", function () {
+  sidebar.classList.add("expand");
+});
+
+sidebar.addEventListener("mouseleave", function () {
+  sidebar.classList.remove("expand");
+});
+
+
+var links = document.querySelectorAll('.sidebar a');
+
+        links.forEach(function(link) {
+            link.classList.remove('active');
+        });
+
+        links.forEach(function(link) {
+            link.addEventListener('click', function() {
+
+                links.forEach(function(link) {
+                    link.classList.remove('active');
+                });
+
+
+                link.classList.add('active');
+
+
+                localStorage.setItem('activeLink', link.getAttribute('href'));
+            });
+        });
+
+        var storedActiveLink = localStorage.getItem('activeLink');
+        if (storedActiveLink) {
+            document.querySelector('.sidebar a[href="' + storedActiveLink + '"]').classList.add('active');
+        }
+
+</script>

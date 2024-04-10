@@ -180,7 +180,7 @@
 <br>
 <div class="button-container">
 
-<button class="edit">Edit</button>
+<a href="customization(edit).php"><button class="edit">Edit</button></a>
 <button class="confirm">Add To Cart</button>
 
 </div>

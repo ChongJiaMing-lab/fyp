@@ -1,3 +1,7 @@
+<?php
+include "databaseconnect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,9 @@
     <title>Customization</title>
 
     <style>
+        body{
+            margin:0px;
+        }
         .header{
             text-align:center;
             padding:15px 15px;
@@ -89,7 +96,7 @@
             align-items: center;
             height: 0; 
             overflow: hidden;
-            transition: height 0.5s ease-in-out;
+            transition: height 0.2s ease-in-out;
         }
 
         .extended-border {
@@ -97,7 +104,7 @@
         }
         .button-container {
             /* display: flex;
-            justify-content: flex-end; Align items to the right */
+            justify-content: fle-end; Align items to the right */
             margin-top: 20px; /* Add some spacing between products and buttons */
             
         }
@@ -106,7 +113,18 @@
             width:100px;
             height:20px;
             margin-top:1%;
+            margin-left:10px;
 
+        }
+
+        .component img{
+            display:inline-block;
+            vertical-align: middle;
+            margin:10px;
+        }
+
+        #com_btn{
+            margin:10px;
         }
 
     </style>
@@ -117,41 +135,67 @@
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a>
     </div>
 
-<form method='post'>
+<form method='post' name="Build">
+
+<?php 
+        $id = 0;
+        $query = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'pay'");
+        $row = mysqli_fetch_array($query); 
+
+        $monitor = $row['monitor']?? null;
+        $chassis = $row['chassis']?? null;
+        $motherboard = $row['motherboard']?? null;
+        $processor= $row['processor']?? null;
+        $gpu = $row['gpu']?? null;
+        $ram1 = $row['ram1']?? null;
+        $ram2 = $row['ram2']?? null;
+        $memory = $row['memory']?? null;
+        $cooler = $row['cooler']?? null;
+        $power_supply = $row['power_supply']?? null;						
+?>
+
 <div class ="container">
     <div class ="product-container">
         <div class ="product">
             <div class="toggleBtn">Monitor</div>
             <div class="content">
-                <select name="Monitor" id="Monitor">
-                <option value="" selected disabled></option>
-                
-                    <?php 
-                    // $result = mysqli_query("SELECT * FROM fyp WHERE category = "Monitor"");
-                    // $row = mysqli_fetch_array("$result");
-
-                    // while($row)
-                    // {
-                    //     echo"<option value = ".$row("name").">".$row("name")."</option>";
-                    // }
-                    ?>
-                </select>
+                <?php 
+                    if(isset($monitor))
+                    {
+                        echo    "<a href='product_selection.php?c_id=1'>
+                                Add Component
+                                </a>";
+                    }
+                    
+                    else{
+                        $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = $monitor");
+                        $row2 = mysqli_fetch_assoc($query2);
+                        echo "<div class='component'>";
+                        echo "<img src=image/".$row2['product_img']."</img>".$row2['product_name'];
+                        echo "<p><a href='build_edit.php?c_id=51' id='com_btn'>Edit</a><a href='build_delete.php?cat=monitor' id='com_btn'>Delete</a></p>";
+                        echo "</div>";
+                    }
+                ?>
             </div>
             <div class ="product">
                 <div class="toggleBtn">Chassis</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="Chassis" id="Chassis">
                 <option value="" selected disabled></option>
-                
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
                 </select>
                 </div>
             </div>
             <div class ="product">
                 <div class="toggleBtn">MotherBoard</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="MotherBoard" id="MotherBoard">
                 <option value="" selected disabled></option>
-                
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
                 </select>
                 
                 </div>
@@ -159,9 +203,11 @@
             <div class ="product">
                 <div class="toggleBtn">Processor</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="Processor" id="Processor">
                 <option value="" selected disabled></option>
-                
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
                 </select>
                 <img src="img/edit-icon.png"/>
                 </div>
@@ -169,7 +215,7 @@
             <div class ="product">
                 <div class="toggleBtn">Graphic Card</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="Graphic Card" id="Graphic Card">
                 <option value="" selected disabled></option>
                 
                 </select>
@@ -179,7 +225,7 @@
             <div class ="product">
                 <div class="toggleBtn">RAM</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="RAM" id="RAM">
                 <option value="" selected disabled></option>
                 
                 </select>
@@ -189,7 +235,7 @@
             <div class ="product">
                 <div class="toggleBtn">Memory</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="Memory" id="Memory">
                 <option value="" selected disabled></option>
                 
                 </select>
@@ -199,7 +245,7 @@
             <div class ="product">
                 <div class="toggleBtn">Cooler</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="Cooler" id="Cooler">
                 <option value="" selected disabled></option>
                 
                 </select>
@@ -209,7 +255,7 @@
             <div class ="product">
                 <div class="toggleBtn">Power Supply</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="Power_Supply" id="Power_Supply">
                 <option value="" selected disabled></option>
                 
                 </select>
@@ -217,9 +263,9 @@
                 </div>
             </div>
             <div class ="product">
-                <div class="toggleBtn">Extra accessories</div>
+                <div class="toggleBtn">peripherals</div>
                 <div class="content">
-                <select name="Monitor" id="Monitor">
+                <select name="peripherals" id="peripherals">
                 <option value="" selected disabled></option>
                 
                 </select>
@@ -241,15 +287,53 @@
                 <a id="expandAllBtn">Expand All</a>
                 <hr>
                 <div class="button-container">
-                <button type="reset" class="reset">Reset</button>
-                <button type="submit" class="confirm">Next</button>
+                <button onclick="confirmReset()">reset</a>
+                <button type="submit" name="confirm">Next</button>
 
                 </div>
             </div>
         </div>
 </div>
+</form>
+
+<!-- <?php
+ //       session_start();
+ //       $id=$_SESSION['id'];
+        // if(isset($_POST["confirm"]))
+        // {
+
+        //     $id=5;
+        //     mysqli_query($connect,"DELETE * FROM pc_build WHERE ID = $ID");
+        //     foreach($_POST as $category => $SelectedOptions)
+        //     {
+        //         if($category == "confirm") continue;
+        //         if($SelectedOptions == 0) continue;
+        //         mysqli_query($connect,"INSERT INTO pc_build(user_id,prod_id) VALUES ('$id','$SelectedOptions')");
+        //     }
+
+            
+        // }
+        
+
+?> -->
 </body>
 <script>
+
+    function confirmReset(){
+        if(confirm('Do you want to reset all the component?'))
+    {
+        <?php
+            $del = mysqli_query($connect,"DELETE FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
+            
+            if(mysqli_affected_rows($connect) > 0)
+            {
+                echo 'alert("Component has been reset successfully!");'; 
+            } else {
+                echo 'alert("Something went wrong...");';
+            }
+        ?>  
+    }
+    }
         
         var expandAllBtn = document.getElementById("expandAllBtn");
         var toggleBtns = document.querySelectorAll(".toggleBtn");
@@ -263,7 +347,7 @@
             if (!expanded) {
                         toggleBtn.style.borderBottom = "0px solid black";
                         contents[index].style.borderBottom = "1px solid black";
-                        contents[index].style.height = '100px';
+                        contents[index].style.height = '120px';
                         expanded = true;
 
                     } else {
@@ -281,7 +365,7 @@ expandAllBtn.addEventListener("click", function() {
 
         toggleBtn.style.borderBottom = "0px solid black"; 
         contents[index].style.borderBottom = "1px solid black";
-        contents[index].style.height = '100px'; 
+        contents[index].style.height = '120px'; 
         All = true;
     });
     expandAllBtn.innerHTML = "Collapse All";
@@ -297,5 +381,4 @@ expandAllBtn.addEventListener("click", function() {
 });
 
 </script>
-</form>
 </html>
