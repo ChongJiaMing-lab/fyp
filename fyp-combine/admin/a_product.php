@@ -15,7 +15,7 @@ if (isset($_POST["save_product"]))
     $qty = $_POST["qty"];
 
     $status = "1";
-    $insert = "INSERT INTO products(category_id, brand_id, product_status, product_name, product_desc, image, price, qty, product_type) 
+    $insert = "INSERT INTO product(category_id, brand_id, product_status, product_name, product_desc, image, price, qty, product_type) 
                 VALUES ('$c','$b','$status','$pd','$d','$img','$price','$qty','$type')";
     $run = mysqli_query($connect, $insert);
 
@@ -39,11 +39,11 @@ if (isset($_GET["product_id"]))
 {
     $p = $_GET["product_id"];
 
-    $query = mysqli_query($connect, "SELECT product_name FROM products WHERE product_id = '$p'");
+    $query = mysqli_query($connect, "SELECT product_name FROM product WHERE product_id = '$p'");
     $row = mysqli_fetch_assoc($query);
     $pn = $row['product_name'];
 
-    $del = "DELETE FROM products WHERE product_id = '$p'";
+    $del = "DELETE FROM product WHERE product_id = '$p'";
     $query = mysqli_query($connect, $del);
 
     if ($query) 

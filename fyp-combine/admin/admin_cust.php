@@ -89,12 +89,13 @@ include 'databaseconnect.php';
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Contact</th>
-                        <th scope="col">Age</th>
+                        <th scope="col">gender</th>
+                        <th scope="col">Joined Time</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
                     <?php
-                    $q = "SELECT * FROM user";
+                    $q = "SELECT * FROM user_information";
 
                     $result = mysqli_query($connect, $q);
                     $count = mysqli_num_rows($result);
@@ -102,32 +103,35 @@ include 'databaseconnect.php';
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
-                            <tr onclick="window.location='cust_detail.php?user_id=<?php echo $row['user_id'] ?>';">
+                            <tr onclick="window.location='cust_detail.php?ID=<?php echo $row['ID'] ?>';">
                                 <th scope="row">
-                                    <?php echo $row["user_id"] ?>
+                                    <?php echo $row["ID"] ?>
                                 </th>
                                 <td>
                                     <?php echo $row["name"]; ?><br>
                                     <div style="font-size:11px;"><i>from </i>
-                                        <?php echo $row["country"] ?>
+                                        <!--< ?php echo $row["country"] ?> -->
                                     </div>
                                 </td>
                                 </td>
                                 <td style="vertical-align: middle;">
                                     Telephone.No:
-                                    <?php echo $row["tel"] ?><br>
+                                    <?php echo $row["contactnumber"] ?><br>
                                     Email:
-                                    <?php echo $row["eml"] ?>
+                                    <?php echo $row["email"] ?>
                                 </td>
                                 <td>
-                                    <?php echo $row["age"] ?>
+                                    <?php echo $row["gender"] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row["join_time"] ?>
                                 </td>
                             </tr>
                             <?php
                         }
                     } else {
                         ?>
-                        <td colspan="4" style="text-align:center"><b>No record found :(</b></td>
+                        <td colspan="5" style="text-align:center"><b>No record found :(</b></td>
                         <?php
                     }
                     ?>

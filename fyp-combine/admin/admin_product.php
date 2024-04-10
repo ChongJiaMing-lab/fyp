@@ -44,8 +44,12 @@
         border-width: 3px;
     }
 
-    tr{
-        cursor:pointer;
+    tr {
+        cursor: pointer;
+    }
+
+    .lr {
+        display: flex;
     }
 </style>
 
@@ -68,11 +72,11 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                        imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
+                                                                                imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 400,
                         imageHeight: 200,
                     <?php } ?>
-                                                                    text: "<?php echo $_SESSION['text']; ?>",
+                                                                                                text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
@@ -264,7 +268,7 @@
                             <tr>
                                 <div class="modal fade" id="v<?php echo $row["product_id"]; ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered ">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <!-- Modal Header -->
                                             <div class="modal-header">
@@ -273,15 +277,65 @@
                                             </div>
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                <div class="form-group mb-4">
-                                                    <label>
-                                                        <?php echo $row['product_name'] ?>
-                                                    </label>
+                                                <div class="up" style="display:flex;">
                                                     <img src="../image/<?php echo $row['image'] ?>"
-                                                        style="width:200px; height:auto;" />
+                                                        style="width:400px; height:auto;" />
+                                                    <div class="p_info">
+                                                        <div class="form-group">
+                                                            <b><?php echo $row['product_name'] ?></b>
+                                                            <hr><br>
+                                                        </div>
+                                                        <div class="lr">
+                                                            <div class="v_left">
+                                                                <div class="form-group mb-4">
+                                                                    <label style="margin-right:31px;">
+                                                                        <b>Brand</b>
+                                                                    </label>
+                                                                    <?php echo $row['brand_name'] ?>
+                                                                </div>
+
+                                                                <div class="form-group mb-4">
+                                                                    <label style="margin-right:40px;">
+                                                                        <b>Type</b>
+                                                                    </label>
+                                                                    <?php echo $row['type'] ?>
+                                                                </div>
+
+                                                                <div class="form-group mb-4">
+                                                                    <label style="margin-right:5px;">
+                                                                        <b>Category</b>
+                                                                    </label>
+                                                                    <?php echo $row['category'] ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="v_right" style="margin-left:22px;">
+                                                                <div class="form-group mb-4">
+                                                                    <label style="margin-right:16.5px;">
+                                                                        <b>Stock</b>
+                                                                    </label>
+                                                                    <?php echo $row['qty'] ?>
+                                                                </div>
+
+                                                                <div class="form-group mb-4">
+                                                                    <label style="margin-right:19px;">
+                                                                        <b>Price</b>
+                                                                    </label>
+                                                                    <?php echo $row['price'] ?>
+                                                                </div>
+
+                                                                <div class="form-group mb-4">
+                                                                    <label style="margin-right:9px;">
+                                                                        <b>Status</b>
+                                                                    </label>
+                                                                    <?php echo $row['product_status'] ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group mb-4">
-                                                    <label>Description:</label><br>
+                                                <div class="form-group" style="margin-left:30px;">
+                                                    <label><b>Description</b></label><br>
                                                     <?php echo $row['product_desc'] ?>
                                                 </div>
                                             </div>
@@ -321,7 +375,7 @@
                                     <?php echo $row['price'] ?>
                                 </td>
 
-                                <td data-bs-toggle="modal" data-bs-target="#view_product<?php echo $row["product_id"]; ?>">
+                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['qty'] ?><br>
                                     <div style="font-size:80%; color:<?php echo ($row['qty'] < 1) ? 'red' : 'green'; ?>">
                                         <?php echo ($row['qty'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
