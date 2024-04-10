@@ -68,7 +68,7 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                                                                                                        imageUrl: "image/<?php echo $_SESSION['img'] ?>",
+                        imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 400,
                         imageHeight: 200,
                     <?php } ?>
@@ -238,22 +238,22 @@
                 <form action="a_product.php" method="POST" id="pd">
                     <?php
                     $query = "SELECT 
-                                products.product_id, 
-                                products.product_name, 
-                                products.product_desc, 
-                                products.image, 
-                                products.price, 
-                                products.qty,
+                                product.product_id, 
+                                product.product_name, 
+                                product.product_desc, 
+                                product.image, 
+                                product.price, 
+                                product.qty,
                                 product_status.product_status, 
                                 brand.brand_name, 
                                 category.category,
                                 product_type.type
-                                FROM products
-                                JOIN brand ON products.brand_id = brand.brand_id
-                                JOIN category ON products.category_id = category.category_id
-                                JOIN product_status ON products.product_status = product_status.p_status_id
-                                JOIN product_type ON products.product_type = product_type.type_id
-                                ORDER BY products.product_id";
+                                FROM product
+                                JOIN brand ON product.brand_id = brand.brand_id
+                                JOIN category ON product.category_id = category.category_id
+                                JOIN product_status ON product.product_status = product_status.p_status_id
+                                JOIN product_type ON product.product_type = product_type.type_id
+                                ORDER BY product.product_id";
 
                     $result = mysqli_query($connect, $query);
                     $_SESSION["count"] = mysqli_num_rows($result);
@@ -277,7 +277,7 @@
                                                     <label>
                                                         <?php echo $row['product_name'] ?>
                                                     </label>
-                                                    <img src="image/<?php echo $row['image'] ?>"
+                                                    <img src="../image/<?php echo $row['image'] ?>"
                                                         style="width:200px; height:auto;" />
                                                 </div>
                                                 <div class="form-group mb-4">
@@ -300,7 +300,7 @@
                                 </th>
 
                                 <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
-                                    <img src="image/<?php echo $row['image'] ?>" />&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <img src="../image/<?php echo $row['image'] ?>" />&nbsp&nbsp&nbsp&nbsp&nbsp
                                     <?php echo $row['product_name'] ?>
                                 </td>
 
@@ -321,21 +321,11 @@
                                     <?php echo $row['price'] ?>
                                 </td>
 
-                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
+                                <td data-bs-toggle="modal" data-bs-target="#view_product<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['qty'] ?><br>
-                                    <?php
-                                    if ($row['qty'] < 1) { ?>
-                                        <div style="font-size:80%; color:green;">
-                                            <? echo "Out of Stock"; ?>
-                                        </div>
-                                        <?php
-                                    } else { ?>
-                                        <div style="font-size:80%; color:red;">
-                                            <? echo "In Stock"; ?>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
+                                    <div style="font-size:80%; color:<?php echo ($row['qty'] < 1) ? 'red' : 'green'; ?>">
+                                        <?php echo ($row['qty'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
+                                    </div>
                                 </td>
 
                                 <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
@@ -363,7 +353,7 @@
 
                                             <div class="modal-body">
                                                 Confirm to delete?:<br>
-                                                <img src="image/<?php echo $row["image"] ?>">
+                                                <img src="../image/<?php echo $row["image"] ?>">
                                                 <?php echo $row["product_name"] ?>
                                             </div>
                                             <div class="modal-footer">
