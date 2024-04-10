@@ -44,8 +44,8 @@
         border-width: 3px;
     }
 
-    tr{
-        cursor:pointer;
+    tr {
+        cursor: pointer;
     }
 </style>
 
@@ -68,11 +68,11 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                                                                                                        imageUrl: "image/<?php echo $_SESSION['img'] ?>",
+                                                                                                                                imageUrl: "image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 400,
                         imageHeight: 200,
                     <?php } ?>
-                                                                    text: "<?php echo $_SESSION['text']; ?>",
+                                                                        text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
@@ -321,22 +321,13 @@
                                     <?php echo $row['price'] ?>
                                 </td>
 
-                                <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
+                                <td data-bs-toggle="modal" data-bs-target="#view_product<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['qty'] ?><br>
-                                    <?php
-                                    if ($row['qty'] < 1) { ?>
-                                        <div style="font-size:80%; color:green;">
-                                            <? echo "Out of Stock"; ?>
-                                        </div>
-                                        <?php
-                                    } else { ?>
-                                        <div style="font-size:80%; color:red;">
-                                            <? echo "In Stock"; ?>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
+                                    <div style="font-size:80%; color:<?php echo ($row['qty'] < 1) ? 'red' : 'green'; ?>">
+                                        <?php echo ($row['qty'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
+                                    </div>
                                 </td>
+
 
                                 <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                     <?php echo $row['product_status'] ?>

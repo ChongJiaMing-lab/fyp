@@ -28,9 +28,9 @@ if(isset($_POST["input"])){
 											
 
 
-								<div >
-									<div class="frame" >
-                                    
+								
+									
+                                    <div class="frame">
                                                        
 										<div class="item-img">
 											<a href="...">
@@ -74,9 +74,9 @@ if(isset($_POST["input"])){
 															</span>
 																											</div>
 																							</div>
-										    </div>
+										    
                                             
-									    </div>
+									   </div>
                                         
                                     </div>';
 								}   

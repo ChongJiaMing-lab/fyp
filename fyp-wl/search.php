@@ -122,7 +122,8 @@
 
 									success:function(data)
 									{
-										$(".product-listing .box-content").html(data);
+										$(".product-listing .box-content").html(data).css("display", "");;
+										
 									}
 								});
 							}
@@ -256,6 +257,7 @@
 							<!-- PRODUCT LISTING -->
 							<div class="box module-product product-listing ">
 								<div class="box-content">
+									
 							</div>
 										</div>
 							<!-- END PRODUCT LISTING -->
