@@ -122,7 +122,7 @@
 
 									success:function(data)
 									{
-										$(".product-listing .box-content").html(data);
+										$(".product-listing .box-content").html(data).css("display", "");
 									}
 								});
 							}
@@ -139,7 +139,7 @@
 							
 							<?php
 							$query2 = "SELECT DISTINCT p.category_id, c.category
-							FROM products p 
+							FROM product p 
 							INNER JOIN category c ON p.category_id = c.category_id
 							WHERE p.product_status ='1' 
 							ORDER BY p.product_id DESC";

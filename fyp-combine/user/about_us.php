@@ -151,21 +151,21 @@
 <div class="grid-container">
 
 <div class="member">
-    <img src="LJY.png" alt="" class="imgmember">
+    <img src="../staff_img/LJY.png" alt="" class="imgmember">
     <div class="text-overlay">
         <p>LIM JUN YONG</p>
         <P>1221201499</P>
     </div>
 </div>
 <div class="member">
-    <img src="LWL.jpg" alt="" class="imgmember">
+    <img src="../staff_img/LWL.jpg" alt="" class="imgmember">
     <div class="text-overlay">
         <p>LAM WEI LEONG</p>
         <P>1221201835</P>
     </div>
 </div>
 <div class="member">
-    <img src="CJM.jpg" alt="" class="imgmember" width="300px">
+    <img src="../staff_img/CJM.jpg" alt="" class="imgmember" width="300px">
     <div class="text-overlay">
         <p>CHONG JIA MING</p>
         <P>1221202126</P>

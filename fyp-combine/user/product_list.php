@@ -145,7 +145,7 @@
                     <div class="list-group">
                                         <?php
                                         $query = "SELECT DISTINCT p.brand_id, b.brand_name 
-                FROM products p
+                FROM product p
                 INNER JOIN brand b ON p.brand_id = b.brand_id
                 WHERE p.product_status ='1' 
                 ORDER BY p.product_id DESC";
@@ -177,7 +177,7 @@
                     <div class="list-group">
                     <?php
                         $query2 = "SELECT DISTINCT p.category_id, c.category
-                                            FROM products p 
+                                            FROM product p 
                                             INNER JOIN category c ON p.category_id = c.category_id
                                             WHERE p.product_status ='1' 
                                             ORDER BY p.product_id DESC";
