@@ -6,7 +6,7 @@ if(isset($_POST["input"])){
 
     $input = $_POST["input"];
 
-	$query = "SELECT * FROM products WHERE product_status = '1' AND (brand_id LIKE '{$input}%' OR product_name LIKE '{$input}%')";
+	$query = "SELECT * FROM product WHERE product_status = '1' AND (brand_id LIKE '{$input}%' OR product_name LIKE '{$input}%')";
 	if (isset($_POST["category"])) {
         $category_filter = implode("','", $_POST["category"]);
         $query .= " AND category_id IN ('" . $category_filter . "')";
@@ -38,7 +38,7 @@ if(isset($_POST["input"])){
 														
 														
 																												
-                                                                                                        <img class="first-img lazy" src="image/' . $row["product_img"] . '" class="img-responsive alt="" style= " width:300px ; height:auto ;display: block;margin:auto;"/>
+                                                                                                        <img class="first-img lazy" src="../image/' . $row["image"] . '" class="img-responsive alt="" style= " width:300px ; height:auto ;display: block;margin:auto;"/>
 
 														
 													</div>
@@ -57,7 +57,7 @@ if(isset($_POST["input"])){
 
 
 											<div class="price">
-																<div class="price-new">RM' . $row['product_price'] . '</div>
+																<div class="price-new">RM' . $row['price'] . '</div>
 														<div class="price-old"></div> 
                                                         
                                                         <p>Desc: ' . $row['product_desc'] . ' <br/></p>

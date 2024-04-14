@@ -220,7 +220,7 @@
 
 if ( @ $_POST["loginbtn"] == "Login") 
 {
-    $con=mysqli_connect('localhost','root','','pc_store',3306);
+    $con=mysqli_connect('localhost','root','','fyp',3306);
 
     mysqli_set_charset($con,"utf8");
 

@@ -1,14 +1,14 @@
 <?php
 
 include ('data_connection.php');
-
+session_start();
 $output = '';
 
 if (isset($_POST["action"])) {
-    $query = "SELECT * FROM products WHERE product_status ='1' ";
+    $query = "SELECT * FROM product WHERE product_status ='1' ";
 
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
-        $query .= " AND product_price BETWEEN '" .$_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'";
+        $query .= " AND price BETWEEN '" .$_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'";
     }
     if (isset($_POST["brand"])) {
         $brand_filter = implode("','", $_POST["brand"]);
@@ -39,7 +39,7 @@ if (isset($_POST["action"])) {
 														
 														
 																												
-                                                                                                        <img class="first-img lazy" src="image/' . $row["product_img"] . '" class="img-responsive alt="" style= " width:300px ; height:auto ;display: block;margin:auto;"/>
+                                                                                                        <img class="first-img lazy" src="../image/' . $row["image"] . '" class="img-responsive alt="" style= " width:300px ; height:auto ;display: block;margin:auto;"/>
 
 														
 													</div>
@@ -58,7 +58,7 @@ if (isset($_POST["action"])) {
 
 
 											<div class="price">
-																<div class="price-new">RM' . $row['product_price'] . '</div>
+																<div class="price-new">RM' . $row['price'] . '</div>
 														<div class="price-old"></div> 
                                                         
                                                         <p>Desc: ' . $row['product_desc'] . ' <br/></p>
@@ -71,7 +71,9 @@ if (isset($_POST["action"])) {
 																									<div class="button">
 																													<span class="icon-add-cart"></span>
 															<span class="btn-add-cart">
-																<input type="button" value="Add to Cart" onclick="..." />
+                                                            <a href="addtocart.php?product_id='.$row ["product_id"].'">
+                                                            <input type="button" name="add" value="Add to Cart" )" />
+                                                            </a>    
 															</span>
 																											</div>
 																							</div>
@@ -81,6 +83,7 @@ if (isset($_POST["action"])) {
                                        
                                     </div>';
         }
+        
     } else {
         $output = '<h3>No Data Found</h3>';
     }

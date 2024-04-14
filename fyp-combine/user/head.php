@@ -228,7 +228,7 @@ session_start();
     </div>
 </div>
 
-                <!-- SHOPPING CART -->
+   <!-- SHOPPING CART -->
                 <!-- ###AIO### -->
 
 <div id="shopping-cart">
@@ -248,6 +248,7 @@ session_start();
                             <div class="empty-cart">
                     <div>
                         <i class="icon-empty-cart"></i>
+                       
                     </div>
                     <div>
                         Your shopping cart is empty!                    </div>
@@ -255,11 +256,37 @@ session_start();
                                 </div>
         
     <div class="count-frame">
-            </div>
+    <?php
+    $id = $_SESSION["ID"];
+$result = mysqli_query($connect,"SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
+$count = mysqli_num_rows($result);
 
-   
+if($count!=0)
+{
+
+echo"<span class=\"shopping-cart-count \">$count</span>";
+}
+else
+{
+    echo"<span class=\"shopping-cart-count \">0</span>";
+}
+?>
+    
+            </div>
+            <script>
+    // Get the DOM element for the cart icon
+    var cartIcon = document.getElementById('clickme');
+
+    // Add an event listener for click events
+    cartIcon.addEventListener('click', function() {
+        // Redirect to the shopping_cart.php page
+        window.location.href = 'shoping_cart.php';
+    });
+</script>
+           
     
 </div>
+
                 <!-- ACCOUNT -->
                 <div id="myaccount">
                     <div class="dropdown is-right is-hoverable">
