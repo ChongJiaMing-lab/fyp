@@ -51,6 +51,12 @@
     .lr {
         display: flex;
     }
+
+    .modal-edit input,
+    .modal-edit textarea,
+    .modal-edit select {
+        border: 1.5px solid black;
+    }
 </style>
 
 <body>
@@ -72,11 +78,11 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                                                imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
+                                                                                                        imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 35 + '%',
                         imageHeight: 'auto',
                     <?php } ?>
-                                        text: "<?php echo $_SESSION['text']; ?>",
+                                                            text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
@@ -391,17 +397,17 @@
                             <td class="button-action">
                                 <!-- _____________________________________EDIT__________________________________________-->
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    
+
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                         data-bs-target="#e<?php echo $row["product_id"]; ?>">Edit</button>
 
-                                    <div class="modal fade" id="e<?php echo $row["product_id"]; ?>" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade modal-edit" id="e<?php echo $row["product_id"]; ?>" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:1px solid black;">
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Add Product</h4>
+                                                    <h4 class="modal-title">Edit</h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <!-- Modal body -->
@@ -413,17 +419,37 @@
                                                                 <div class="form-group mb-4">
                                                                     <label for="prodcuct_title">Product:</label>
                                                                     <input type="text" class="form-control" name="product_name"
-                                                                        placeholder="product name">
+                                                                        placeholder="product name"
+                                                                        value="<?php echo $row["product_name"] ?>">
                                                                 </div>
                                                             </div>
                                                             <!-- brand -->
                                                             <div class="col-md-4">
                                                                 <div class="form-group mb-4">
                                                                     <label>Brand:</label>
+                                                                    <?php
+                                                                    $selected_brand = $row["brand_name"];
+                                                                    $select = mysqli_query($connect, "SELECT * FROM brand where brand_name = '$selected_brand'");
+                                                                    ?>
                                                                     <select class="form-select" id="brand"
                                                                         aria-label="Default select example" name="brand">
                                                                         <?php
-                                                       
+                                                                        foreach ($select as $rowb) {
+                                                                            ?>
+                                                                            <option value="<?php echo $rowb['brand_id']; ?>"
+                                                                                selected>
+                                                                                <?php echo $rowb['brand_name'];
+                                                                        }
+                                                                        $b = mysqli_query($connect, "SELECT * FROM brand WHERE NOT brand_name = '$selected_brand'");
+                                                                        if (mysqli_num_rows($b) > 0) {
+                                                                            while ($rowb = mysqli_fetch_assoc($b)) {
+                                                                                ?>
+                                                                                <option value="<?php echo $rowb['brand_id'] ?>">
+                                                                                    <?php echo $rowb['brand_name'] ?>
+                                                                                </option>
+                                                                                <?php
+                                                                            }
+                                                                        }
                                                                         ?>
                                                                     </select>
                                                                 </div>
@@ -433,8 +459,22 @@
                                                                 <div class="form-group mb-4">
                                                                     <label>Type:</label>
                                                                     <?php
-                                                                    $type = mysqli_query($connect, "SELECT * FROM product_type");
-                                                     
+                                                                    $selected_type = $row["type"];
+                                                                    $select = mysqli_query($connect, "SELECT * FROM product_type");
+                                                                    while ($rowt = mysqli_fetch_assoc($select)) {
+                                                                        ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="radio" id="flexRadioDefault1"
+                                                                                value="<?php echo $rowt['type_id'] ?>" <?php if ($rowt['type'] == $selected_type) {
+                                                                                       echo "checked";
+                                                                                   } ?> />
+                                                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                                                <?php echo $rowt['type'] ?>
+                                                                            </label>
+                                                                        </div>
+                                                                        <?php
+                                                                    }
                                                                     ?>
                                                                 </div>
                                                             </div>
@@ -443,8 +483,17 @@
                                                                 <div class="form-group mb-4">
                                                                     <label>Category:</label>
                                                                     <select class="form-select" id="category"
-                                                                        aria-label="Default select example"
-                                                                        name="cate"></select>
+                                                                        aria-label="Default select example" name="cate">
+                                                                        <?php
+                                                                        $selected_cate = $row["category"];
+                                                                        $select = mysqli_query($connect, "SELECT * FROM category where category = '$selected_cate'");
+                                                                        while ($rowc = mysqli_fetch_assoc($select)) {
+                                                                            ?>
+                                                                            <option value="<?php echo $rowc['category_id']; ?>"
+                                                                                selected>
+                                                                                <?php echo $rowc['category'];
+                                                                        } ?>
+                                                                    </select>
                                                                 </div>
                                                             </div>
 
@@ -472,7 +521,8 @@
                                                                             for="exampleFormControlTextarea1">Description</label>
                                                                         <textarea class="form-control"
                                                                             id="exampleFormControlTextarea1" rows="3"
-                                                                            placeholder="product desc" name="desc"></textarea>
+                                                                            placeholder="product desc"
+                                                                            name="desc"><?php echo $row["product_desc"] ?></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -490,7 +540,7 @@
                                                                     <div class="input-group mb-3">
                                                                         <span class="input-group-text">RM</span>
                                                                         <input type="text" class="form-control" id="price"
-                                                                            name="price">
+                                                                            name="price" value="<?php echo $row["price"] ?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -499,19 +549,20 @@
                                                                     <label class="form-label" for="qty">Stock:</label>
                                                                     <div class="input-group mb-3">
                                                                         <input type="text" class="form-control" id="qty"
-                                                                            name="qty">
+                                                                            name="qty" value="<?php echo $row["qty"] ?>">
                                                                         <span class="input-group-text">pcs</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="product_id" value="<?php echo $row["product_id"]; ?>">
                                                         </div>
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            name="edit_product">Update</button>
                                                         <button type="button" class="btn btn-danger"
                                                             data-bs-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            name="save_product">Add</button>
                                                     </div>
                                                 </form>
                                             </div>
