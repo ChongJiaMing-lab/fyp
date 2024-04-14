@@ -464,8 +464,8 @@
                                                                     while ($rowt = mysqli_fetch_assoc($select)) {
                                                                         ?>
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="radio"
-                                                                                name="radio" id="flexRadioDefault1"
+                                                                            <input class="form-check-input" type="radio" id="edit-radio<?php echo $row["product_name"] ?>"
+                                                                                name="edit-radio" id="flexRadioDefault1"
                                                                                 value="<?php echo $rowt['type_id'] ?>" <?php if ($rowt['type'] == $selected_type) {
                                                                                        echo "checked";
                                                                                    } ?> />
@@ -482,15 +482,13 @@
                                                             <div class="col-md-5">
                                                                 <div class="form-group mb-4">
                                                                     <label>Category:</label>
-                                                                    <select class="form-select" id="category"
-                                                                        aria-label="Default select example" name="cate">
+                                                                    <select class="form-select" id="edit-category" aria-label="Default select example" name="cate">
                                                                         <?php
                                                                         $selected_cate = $row["category"];
                                                                         $select = mysqli_query($connect, "SELECT * FROM category where category = '$selected_cate'");
                                                                         while ($rowc = mysqli_fetch_assoc($select)) {
                                                                             ?>
-                                                                            <option value="<?php echo $rowc['category_id']; ?>"
-                                                                                selected>
+                                                                            <option value="<?php echo $rowc['category_id']; ?>">
                                                                                 <?php echo $rowc['category'];
                                                                         } ?>
                                                                     </select>
@@ -499,15 +497,15 @@
 
                                                             <script>
                                                                 $(document).ready(function () {
-                                                                    $('input[name="radio"]').on('click', function () {
+                                                                    $('input[name="edit-radio"]').on('click', function () {
 
-                                                                        var setvalue = $('input[name="radio"]:checked').val();
+                                                                        var set = $('input[name="edit-radio"]:checked').val();
                                                                         $.ajax({
                                                                             url: 'run_query.php',
                                                                             method: 'POST',
-                                                                            data: { bid: setvalue },
+                                                                            data: { bid: set },
                                                                             success: function (data) {
-                                                                                $('#category').html(data);
+                                                                                $('#edit-category').html(data);
                                                                             }
                                                                         });
                                                                     });
