@@ -78,11 +78,11 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                                                                                        imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
+                                                                                                                        imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 35 + '%',
                         imageHeight: 'auto',
                     <?php } ?>
-                                                            text: "<?php echo $_SESSION['text']; ?>",
+                                                                    text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
@@ -464,13 +464,14 @@
                                                                     while ($rowt = mysqli_fetch_assoc($select)) {
                                                                         ?>
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="radio" id="edit-radio<?php echo $row["product_name"] ?>"
-                                                                                name="edit-radio" id="flexRadioDefault1"
-                                                                                value="<?php echo $rowt['type_id'] ?>" <?php if ($rowt['type'] == $selected_type) {
+                                                                            <input class="form-check-input edit-radio" type="radio"
+                                                                                id="edit-radio<?php echo $rowt['type_id']; ?>"
+                                                                                name="edit-radio<?php echo $row["product_id"]; ?>"
+                                                                                value="<?php echo $rowt['type_id']; ?>" <?php if ($rowt['type'] == $selected_type) {
                                                                                        echo "checked";
                                                                                    } ?> />
                                                                             <label class="form-check-label" for="flexRadioDefault1">
-                                                                                <?php echo $rowt['type'] ?>
+                                                                                <?php echo $rowt['type']; ?>
                                                                             </label>
                                                                         </div>
                                                                         <?php
@@ -482,30 +483,35 @@
                                                             <div class="col-md-5">
                                                                 <div class="form-group mb-4">
                                                                     <label>Category:</label>
-                                                                    <select class="form-select" id="edit-category" aria-label="Default select example" name="cate">
+                                                                    <select class="form-select"
+                                                                        id="edit-category<?php echo $row["product_id"]; ?>"
+                                                                        aria-label="Default select example" name="cate">
                                                                         <?php
                                                                         $selected_cate = $row["category"];
                                                                         $select = mysqli_query($connect, "SELECT * FROM category where category = '$selected_cate'");
                                                                         while ($rowc = mysqli_fetch_assoc($select)) {
                                                                             ?>
-                                                                            <option value="<?php echo $rowc['category_id']; ?>">
-                                                                                <?php echo $rowc['category'];
-                                                                        } ?>
+                                                                            <option value="<?php echo $rowc['category_id']; ?>"
+                                                                                checked>
+                                                                                <?php echo $rowc['category']; ?>
+                                                                            </option>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
 
                                                             <script>
                                                                 $(document).ready(function () {
-                                                                    $('input[name="edit-radio"]').on('click', function () {
-
-                                                                        var set = $('input[name="edit-radio"]:checked').val();
+                                                                    $('input[name^="edit-radio"]').on('click', function () {
+                                                                        var set = $('input[name="edit-radio_'+'<?php echo $row["product_id"]; ?>]'"]:checked').val();
                                                                         $.ajax({
                                                                             url: 'run_query.php',
                                                                             method: 'POST',
                                                                             data: { bid: set },
                                                                             success: function (data) {
-                                                                                $('#edit-category').html(data);
+                                                                                $("#edit-category"+'<?php echo $row["product_id"]; ?>').html(data);
                                                                             }
                                                                         });
                                                                     });
@@ -552,7 +558,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <input type="hidden" name="product_id" value="<?php echo $row["product_id"]; ?>">
+                                                            <input type="hidden" name="product_id"
+                                                                value="<?php echo $row["product_id"]; ?>">
                                                         </div>
                                                     </div>
                                                     <!-- Modal footer -->
