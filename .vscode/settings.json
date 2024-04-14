@@ -1,4 +1,4 @@
 {
     "editor.cursorStyle": "line",
-    "editor.cursorSmoothCaretAnimation": "on"
+    "editor.cursorSmoothCaretAnimation": "off"
 }
