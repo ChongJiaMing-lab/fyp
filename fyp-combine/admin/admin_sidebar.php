@@ -109,7 +109,7 @@
                 </li>
                 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="admin_order.php" class="sidebar-link">
                         <i class="lni lni-popup"></i>
                         <span>Order</span>
                     </a>
