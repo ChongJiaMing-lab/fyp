@@ -78,11 +78,11 @@
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
                     <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                                                                                                        imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
+                                                                                                                                imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
                         imageWidth: 35 + '%',
                         imageHeight: 'auto',
                     <?php } ?>
-                                                                    text: "<?php echo $_SESSION['text']; ?>",
+                                                                        text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
@@ -465,8 +465,8 @@
                                                                         ?>
                                                                         <div class="form-check">
                                                                             <input class="form-check-input edit-radio" type="radio"
-                                                                                id="edit-radio<?php echo $rowt['type_id']; ?>"
-                                                                                name="edit-radio<?php echo $row["product_id"]; ?>"
+                                                                                id="edit-radio<?php echo $row["product_id"]; ?>"
+                                                                                name="edit-radio"
                                                                                 value="<?php echo $rowt['type_id']; ?>" <?php if ($rowt['type'] == $selected_type) {
                                                                                        echo "checked";
                                                                                    } ?> />
@@ -504,14 +504,14 @@
 
                                                             <script>
                                                                 $(document).ready(function () {
-                                                                    $('input[name^="edit-radio"]').on('click', function () {
-                                                                        var set = $('input[name="edit-radio_'+'<?php echo $row["product_id"]; ?>]'"]:checked').val();
+                                                                    $('input[name="edit-radio"]').on('click', function () {
+                                                                        var set = $('input[id="edit-radio' + <?php echo $row["product_id"]; ?> + '"]:checked').val();
                                                                         $.ajax({
                                                                             url: 'run_query.php',
                                                                             method: 'POST',
                                                                             data: { bid: set },
                                                                             success: function (data) {
-                                                                                $("#edit-category"+'<?php echo $row["product_id"]; ?>').html(data);
+                                                                                $("#edit-category" + <?php echo $row["product_id"]; ?>).html(data);
                                                                             }
                                                                         });
                                                                     });
@@ -534,6 +534,7 @@
                                                                 <div class="form-group mb-4">
                                                                     <label class="form-label" for="customFile">Product
                                                                         Image</label>
+                                                                    <img src=../image/<?php echo $row["image"]?>/>
                                                                     <input type="file" class="form-control" id="customFile"
                                                                         name="img" />
                                                                 </div>
