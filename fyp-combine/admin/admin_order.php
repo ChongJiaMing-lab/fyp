@@ -20,6 +20,7 @@
 
 <body>
     <div class="main p-3">
+        <h1>Order List</h1><hr>
         <div class="top">
             <form method="POST" action="" class="filter">
                 <label>Filter by:</label>
@@ -41,6 +42,9 @@
                     <option value="3">Highest Total</option>
                     <option value="4">Lowest Total</option>
                 </select>
+            </form>
+            <form method="POST" action="generate_report.php">
+            <button type="submit" class="btn btn-success" name="order_receipt">Generate Report</button>
             </form>
         </div>
         <hr>
