@@ -19,7 +19,7 @@
     <div class="main p-3">
         <div class="head" style="display:flex;">
             <i class="lni lni-lineicons-symbol" style="font-size:50px;"></i>
-            <h1 style="margin: 12px 0 0 30px">Category : Peripheral</Category:Components>
+            <h1 style="margin: 12px 0 0 30px">Category : Brand
             </h1>
             <hr>
         </div>
@@ -119,9 +119,8 @@
                                                             data-bs-target="#exampleModal">
                                                             Delete</button>
 
-                                                        <div class="modal fade" id="exampleModal"
-                                                            tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                            aria-hidden="true">
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">

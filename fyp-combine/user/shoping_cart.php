@@ -337,13 +337,17 @@
                 calculateTotal();
             });
             $(document).ready(function () {
-            $('input[ name="quantity[2659]]').on('onchange', function () {
-                 var newqty =  $('input[ name="quantity[2659]]').val();   
+            $('input[name="quantity[2659]]').on('onchange', function () {
+                 var newqty =  $('input[name="quantity[2659]]').val(); 
+                 var user = <?php echo $_SESSION["ID"]; ?>;
+                 var product = $(this).closest('.my-checkout-listing').data('product-id');
                 $.ajax({
                     url: "change_qty.php",
                     method: "POST",
                     data: {
-                       qty:newqty
+                       qty:newqty,
+                       pd:product,
+                       id:user_id
                     },
                    
                 })
