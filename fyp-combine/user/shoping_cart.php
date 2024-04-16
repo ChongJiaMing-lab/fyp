@@ -131,7 +131,10 @@
                                 <?php
                                 if ($result) {
                                     // foreach($result as $row)
-                                    while ($row = mysqli_fetch_array($result)) { ?>
+                                    while ($row = mysqli_fetch_array($result)) { 
+                                    if($row['status'] != 'payed'){?>
+
+                                    
                                         <!-- CHECKOUT CART LISTING -->
                                         <div class="my-checkout-listing">
                                             <div class="columns is-mobile ">
@@ -191,6 +194,7 @@
                                         </div>
 
                                         <?php
+                                        }
                                     }
                                 } else {
                                     echo "no records found :(";
