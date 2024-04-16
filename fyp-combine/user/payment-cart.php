@@ -107,13 +107,41 @@
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
+                        <?php
+	$id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+    $query2 = "SELECT * FROM user_address WHERE customer_id='$id' AND default_address = '1' ";
+    $result = mysqli_query($connect, $query);
+    $result2 = mysqli_query($connect, $query2);
+    $row2 = mysqli_fetch_assoc($result2);
+    if($result && $result2)
+    {
+        if ($row = mysqli_fetch_assoc($result)) {?>
 
-                        <br>Full Name : 
-                        <br><input type="text" name="name" placeholder="Name" autocomplete="off"></br>
-                        <br>Phone Number : 
-                        <br><input type="text" name="ph" placeholder="xxx-xxxxxxx" autocomplete="off"></br>
-                        <br>Address : 
-                        <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
+            <br>Full Name : 
+            <br><input type="text" name="name" value ="<?php echo $row['name']?>"readonly  autocomplete="off"></br>
+            <br>Phone Number : 
+            <br><input type="text" name="ph" value ="<?php echo $row['contactnumber']?>"readonly autocomplete="off"></br>
+            
+
+            <?php
+        foreach($result as $row)
+        {?>
+                        
+                        <?php
+                        if( isset($_GET['cart_id']) )
+                        { ?>
+                            <br>Address : 
+                            <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
+
+                         <?php   
+                        }else
+                        {?>
+                          <br><input type="text" name="address" value="<?php echo $row2['address'].', '.$row2['postcode'].', '.$row2['city'].', '.$row2['state']?>" autocomplete="off"></br>
+                         <?php 
+                        }
+                        ?>
+                       
 
                         <div class="row">
                             <div class="col-50">
@@ -149,35 +177,48 @@
                 </div>
             </div>
         </div>
+        <?php
+        }
+    }
+}
+                        
+        ?>
         <div class="col-25">
             <div class="containerr">
-                <h4>PC Builder
+                <h4>Shopping Cart
                     <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
-                        <!-- <b id='item_c'>4</b> -->
+                        <?php
+                    $id = $_SESSION["ID"];
+
+                    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
+                    $count = mysqli_num_rows($result);
+                    ?>
+                         <b id='item_c'><?php echo $count ?></b>
+                         
                     </span>
                 </h4>
                 <?php 
                     
-                    // $result = mysqli_query($connect,"SELECT * FROM shopping_cart WHERE username = '$username'");
-                    // $count = 1;
-                    // $ttotal = 0;
+                    $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed' ");
+                    $total = 0;
+                    $ttotal = 0;
+                    $count = 1;
+                    while($row = mysqli_fetch_assoc($result))
+                    {$result2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = $row[product_id]");
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $amount = $row['qty'];
+                    $price = $row2['price'];
+                    $total = $price * $amount;
+                    $prod_name = $row2['product_name'];
+                     $ttotal += $total;
 
-                    // while($row = mysqli_fetch_assoc($result))
-                    // {$result2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = $row[prod_id]");
-                    // $row2 = mysqli_fetch_assoc($result2);
-                    // $amount = $row['amount'];
-                    // $price = $row2['product_price'];
-                    // $total = $price * $amount;
-                    // $prod_name = $row2['product_name'];
-                    // $ttotal += $total;
-
-                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="pricee">RM'.$total.'</span></p>';
-                    // $count++;}
-                    // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
+                     echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="pricee">RM'.$total.'</span></p>';
+                     $count++;}
+                     echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
-                <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
+                <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($ttotal,2) ?></b></span></p>
                 <button name="pay" >Pay Now</button>
             </div>
         </div>
