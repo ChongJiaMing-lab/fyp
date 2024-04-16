@@ -1,7 +1,6 @@
 <?php include "data_connection.php";
 include "head.php";
-// $id = $_SESSION['ID'];
-$id = 27;
+$id = $_SESSION['ID'];
 
 ?>
 <!DOCTYPE html>
