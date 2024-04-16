@@ -228,12 +228,12 @@ if (isset($_POST['updatebtn'])) {
     $dateofbirth = mysqli_real_escape_string($connect, $_POST['dateofbirth']);
     $gender = mysqli_real_escape_string($connect, $_POST['gender']);
 
-    // Verify if email is already used by another user
+   
     $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email = '$email' AND ID != '$product_id'");
     if (mysqli_num_rows($verify_query) > 0) {
         echo "<script>alert('The email has already been used. Please choose another email.');</script>";
     } else {
-        // Proceed with update if email is not found in other records
+        
         $result = mysqli_query($connect, "UPDATE user_information SET
                                           name = '$name', 
                                           email = '$email', 

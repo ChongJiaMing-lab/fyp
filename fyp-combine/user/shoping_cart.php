@@ -111,7 +111,8 @@
 	<?php
                             if($result)
     {
-        foreach($result as $row)
+       // foreach($result as $row)
+       while($row = mysqli_fetch_array($result))
         {?>
 							<!-- CHECKOUT CART LISTING -->
 							<div class="my-checkout-listing">

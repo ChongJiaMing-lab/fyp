@@ -3,6 +3,10 @@ session_start();
 include "data_connection.php";
 
 if(isset($_GET["product_id"])) {
+    if(!isset($_SESSION["ID"]))
+    {
+        echo "<script>alert('ERROR TO ADD PRODUCT(You need to login first!)');</script>";
+    }
     $product_id = $_GET["product_id"];
     $ID = $_SESSION["ID"];
 

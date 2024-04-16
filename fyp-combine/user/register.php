@@ -122,7 +122,14 @@
                 } else {
                     contactNumberError.innerHTML = "";
                 }
-
+                
+                if(contactNumber.trim().length != 11 || contactNumber.trim().length!=10){
+                    errorMessages += "";
+                    contactNumberError.innerHTML = "Invalid number length!<br>Please enter valid number.";
+                }else
+                {
+                    contactNumberError.innerHTML = "";
+                }
                 if (isNaN(dobDay) || dobDay < 1 || dobDay > 31) {
                     errorMessages += "Day should be a number between 1 and 31.<br>";
                     DayError.innerHTML = "Day should be a number between 1 and 31.";
