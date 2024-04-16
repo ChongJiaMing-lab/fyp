@@ -145,12 +145,12 @@
                     contactNumberError.innerHTML = "";
                 }
 
-                if (contactNumber.trim().length != 11 || contactNumber.trim().length != 10) {
-                    errorMessages += "";
-                    contactNumberError.innerHTML = "Invalid number length!<br>Please enter valid number.";
-                } else {
-                    contactNumberError.innerHTML = "";
-                }
+                if (contactNumber.trim().length != 11 && contactNumber.trim().length != 10) {
+                        errorMessages += "Invalid number length!<br>Please enter valid number.<br>";
+                        contactNumberError.innerHTML = "Invalid number length!<br>Please enter valid number.";
+                    } else {
+                        contactNumberError.innerHTML = "";
+                    }
                 if (isNaN(dobDay) || dobDay < 1 || dobDay > 31) {
                     errorMessages += "Day should be a number between 1 and 31.<br>";
                     DayError.innerHTML = "Day should be a number between 1 and 31.";
@@ -279,7 +279,7 @@
                                     </div>
                                     <div class="field">
                                         <label class="label ">
-                                            Password <span class="help-password"> *at least 4 characters</span> </label>
+                                            Password <span class="help-password"> *at least 6 characters</span> </label>
 
                                         <div class="field has-addons">
                                             <div class="control addon-fix">
@@ -332,9 +332,7 @@
 
 <?php
 if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
-    $con = mysqli_connect('localhost', 'root', '', 'fyp', 3306);
-    mysqli_set_charset($con, "utf8");
-
+   
     $a = $_POST["email"];
     $b = $_POST["Name"];
     $c = $_POST["telephone"];
@@ -349,7 +347,7 @@ if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
         // Handle empty fields
     } else {
         // Check if email already exists
-        $verify_query = mysqli_query($connnect, "SELECT * FROM user_information WHERE email='$a'");
+        $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email='$a'");
         if (mysqli_num_rows($verify_query) > 0) {
             echo "<script>alert('The email has already been used. Please choose another email.');</script>";
         } else {
