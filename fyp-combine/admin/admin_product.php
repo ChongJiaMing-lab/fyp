@@ -77,12 +77,7 @@
             <script>
                 Swal.fire({
                     title: "<?php echo $_SESSION['title']; ?>",
-                    <?php if (isset($_SESSION['img']) && $_SESSION['img'] != '') { ?>
-                                                                                                                                imageUrl: "../image/<?php echo $_SESSION['img'] ?>",
-                        imageWidth: 35 + '%',
-                        imageHeight: 'auto',
-                    <?php } ?>
-                                                                        text: "<?php echo $_SESSION['text']; ?>",
+                    text: "<?php echo $_SESSION['text']; ?>",
                     icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
