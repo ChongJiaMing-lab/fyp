@@ -252,12 +252,12 @@
                             <?php
                             if (isset($_SESSION['ID'])) { ?>
                                 <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
-                            <?php
+                                    onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
+                                    <?php
                             }
                             ?>
-                            <!-- CHECKOUT BUTTON -->
-                            
+                                <!-- CHECKOUT BUTTON -->
+
                                 PROCEED TO CHECKOUT </button>
                             <!-- #END CHECKOUT BUTTON -->
 
@@ -328,29 +328,30 @@
                         }
                     });
                 });
-                    
+
                 // Calculate total when the page loads
                 calculateTotal();
             });
             $(document).ready(function () {
-            $('input[name="quantity[2659]]').on('onchange', function () {
-                 var newqty =  $('input[name="quantity[2659]]').val(); 
-                 var user = <?php echo $_SESSION["ID"]; ?>;
-                 var product = $(this).closest('.my-checkout-listing').data('product-id');
-                $.ajax({
-                    url: "change_qty.php",
-                    method: "POST",
-                    data: {
-                       qty:newqty,
-                       pd:product,
-                       id:user_id
-                    },
-                   
-                })
-            })
-        });
+                $('input[name="quantity[2659]"]').on('change', function () {
+                    var newqty = $(this).val();
+                    var user = <?php echo $_SESSION["ID"]; ?>;
+                    var product = $(this).closest('.my-checkout-listing').data('product-id');
+                    $.ajax({
+                        url: "change_qty.php",
+                        method: "POST",
+                        data: {
+                            qty: newqty,
+                            product_id: product,
+                            user_id: user
+                        },
 
-            
+                    });
+                });
+            });
+
+
+
         </script>
 
     </section>
