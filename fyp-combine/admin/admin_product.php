@@ -170,7 +170,9 @@
                                                 url: 'run_query.php',
                                                 method: 'POST',
                                                 data: { bid: setvalue },
-                                              
+                                                success: function (data) {
+                                                    $('#category').html(data);
+                                                }
                                             });
                                         });
                                     });
@@ -525,13 +527,17 @@
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group mb-4">
-                                                                    <label class="form-label" for="customFile">Product
+                                                                    <?php if (!isset($_SESSION["alr"])) {
+                                                                        $_SESSION["alr"] = $row['image'];
+                                                                    } ?>
+                                                                    <label class="form-label"
+                                                                        for="imgInput<?php echo $row['image']; ?>">Product
                                                                         Image</label>
-                                                                    <img src=../image/<?php echo $row["image"]?>/>
-                                                                    <input type="file" class="form-control" id="customFile"
-                                                                        name="img" />
+                                                                    <input type="file" class="form-control"
+                                                                        id="imgInput<?php echo $row['image']; ?>" name="img">
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-md-6">
                                                                 <div class="form-group mb-4">
                                                                     <label class="form-label" for="price">Price:</label>
