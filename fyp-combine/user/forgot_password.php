@@ -175,11 +175,13 @@ if (isset($_POST["reset-request-submit"])) {
 		$mail = new PHPMailer;
 
 		$mail->isSMTP();
-		$mail->Host = 'smtp.gmail.com';
-		$mail->Port = 587;
+		$mail->SMTP = 'smtp.gmail.com';
+		$mail->smtp_port = 587;
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = 'tls';
 
+		$mail->sendmail_from = 'zhangjiaming1018@gmail.com';
+		$mail->sendmail_from = "\"C:\xampp\sendmail\sendmail.exe\" -t";
 		$mail->Username = 'zhangjiaming1018@gmail.com';//the email use to send email
 		$mail->Password = 'esoe krur jxxh pyhr';//the pin number
 
