@@ -18,9 +18,7 @@ $id=1;
 
     <style type="text/css">
         
-        .contenttt{
-            all: unset;
-        }
+   
         body {  
             margin:0;
             font-size: 17px;
@@ -95,7 +93,7 @@ $id=1;
             font-size: 24px;
         }
 
-        span.price {
+        span.pricee {
             float: right;
             color: grey;
         }
@@ -120,7 +118,7 @@ $id=1;
     <hr>
     <div class="row">
         <div class="col-75">
-            <div class="container">
+            <div class="containerr">
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
@@ -169,7 +167,7 @@ $id=1;
         <div class="col-25">
             <div class="containerr">
                 <h4>PC Builder
-                    <span class="price" style="color:black">
+                    <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
                         <!-- <b id='item_c'>4</b> -->
                     </span>
@@ -209,7 +207,7 @@ $id=1;
                         else{
                             $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = ${$myarray[$i]}");
                             $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='price'>RM ".$row2['product_price']."</span></br>";
+                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['product_price']."</span></br>";
                             $total += $row2['product_price'];
                         }
                         $i = $i + 1;
@@ -237,7 +235,7 @@ $id=1;
                     // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
+                <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
                 <button name="pay" >Pay Now</button>
             </div>
         </div>

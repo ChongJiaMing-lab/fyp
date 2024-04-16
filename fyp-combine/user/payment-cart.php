@@ -85,7 +85,7 @@
             font-size: 24px;
         }
 
-        span.price {
+        span.pricee {
             float: right;
             color: grey;
         }
@@ -157,7 +157,7 @@
         <div class="col-25">
             <div class="containerr">
                 <h4>PC Builder
-                    <span class="price" style="color:black">
+                    <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
                         <!-- <b id='item_c'>4</b> -->
                     </span>
@@ -177,12 +177,12 @@
                     // $prod_name = $row2['product_name'];
                     // $ttotal += $total;
 
-                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="price">RM'.$total.'</span></p>';
+                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="pricee">RM'.$total.'</span></p>';
                     // $count++;}
                     // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
+                <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
                 <button name="pay" >Pay Now</button>
             </div>
         </div>
