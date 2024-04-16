@@ -249,10 +249,11 @@
 </html>
 <?php
 if (isset($_GET['ID'])) {
-    $product_id = mysqli_real_escape_string($connect, $_GET['ID']);
-    // Execute the SQL query and store the result set
-    $result = mysqli_query($connect, "SELECT * FROM user_address WHERE address_id='$product_id'");
-    // Fetch the associative array of the fetched row
+    $id = mysqli_real_escape_string($connect, $_GET['ID']);
+	
+    $result = mysqli_query($connect, "SELECT * FROM user_address WHERE address_id='$id'");
+	
+
     $row = mysqli_fetch_assoc($result);
 } else {
     echo "user ID not provided.";
@@ -260,7 +261,7 @@ if (isset($_GET['ID'])) {
 }
 
 if (isset($_POST['updatebtn'])) {
-    $id = mysqli_real_escape_string($connect, $_POST['id']);
+    
     $name = mysqli_real_escape_string($connect, $_POST['name']);
     $contact_number = mysqli_real_escape_string($connect, $_POST['contact_number']);
     $address = mysqli_real_escape_string($connect, $_POST['address']);
@@ -279,11 +280,14 @@ if (isset($_POST['updatebtn'])) {
                                         postcode='$postcode' 
                                         WHERE address_id='$id'");
 
-    if (!$result) {
+    if (!$result && $result2) {
         die('Error: ' . mysqli_error($connect));
     } else {
-        echo '<script>alert("Record updated successfully");</script>'; 
-        echo "<script>window.location.href='view_address.php';</script>";
+		session_start();
+		$ID = $_SESSION['ID'];
+    echo '<script>alert("Record updated successfully");</script>';
+    echo '<script>window.location.href = "view_address.php?ID=' . $ID. '";</script>'; 
+    exit;
     }
 }
 ?>

@@ -154,6 +154,7 @@
 			?>
 			<?php
 			 while ($row2 = mysqli_fetch_assoc($result2))
+			 if ($row2['default_address'] == 1) {
 			  {
 				?>
 					<div class="dashboard-address">
@@ -173,7 +174,7 @@
 								<div class="shipping-info-detail">
 																		<div class="shipping-name"><div class="txt-data"><?php echo $row2['name']; ?></div></div>
 																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['address']; ?></div> </div>
-									<div class="shipping-address-2"><div class="txt-data"><?php echo $row2['country']; ?></div></div>
+
 									<div class="shipping-telephone"><div class="txt-data"><?php echo $row2['contact_number']; ?></div></div>
 																	</div>
 							</div>
@@ -202,6 +203,7 @@
 
 		<?php				
         }
+	}
 	}
 }
      }

@@ -102,12 +102,42 @@
 	
 	
 
-	<div id="contents">
+<?php
+	$id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+    $result = mysqli_query($connect, $query);
+	$result2 = mysqli_query($connect, $query2);
+    if($result && $result2)
+    {
+		
+        if ($row = mysqli_fetch_assoc($result)) 
+		{
+			?>
+			<div id="sidebar-left">
+		<div class="sidebar-nav-list">
+			<ul class="nav-container">
+				<li class="item">
+					<a class="txt-interact is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
+					<ul class="item-container">
+						<li class="sub">
+							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
+						</li>
+						<li class="sub">
+							<a href="view_address.php?ID=<?php echo $id;?>">My address</a>
+							
+						</li>
+						<li class="sub">
+							<a href="myaccount.php">Change password</a>
+						</li>
+			<div id="contents">
 		<div id="sidebar-left">
 			 			<div class="sidebar-nav-list"></div>
 		</div>
-
-		<div id="main-content" class="edit-account">
+        <?php
+        }
+    }
+    ?>	
 			
 			<!--VIEW ACCOUNT -->
 			<div class="holder">

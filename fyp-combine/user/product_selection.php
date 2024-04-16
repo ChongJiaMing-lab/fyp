@@ -94,13 +94,13 @@ $row = mysqli_fetch_assoc($query);
     
     if(isset($_GET["c_id"]))
     {   
-        $query2 = mysqli_query($connect,"SELECT * FROM products WHERE category_id = $c_id");
+        $query2 = mysqli_query($connect,"SELECT * FROM product WHERE category_id = $c_id");
         while($row2 = mysqli_fetch_assoc($query2))
         {
             echo '<tr class="tbody">';
-            echo '<td><img src="img/'.$row2["product_img"].'"></td>';
+            echo '<td><img src="img/'.$row2["image"].'"></td>';
             echo '<td><span class="product_name">'.$row2["product_name"].'</span></td>';
-            echo '<td>RM'.$row2["product_price"].'</td>';
+            echo '<td>RM'.$row2["price"].'</td>';
             echo '<td><a href="">test</a></td>';
             echo '<td><a href="a_product.php?pid='.$row2["product_id"].'">Add Product</a></td>';
             echo '</tr>';

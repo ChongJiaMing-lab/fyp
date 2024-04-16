@@ -1,11 +1,20 @@
+<?php include "databaseconnect.php";
+session_start();
+//$id = $_SESSION['ID'];
+$id =1;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customization</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        body{
+            margin:0;
+        }
         .header{
             text-align:center;
             padding:15px 15px;
@@ -52,16 +61,45 @@
 
         button{
             width:100px;
-            height:30px;
+            height:40px;
             margin-top:1%;
             margin-left:10px;
+            margin-bottom:20px;
         }
         .button-container{
             margin-left:70%;
         }
+
+        #center{
+            text-align:center;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        .tbody img{
+            width:100px;
+            height:100px;
+        }
     </style>
 </head>
 <body>
+    <?php 
+
+    $result = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status!='payed'");
+    $row = mysqli_fetch_assoc($result);
+        $monitor = $row['monitor']?? null;
+        $chassis = $row['chassis']?? null;
+        $motherboard = $row['motherboard']?? null;
+        $processor= $row['processor']?? null;
+        $gpu = $row['gpu']?? null;
+        $ram1 = $row['ram1']?? null;
+        $ram2 = $row['ram2']?? null;
+        $memory = $row['memory']?? null;
+        $cooler = $row['cooler']?? null;
+        $power_supply = $row['power_supply']?? null;
+    ?>
     <div class="header">
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a>
@@ -78,110 +116,52 @@
             <th width="7%">Remove</th>
         </tr>
 
-        <tr class="tbody">
-            <td>Processor</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Motherboard</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>CPU Cooler</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Case</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Graphics Card</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>RAM</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Storage</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Case Cooler</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Power Supply</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Monitor</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Accessories</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
-        <tr class="tbody">
-            <td>Softwares</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-            <td>dd</td>
-        </tr>
+        <?php 
+$i=0;
+while($i < mysqli_num_fields($result))
+{
+    $fld = mysqli_fetch_field($result);
+    $myarray[]=$fld->name;
+    
+    if($i>2)
+    {
+    echo '<tr class="tbody">';
+    
+    if (!isset(${$myarray[$i]}))
+    {
+
+        echo '<td>'.ucwords($myarray[$i]).'</td>';
+        echo '<td colspan=5 >Product not being selected!</td>';
+        echo '</div>';
+    }
+    
+    else{
+        $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = ${$myarray[$i]}");
+        $row2 = mysqli_fetch_assoc($query2);
+        echo '<td>'.ucwords($myarray[$i]).'</td>';
+        echo '<td><img src="image/'.$row2["product_img"].'"</td>';
+        echo '<td>'.$row2["product_name"].'</td>';
+        echo '<td id="center">'.$row2["product_price"].'</td>';
+        echo '<td id="center"><a href="product_details.php?id='.$row2['product_id'].'">Click Me!</a></td>';
+        echo '<td id="center"><a href=""><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a></td>';
+        echo '</div>';
+    }
+    $i = $i + 1;
+    }
+    else{
+        $i = $i + 1;
+    }
+    
+}
+?>
 
         
     </table>
 <br>
 <div class="button-container">
 
-<a href="customization(edit).php"><button class="edit">Edit</button></a>
-<button class="confirm">Add To Cart</button>
+<a href="customization.php"><button class="back">back</button></a>
+<button class="confirm">Pay now</button>
 
 </div>
 </body>
