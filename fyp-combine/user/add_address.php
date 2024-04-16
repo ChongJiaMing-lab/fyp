@@ -240,8 +240,9 @@ if(isset($_POST["savebtn"]) && $_POST["savebtn"] == "Save") {
     $e = $_POST["zone_id"];
     $f = $_POST["city"];
     $g = $_POST["postcode"];
+	$f = '0';
 
-     mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,country,state,city,postcode) VALUES ('$id','$a', '$b', '$c','$d','$e','$f','$g')");
+     mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,country,state,city,postcode,default_address) VALUES ('$id','$a', '$b', '$c','$d','$e','$f','$g','$f')");
      
    
 

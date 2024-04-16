@@ -94,12 +94,44 @@
 
 <section id="account-edit" class="section container myaccounts">
 
-	
 
-	<div id="contents">
+
+<?php
+	$id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+    $result = mysqli_query($connect, $query);
+	$result2 = mysqli_query($connect, $query2);
+    if($result && $result2)
+    {
+		
+        if ($row = mysqli_fetch_assoc($result)) 
+		{
+			?>
+			<div id="sidebar-left">
+		<div class="sidebar-nav-list">
+			<ul class="nav-container">
+				<li class="item">
+					<a class="txt-interact is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
+					<ul class="item-container">
+						<li class="sub">
+							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
+						</li>
+						<li class="sub">
+							<a href="view_address.php?ID=<?php echo $id;?>">My address</a>
+							
+						</li>
+						<li class="sub">
+							<a href="myaccount.php">Change password</a>
+						</li>
+			<div id="contents">
 		<div id="sidebar-left">
 			 			<div class="sidebar-nav-list"></div>
 		</div>
+        <?php
+        }
+    }
+    ?>	
 
 		<div id="main-content" class="edit-account">
 			
@@ -208,10 +240,10 @@
 
 if (isset($_GET['ID'])) {
     $product_id = mysqli_real_escape_string($connect, $_GET['ID']);
-    // It seems like there's a mistake here. It should be $product_id instead of $id in the WHERE clause.
+   
     $result = mysqli_query($connect, "SELECT * FROM user_information WHERE ID = '$product_id'");
     if ($row = mysqli_fetch_assoc($result)) {
-        // Record found
+        
     } else {
         echo "No record found.";
         exit();
@@ -228,12 +260,12 @@ if (isset($_POST['updatebtn'])) {
     $dateofbirth = mysqli_real_escape_string($connect, $_POST['dateofbirth']);
     $gender = mysqli_real_escape_string($connect, $_POST['gender']);
 
-    // Verify if email is already used by another user
+   
     $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email = '$email' AND ID != '$product_id'");
     if (mysqli_num_rows($verify_query) > 0) {
         echo "<script>alert('The email has already been used. Please choose another email.');</script>";
     } else {
-        // Proceed with update if email is not found in other records
+        
         $result = mysqli_query($connect, "UPDATE user_information SET
                                           name = '$name', 
                                           email = '$email', 
@@ -245,8 +277,11 @@ if (isset($_POST['updatebtn'])) {
         if (!$result) {
             die('Error: ' . mysqli_error($connect));
         } else {
-            echo '<script>alert("Record updated successfully");</script>'; 
-            echo "<script>window.location.href='myprofile.php';</script>";
+            session_start();
+            $ID = $_SESSION['ID'];
+        echo '<script>alert("Record updated successfully");</script>';
+        echo '<script>window.location.href = "myprofile.php?ID=' . $ID. '";</script>'; 
+        exit;
         }
     }
 }

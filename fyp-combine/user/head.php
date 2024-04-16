@@ -231,6 +231,8 @@ session_start();
    <!-- SHOPPING CART -->
                 <!-- ###AIO### -->
 
+<?php 
+if(isset($_SESSION["ID"])){?>
 <div id="shopping-cart">
             <div id="checkout-cart">
             <span class="cart-info">
@@ -288,7 +290,7 @@ if ($id) {
            
     
 </div>
-
+<?php }?>
                 <!-- ACCOUNT -->
                 <div id="myaccount">
                     <div class="dropdown is-right is-hoverable">
