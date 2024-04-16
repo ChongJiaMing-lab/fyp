@@ -1,4 +1,4 @@
-<?php include "databaseconnect.php";
+<?php include "data_connection.php";
 session_start();
 //$id = $_SESSION['ID'];
 $id =1;
@@ -118,6 +118,7 @@ $id =1;
 
         <?php 
 $i=0;
+$count = 0;
 while($i < mysqli_num_fields($result))
 {
     $fld = mysqli_fetch_field($result);
@@ -129,10 +130,18 @@ while($i < mysqli_num_fields($result))
     
     if (!isset(${$myarray[$i]}))
     {
-
         echo '<td>'.ucwords($myarray[$i]).'</td>';
         echo '<td colspan=5 >Product not being selected!</td>';
         echo '</div>';
+        if ($myarray[$i] == 'ram2' && isset(${$myarray[$i - 1]})) {
+            
+        }
+        else
+            {
+                $not_s[$count] = $myarray[$i];
+                $count++;
+            }
+        
     }
     
     else{
@@ -145,6 +154,10 @@ while($i < mysqli_num_fields($result))
         echo '<td id="center"><a href="product_details.php?id='.$row2['product_id'].'">Click Me!</a></td>';
         echo '<td id="center"><a href=""><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a></td>';
         echo '</div>';
+        
+        if ($myarray[$i] == 'ram2' && !isset(${$myarray[$i - 1]})) {
+            unset($not_s[--$count]);
+        }
     }
     $i = $i + 1;
     }
@@ -161,8 +174,26 @@ while($i < mysqli_num_fields($result))
 <div class="button-container">
 
 <a href="customization.php"><button class="back">back</button></a>
-<button class="confirm">Pay now</button>
+<button id="confirm">Pay now</button>
 
 </div>
+
 </body>
+<script>
+
+        var btn = document.getElementById("confirm");
+        var not_s = <?php echo count($not_s); ?>;
+            btn.addEventListener("click",function(){
+                if (not_s > 0) 
+                    {
+                        alert('The Required Component below is not being selected!<?php for($x=0;$x<$count;$x++){echo "\\n".$not_s[$x];} ?>');
+                    }
+                    else{
+                        alert('failed');
+                    }
+
+            });
+        
+
+</script>
 </html>
