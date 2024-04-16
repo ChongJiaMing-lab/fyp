@@ -10,9 +10,9 @@ if(isset($_POST["save_staff"]))
     $pw = $_POST["id"];
     $tel = $_POST["tel"];
     $jt = date("d/m/Y h:i");
-
-    $insert = "INSERT INTO staff(admin_id, full_name, p_pic, staff_email, staff_pw, staff_tel, sa, joined_time)
-                values('$id','$name', 'admin_default.png', '$email', '$pw', '$tel', '0', '$jt')";
+    $status = '1';
+    $insert = "INSERT INTO staff(admin_id, full_name, p_pic, staff_email, staff_pw, staff_tel, sa, joined_time, staff_status)
+                values('$id','$name', 'admin_default.png', '$email', '$pw', '$tel', '0', '$jt', '$status')";
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
