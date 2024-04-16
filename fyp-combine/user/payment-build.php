@@ -1,5 +1,7 @@
-<?php include "databaseconnect.php"; 
-session_start();
+<?php 
+include "data_connection.php"; 
+include "head.php";
+
 //$id= $_SESSION['ID'];
 $id=1;
 
@@ -11,16 +13,20 @@ $id=1;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>Checkout</title>
 
     <style type="text/css">
-        body {
+        
+   
+        body {  
             margin:0;
             font-size: 17px;
             }
         * {
             box-sizing: border-box;
         }
+        
         .header{
             text-align:center;
             padding:15px 15px;
@@ -66,7 +72,7 @@ $id=1;
             padding: 0 16px;
         }
 
-        .container {
+        .containerr {
             background-color: white;
             padding: 5px 20px 15px 20px;
             border: 1px solid lightgrey;
@@ -87,7 +93,7 @@ $id=1;
             font-size: 24px;
         }
 
-        span.price {
+        span.pricee {
             float: right;
             color: grey;
         }
@@ -101,6 +107,8 @@ $id=1;
     </style>
 </head>
 <body>
+
+        <div class = "contenttt">
     <div class="header">
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment.php">Payment</a>
@@ -110,7 +118,7 @@ $id=1;
     <hr>
     <div class="row">
         <div class="col-75">
-            <div class="container">
+            <div class="containerr">
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
@@ -157,9 +165,9 @@ $id=1;
             </div>
         </div>
         <div class="col-25">
-            <div class="container">
+            <div class="containerr">
                 <h4>PC Builder
-                    <span class="price" style="color:black">
+                    <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
                         <!-- <b id='item_c'>4</b> -->
                     </span>
@@ -199,7 +207,7 @@ $id=1;
                         else{
                             $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = ${$myarray[$i]}");
                             $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='price'>RM ".$row2['product_price']."</span></br>";
+                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['product_price']."</span></br>";
                             $total += $row2['product_price'];
                         }
                         $i = $i + 1;
@@ -227,7 +235,7 @@ $id=1;
                     // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
+                <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
                 <button name="pay" >Pay Now</button>
             </div>
         </div>
@@ -271,6 +279,6 @@ $address = 1;
 
 ?>
 
-
+</div>
 </body>
 </html>

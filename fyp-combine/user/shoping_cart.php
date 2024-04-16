@@ -224,7 +224,7 @@
 												
 												
 						<!-- CHECKOUT BUTTON -->
-																					<button id="my-order-checkout" type="button" class="button btn-checkout" onclick="window.location.href='https://techzone.com.my/checkout'">
+																					<button id="my-order-checkout" type="button" class="button btn-checkout" onclick="window.location.href='payment-cart.php'">
 									PROCEED TO CHECKOUT								</button>
 																			<!-- #END CHECKOUT BUTTON -->
 	

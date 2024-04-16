@@ -1,7 +1,5 @@
-<?php include "databaseconnect.php"; 
-session_start();
-//$id= $_SESSION['ID'];
-$id=1;
+<?php include "head.php"; 
+
 
 ?>
 
@@ -66,7 +64,7 @@ $id=1;
             padding: 0 16px;
         }
 
-        .container {
+        .containerr {
             background-color: white;
             padding: 5px 20px 15px 20px;
             border: 1px solid lightgrey;
@@ -87,7 +85,7 @@ $id=1;
             font-size: 24px;
         }
 
-        span.price {
+        span.pricee {
             float: right;
             color: grey;
         }
@@ -110,7 +108,7 @@ $id=1;
     <hr>
     <div class="row">
         <div class="col-75">
-            <div class="container">
+            <div class="containerr">
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
@@ -157,9 +155,9 @@ $id=1;
             </div>
         </div>
         <div class="col-25">
-            <div class="container">
+            <div class="containerr">
                 <h4>PC Builder
-                    <span class="price" style="color:black">
+                    <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
                         <!-- <b id='item_c'>4</b> -->
                     </span>
@@ -179,12 +177,12 @@ $id=1;
                     // $prod_name = $row2['product_name'];
                     // $ttotal += $total;
 
-                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="price">RM'.$total.'</span></p>';
+                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="pricee">RM'.$total.'</span></p>';
                     // $count++;}
                     // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
+                <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
                 <button name="pay" >Pay Now</button>
             </div>
         </div>
