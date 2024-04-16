@@ -346,8 +346,8 @@
                         method: "POST",
                         data: {
                             qty: newqty,
-                            product_id: product,
-                            user_id: user
+                            pd: product,
+                            id: user
                         },
 
                     });
