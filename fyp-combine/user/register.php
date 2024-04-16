@@ -173,7 +173,7 @@
                 }
 
                 if (errorMessages !== "") {
-                    event.preventDefault(); // Prevent form submission
+                    event.preventDefault(); 
                     document.getElementById("error-messages").innerHTML = errorMessages;
                 }
             });
@@ -343,17 +343,16 @@ if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
     $h = $_POST["dob_year"];
     $i = $g . '-' . $d . '-' . $h;
 
-    if (empty($a) || empty($b) || empty($c) || empty($d) || empty($e) || empty($f) || empty($g) || empty($h)) {
-        // Handle empty fields
-    } else {
-        // Check if email already exists
+
+        
         $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email='$a'");
         if (mysqli_num_rows($verify_query) > 0) {
             echo "<script>alert('The email has already been used. Please choose another email.');</script>";
+            exit;
         } else {
-            // Insert new user
+            
+            echo "<script>alert('success.');</script>";
             mysqli_query($connect, "INSERT INTO user_information(email,name,contactnumber,dateofbirth,gender,password) VALUES('$a','$b','$c','$i','$e','$f')");
         }
     }
-}
 ?>
