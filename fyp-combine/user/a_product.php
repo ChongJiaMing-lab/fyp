@@ -2,7 +2,7 @@
 include "data_connection.php";
 
 session_start();
-$uid = $_SESSION('ID');
+$uid = $_SESSION['ID'];
 
 if(isset($_GET["pid"])) {
     $pid = $_GET["pid"];
