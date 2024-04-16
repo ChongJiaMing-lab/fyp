@@ -328,10 +328,25 @@
                         }
                     });
                 });
-
+                    
                 // Calculate total when the page loads
                 calculateTotal();
             });
+            $(document).ready(function () {
+            $('input[ name="quantity[2659]]').on('onchange', function () {
+                 var newqty =  $('input[ name="quantity[2659]]').val();   
+                $.ajax({
+                    url: "change_qty.php",
+                    method: "POST",
+                    data: {
+                       qty:newqty
+                    },
+                   
+                })
+            })
+        });
+
+            
         </script>
 
     </section>
