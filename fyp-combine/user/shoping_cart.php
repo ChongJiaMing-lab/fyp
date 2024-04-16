@@ -102,7 +102,7 @@
     <?php
     $id = $_SESSION["ID"];
 
-    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
+    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id ");
     $count = mysqli_num_rows($result);
     ?>
     <section id="checkout-cart" class="section content container">
@@ -132,7 +132,7 @@
                                 if ($result) {
                                     // foreach($result as $row)
                                     while ($row = mysqli_fetch_array($result)) { 
-                                    if($row['status'] != 'payed'){?>
+                                    ?>
 
                                     
                                         <!-- CHECKOUT CART LISTING -->
@@ -194,7 +194,7 @@
                                         </div>
 
                                         <?php
-                                        }
+                                        
                                     }
                                 } else {
                                     echo "no records found :(";
