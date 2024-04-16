@@ -5,6 +5,11 @@ session_start();
 $output = '';
 
 if (isset($_POST["action"])) {
+//     if(isset(category)id))
+//     {
+//         $id = ($_POST["id"]);
+//         $query = "select * from product where category = '$id'";
+//     }
     $query = "SELECT * FROM product WHERE product_status ='1' ";
 
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {

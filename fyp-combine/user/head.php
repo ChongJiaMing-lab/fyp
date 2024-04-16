@@ -168,7 +168,7 @@ session_start();
                                             foreach ($result_category as $row) {
                                                 ?>
                                                 <div class="list-group-item checkbox">
-                                                    <a href="#" class="navbar-item"
+                                                    <a href="product_filter.php" class="navbar-item"
                                                         data-value="<?php echo $row['category_id']; ?>">
                                                         <?php echo $row['category']; ?>
                                                     </a>
@@ -195,9 +195,7 @@ session_start();
                                     <a class="navbar-item" href="contact_us1.php"><span>Contact Us</span></a>
                                     <?php
                                 } ?>
-
-
-
+                                
                                 <a class="navbar-item" href="About_us.php"><span>About Us</span></a>
                             </div>
                         </div>
