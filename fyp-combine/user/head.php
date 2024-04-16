@@ -169,7 +169,7 @@ session_start();
                                                                                                                                                 }
                                                                                                                                                 else
                                                                                                                                                 {?>
-                                                                                                                                                    <a class="navbar-item" href="contact_us1.php" ><span>Contact Us</span></a>;
+                                                                                                                                                    <a class="navbar-item" href="contact_us1.php" ><span>Contact Us</span></a>
                                                                                                                                                     <?php
                                                                                                                                                 }?>
                                                                                                                                                 
