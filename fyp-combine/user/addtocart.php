@@ -11,7 +11,7 @@ if(isset($_GET["product_id"])) {
     $ID = $_SESSION["ID"];
 
   
-    $existing_query = "SELECT * FROM cart WHERE product_id = $product_id AND user_id = $ID";
+    $existing_query = "SELECT * FROM cart WHERE product_id = $product_id AND user_id = $ID AND status!='payed'";
     $existing_result = mysqli_query($connect, $existing_query);
     if(mysqli_num_rows($existing_result) > 0) {
      

@@ -312,7 +312,7 @@ if (isset($_POST['pay'])) {
         echo '<script>alert("Record updated successfully");</script>';
         echo '<script>window.location.href = "main_page.php?ID=' . $ID. '";</script>'; 
         exit;
-        exit(); 
+        
     } else {
        
         echo "Error inserting data into cart_order_detail table.";
