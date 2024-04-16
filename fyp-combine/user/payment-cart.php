@@ -241,7 +241,7 @@
                         <span class="pricee" style="color:black">
                             <i class="fa fa-shopping-cart"></i>
                             <?php
-                          //  $id = $_SESSION["ID"];
+                            $id = $_SESSION["ID"];
 
                             $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
                             $count = mysqli_num_rows($result);
