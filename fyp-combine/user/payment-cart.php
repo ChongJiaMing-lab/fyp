@@ -119,7 +119,8 @@
                         <div class="col-50">
                             <h3>Billing Details</h3>
                             <?php
-                            $id = $_GET['ID'];
+                            //$id = $_GET['ID'];
+                            $id = 27;
                             $query = "SELECT * FROM user_information WHERE ID='$id'";
                             $query2 = "SELECT * FROM user_address WHERE customer_id='$id' AND default_address = '1' ";
                             $result = mysqli_query($connect, $query);
@@ -181,7 +182,7 @@
                                                                         <label for="<?php echo $row['address_id']?>"><?php echo $row['address'] . ', ' . $row['postcode'] . ', ' . $row['city']
                                                                 . ', ' . $row['state'];?></label></li>
                                                                         <?php
-
+                                                                        $address_id = $row['address_id'];
                                                                         $count++;
                                                                     }
                                                                     ?> 
@@ -240,7 +241,7 @@
                         <span class="pricee" style="color:black">
                             <i class="fa fa-shopping-cart"></i>
                             <?php
-                            $id = $_SESSION["ID"];
+                          //  $id = $_SESSION["ID"];
 
                             $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
                             $count = mysqli_num_rows($result);
@@ -272,7 +273,7 @@
                     <hr>
                     <p>Total <span class="pricee"
                             style="color:black"><b>RM<?php echo number_format($ttotal, 2) ?></b></span></p>
-                    <button name="pay ">Pay Now</button>
+                    <button name="pay">Pay Now</button>
                 </div>
             </div>
         </div>
@@ -284,46 +285,50 @@ if (isset($_POST['pay'])) {
 
 
     $user_id = $_GET['ID']; 
-    $address_id = $_POST['address_id']; 
-    $cart_id = $_GET['cart_id'];
-    $qty = $_GET['qty'];
     $payment_method = 'Credit_Cart'; 
     $total_amount = $ttotal;
 
-
-    mysqli_query($connect, "INSERT INTO cart_order_detail (user_id, address_id, cart_id, qty, payment_method, total_amount) 
-                            VALUES ('$user_id', '$address_id', '$cart_id', '$qty', '$payment_method', '$total_amount')");
+    
+    $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
+    while($row = mysqli_fetch_assoc($result))
+    {
+        $cart_id = $row['cart_id'];
+        $qty = $row['qty'];
+        mysqli_query($connect, "INSERT INTO cart_order_detail (user_id, address_id, cart_id, qty, payment_method, total_amount) 
+        VALUES ('$user_id', '$address_id', '$cart_id', '$qty', '$payment_method', '$total_amount')");
+                            
+    }
     
  
     if (mysqli_affected_rows($connect) > 0) {
        
-        mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status = 'cart'");
+        mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
 
      
-        $orderID = mysqli_insert_id($connect);
+        // $orderID = mysqli_insert_id($connect);
 
        
-        $result3 = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = $user_id");
-        $ttotal2 = 0; 
-        while ($row3 = mysqli_fetch_assoc($result3)) {
-            $product_id = $row3['product_id'];
-            $amount = $row3['amount'];
+        // $result3 = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = $user_id");
+        // $ttotal2 = 0; 
+        // while ($row3 = mysqli_fetch_assoc($result3)) {
+        //     $product_id = $row3['product_id'];
+        //     $amount = $row3['qty'];
             
-            $result4 = mysqli_query($connect, "SELECT price FROM product WHERE product_id = $product_id");
-            $row4 = mysqli_fetch_assoc($result4);
-            $price = $row4['product_price'];
-            $total2 = $price * $amount;
-            $ttotal2 += $total2;
+        //     $result4 = mysqli_query($connect, "SELECT price FROM product WHERE product_id = $product_id");
+        //     $row4 = mysqli_fetch_assoc($result4);
+        //     $price = $row4['price'];
+        //     $total2 = $price * $amount;
+        //     $ttotal2 += $total2;
 
            
-            mysqli_query($connect, "INSERT INTO cart_order_details (cart_order_id, product_id, amount, price) 
-                                    VALUES ($orderID, $product_id, $amount, $total2)");
-        }
+        //     mysqli_query($connect, "INSERT INTO cart_order_detail (cart_order_id, product_id, amount, price) 
+        //                             VALUES ($orderID, $product_id, $amount, $total2)");
+        //}
 
         
-        mysqli_query($connect, "UPDATE cart_order_detail SET total_amount = $ttotal2 WHERE cart_order_id = $orderID");
+        // mysqli_query($connect, "UPDATE cart_order_detail SET total_amount = $ttotal2 WHERE cart_order_id = $orderID");
 
-        header("Location: success.php");
+        header("Location:success.php");
         exit(); 
     } else {
        
@@ -331,13 +336,6 @@ if (isset($_POST['pay'])) {
     }
 }
 ?>
-
-
-
-
-
-    
-
 
 </body>
 
