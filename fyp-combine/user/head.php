@@ -135,50 +135,36 @@ $isHeaderSection = true;
                                                                                                                             <a  class="navbar-link" href="product_list.php" ><span>Products</span></a>
 											                                                                                <i class="accordion"></i>
                                                                                                                             <div class="navbar-dropdown">
-                                                                                                                                                        <div class="sub-menu-dropdown navbar-item is-hoverable">    
-														<a class="navbar-link is-arrowless" href="..." ><span>Gaming Products</span></a>
-														<i class="accordion"></i>
-                                                        <div class="navbar-dropdown">
-                                                                                                                        <a class="navbar-item" href="..." ><span>Gaming Monitor</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Gaming RAM</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Gaming Keyboard</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Gaming Mouse</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Gaming Headest</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Gaming Accessories</span></a>
-                                                                                                                    </div>
-                                                    </div>
-                                                                                                                                                                                                            <div class="sub-menu-dropdown navbar-item is-hoverable">    
-														<a class="navbar-link is-arrowless" href="javascript:void(0)" ><span>PC Components</span></a>
-														<i class="accordion"></i>
-                                                        <div class="navbar-dropdown">
-                                                                                                                        <a class="navbar-item" href="..." ><span>Processor</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>RAM</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>HDD / SSD</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>PSU</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Casing</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Monitor</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Keyboard</span></a>
-                                                                                                                        <a class="navbar-item" href="..." ><span>Mouse</span></a>
-                                                                                                                    </div>
-                                                    </div>
-                                                                                                                                                                                                            <div class="sub-menu-dropdown navbar-item is-hoverable">    
-														<a class="navbar-link is-arrowless" href="..." ><span>Audio</span></a>
-														<i class="accordion"></i>
-                                                        <div class="navbar-dropdown">
-                                                                                                                        <a class="navbar-item" href="..." ><span>Headset</span></a>
-                                                                                                                    </div>
-                                                    </div>
-                                                                                                                                                                                                                <a class="navbar-item" href="..." ><span>Power Bank</span></a>
-                                                                                                                                                                                                                <a class="navbar-item" href="..." ><span>Memory Devices</span></a>
-                                                                                                                                                                                                                <a class="navbar-item" href="..." ><span>Console Gaming</span></a>
-                                                                                                                                                                                                                <a class="navbar-item" href="..." ><span>Ink &amp; Toner</span></a>
-                                                                                                                                                                                                            <div class="sub-menu-dropdown navbar-item is-hoverable">    
-														<a class="navbar-link is-arrowless" href="..." ><span>Smart Device</span></a>
-														<i class="accordion"></i>
-                                                        <div class="navbar-dropdown">
-                                                                                                                        <a class="navbar-item" href="..." ><span>Smartwatch</span></a>
-                                                                                                                    </div>
-                                                    </div>
+                                                                                                                                                     
+                                                                                                                            <?php
+                        $query2 = "SELECT DISTINCT p.category_id, c.category
+                                            FROM product p 
+                                            INNER JOIN category c ON p.category_id = c.category_id
+                                            WHERE p.product_status ='1' 
+                                            ORDER BY p.product_id DESC";
+
+                        $statement_category = $connect->prepare($query2); // Use a different variable for statement object
+                        $execute_result_category = $statement_category->execute(); // Execute the statement
+                        if ($execute_result_category) {
+                            $result_category = $statement_category->get_result();
+                            foreach ($result_category as $row) {
+                                ?>
+                                <div class="list-group-item checkbox">
+                                <a href="#" class="navbar-item" data-value="<?php echo $row['category_id']; ?>">
+                                    <?php echo $row['category']; ?>
+                                </a>
+
+                                </div>
+
+                                <?php
+                            }
+                        } else {
+                            // Handle the case where execute() failed
+                            echo "Error executing query: " . $statement_category->error;
+                        }
+                        ?>                                                                              
+                         
+                         
                                                                                                                                                 </div>
                                         </div>                                                                                                  <a class="navbar-item" href="main_page.php" ><span>PCbuild</span></a>
                                                                                                                                                 <?php
