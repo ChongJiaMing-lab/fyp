@@ -1,7 +1,4 @@
-<?php include "head.php"; 
-
-
-?>
+<?php include "head.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,12 +96,10 @@
     </style>
 </head>
 <body>
-    <div class="header">
-    <h1>Computer Builder</h2>
-    <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment.php">Payment</a>
-    </div>
+    
     <form method='post' name="billfrm">
-    <h2>Checkout</h2>
+    <div class="title">
+						Checkout				</div>
     <hr>
     <div class="row">
         <div class="col-75">
