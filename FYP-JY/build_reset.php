@@ -1,19 +1,18 @@
-<?php include "databaseconnect.php" ?>
-    <script>
+<?php
+include "databaseconnect.php";
 
-    if(confirm('Do you want to reset all the component?'))
-    {
-        <?php
-        //$del = mysqli_query($connect,"DELETE FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
-        
-        echo 'alert("Component has been reset successfully!");'; 
-        echo "window.location.href='customization.php';";
-        ?>
-    }
-    else{
-        <?php
-            echo "test";
-        ?>
-    }
-    
-    </script>
+session_start();
+//$id = $_SESSION['ID'];
+$id = 1; 
+
+
+$del = mysqli_query($connect,"DELETE FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
+
+if(mysqli_affected_rows($connect) > 0) {
+    $_SESSION['alert_r'] = "All Component has been reset!";
+    header("location: customization.php");   
+} else {
+    $_SESSION['alert_r'] = "All Component has been reset!";
+    header("location: customization.php");  
+}
+?>

@@ -1,5 +1,7 @@
 <?php
 include "databaseconnect.php";
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +10,7 @@ include "databaseconnect.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customization</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         body{
@@ -134,13 +137,26 @@ include "databaseconnect.php";
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a>
     </div>
-
-<form method='post' name="Build">
+<?php 
+if(isset($_SESSION['alert_r'])){
+    echo 
+    "<script>
+        alert('" . $_SESSION['alert_r'] . "');
+    </script>";
+    unset($_SESSION['alert_r']);
+}
+else if(isset($_SESSION['alert_c'])){
+    echo '<script>Swal.fire("Component has been deleted!", "", "success");</script>';
+    unset($_SESSION['alert_c']);
+}
+?>
 
 <?php 
-        $id = 0;
-        $query = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'pay'");
+        
+        $id = 1;
+        $query = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
         $row = mysqli_fetch_array($query); 
+        
 
         $monitor = $row['monitor']?? null;
         $chassis = $row['chassis']?? null;
@@ -151,129 +167,69 @@ include "databaseconnect.php";
         $ram2 = $row['ram2']?? null;
         $memory = $row['memory']?? null;
         $cooler = $row['cooler']?? null;
-        $power_supply = $row['power_supply']?? null;						
+        $power_supply = $row['power_supply']?? null;
+        
 ?>
 
 <div class ="container">
     <div class ="product-container">
-        <div class ="product">
-            <div class="toggleBtn">Monitor</div>
-            <div class="content">
-                <?php 
-                    if(!isset($monitor))
+        
+            <?php 
+
+                $i=0;
+                while($i < mysqli_num_fields($query))
+                {
+                    $fld = mysqli_fetch_field($query);
+                    $myarray[]=$fld->name;
+                    
+                
+                    if($i>2)
                     {
-                        echo    "<a href='product_selection.php?c_id=1'>
+                        echo '<div class ="product">';
+                        echo '<div class="toggleBtn">'.ucwords($myarray[$i]).'</div>
+                    <div class="content">';
+                    
+                    if($myarray[$i] == "ram1"||$myarray[$i] == "ram2")
+                    {
+                        $query3 = mysqli_query($connect,"SELECT * FROM category WHERE category = 'ram'");
+                        $row3 = mysqli_fetch_assoc($query3) ;
+                    }
+                    else{
+                        $query3 = mysqli_query($connect,"SELECT * FROM category WHERE category = '{$myarray[$i]}'");
+                        $row3 = mysqli_fetch_assoc($query3) ;
+                    }
+                    
+                    if (!isset(${$myarray[$i]}))
+                    {
+
+                        echo    "<a href='product_selection.php?c_id=".$row3['category_id']."'>
                                 Add Component
                                 </a>";
+                        echo '</div>';
+                        echo '</div>';
                     }
                     
                     else{
-                        $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = $monitor");
+                        $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                         $row2 = mysqli_fetch_assoc($query2);
                         echo "<div class='component'>";
-                        echo "<img src=image/".$row2['product_img']."</img>".$row2['product_name'];
-                        echo "<p><a href='build_edit.php?c_id=51' id='com_btn'>Edit</a><a href='build_delete.php?cat=monitor' id='com_btn'>Delete</a></p>";
+                        echo "<img src=image/".$row2['image']."</img>".$row2['product_name'];
+                        echo "<p><a href='product_selection.php?c_id=".$row3['category_id']."' id='com_btn'>Edit</a><a href='delete_com.php?cat=".$myarray[$i]."' id='com_btn'>Delete</a></p>";
                         echo "</div>";
+                        echo '</div>';
+                        echo '</div>';
                     }
+                    $i = $i + 1;
+                    }
+                    else{
+                        $i = $i + 1;
+                    }
+                    
+                }
                 ?>
+                
             </div>
-            <div class ="product">
-                <div class="toggleBtn">Chassis</div>
-                <div class="content">
-                <select name="Chassis" id="Chassis">
-                <option value="" selected disabled></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                </select>
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">MotherBoard</div>
-                <div class="content">
-                <select name="MotherBoard" id="MotherBoard">
-                <option value="" selected disabled></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                </select>
-                
-                </div>
-            </div>  
-            <div class ="product">
-                <div class="toggleBtn">Processor</div>
-                <div class="content">
-                <select name="Processor" id="Processor">
-                <option value="" selected disabled></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                </select>
-                <img src="img/edit-icon.png"/>
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">Graphic Card</div>
-                <div class="content">
-                <select name="Graphic Card" id="Graphic Card">
-                <option value="" selected disabled></option>
-                
-                </select>
-                
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">RAM</div>
-                <div class="content">
-                <select name="RAM" id="RAM">
-                <option value="" selected disabled></option>
-                
-                </select>
-                
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">Memory</div>
-                <div class="content">
-                <select name="Memory" id="Memory">
-                <option value="" selected disabled></option>
-                
-                </select>
-                
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">Cooler</div>
-                <div class="content">
-                <select name="Cooler" id="Cooler">
-                <option value="" selected disabled></option>
-                
-                </select>
-                
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">Power Supply</div>
-                <div class="content">
-                <select name="Power_Supply" id="Power_Supply">
-                <option value="" selected disabled></option>
-                
-                </select>
-                
-                </div>
-            </div>
-            <div class ="product">
-                <div class="toggleBtn">peripherals</div>
-                <div class="content">
-                <select name="peripherals" id="peripherals">
-                <option value="" selected disabled></option>
-                
-                </select>
-                
-                </div>
-            </div>
-        </div>
-    </div>
+
         <div class ="wrapper">
             <div class ="cart-container">
                 <h1 class="small-header">CUSTOM DEKSTOP</h1>
@@ -287,14 +243,14 @@ include "databaseconnect.php";
                 <a id="expandAllBtn">Expand All</a>
                 <hr>
                 <div class="button-container">
-                <button onclick="confirmReset()">reset</a>
-                <button type="submit" name="confirm">Next</button>
+                <a href="build_reset.php"><button>Reset</button></a>
+                <a href="customization-confirm.php"><button>Next</button></a>
 
                 </div>
             </div>
         </div>
 </div>
-</form>
+
 
 <!-- <?php
  //       session_start();
@@ -319,22 +275,23 @@ include "databaseconnect.php";
 </body>
 <script>
 
-    function confirmReset(){
-        if(confirm('Do you want to reset all the component?'))
-    {
-        <?php
-            $del = mysqli_query($connect,"DELETE FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
-            
-            if(mysqli_affected_rows($connect) > 0)
-            {
-                echo 'alert("Component has been reset successfully!");'; 
-            } else {
-                echo 'alert("Something went wrong...");';
-            }
-        ?>  
+
+    function confirmReset() {
+        if (confirm('Do you want to reset all the components?')) {
+            // Making an AJAX call to delete data
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'delete_data.php', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("Components have been reset successfully!");
+                } else {
+                    alert("Something went wrong...");
+                }
+            };
+            xhr.send();
+        }
     }
-    }
-        
+      
         var expandAllBtn = document.getElementById("expandAllBtn");
         var toggleBtns = document.querySelectorAll(".toggleBtn");
         var contents = document.querySelectorAll(".content");
