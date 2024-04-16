@@ -102,7 +102,7 @@
     <?php
     $id = $_SESSION["ID"];
 
-    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
+    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id AND status!='payed'");
     $count = mysqli_num_rows($result);
     ?>
     <section id="checkout-cart" class="section content container">

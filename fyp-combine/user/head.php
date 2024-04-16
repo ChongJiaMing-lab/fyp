@@ -270,10 +270,10 @@ session_start();
                         <div class="count-frame">
                             <?php
 
-                            $id = isset($_SESSION["ID"]) ? $_SESSION["ID"] : null; // Check if session ID is set
+                            $id = isset($_SESSION["ID"]) ? $_SESSION["ID"] : null; 
                             if ($id) {
                                 // If session ID is set, fetch cart count
-                                $result = mysqli_query($connect, "SELECT * FROM cart, product WHERE cart.product_id = product.product_id AND user_id = $id");
+                                $result = mysqli_query($connect, "SELECT * FROM cart, product WHERE cart.product_id = product.product_id AND user_id = $id AND status!='payed'");
                                 $count = mysqli_num_rows($result);
                                 if ($count != 0) {
                                     echo "<span class=\"shopping-cart-count \">$count</span>";
