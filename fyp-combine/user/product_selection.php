@@ -1,12 +1,15 @@
 <?php include "data_connection.php";
+include "head.php";
 $c_id = $_GET["c_id"]; 
 $query = mysqli_query($connect,"SELECT * FROM category WHERE category_id =$c_id");
 $row = mysqli_fetch_assoc($query);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customization</title>
@@ -32,7 +35,7 @@ $row = mysqli_fetch_assoc($query);
             text-decoration:underline;
         }
 
-        table{
+        .build{
             width:70%;
             margin-top:2%;
             margin-left:auto;
@@ -43,11 +46,20 @@ $row = mysqli_fetch_assoc($query);
             border: 2px solid black;
         }
 
-
-        .thead{
+        table th{
             height:40px;
             background-color:black;
             color:white;
+            text-align:right;
+            vertical-align: middle;
+        }
+
+        table td{
+            vertical-align: middle;
+        }
+
+        table #head{
+            text-align:center;
         }
 
         .tbody{
@@ -57,6 +69,12 @@ $row = mysqli_fetch_assoc($query);
 
         td{
             font-weight:bold;
+            
+        }
+
+        td a{
+            display: block;
+            text-align:center;
         }
 
         #search{
@@ -72,24 +90,25 @@ $row = mysqli_fetch_assoc($query);
     </style>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div class="header">
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href='product_selection.php?c_id=1'>  <?php echo $row['category'] ?></a>
     </div>
     
-    <table>
-    <tr class="thead" id="search">
-            <th colspan="5" width="100%">Search: <input type="text" class="search" placeholder="Search.." ><button type="submit"><i class="fa fa-search"></i></button></th>
+    <table class="build">
+    <tr class="search" id="search">
+            <th colspan="5" width="100%">Search: <input type="text" class="search" name="search" placeholder="Search.." autocomplete="off"><button type="submit"><i class="fa fa-search"></i></button></th>
         </tr>
         <tr class="thead">
-            <th width="10%">Product</th>
-            <th width="48%">Title</th>
-            <th width="8%">Price</th>
-            <th width="19%">Product Link</th>
-            <th width="13%">Add Product</th>
+            <th width="10%" id="head">Product</th>
+            <th width="46%" id="head">Title</th>
+            <th width="10%" id="head">Price</th>
+            <th width="19%" id="head">Product Link</th>
+            <th width="13%" id="head">Add Product</th>
         </tr>
-
+<tbody id='tbody'>
         <?php 
     
     if(isset($_GET["c_id"]))
@@ -113,7 +132,7 @@ $row = mysqli_fetch_assoc($query);
     }
     
     ?>
-
+</tbody>
 
 
     </table>
@@ -123,4 +142,20 @@ $row = mysqli_fetch_assoc($query);
 
 </div>
 </body>
+
+<script>
+        $(document).ready(function () {
+            $('input[name="search"]').on('keyup', function () {
+                var value = $(this).val();
+                $.ajax({
+                    url: 'build_search.php?cid=<?php echo $c_id ?>',
+                    method: 'POST',
+                    data: { product: value },
+                    success: function (response) {
+                        $('#tbody').html(response);
+                    }
+                });
+            });
+        });
+</script>
 </html>

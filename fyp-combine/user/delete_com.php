@@ -2,12 +2,11 @@
 include "databaseconnect.php";
 
 session_start();
-//$id = $_SESSION['ID'];
-$id = 1;
+$id = $_SESSION['ID'];
 
 if(isset($_GET["cat"])) {
-    // $uptade = "UPTADE pc_build SET ".$_GET["cat"]." = NULL";
-    // $query = ($comnnect,$uptade);
+    // $update = "UPTADE pc_build SET ".$_GET["cat"]." = NULL";
+    // $query = ($connect,$update);
 ?>
     <!DOCTYPE html>
     <html lang="en">

@@ -1,7 +1,6 @@
-<?php include "databaseconnect.php";
-session_start();
-//$id = $_SESSION['ID'];
-$id =1;
+<?php include "data_connection.php";
+include "head.php";
+$id = $_SESSION['ID'];
 
 ?>
 <!DOCTYPE html>
@@ -41,6 +40,15 @@ $id =1;
             font-size:17px;
             border-collapse: collapse; 
             border: 2px solid black;
+        }
+
+        table th{
+            color:white;
+        }
+
+        table th,table td{
+            text-align:center;
+            vertical-align:middle;
         }
 
 
@@ -93,7 +101,7 @@ $id =1;
         $chassis = $row['chassis']?? null;
         $motherboard = $row['motherboard']?? null;
         $processor= $row['processor']?? null;
-        $gpu = $row['gpu']?? null;
+        $graphic_card = $row['graphic_card']?? null;
         $ram1 = $row['ram1']?? null;
         $ram2 = $row['ram2']?? null;
         $memory = $row['memory']?? null;
@@ -118,6 +126,8 @@ $id =1;
 
         <?php 
 $i=0;
+$count = 0;
+$not_s = array();
 while($i < mysqli_num_fields($result))
 {
     $fld = mysqli_fetch_field($result);
@@ -126,13 +136,20 @@ while($i < mysqli_num_fields($result))
     if($i>2)
     {
     echo '<tr class="tbody">';
-    
     if (!isset(${$myarray[$i]}))
     {
-
         echo '<td>'.ucwords($myarray[$i]).'</td>';
         echo '<td colspan=5 >Product not being selected!</td>';
         echo '</div>';
+        if ($myarray[$i] == 'ram2' && isset(${$myarray[$i - 1]})) {
+            
+        }
+        else
+            {
+                $not_s[$count] = $myarray[$i];
+                $count++;
+            }
+        
     }
     
     else{
@@ -145,6 +162,10 @@ while($i < mysqli_num_fields($result))
         echo '<td id="center"><a href="product_details.php?id='.$row2['product_id'].'">Click Me!</a></td>';
         echo '<td id="center"><a href=""><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a></td>';
         echo '</div>';
+        
+        if ($myarray[$i] == 'ram2' && !isset(${$myarray[$i - 1]})) {
+            unset($not_s[--$count]);
+        }
     }
     $i = $i + 1;
     }
@@ -161,8 +182,27 @@ while($i < mysqli_num_fields($result))
 <div class="button-container">
 
 <a href="customization.php"><button class="back">back</button></a>
-<button class="confirm">Pay now</button>
+<button id="confirm">Pay now</button>
 
 </div>
+
 </body>
+<script>
+
+        var btn = document.getElementById("confirm");
+        var not_s = <?php echo count($not_s); ?>;
+            btn.addEventListener("click",function(){
+                if (not_s > 0) 
+                    {
+                        alert('The Required Component below is not being selected!<?php for($x=0;$x<$count;$x++){echo "\\n".$not_s[$x];} ?>');
+                    }
+                    
+                    else{
+                        window.location.href = "payment-build.php";
+                    }
+
+            });
+        
+
+</script>
 </html>

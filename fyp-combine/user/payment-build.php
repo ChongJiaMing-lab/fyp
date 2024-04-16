@@ -2,9 +2,7 @@
 include "data_connection.php"; 
 include "head.php";
 
-//$id= $_SESSION['ID'];
-$id=1;
-
+$id= $_SESSION['ID'];
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +120,40 @@ $id=1;
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
+                        <?php
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+    $query2 = "SELECT * FROM user_address WHERE customer_id='$id' AND default_address = '1' ";
+    $result = mysqli_query($connect, $query);
+    $result2 = mysqli_query($connect, $query2);
+    $row2 = mysqli_fetch_assoc($result2);
+    if($result && $result2)
+    {
+        if ($row = mysqli_fetch_assoc($result)) {?>
 
-                        <br>Full Name : 
-                        <br><input type="text" name="name" placeholder="Name" autocomplete="off"></br>
-                        <br>Phone Number : 
-                        <br><input type="text" name="ph" placeholder="xxx-xxxxxxx" autocomplete="off"></br>
-                        <br>Address : 
-                        <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
+            <br>Full Name : 
+            <br><input type="text" name="name" value ="<?php echo $row['name']?>"readonly  autocomplete="off"></br>
+            <br>Phone Number : 
+            <br><input type="text" name="ph" value ="<?php echo $row['contactnumber']?>"readonly autocomplete="off"></br>
+            
+
+            <?php
+        foreach($result as $row)
+        {?>
+                        
+                        <?php
+                        if( isset($_GET['cart_id']) )
+                        { ?>
+                            <br>Address : 
+                            <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
+
+                         <?php   
+                        }else
+                        {?>
+                          <br><input type="text" name="address" value="<?php echo $row2['address'].', '.$row2['postcode'].', '.$row2['city'].', '.$row2['state']?>" autocomplete="off"></br>
+                         <?php 
+                        }}}}
+                        ?>
+
 
                         <div class="row">
                             <div class="col-50">
@@ -169,15 +194,14 @@ $id=1;
                 <h4>PC Builder
                     <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
-                        <!-- <b id='item_c'>4</b> -->
                     </span>
                 </h4>
                 <?php 
                     
                     $result = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'pay'");
                     $row = mysqli_fetch_array($result); 
-                    $build_id = $row['build_id'];
 
+                    $build_id = $row['build_id'];
                     $monitor = $row['monitor']?? null;
                     $chassis = $row['chassis']?? null;
                     $motherboard = $row['motherboard']?? null;
@@ -201,14 +225,14 @@ $id=1;
                         
                         if (!isset(${$myarray[$i]}))
                         {
-
+                            
                         }
                         
                         else{
-                            $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = ${$myarray[$i]}");
+                            $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                             $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['product_price']."</span></br>";
-                            $total += $row2['product_price'];
+                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['price']."</span></br>";
+                            $total += $row2['price'];
                         }
                         $i = $i + 1;
                         }
@@ -217,22 +241,6 @@ $id=1;
                         }
                         
                     }
-                    // $result = mysqli_query($connect,"SELECT * FROM shopping_cart WHERE username = '$username'");
-                    // $count = 1;
-                    // $ttotal = 0;
-
-                    // while($row = mysqli_fetch_assoc($result))
-                    // {$result2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = $row[prod_id]");
-                    // $row2 = mysqli_fetch_assoc($result2);
-                    // $amount = $row['amount'];
-                    // $price = $row2['product_price'];
-                    // $total = $price * $amount;
-                    // $prod_name = $row2['product_name'];
-                    // $ttotal += $total;
-
-                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="price">RM'.$total.'</span></p>';
-                    // $count++;}
-                    // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
                 <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
@@ -260,21 +268,7 @@ $address = 1;
     {
         $update = mysqli_query($connect,"UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
     }
- //   $orderID = mysqli_insert_id($connect);
- //   echo "<script>alert('$orderID');</script>";
- //   $result3 = mysqli_query($connect,"SELECT * FROM shopping_cart WHERE username = '$username'");
-    //         while($row3 = mysqli_fetch_assoc($result3))
-    //             {
-    //                 $result4 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = $row3[prod_id]");
-    //                 $row4 = mysqli_fetch_assoc($result4);
-    //                 $total2 = $row4['product_price'] * $row3['amount'];
-    //                 $ttotal2 += $total;
-    //                 mysqli_query($connect,"INSERT INTO order_details(order_id,product_id,amount,price) 
-    //                 VALUES($orderID,$row4[product_id],$row3[amount],$total2)");
-    //             }
-    // mysqli_query($connect,"UPDATE order_ SET total = $ttotal2 WHERE order_id = $orderID");
-    // mysqli_query($connect,"DELETE FROM shopping_cart WHERE username = '$username'");
-  // header("Location:.php");
+
 }
 
 ?>

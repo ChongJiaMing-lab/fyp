@@ -2,8 +2,8 @@
 include "data_connection.php";
 
 session_start();
-//$uid = $_SESSION('ID');
-$uid=1;
+$uid = $_SESSION('ID');
+
 if(isset($_GET["pid"])) {
     $pid = $_GET["pid"];
     $query = mysqli_query($connect,"SELECT * FROM category,product WHERE category.category_id = product.category_id AND product_id = $pid");
