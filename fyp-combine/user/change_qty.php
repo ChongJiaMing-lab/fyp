@@ -1,11 +1,15 @@
 <?php
 include "data_connection.php" ;
 
-if(isset($_POST["qty"]))
+if(isset($_POST["qty"])&&isset($_POST["pd"])&&isset($_POST["id"]))
 {
-    $stock=$_GET["qty"];
-    $update = mysqli_query($connect,"UPDATE cart SET qty  WHERE user_id = $id");
+    $qty=$_POST["qty"];
+    $pd=$_POST["pd"];
+    $id=$_POST["id"];
 
+    $update = mysqli_query($connect,"UPDATE cart SET qty WHERE product_id = '$product_id' AND user_id = '$user_id'");
+
+    
 }
 
 

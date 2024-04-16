@@ -170,9 +170,7 @@
                                                 url: 'run_query.php',
                                                 method: 'POST',
                                                 data: { bid: setvalue },
-                                                success: function (data) {
-                                                    $('#category').html(data);
-                                                }
+                                              
                                             });
                                         });
                                     });
