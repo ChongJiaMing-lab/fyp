@@ -9,7 +9,7 @@ if(isset($_POST["qty"])&&isset($_POST["pd"])&&isset($_POST["id"]))
 
     $update = mysqli_query($connect,"UPDATE cart SET qty WHERE product_id = '$pd' AND user_id = '$id'");
 
-    
+
 }
 
 
