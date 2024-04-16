@@ -257,18 +257,20 @@ session_start();
         
     <div class="count-frame">
     <?php
-    $id = $_SESSION["ID"];
-$result = mysqli_query($connect,"SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
-$count = mysqli_num_rows($result);
 
-if($count!=0)
-{
-
-echo"<span class=\"shopping-cart-count \">$count</span>";
-}
-else
-{
-    echo"<span class=\"shopping-cart-count \">0</span>";
+$id = isset($_SESSION["ID"]) ? $_SESSION["ID"] : null; // Check if session ID is set
+if ($id) {
+    // If session ID is set, fetch cart count
+    $result = mysqli_query($connect, "SELECT * FROM cart, product WHERE cart.product_id = product.product_id AND user_id = $id");
+    $count = mysqli_num_rows($result);
+    if ($count != 0) {
+        echo "<span class=\"shopping-cart-count \">$count</span>";
+    } else {
+        echo "<span class=\"shopping-cart-count \">0</span>";
+    }
+} else {
+    // If session ID is not set, display 0
+    echo "<span class=\"shopping-cart-count \">0</span>";
 }
 ?>
     

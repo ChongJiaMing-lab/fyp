@@ -136,10 +136,12 @@
 	
 												<!-- QUANTITY -->
 												<div class="column is-4 product-quantity">
+                                                    
     <div class="input-group">
         <button type="button" id="quantity_0_minus" class="button btn-number btn-minus btn-default" data-type="minus" data-field="quantity[2659]">
             <i class="fa fa-minus" aria-hidden="true"></i>
         </button>
+        
         <input type="text" id="quantity_0" name="quantity[2659]" class="input-quantity" value="<?php echo $row ['qty']?>" min="1" max="999999">
         <button type="button" id="quantity_0_plus" class="button btn-number btn-plus btn-default" data-type="plus" data-field="quantity[2659]">
             <i class="fa fa-plus" aria-hidden="true"></i>
