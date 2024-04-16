@@ -77,11 +77,45 @@
 						
 <!-- END HEADER -->
 <section id="account-address-list" class="section container myaccounts">
-    <div id="contents">
-        <div id="sidebar-left">
-            <div class="sidebar-nav-list"></div>
-        </div>
 
+<?php
+	$id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+    $result = mysqli_query($connect, $query);
+	$result2 = mysqli_query($connect, $query2);
+    if($result && $result2)
+    {
+		
+        if ($row = mysqli_fetch_assoc($result)) 
+		{
+			?>
+			<div id="sidebar-left">
+		<div class="sidebar-nav-list">
+			<ul class="nav-container">
+				<li class="item">
+					<a class="txt-interact is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
+					<ul class="item-container">
+						<li class="sub">
+							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
+						</li>
+						<li class="sub">
+							<a href="view_address.php?ID=<?php echo $id;?>">My address</a>
+							
+						</li>
+						<li class="sub">
+							<a href="myaccount.php">Change password</a>
+						</li>
+                        </div>
+                    </div>
+        <?php
+        }
+    }
+    ?>	
+<div id="contents">
+		<div id="sidebar-left">
+			 			<div class="sidebar-nav-list"></div>
+		</div>
         <div id="main-content" class="address-list">
             <!-- ADD NEW ADDRESS BUTTON -->
             
@@ -127,10 +161,10 @@
                                             <div class="txt-data"><?php echo $row2['address']; ?></div>
                                         </div>
 										</div>
-                                        <div class="address-btn">
+                                        <div class="address-btn" style= "padding:10px">
                                             <div class="address-btn-top">
 
-                                                <div class="btn-group">
+                                                <div class="btn-group" >
                                                     <!-- EDIT BUTTON -->
                                                     
                                                     <?php
@@ -142,11 +176,12 @@
                                                    }?>
                                                     <!-- DELETE BUTTON -->
                                                     <a class="txt-interact txt-underline delete-btn" href="...">Delete</a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                           
                                             <div class="address-btn-bot">
                                             <a class="address-btn-default" href="#" onclick="setDefaultAddress(<?php echo $row2['address_id']; ?>)">Set as default billing</a>
-
+                                           
                                             </div>
                                         </div>
                                     </div>
