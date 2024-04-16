@@ -256,12 +256,12 @@
                             <?php
                             if (isset($_SESSION['ID'])) { ?>
                                 <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                    onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
-                                    <?php
+                                onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
+                            <?php
                             }
                             ?>
-                                <!-- CHECKOUT BUTTON -->
-
+                            <!-- CHECKOUT BUTTON -->
+                            
                                 PROCEED TO CHECKOUT </button>
                             <!-- #END CHECKOUT BUTTON -->
 
@@ -332,11 +332,11 @@
                         }
                     });
                 });
-
+                    
                 // Calculate total when the page loads
                 calculateTotal();
             });
-            $(document).ready(function () {
+           $(document).ready(function () {
                 $('input[name="quantity[2659]"]').on('change', function () {
                     var newqty = $(this).val();
                     var user = <?php echo $_SESSION["ID"]; ?>;
@@ -354,8 +354,7 @@
                 });
             });
 
-
-
+            
         </script>
 
     </section>
