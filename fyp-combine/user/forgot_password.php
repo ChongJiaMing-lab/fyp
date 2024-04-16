@@ -165,7 +165,7 @@ if (isset($_POST["reset-request-submit"])) {
             </script>";
 	} else {
 		// generate token by binaryhexa 
-		$token = bin2hex(random_bytes(50));
+		$token = bin2hex(openssl_random_pseudo_bytes(25));
 
 		// session_start ();
 		$_SESSION['token'] = $token;
@@ -175,13 +175,11 @@ if (isset($_POST["reset-request-submit"])) {
 		$mail = new PHPMailer;
 
 		$mail->isSMTP();
-		$mail->SMTP = 'smtp.gmail.com';
-		$mail->smtp_port = 587;
+		$mail->Host = 'smtp.gmail.com';
+		$mail->Port = 587;
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = 'tls';
 
-		$mail->sendmail_from = 'zhangjiaming1018@gmail.com';
-		$mail->sendmail_from = "\"C:\xampp\sendmail\sendmail.exe\" -t";
 		$mail->Username = 'zhangjiaming1018@gmail.com';//the email use to send email
 		$mail->Password = 'esoe krur jxxh pyhr';//the pin number
 
