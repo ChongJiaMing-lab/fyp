@@ -102,7 +102,7 @@
     <?php
     $id = $_SESSION["ID"];
 
-    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id ");
+    $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id");
     $count = mysqli_num_rows($result);
     ?>
     <section id="checkout-cart" class="section content container">
@@ -336,23 +336,23 @@
                 // Calculate total when the page loads
                 calculateTotal();
             });
-           $(document).ready(function () {
-                $('input[name="quantity[2659]"]').on('change', function () {
-                    var newqty = $(this).val();
-                    var user = <?php echo $_SESSION["ID"]; ?>;
-                    var product = $(this).closest('.my-checkout-listing').data('product-id');
-                    $.ajax({
-                        url: "change_qty.php",
-                        method: "POST",
-                        data: {
-                            qty: newqty,
-                            pd: product,
-                            id: user
-                        },
-
-                    });
-                });
-            });
+            $(document).ready(function () {
+            $('input[name="quantity[2659]]').on('onchange', function () {
+                 var newqty =  $('input[name="quantity[2659]]').val(); 
+                 var user = <?php echo $_SESSION["ID"]; ?>;
+                 var product = $(this).closest('.my-checkout-listing').data('product-id');
+                $.ajax({
+                    url: "change_qty.php",
+                    method: "POST",
+                    data: {
+                       qty:newqty,
+                       pd:product,
+                       id:user_id
+                    },
+                   
+                })
+            })
+        });
 
             
         </script>

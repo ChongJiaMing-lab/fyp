@@ -119,8 +119,8 @@
                         <div class="col-50">
                             <h3>Billing Details</h3>
                             <?php
-                            //$id = $_GET['ID'];
-                            $id = 27;
+                            $id = $_GET['ID'];
+                           
                             $query = "SELECT * FROM user_information WHERE ID='$id'";
                             $query2 = "SELECT * FROM user_address WHERE customer_id='$id' AND default_address = '1' ";
                             $result = mysqli_query($connect, $query);
@@ -305,30 +305,13 @@ if (isset($_POST['pay'])) {
         mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
 
      
-        // $orderID = mysqli_insert_id($connect);
-
-       
-        // $result3 = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = $user_id");
-        // $ttotal2 = 0; 
-        // while ($row3 = mysqli_fetch_assoc($result3)) {
-        //     $product_id = $row3['product_id'];
-        //     $amount = $row3['qty'];
-            
-        //     $result4 = mysqli_query($connect, "SELECT price FROM product WHERE product_id = $product_id");
-        //     $row4 = mysqli_fetch_assoc($result4);
-        //     $price = $row4['price'];
-        //     $total2 = $price * $amount;
-        //     $ttotal2 += $total2;
-
-           
-        //     mysqli_query($connect, "INSERT INTO cart_order_detail (cart_order_id, product_id, amount, price) 
-        //                             VALUES ($orderID, $product_id, $amount, $total2)");
-        //}
-
         
-        // mysqli_query($connect, "UPDATE cart_order_detail SET total_amount = $ttotal2 WHERE cart_order_id = $orderID");
 
-        header("Location:success.php");
+        session_start();
+		$ID = $_SESSION['ID'];
+        echo '<script>alert("Record updated successfully");</script>';
+        echo '<script>window.location.href = "main_page.php?ID=' . $ID. '";</script>'; 
+        exit;
         exit(); 
     } else {
        
