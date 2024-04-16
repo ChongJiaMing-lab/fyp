@@ -4,7 +4,8 @@ session_start();
 if(isset($_POST["save_brand"]))
 {
     $b = $_POST["brand"];
-
+    $check_exist = "SELECT * FROM brand";
+    if()
     $insert = "INSERT INTO brand(brand_name)values('$b')";
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
