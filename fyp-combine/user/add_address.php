@@ -244,7 +244,11 @@ if(isset($_POST["savebtn"]) && $_POST["savebtn"] == "Save") {
 
      mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,country,state,city,postcode,default_address) VALUES ('$id','$a', '$b', '$c','$d','$e','$f','$g','$f')");
      
-   
+	 session_start();
+	 $ID = $_SESSION['ID'];
+	echo '<script>alert("Record updated successfully");</script>';
+	echo '<script>window.location.href = "view_address.php?ID=' . $ID. '";</script>'; 
+	exit;
 
     
 }
