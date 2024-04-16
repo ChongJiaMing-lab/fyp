@@ -260,7 +260,7 @@ if (isset($_GET['ID'])) {
 }
 
 if (isset($_POST['updatebtn'])) {
-    $id = mysqli_real_escape_string($connect, $_POST['id']);
+    
     $name = mysqli_real_escape_string($connect, $_POST['name']);
     $contact_number = mysqli_real_escape_string($connect, $_POST['contact_number']);
     $address = mysqli_real_escape_string($connect, $_POST['address']);
@@ -283,7 +283,7 @@ if (isset($_POST['updatebtn'])) {
         die('Error: ' . mysqli_error($connect));
     } else {
         echo '<script>alert("Record updated successfully");</script>'; 
-        echo "<script>window.location.href='view_address.php';</script>";
+        exit;
     }
 }
 ?>

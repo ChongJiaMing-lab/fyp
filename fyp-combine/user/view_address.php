@@ -145,7 +145,8 @@
                                                 </div>
                                             </div>
                                             <div class="address-btn-bot">
-                                                <a class="address-btn-default" href="...">Set as default billing</a>
+                                            <a class="address-btn-default" href="#" onclick="setDefaultAddress(<?php echo $row2['address_id']; ?>)">Set as default billing</a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -162,6 +163,25 @@
         </div>
     </div>
 </section>
+<script>
+function setDefaultAddress(addressId) {
+    // AJAX request
+    $.ajax({
+        url: 'set_default_address.php',
+        type: 'POST',
+        data: { address_id: addressId },
+        success: function(response) {
+            // Handle success
+            alert('Default address set successfully.');
+            // You can reload the page or update the UI as needed
+        },
+        error: function(xhr, status, error) {
+            // Handle error
+            alert('Error setting default address.');
+        }
+    });
+}
+</script>
 
 
 
