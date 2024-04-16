@@ -93,7 +93,7 @@ $id =1;
         $chassis = $row['chassis']?? null;
         $motherboard = $row['motherboard']?? null;
         $processor= $row['processor']?? null;
-        $gpu = $row['gpu']?? null;
+        $graphic_card = $row['graphic_card']?? null;
         $ram1 = $row['ram1']?? null;
         $ram2 = $row['ram2']?? null;
         $memory = $row['memory']?? null;
@@ -119,6 +119,7 @@ $id =1;
         <?php 
 $i=0;
 $count = 0;
+$not_s = array();
 while($i < mysqli_num_fields($result))
 {
     $fld = mysqli_fetch_field($result);
@@ -127,7 +128,6 @@ while($i < mysqli_num_fields($result))
     if($i>2)
     {
     echo '<tr class="tbody">';
-    
     if (!isset(${$myarray[$i]}))
     {
         echo '<td>'.ucwords($myarray[$i]).'</td>';
@@ -188,8 +188,9 @@ while($i < mysqli_num_fields($result))
                     {
                         alert('The Required Component below is not being selected!<?php for($x=0;$x<$count;$x++){echo "\\n".$not_s[$x];} ?>');
                     }
+                    
                     else{
-                        alert('failed');
+                        window.location.href = "payment-build.php";
                     }
 
             });
