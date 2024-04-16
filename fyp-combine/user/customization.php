@@ -163,7 +163,7 @@ else if(isset($_SESSION['alert_c'])){
         $chassis = $row['chassis']?? null;
         $motherboard = $row['motherboard']?? null;
         $processor= $row['processor']?? null;
-        $gpu = $row['gpu']?? null;
+        $graphic_card = $row['graphic_card']?? null;
         $ram1 = $row['ram1']?? null;
         $ram2 = $row['ram2']?? null;
         $memory = $row['memory']?? null;
