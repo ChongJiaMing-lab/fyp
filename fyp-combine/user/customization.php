@@ -1,6 +1,6 @@
 <?php
-include "databaseconnect.php";
-session_start();
+include "data_connection.php"; 
+include "head.php"; 
 
 ?>
 
@@ -13,10 +13,10 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        body{
+        .body{
             margin:0px;
         }
-        .header{
+        .header-build{
             text-align:center;
             padding:15px 15px;
             margin:0px;
@@ -24,11 +24,11 @@ session_start();
             color:white;
             font-size:1em;
         }
-        .header a{
+        .header-build a{
             color:white;
             text-decoration:none;
         }
-        .header a:hover{
+        .header-build a:hover{
             color:#20c997;
             text-decoration:underline;
         }
@@ -59,7 +59,7 @@ session_start();
             padding-bottom:10px;
         }
 
-        .wrapper{
+        .wrapperr{
             position: sticky;
             top: 0;
             z-index: 1;
@@ -133,7 +133,8 @@ session_start();
     </style>
 </head>
 <body>
-    <div class="header">
+    
+    <div class="header-build">
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a>
     </div>
@@ -230,7 +231,7 @@ else if(isset($_SESSION['alert_c'])){
                 
             </div>
 
-        <div class ="wrapper">
+        <div class ="wrapperr">
             <div class ="cart-container">
                 <h1 class="small-header">CUSTOM DEKSTOP</h1>
                 <div class="cart">

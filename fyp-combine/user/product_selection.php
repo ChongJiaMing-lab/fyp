@@ -1,4 +1,4 @@
-<?php include "databaseconnect.php";
+<?php include "data_connection.php";
 $c_id = $_GET["c_id"]; 
 $query = mysqli_query($connect,"SELECT * FROM category WHERE category_id =$c_id");
 $row = mysqli_fetch_assoc($query);

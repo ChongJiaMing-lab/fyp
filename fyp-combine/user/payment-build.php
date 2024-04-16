@@ -1,5 +1,7 @@
-<?php include "databaseconnect.php"; 
-session_start();
+<?php 
+include "data_connection.php"; 
+include "head.php";
+
 //$id= $_SESSION['ID'];
 $id=1;
 
@@ -11,16 +13,22 @@ $id=1;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>Checkout</title>
 
     <style type="text/css">
-        body {
+        
+        .contenttt{
+            all: unset;
+        }
+        body {  
             margin:0;
             font-size: 17px;
             }
         * {
             box-sizing: border-box;
         }
+        
         .header{
             text-align:center;
             padding:15px 15px;
@@ -66,7 +74,7 @@ $id=1;
             padding: 0 16px;
         }
 
-        .container {
+        .containerr {
             background-color: white;
             padding: 5px 20px 15px 20px;
             border: 1px solid lightgrey;
@@ -101,6 +109,8 @@ $id=1;
     </style>
 </head>
 <body>
+
+        <div class = "contenttt">
     <div class="header">
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment.php">Payment</a>
@@ -157,7 +167,7 @@ $id=1;
             </div>
         </div>
         <div class="col-25">
-            <div class="container">
+            <div class="containerr">
                 <h4>PC Builder
                     <span class="price" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
@@ -271,6 +281,6 @@ $address = 1;
 
 ?>
 
-
+</div>
 </body>
 </html>
