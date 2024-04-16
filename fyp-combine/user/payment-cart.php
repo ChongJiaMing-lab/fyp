@@ -66,7 +66,7 @@ $id=1;
             padding: 0 16px;
         }
 
-        .container {
+        .containerr {
             background-color: white;
             padding: 5px 20px 15px 20px;
             border: 1px solid lightgrey;
@@ -110,7 +110,7 @@ $id=1;
     <hr>
     <div class="row">
         <div class="col-75">
-            <div class="container">
+            <div class="containerr">
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
@@ -157,7 +157,7 @@ $id=1;
             </div>
         </div>
         <div class="col-25">
-            <div class="container">
+            <div class="containerr">
                 <h4>PC Builder
                     <span class="price" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
