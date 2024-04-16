@@ -12,7 +12,9 @@ if(isset($_POST["a_login"]))
 
     if(empty($row))
     {
-        echo "failed to login :(";
+        $_SESSION['login_text'] = "The admin '$id' is not exist!";
+        $_SESSION['login_icon'] = "error";
+        header("location: admin_login.php");
     }
     else
     {
