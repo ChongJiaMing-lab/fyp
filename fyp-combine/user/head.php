@@ -1,7 +1,5 @@
 <?php include("data_connection.php");
 session_start();
-// Set a variable to indicate whether it's the header section
-$isHeaderSection = true;
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="">
@@ -73,10 +71,6 @@ $isHeaderSection = true;
 	.btn-wishlist , .btn-compare {
 		display: none;
 	}
-
-    #wrapper{
-        min-height: 0px;
-    }
 	</style>
 		
 	
@@ -86,8 +80,8 @@ $isHeaderSection = true;
 						
 </head>
 
-<body>
-    <div class="body-style wide  clamp-1">
+<body class="body-style wide  clamp-1">
+
 		
 		
 
@@ -390,7 +384,6 @@ if ($id) {
 			</div>
 		</div>
 		
-                        </div>
-                        </div>
+       
 </body>
 </html>

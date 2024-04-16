@@ -1,7 +1,5 @@
-<?php include "databaseconnect.php"; 
-session_start();
-//$id= $_SESSION['ID'];
-$id=1;
+<?php include "head.php"; 
+
 
 ?>
 
