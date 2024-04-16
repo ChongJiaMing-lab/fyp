@@ -616,6 +616,21 @@
                         ?>
                 </tbody>
             </table>
+            <script>
+                $(document).ready(function () {
+                    $('input[name="search"]').on('keyup', function () {
+                        var value = $(this).val();
+                        $.ajax({
+                            url: 'run_query.php',
+                            method: 'POST',
+                            data: { product: value },
+                            success: function (response) {
+                                $('#table-body').html(response);
+                            }
+                        });
+                    });
+                });
+            </script>
         </div><!-- end of card-->
     </div><!-- end of main-->
 </body>

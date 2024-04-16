@@ -13,7 +13,7 @@ if (isset($_POST['bid']))
     echo $out;
 } 
 
-else if (isset($_POST['cust'])) 
+if (isset($_POST['cust'])) 
 {
     $s = $_POST['cust'];
     $cust_result = mysqli_query($connect, "SELECT * FROM user_information WHERE name LIKE '%$s%'");
@@ -33,4 +33,5 @@ else if (isset($_POST['cust']))
 
     echo $data;
 }
+
 ?>
