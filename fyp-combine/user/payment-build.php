@@ -3,7 +3,7 @@ include "data_connection.php";
 include "head.php";
 
 //$id= $_SESSION['ID'];
-$id=1;
+$id=27;
 
 ?>
 
@@ -122,13 +122,40 @@ $id=1;
                 <div class="row">
                     <div class="col-50">
                         <h3>Billing Details</h3>
+                        <?php
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+    $query2 = "SELECT * FROM user_address WHERE customer_id='$id' AND default_address = '1' ";
+    $result = mysqli_query($connect, $query);
+    $result2 = mysqli_query($connect, $query2);
+    $row2 = mysqli_fetch_assoc($result2);
+    if($result && $result2)
+    {
+        if ($row = mysqli_fetch_assoc($result)) {?>
 
-                        <br>Full Name : 
-                        <br><input type="text" name="name" placeholder="Name" autocomplete="off"></br>
-                        <br>Phone Number : 
-                        <br><input type="text" name="ph" placeholder="xxx-xxxxxxx" autocomplete="off"></br>
-                        <br>Address : 
-                        <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
+            <br>Full Name : 
+            <br><input type="text" name="name" value ="<?php echo $row['name']?>"readonly  autocomplete="off"></br>
+            <br>Phone Number : 
+            <br><input type="text" name="ph" value ="<?php echo $row['contactnumber']?>"readonly autocomplete="off"></br>
+            
+
+            <?php
+        foreach($result as $row)
+        {?>
+                        
+                        <?php
+                        if( isset($_GET['cart_id']) )
+                        { ?>
+                            <br>Address : 
+                            <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
+
+                         <?php   
+                        }else
+                        {?>
+                          <br><input type="text" name="address" value="<?php echo $row2['address'].', '.$row2['postcode'].', '.$row2['city'].', '.$row2['state']?>" autocomplete="off"></br>
+                         <?php 
+                        }}}}
+                        ?>
+
 
                         <div class="row">
                             <div class="col-50">
@@ -176,8 +203,8 @@ $id=1;
                     
                     $result = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'pay'");
                     $row = mysqli_fetch_array($result); 
-                    $build_id = $row['build_id'];
 
+                    $build_id = $row['build_id'];
                     $monitor = $row['monitor']?? null;
                     $chassis = $row['chassis']?? null;
                     $motherboard = $row['motherboard']?? null;
@@ -201,7 +228,7 @@ $id=1;
                         
                         if (!isset(${$myarray[$i]}))
                         {
-
+                            
                         }
                         
                         else{
