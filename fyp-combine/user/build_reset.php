@@ -2,8 +2,7 @@
 include "databaseconnect.php";
 
 session_start();
-//$id = $_SESSION['ID'];
-$id = 1; 
+$id = $_SESSION['ID'];
 
 
 $del = mysqli_query($connect,"DELETE FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");

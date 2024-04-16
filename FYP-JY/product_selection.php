@@ -80,7 +80,7 @@ $row = mysqli_fetch_assoc($query);
     
     <table>
     <tr class="thead" id="search">
-            <th colspan="5" width="100%">Search: <input type="text" class="search" placeholder="Search.." ><button type="submit"><i class="fa fa-search"></i></button></th>
+            <th colspan="5" width="100%">Search: <input type="text" class="search" name="search" placeholder="Search.." ><button type="submit"><i class="fa fa-search"></i></button></th>
         </tr>
         <tr class="thead">
             <th width="10%">Product</th>
@@ -97,7 +97,7 @@ $row = mysqli_fetch_assoc($query);
         $query2 = mysqli_query($connect,"SELECT * FROM product WHERE category_id = $c_id");
         while($row2 = mysqli_fetch_assoc($query2))
         {
-            echo '<tr class="tbody">';
+            echo '<tr class="tbody" id="tbody">';
             echo '<td><img src="img/'.$row2["image"].'"></td>';
             echo '<td><span class="product_name">'.$row2["product_name"].'</span></td>';
             echo '<td>RM'.$row2["price"].'</td>';
@@ -122,5 +122,7 @@ $row = mysqli_fetch_assoc($query);
 
 
 </div>
+
+
 </body>
 </html>

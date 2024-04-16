@@ -2,9 +2,7 @@
 include "data_connection.php"; 
 include "head.php";
 
-//$id= $_SESSION['ID'];
-$id=27;
-
+$id= $_SESSION['ID'];
 ?>
 
 <!DOCTYPE html>
@@ -196,7 +194,6 @@ $id=27;
                 <h4>PC Builder
                     <span class="pricee" style="color:black">
                         <i class="fa fa-shopping-cart"></i>
-                        <!-- <b id='item_c'>4</b> -->
                     </span>
                 </h4>
                 <?php 
@@ -232,10 +229,10 @@ $id=27;
                         }
                         
                         else{
-                            $query2 = mysqli_query($connect,"SELECT * FROM products WHERE product_id = ${$myarray[$i]}");
+                            $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                             $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['product_price']."</span></br>";
-                            $total += $row2['product_price'];
+                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['price']."</span></br>";
+                            $total += $row2['price'];
                         }
                         $i = $i + 1;
                         }
@@ -244,22 +241,6 @@ $id=27;
                         }
                         
                     }
-                    // $result = mysqli_query($connect,"SELECT * FROM shopping_cart WHERE username = '$username'");
-                    // $count = 1;
-                    // $ttotal = 0;
-
-                    // while($row = mysqli_fetch_assoc($result))
-                    // {$result2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = $row[prod_id]");
-                    // $row2 = mysqli_fetch_assoc($result2);
-                    // $amount = $row['amount'];
-                    // $price = $row2['product_price'];
-                    // $total = $price * $amount;
-                    // $prod_name = $row2['product_name'];
-                    // $ttotal += $total;
-
-                    // echo '<p>'.$count.'.'.$prod_name.'  x'.$amount.' <span class="price">RM'.$total.'</span></p>';
-                    // $count++;}
-                    // echo "<script>var i = document.getElementById('item_c').innerHTML = '".--$count."'</script>";
                 ?>
                 <hr>
                 <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
@@ -287,21 +268,7 @@ $address = 1;
     {
         $update = mysqli_query($connect,"UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
     }
- //   $orderID = mysqli_insert_id($connect);
- //   echo "<script>alert('$orderID');</script>";
- //   $result3 = mysqli_query($connect,"SELECT * FROM shopping_cart WHERE username = '$username'");
-    //         while($row3 = mysqli_fetch_assoc($result3))
-    //             {
-    //                 $result4 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = $row3[prod_id]");
-    //                 $row4 = mysqli_fetch_assoc($result4);
-    //                 $total2 = $row4['product_price'] * $row3['amount'];
-    //                 $ttotal2 += $total;
-    //                 mysqli_query($connect,"INSERT INTO order_details(order_id,product_id,amount,price) 
-    //                 VALUES($orderID,$row4[product_id],$row3[amount],$total2)");
-    //             }
-    // mysqli_query($connect,"UPDATE order_ SET total = $ttotal2 WHERE order_id = $orderID");
-    // mysqli_query($connect,"DELETE FROM shopping_cart WHERE username = '$username'");
-  // header("Location:.php");
+
 }
 
 ?>

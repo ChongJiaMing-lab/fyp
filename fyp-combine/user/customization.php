@@ -154,7 +154,7 @@ else if(isset($_SESSION['alert_c'])){
 
 <?php 
         
-        $id = 1;
+        $id = $_SESSION['ID'];
         $query = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
         $row = mysqli_fetch_array($query); 
         

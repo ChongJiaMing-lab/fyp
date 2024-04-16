@@ -1,7 +1,7 @@
 <?php include "data_connection.php";
-session_start();
-//$id = $_SESSION['ID'];
-$id =1;
+include "head.php";
+// $id = $_SESSION['ID'];
+$id = 27;
 
 ?>
 <!DOCTYPE html>
@@ -41,6 +41,15 @@ $id =1;
             font-size:17px;
             border-collapse: collapse; 
             border: 2px solid black;
+        }
+
+        table th{
+            color:white;
+        }
+
+        table th,table td{
+            text-align:center;
+            vertical-align:middle;
         }
 
 
