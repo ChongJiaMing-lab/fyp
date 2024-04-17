@@ -214,7 +214,7 @@ else if(isset($_SESSION['alert_c'])){
                         $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                         $row2 = mysqli_fetch_assoc($query2);
                         echo "<div class='component'>";
-                        echo "<img src=image/".$row2['image']."</img>".$row2['product_name'];
+                        echo "<img src=../image/".$row2['image']."></img>".$row2['product_name'];
                         echo "<p><a href='product_selection.php?c_id=".$row3['category_id']."' id='com_btn'>Edit</a><a href='delete_com.php?cat=".$myarray[$i]."' id='com_btn'>Delete</a></p>";
                         echo "</div>";
                         echo '</div>';
