@@ -13,11 +13,15 @@ include 'databaseconnect.php';
 
 <body>
     <div class="main p-3">
-        <h1>Customer Details</h1><?php
-        if ($_GET["ID"])
+        <h1>Customer Details</h1>
+        <?php
+        if ($_GET["ID"]){
             $id = $_GET["ID"];
+            $query = mysqli_query($connect, "SELECT * FROM user_information WHERE ID='$id'");
+            $row = mysqli_fetch_assoc($query);
+        }
         echo "Customer#" . "$id \n" ?>
-        <span style="font-size:35px;  font-family: Arial, Helvetica, sans-serif;max-height:30px;">weileong</span>
+        <span style="font-size:35px;  font-family: Arial, Helvetica, sans-serif;max-height:30px;"><?php echo $row["name"];?></span>
         <button type="button" class="btn btn-warning" style="float:right;" onclick="history.back()">Back</button>
         <hr>
         <div class="card" style="width: 80rem;border:1px solid black;">
@@ -25,9 +29,9 @@ include 'databaseconnect.php';
                 PROFILE
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Email:</b> weileong@gmail.com</li>
-                <li class="list-group-item"> <b>Contact Number:</b> 012-21231231</li>
-                <li class="list-group-item"> <b>Joined at </b> 12/12/2024 12:12:12</li>
+                <li class="list-group-item"><b>Email:</b><?php echo $row["email"];?></li>
+                <li class="list-group-item"> <b>Contact Number:</b> <?php echo $row["contactnumber"];?></li>
+                <li class="list-group-item"> <b>Joined at </b> <?php echo $row["join_time"];?></li>
                 <li class="list-group-item" style="display:flex; align-items:center;">
                     <b>Address(ess):&nbsp&nbsp</b><select class="form-select" aria-label="Default select example"
                         style="width:70rem; border:0.1px solid black;">
@@ -35,7 +39,8 @@ include 'databaseconnect.php';
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
-                    </select></li>
+                    </select>
+                </li>
             </ul>
         </div>
         <hr>

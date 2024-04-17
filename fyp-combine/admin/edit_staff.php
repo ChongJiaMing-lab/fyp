@@ -134,7 +134,6 @@ button
             </div>
 </div>
 
-
 <script>
 let ph = document.getElementById("picholder");
 let ii = document.getElementById("imgInput");

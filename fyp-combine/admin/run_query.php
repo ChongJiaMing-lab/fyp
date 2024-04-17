@@ -23,7 +23,6 @@ if (isset($_POST['cust']))
         $data .= '<tr onclick="window.location=\'cust_detail.php?ID=' . $row['ID'] . '\';">
             <th scope="row">' . $row["ID"] . '</th>
             <td>' . $row["name"] . '<br>
-                <div style="font-size:11px;"><i>from </i>' . '</div>
             </td>
             <td style="vertical-align: middle;">Telephone.No:' . $row["contactnumber"] . '<br>Email:' . $row["email"] . '</td>
             <td>' . $row["gender"] . '</td>

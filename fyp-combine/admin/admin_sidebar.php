@@ -38,7 +38,7 @@
             <div class="user">
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-                    style="background-color:black; border:none;">
+                    style="background:none; color:black;border-radius:20px;">
                         <img src= "image/<?php echo $_SESSION['pic'];?>">
                         <?php echo $_SESSION['admin_id']; ?>
                     </a>
@@ -59,15 +59,15 @@
                 </div>
             </div>
 
-            <ul class="sidebar-nav">
+            <!-- <ul class="sidebar-nav">
                 <li class="sidebar-item">
                 <a href="#" class="sidebar-link" id="admin">
-                        <img src= "image/<?php echo $_SESSION['pic'];?>" style="margin-right: 0 0 10px 10px;">
-                        <?php echo $_SESSION['admin_id']; ?>
-                    </a>
+                        <img src= "image/< ? php echo $_SESSION['pic'];?>" style="margin-right: 0 0 10px 10px;">
+                         < ? php echo $ _SES SION['admin_id']; ? > -->
+                    <!-- </a>
                 </li>
-                <hr>
-                
+                <hr> -->
+        
                 <li class="sidebar-item">
                 <a href="admin_staff.php" class="sidebar-link" id="admin">
                         <i class="lni lni-user"></i>
