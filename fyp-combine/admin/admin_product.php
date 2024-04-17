@@ -1,6 +1,6 @@
 <?php include 'databaseconnect.php' ?>
 <?php include 'admin_sidebar.php' ?>
-
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <style>
     .card {
         padding: 16px;
@@ -57,6 +57,17 @@
     .modal-edit select {
         border: 1.5px solid black;
     }
+
+    .searchbar {
+        position: relative;
+    }
+
+    .magni {
+        position: absolute;
+        top: 17%;
+        font-size: 30px;
+        left: 5.7px;
+    }
 </style>
 
 <body>
@@ -68,7 +79,8 @@
                 <ion-icon class="magni" name="search-outline"></ion-icon>
                 <input type="text" class="input" placeholder="Search with name" name="search">
             </form>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                style="margin-left:30px;">Add
                 Product</button>
         </div>
         <?php
@@ -170,7 +182,9 @@
                                                 url: 'run_query.php',
                                                 method: 'POST',
                                                 data: { bid: setvalue },
-                                              
+                                                success: function (data) {
+                                                    $('#category').html(data);
+                                                }
                                             });
                                         });
                                     });
@@ -240,7 +254,28 @@
                 <tbody>
                     <form action="a_product.php" method="POST" id="pd">
                         <?php
-                        $query = "SELECT 
+                        if (isset($_POST["search"])) {
+                            $search = $_POST["search"];
+                            $query = "SELECT 
+                            product.product_id, 
+                            product.product_name, 
+                            product.product_desc, 
+                            product.image, 
+                            product.price, 
+                            product.qty,
+                            product_status.product_status, 
+                            brand.brand_name, 
+                            category.category,
+                            product_type.type
+                            FROM product
+                            JOIN brand ON product.brand_id = brand.brand_id
+                            JOIN category ON product.category_id = category.category_id
+                            JOIN product_status ON product.product_status = product_status.p_status_id
+                            JOIN product_type ON product.product_type = product_type.type_id
+                             WHERE product_name LIKE '%$search%'
+                             ORDER BY product.product_id";
+                        } else {
+                            $query = "SELECT 
                                 product.product_id, 
                                 product.product_name, 
                                 product.product_desc, 
@@ -257,7 +292,7 @@
                                 JOIN product_status ON product.product_status = product_status.p_status_id
                                 JOIN product_type ON product.product_type = product_type.type_id
                                 ORDER BY product.product_id";
-
+                        }
                         $result = mysqli_query($connect, $query);
                         $_SESSION["count"] = mysqli_num_rows($result);
                         $count = 1;
@@ -525,13 +560,15 @@
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group mb-4">
-                                                                    <label class="form-label" for="customFile">Product
+                                                                
+                                                                    <label class="form-label"
+                                                                        for="imgInput<?php echo $row['image']; ?>">Product
                                                                         Image</label>
-                                                                    <img src=../image/<?php echo $row["image"]?>/>
-                                                                    <input type="file" class="form-control" id="customFile"
-                                                                        name="img" />
+                                                                    <input type="file" class="form-control"
+                                                                        id="imgInput<?php echo $row['image']; ?>" name="img">
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-md-6">
                                                                 <div class="form-group mb-4">
                                                                     <label class="form-label" for="price">Price:</label>
@@ -609,7 +646,7 @@
                         ?>
                 </tbody>
             </table>
-            <script>
+            <!-- <script>
                 $(document).ready(function () {
                     $('input[name="search"]').on('keyup', function () {
                         var value = $(this).val();
@@ -623,7 +660,7 @@
                         });
                     });
                 });
-            </script>
+            </script> -->
         </div><!-- end of card-->
     </div><!-- end of main-->
 </body>

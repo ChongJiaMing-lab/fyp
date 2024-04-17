@@ -117,7 +117,7 @@ $row = mysqli_fetch_assoc($query);
         while($row2 = mysqli_fetch_assoc($query2))
         {
             echo '<tr class="tbody">';
-            echo '<td><img src="img/'.$row2["image"].'"></td>';
+            echo '<td><img src="../image/'.$row2["image"].'"></td>';
             echo '<td><span class="product_name">'.$row2["product_name"].'</span></td>';
             echo '<td>RM'.$row2["price"].'</td>';
             echo '<td><a href="">test</a></td>';

@@ -20,10 +20,10 @@ if(isset($_POST["cust_pdf"]))
     $pdf ->Cell(130, 10,"",0,1);
     $pdf->SetFont("Arial","b",12);
     $pdf ->Cell(10, 5,"#",1,0);
-    $pdf ->Cell(50, 5,"Username",1,0);
-    $pdf ->Cell(50, 5,"Tel",1,0);
-    $pdf ->Cell(50, 5,"Email",1,0);
-    $pdf ->Cell(20, 5,"Age",1,1);
+    $pdf ->Cell(35, 5,"Username",1,0);
+    $pdf ->Cell(40, 5,"Tel",1,0);
+    $pdf ->Cell(75, 5,"Email",1,0);
+    $pdf ->Cell(20, 5,"Gender",1,1);
 
     $pdf->SetFont("Arial","",12);
     $result = mysqli_query($connect, "SELECT ID, name, contactnumber, email, gender FROM user_information");
@@ -31,9 +31,9 @@ if(isset($_POST["cust_pdf"]))
     {
 
         $pdf ->Cell(10, 5,$row["ID"],1,0);
-        $pdf ->Cell(50, 5,$row["name"],1,0);
-        $pdf ->Cell(50, 5,$row["contactnumber"],1,0);
-        $pdf ->Cell(50, 5,$row["email"],1,0);
+        $pdf ->Cell(35, 5,$row["name"],1,0);
+        $pdf ->Cell(40, 5,$row["contactnumber"],1,0);
+        $pdf ->Cell(75, 5,$row["email"],1,0);
         $pdf ->Cell(20, 5,$row["gender"],1,1);
     }
 

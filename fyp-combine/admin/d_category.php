@@ -50,11 +50,11 @@ else if(isset($_GET["brand_id"]))
     $query = mysqli_query($connect, $delb);
     if($query)
     {
-        $_SESSION['d'] = "Brand $name deleted successfully!";
+        $_SESSION['msg'] = "Brand $name deleted successfully!";
     }
     else
     {
-        $_SESSION['d'] = "Failed to delete brand $name";
+        $_SESSION['msg'] = "Failed to delete brand $name";
     }
     header("location:admin_b.php");
     exit();

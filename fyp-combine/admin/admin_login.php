@@ -78,8 +78,8 @@
         unset($_SESSION['login_icon']);
     }
     ?>
-    <h1>Admin Login</h1>
-    <hr>
+    <!-- <h1>Admin Login</h1>
+    <hr> -->
     <form class="admin_login" action="a_login.php" method="POST">
         <h2>Admin Login</h2>
         <p>Make sure that you had added to SuperAdmin/Admin</p>
