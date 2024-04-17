@@ -28,7 +28,6 @@ include 'databaseconnect.php';
     }
 
     tbody td {
-        max-height: 10px;
     }
 
     .top {
@@ -96,7 +95,6 @@ include 'databaseconnect.php';
                 <tbody id="table-body">
                     <?php
                     $q = "SELECT * FROM user_information";
-
                     $result = mysqli_query($connect, $q);
                     $count = mysqli_num_rows($result);
 
@@ -109,9 +107,9 @@ include 'databaseconnect.php';
                                 </th>
                                 <td>
                                     <?php echo $row["name"]; ?><br>
-                                    <div style="font-size:11px;"><i>from </i>
+                                    <!-- <div style="font-size:11px;"><i>from </i> -->
                                         <!--< ?php echo $row["country"] ?> -->
-                                    </div>
+                                    <!-- </div> -->
                                 </td>
                                 </td>
                                 <td style="vertical-align: middle;">

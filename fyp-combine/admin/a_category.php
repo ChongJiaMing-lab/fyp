@@ -4,18 +4,16 @@ session_start();
 if(isset($_POST["save_brand"]))
 {
     $b = $_POST["brand"];
-    $check_exist = "SELECT * FROM brand";
-    if()
     $insert = "INSERT INTO brand(brand_name)values('$b')";
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['msg'] = "$b";
+        $_SESSION['msg'] = "Peripheral $b added successfully!";
         header("location: admin_b.php");
     }
     else
     {
-        $_SESSION['msg'] = "Failed to add staff :(";
+        $_SESSION['msg'] = "Failed to add brand :(";
         header("location: admin_b.php");
     }
     

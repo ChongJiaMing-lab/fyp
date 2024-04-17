@@ -23,30 +23,30 @@
             </h1>
             <hr>
         </div>
-        <?php
+        <!-- < ?php
         if (isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
             ?>
             <script>
                 Swal.fire({
                     title: "Success!",
-                    text: "The brand: <<?php echo $_SESSION['msg']; ?>> is added!",
+                    text: "The brand: << ?php echo $_SESSION['msg']; ?>> is added!",
                     icon: "success"
                 });
             </script>
-            <?php
+            < ?php
             unset($_SESSION['msg']);
         }
-        ?>
+        ?> -->
         <?php
-        if (isset($_SESSION['d']) && $_SESSION['d'] != '') {
+        if (isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
             ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Hey!</strong>
-                <?php echo $_SESSION['d']; ?>
+                <?php echo $_SESSION['msg']; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php
-            unset($_SESSION['d']);
+            unset($_SESSION['msg']);
         }
         ?>
         <div class="container fluid px-4">
@@ -114,12 +114,49 @@
                                                         <?php echo $row["brand_name"] ?>
                                                     </td>
                                                     <td class="action">
-                                                        <button type="submit" class="btn btn-warning">Edit</button>
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                            data-bs-target="#e<?php echo $row["brand_id"]; ?>">Edit</button>
+                                                        <div class="modal" id="e<?php echo $row["brand_id"]; ?>">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <!-- Modal Header -->
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Edit</h4>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"></button>
+                                                                    </div>
+
+                                                                    <form action="e_category.php" method="POST">
+                                                                        <!-- Modal body -->
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group mb-4">
+                                                                                <label>Brand:</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    placeholder="component" name="brand"
+                                                                                    value="<?php echo $row["brand_name"] ?>"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <input type="hidden" name="brand_id"
+                                                                            value="<?php echo $row["brand_id"]; ?>">
+                                                                        <!-- Modal footer -->
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-primary"
+                                                                                name="save_brand">Save</button>
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                data-bs-dismiss="modal">Cancel</button>
+
+                                                                        </div>
+                                                                    </form>
+                                                                </div><!--content end-->
+                                                            </div><!-- modal-dialog-centered end-->
+                                                        </div><!-- modal end-->
+
                                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal">
+                                                            data-bs-target="#exampleModal<?php echo $row["brand_id"]?>">
                                                             Delete</button>
 
-                                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                        <div class="modal fade" id="exampleModal<?php echo $row["brand_id"]?>" tabindex="-1"
                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
@@ -133,14 +170,9 @@
                                                                         Do you really want to delete this brand?:<br>
                                                                         <?php echo $row["brand_name"] ?>
                                                                     </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">No</button>
-                                                                        <a
-                                                                            href="d_category.php?brand_id=<?php echo $row["brand_id"] ?>"><button
-                                                                                type="button"
-                                                                                class="btn btn-primary">Yes</button>
-                                                                        </a>
+                                                                    <div class="modal-footer">     
+                                                                     <a href="d_category.php?brand_id=<?php echo $row["brand_id"]?>"><button type="button" class="btn btn-primary">Yes</button></a>
+                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
