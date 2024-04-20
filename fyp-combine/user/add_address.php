@@ -81,7 +81,53 @@
 							
         <!-- END HEADER -->
 <section id="account-address-form" class="section container myaccounts">
-
+<?php
+	$id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+    $result = mysqli_query($connect, $query);
+	$result2 = mysqli_query($connect, $query2);
+    if($result && $result2)
+    {
+		
+        if ($row = mysqli_fetch_assoc($result)) 
+		{
+			?>
+			<div id="contents">
+			<div id="sidebar-left">
+		<div class="sidebar-nav-list">
+			<ul class="nav-container">
+				<li class="item">
+					<a class="txt-interact is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
+					<ul class="item-container">
+						<li class="sub">
+							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
+						</li>
+						<li class="sub">
+							<a href="view_address.php?ID=<?php echo $id;?>">My address</a>
+							
+						</li>
+						<li class="sub">
+							<a href="myaccount.php">Change password</a>
+						</li>
+						</ul>
+						<!-- MY ORDERS -->
+	<li class="item">
+		<a href="...">My orders</a>
+			</li>
+		<!-- MY COUPON -->
+	<li class="item"><a href="...">My coupon</a></li>
+			<!-- MY REWARD POINT -->
+	<li class="item"><a href="...">My reward point</a></li>
+			<!-- MY TRANSACTION -->
+	<li class="item"><a  href="...">My store credit</a></li>
+			</ul>
+						</div>
+		</div>
+		<?php
+		}
+	}
+	?>
 <?php
 	$id = $_GET['ID'];
     $query = "SELECT * FROM user_information WHERE ID='$id'";
@@ -90,20 +136,17 @@
     {
         foreach($result as $row)
         {?>
-			<div id="contents">
-		<div id="sidebar-left">
-			 			<div class="sidebar-nav-list"></div>
-		</div>
+			
 
-		<div id="main-content" class="address-form">
+			<div id="main-content" class="address-form">
 			
 			<!-- address form -->
 			<div class="holder">
 				<div class="title">Insert new address</div>
 				<div class="add-form">
-                        <form id="form1"class="form-frame" name="form1" method="post" action="#">
+				<form id="form1"class="myaccount-body" method="post" enctype="multipart/form-data" >
 						<div class="myaccount-content form-utility">
-							
+			
 							<div class="field-group">
 								
 
@@ -138,12 +181,7 @@
         echo"no records found :(";
     }
 	?>
-		<div class="field-group">
-								<!-- COMPANY -->
-																<!-- COMPANY ID -->
-								
-								<!-- TAX ID -->
-															</div>
+		
 
 							<div class="field-group">
 								<!-- ADDRESS 1 -->
@@ -202,15 +240,13 @@
 							<!-- SUBMIT -->
 							<div class="buttons">
 								<input type="submit" name="savebtn"value="Save" class="button btn-action" />
-							</div>
-						</div>
+								</div>
+								</div>
 					</form>
 				</div>
 			</div>
 
 		</div>
-	
-	</div>
 
 </section>
 

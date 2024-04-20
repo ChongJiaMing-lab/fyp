@@ -76,27 +76,7 @@
 		
 		
 		
-        <!-- END HEADER -->
-<div id="modal-subscribe" class="modal">
-	<div class="modal-background"></div>
-	<div class="modal-card">
-		<header class="modal-card-head">
-			<p class="modal-card-title">Newsletter subscription</p>
-			<button class="delete" aria-label="close"></button>
-		</header>
-		<section class="modal-card-body">
-			<div class="subscribe-info">
-				<p>Yes, I want to see more deal from  TECH ZONE COMPUTER SDN BHD</p>
-				<form action="https://www.techzone.com.my/newsletter" method="post" id="subscribe-form" enctype="multipart/form-data">
-					<input type="hidden" name="newsletter" value="1" id="newsletter" />
-				</form>
-			</div>
-		</section>
-		<footer class="modal-card-foot">
-			<input type="button" onclick="submitSubscribe();" value="Subscribe" class="button" />
-		</footer>
-	</div>
-</div>
+        
 
 <section id="account-view" class="section container myaccounts">
 	
@@ -114,6 +94,7 @@
         if ($row = mysqli_fetch_assoc($result)) 
 		{
 			?>
+			<div id="contents">
 			<div id="sidebar-left">
 		<div class="sidebar-nav-list">
 			<ul class="nav-container">
@@ -130,20 +111,26 @@
 						<li class="sub">
 							<a href="myaccount.php">Change password</a>
 						</li>
-			<div id="contents">
-		<div id="sidebar-left">
-			 			<div class="sidebar-nav-list"></div>
+						</ul>
+						<!-- MY ORDERS -->
+	<li class="item">
+		<a href="...">My orders</a>
+			</li>
+		<!-- MY COUPON -->
+	<li class="item"><a href="...">My coupon</a></li>
+			<!-- MY REWARD POINT -->
+	<li class="item"><a href="...">My reward point</a></li>
+			<!-- MY TRANSACTION -->
+	<li class="item"><a  href="...">My store credit</a></li>
+			</ul>
+						</div>
 		</div>
         <?php
         }
     }
     ?>	
 			
-			<!--VIEW ACCOUNT -->
-			<div class="holder">
-				<div class="title">My Profile</div>
-				<div class="myaccount-body">
-					<div class="myaccount-content form-utility">
+			
 
 						
                         <?php
@@ -154,6 +141,12 @@
     {
         foreach($result as $row)
         {?>
+		<!--VIEW ACCOUNT -->
+		<div id="main-content" class="edit-account" style="">
+		<div class="holder">
+		<div class="title">My Profile</div>
+		<div class="myaccount-body">
+		<div class="myaccount-content form-utility">
 		<div class="field-group">
 							
 
@@ -165,7 +158,7 @@
 									<input type="text" class="input txt-data" value="<?php echo $row['name']?>" disabled/>
 								</div>
 							</div>
-						</div>
+						
 						
 						<!-- EMAIL ADDRESS -->
 						<div class="field">
@@ -176,7 +169,7 @@
 							</div>
 						</div>
 					
-						<div class="field-group">
+						
 							<!-- TELEPHONE -->
 							<div class="field">
 								<label class="label">
@@ -196,17 +189,29 @@
 											<input type="text" class="input txt-data" value="<?php echo $row['dateofbirth']?>" disabled/>
 										</div>
 									</div>
+														
 															
-															<div class="field radio">
-									<label class="label">
-										Gender									</label>
-									<div class="control">
-										<input type="text" class="input txt-data" value="<?php echo $row['gender']?>" disabled/>
-									</div>
-								</div>
 								
 						</div>
-
+						<div class="buttons">
+							<?php
+							 if( isset($_SESSION['ID']))
+							 {
+								?>
+								<a href="editprofile.php?ID=<?php echo $row['ID']; ?>" class="button btn-action">Edit profile</a>
+								<?php
+							 }?>
+							 
+						
+						</div>
+						</div>
+				</div>
+			</div>
+		
+		</div>
+		
+	</div>
+		
 							
 
 		<?php				
@@ -218,25 +223,9 @@
     }
 	?>
 						<!-- EDIT -->
-						<div class="buttons">
-							<?php
-							 if( isset($_SESSION['ID']))
-							 {
-								?>
-								<a href="editprofile.php?ID=<?php echo $row['ID']; ?>" class="button btn-action">Edit profile</a>
-								<?php
-							 }?>
-							 
 						
-					</div>
-					</div>
-				</div>
-			</div>
-		
 		</div>
-		
 	</div>
-
 </section>
 
 

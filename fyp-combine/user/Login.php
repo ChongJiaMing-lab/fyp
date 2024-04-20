@@ -71,6 +71,10 @@
 	.btn-wishlist , .btn-compare {
 		display: none;
 	}
+
+	.title {
+    color: black; 
+}
 	</style>
 		
 	
@@ -98,7 +102,8 @@
 			<div class="holder">
 				<div id="login">
 					<div class="account-access-header">
-						<div class="title">Log in</div>
+					
+						<div class="title" >Log in</div>
 														<div class="title-message">New Customer? <a class="txt-interact txt-underline" href="register.php">Register here</a></div>
 											</div>
 					<!-- LOGIN FORM -->

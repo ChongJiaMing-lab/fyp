@@ -108,6 +108,7 @@
         if ($row = mysqli_fetch_assoc($result)) 
 		{
 			?>
+			<div id="contents">
 			<div id="sidebar-left">
 		<div class="sidebar-nav-list">
 			<ul class="nav-container">
@@ -124,9 +125,19 @@
 						<li class="sub">
 							<a href="myaccount.php">Change password</a>
 						</li>
-			<div id="contents">
-		<div id="sidebar-left">
-			 			<div class="sidebar-nav-list"></div>
+						</ul>
+						<!-- MY ORDERS -->
+	<li class="item">
+		<a href="...">My orders</a>
+			</li>
+		<!-- MY COUPON -->
+	<li class="item"><a href="...">My coupon</a></li>
+			<!-- MY REWARD POINT -->
+	<li class="item"><a href="...">My reward point</a></li>
+			<!-- MY TRANSACTION -->
+	<li class="item"><a  href="...">My store credit</a></li>
+			</ul>
+						</div>
 		</div>
         <?php
         }
@@ -157,7 +168,7 @@
         {?>
 		<div class="field-group">
 							
-
+		<div class="field-group">
 							<!--  NAME -->
 							<div class="field">
 								<label class="label">
@@ -177,7 +188,7 @@
 							</div>
 						</div>
 					
-						<div class="field-group">
+						
 							<!-- TELEPHONE -->
 							<div class="field">
 								<label class="label">
@@ -198,17 +209,11 @@
 										</div>
 									</div>
 															
-															<div class="field radio">
-									<label class="label">
-										Gender									</label>
-									<div class="control">
-										<input type="text"name="gender" class="input txt-data" value="<?php echo $row['gender']?>" />
-									</div>
-								</div>
+															
 								
 						</div>
 
-                       
+					</div>
 
 		<?php				
         }

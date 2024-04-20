@@ -90,6 +90,7 @@
         if ($row = mysqli_fetch_assoc($result)) 
 		{
 			?>
+            <div id="contents">
 			<div id="sidebar-left">
 		<div class="sidebar-nav-list">
 			<ul class="nav-container">
@@ -106,16 +107,28 @@
 						<li class="sub">
 							<a href="myaccount.php">Change password</a>
 						</li>
-                        </div>
-                    </div>
+						</ul>
+						<!-- MY ORDERS -->
+	<li class="item">
+		<a href="...">My orders</a>
+			</li>
+		<!-- MY COUPON -->
+	<li class="item"><a href="...">My coupon</a></li>
+			<!-- MY REWARD POINT -->
+	<li class="item"><a href="...">My reward point</a></li>
+			<!-- MY TRANSACTION -->
+	<li class="item"><a  href="...">My store credit</a></li>
+			</ul>
+						</div>
+		</div>
         <?php
         }
     }
     ?>	
-<div id="contents">
-		<div id="sidebar-left">
-			 			<div class="sidebar-nav-list"></div>
-		</div>
+
+		
+			 			
+		
         <div id="main-content" class="address-list">
             <!-- ADD NEW ADDRESS BUTTON -->
             

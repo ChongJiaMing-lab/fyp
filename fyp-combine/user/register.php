@@ -262,21 +262,7 @@
                                         <div id="Day-error" style="color: red;"></div>
                                         <div id="Year-error" style="color: red;"></div>
                                     </div>
-                                    <div class="field radio gender">
-                                        <label class="label">Gender</label>
-                                        <div class="control">
-                                            <div class="radio-item">
-                                                <input class="is-checkradio" type="radio" id="male" name="gender"
-                                                    value="male" checked="checked" />
-                                                <label for="male">Male</label>
-                                            </div>
-                                            <div class="radio-item">
-                                                <input class="is-checkradio" type="radio" id="female" name="gender"
-                                                    value="female" />
-                                                <label for="female">Female</label>
-                                            </div>
-                                        </div>
-                                    </div>
+        
                                     <div class="field">
                                         <label class="label ">
                                             Password <span class="help-password"> *at least 6 characters</span> </label>
@@ -337,7 +323,6 @@ if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
     $b = $_POST["Name"];
     $c = $_POST["telephone"];
     $d = $_POST["dob_month"];
-    $e = $_POST["gender"];
     $f = $_POST["password"];
     $g = $_POST["dob_day"];
     $h = $_POST["dob_year"];
@@ -352,7 +337,7 @@ if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
         } else {
             
             echo "<script>alert('success.');</script>";
-            mysqli_query($connect, "INSERT INTO user_information(email,name,contactnumber,dateofbirth,gender,password) VALUES('$a','$b','$c','$i','$e','$f')");
+            mysqli_query($connect, "INSERT INTO user_information(email,name,contactnumber,dateofbirth,password) VALUES('$a','$b','$c','$i','$f')");
         }
     }
 ?>
