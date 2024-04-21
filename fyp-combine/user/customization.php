@@ -66,6 +66,10 @@ include "head.php";
             
         }
 
+        #wrapper{
+            overflow:visible;
+        }
+
         .cart-container {
             padding:10px 30px;
         }
@@ -130,6 +134,11 @@ include "head.php";
             margin:10px;
         }
 
+        .body-style button{
+            background-color:#1d3f66;
+        }
+
+
     </style>
 </head>
 <body>
@@ -176,7 +185,7 @@ else if(isset($_SESSION['alert_c'])){
     <div class ="product-container">
         
             <?php 
-
+                $total = 0;
                 $i=0;
                 while($i < mysqli_num_fields($query))
                 {
@@ -187,8 +196,8 @@ else if(isset($_SESSION['alert_c'])){
                     if($i>2)
                     {
                         echo '<div class ="product">';
-                        echo '<div class="toggleBtn">'.ucwords($myarray[$i]).'</div>
-                    <div class="content">';
+                        echo '<div class="toggleBtn">'.str_replace('_', ' ', ucfirst($myarray[$i])).'</div>
+                        <div class="content">';
                     
                     if($myarray[$i] == "ram1"||$myarray[$i] == "ram2")
                     {
@@ -219,6 +228,7 @@ else if(isset($_SESSION['alert_c'])){
                         echo "</div>";
                         echo '</div>';
                         echo '</div>';
+                        $total += $row2['price'];
                     }
                     $i = $i + 1;
                     }
@@ -236,9 +246,7 @@ else if(isset($_SESSION['alert_c'])){
                 <h1 class="small-header">CUSTOM DEKSTOP</h1>
                 <div class="cart">
                     <p>Price
-                        <span class="right">tt</span>
-                    <p>Cash Price
-                        <span class="right">tt</span>
+                        <span class="right">RM <?php echo $total ?></span>
                 </div>
                 <hr>
                 <a id="expandAllBtn">Expand All</a>

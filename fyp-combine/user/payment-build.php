@@ -119,7 +119,9 @@ $id= $_SESSION['ID'];
         .slash{
             margin:0px 10px;
         }
-
+        .body-style button{
+            /* background-color:blue; */
+        }
 
     </style>
 </head>
@@ -203,22 +205,22 @@ $id= $_SESSION['ID'];
                             <i class="fa fa-cc-mastercard" style="color:red;"></i>
                         </div>
                         <br>Name on card
-                        <br><input type="text" id="NameCard" placeholder="ALI" autocomplete="off"></br>
+                        <br><input type="text" class="required" id="NameCard" placeholder="ALI" autocomplete="off"></br>
                         <br>Card Number
-                        <br><input type="text" id="numCard" placeholder="1111 1111 1111 1111" autocomplete="off"></br>
+                        <br><input type="text" class="required" id="numCard" name="numCard" placeholder="1111 1111 1111 1111" autocomplete="off"></br>
 
                         <div class="row">
                             <div class="col-25">
                                 <br>Valid Thru
                                 <div class="valid">
-                                <input type="text" id="validThru" name="validMonth" placeholder="12(Month)" autocomplete="off">
+                                <input type="text" class="required validThru" id="validMonth" name="validMonth" placeholder="12(Month)" autocomplete="off">
                                 <span class="slash">/</span>
-                                <input type="text" id="validThru" name="validYear" placeholder="24(Year)" autocomplete="off">
+                                <input type="text" class="required validThru" id="validYear" name="validYear" placeholder="24(Year)" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-25">
                                 <br>CVV
-                                <br><input type="text" id="CVV" name="cvv" placeholder="123" autocomplete="off"></br>
+                                <br><input type="text" class="required" id="CVV" name="cvv" placeholder="123" autocomplete="off"></br>
                             </div>
                         </div>
                     </div>
@@ -242,7 +244,7 @@ $id= $_SESSION['ID'];
                     $chassis = $row['chassis']?? null;
                     $motherboard = $row['motherboard']?? null;
                     $processor= $row['processor']?? null;
-                    $gpu = $row['gpu']?? null;
+                    $graphic_card = $row['graphic_card']?? null;
                     $ram1 = $row['ram1']?? null;
                     $ram2 = $row['ram2']?? null;
                     $memory = $row['memory']?? null;
@@ -267,7 +269,7 @@ $id= $_SESSION['ID'];
                         else{
                             $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                             $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".ucfirst($myarray[$i])." : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
+                            echo "<br>".str_replace('_', ' ', ucfirst($myarray[$i]))." : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
                             $total += $row2['price'];
                         }
                         $i = $i + 1;
@@ -285,7 +287,8 @@ $id= $_SESSION['ID'];
         </div>
     </div>
 </form>
-    
+
+
 <?php 
 
 if(isset($_POST['pay']))
@@ -297,34 +300,47 @@ $validYear = $_POST['validYear'];
 $cvv = $_POST['cvv'];
 $currentMonth = date("m", $currentTimestamp);
 $currentYear = date("Y", $currentTimestamp);
+$num_card = str_replace(' ','',$num_card);
 
-if($validYear < $currentYear){
-    echo"Invalid Year";
-}
-else if($validMonth < $currentMonth){
-    echo "Invalid Month";
-}
-else{
-    if(isset($num_card)){
-        $card = mysqli_query($connect,"SELECT * FROM card WHERE card_id = $num_card");
-        $result3 = mysqli_fetch_assoc($card);
-        
+    if("20".$validYear < $currentYear){
+        echo "<script>alert('Invalid Year!')</script>";
     }
-}
-
-
-$currentDateTime = date("Y-m-d", $currentTimestamp);
-$name = $_POST['name'];
-$ph = $_POST['ph'];
-$address = 1;
-
-    mysqli_query($connect,"INSERT INTO order_details(user_id,address_id,build_id,time,price) 
-    VALUES ($id,$address,$build_id,'$currentDateTime',$total)");
-
-    if(mysqli_affected_rows($connect)>0)
-    {
-        $update = mysqli_query($connect,"UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
+    else if($validMonth < $currentMonth){
+        echo "<script>alert('Invalid Month!')</script>";
     }
+    else{
+        if(isset($num_card)){
+            $card = mysqli_query($connect,"SELECT * FROM credit_card WHERE card_id = '$num_card'");
+            if($result3 = mysqli_fetch_assoc($card))
+            {
+                if($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv)
+                {
+                    $currentDateTime = date("Y-m-d", $currentTimestamp);
+                    $name = $_POST['name'];
+                    $ph = $_POST['ph'];
+                    $address = 1;
+
+                        mysqli_query($connect,"INSERT INTO order_details(user_id,address_id,build_id,time,price) 
+                        VALUES ($id,$address,$build_id,'$currentDateTime',$total)");
+
+                        if(mysqli_affected_rows($connect)>0)
+                        {
+                            $update = mysqli_query($connect,"UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
+                        }
+                }
+                else{
+                    echo "<script>alert('Card Information Incorrect!')</script>";
+                }
+            }
+            else{
+                echo "<script>alert('Invalid Card Number!')</script>";
+            }
+
+        }
+    }
+
+
+
 
 }
 
@@ -335,21 +351,91 @@ $address = 1;
 <script>
 document.getElementById('numCard').addEventListener('input', function(event) {
     let input = event.target;
-    let trimmedValue = input.value.replace(/\s+/g, ''); // Remove existing spaces
+    let trimmedValue = input.value.replace(/\s+/g, '');
     let formattedValue = '';
     for (let i = 0; i < trimmedValue.length; i++) {
         if (i > 0 && i % 4 === 0) {
-            formattedValue += ' '; // Add a space after every 4 digits
+            formattedValue += ' ';
         }
         formattedValue += trimmedValue.charAt(i);
     }
     input.value = formattedValue;
-    if (trimmedValue.length >= 19) {
-        input.value = input.value.slice(0, 19); // Truncate input if it exceeds 19 characters
-        input.blur(); // Remove focus to prevent further input
+    if (trimmedValue.length >= 16) {
+        input.value = input.value.slice(0, 19);
+        input.blur();
     }
     
 });
+
+document.querySelectorAll('.validThru').forEach(function(input){
+    input.addEventListener('input', function(event){
+
+        if (input.value.length >= 2) {
+            input.value = input.value.slice(0, 2);
+            input.blur();
+
+            let nextInput = input.nextElementSibling;
+            while (nextInput) {
+                if (nextInput.id === 'validThru') {
+                    nextInput.focus();
+                    break;
+                }
+                nextInput = nextInput.nextElementSibling;
+            }
+        }
+    });
+});
+
+document.getElementById('CVV').addEventListener('input', function(event) {
+    let input = event.target;
+
+    if (input.value.length >= 3) {
+        input.value = input.value.slice(0, 3);
+        input.blur();
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form[name="billfrm"]').addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            }
+        });
+
+        function validateForm() {
+            let nameOnCard = document.getElementById('NameCard').value.trim();
+            let cardNumber = document.getElementById('numCard').value.trim().replace(/\s+/g, '');
+            let validMonth = document.getElementById('validMonth').value.trim().replace(/\s+/g, '');
+            let validYear = document.getElementById('validYear').value.trim().replace(/\s+/g, '');
+            let cvv = document.getElementById('CVV').value.trim();
+
+            if (nameOnCard === '' || cardNumber === '' || cvv === '') {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+
+            if (cardNumber.length !== 16) {
+                alert('Please enter a valid 16-digit card number.');
+                return false;
+            }
+
+            if (validMonth.length !== 2) {
+                alert('Please enter a valid 2-digit Month.');
+                return false;
+            }
+
+            if (validYear.length !== 2) {
+                alert('Please enter a valid 2-digit Year.');
+                return false;
+            }
+
+            if (cvv.length !== 3) {
+                alert('Please enter a valid 3-digit CVV.');
+                return false;
+            }
+            return true;
+        }
+    });
+
 
 </script>
 </html>
