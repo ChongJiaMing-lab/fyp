@@ -39,7 +39,7 @@ if (isset($_POST["action"])) {
                                     
                                                        
 										<div class="item-img">
-											<a href="...">
+											<a href="product_detail.php?product_id='.$row ["product_id"].'">
 																										<div class="image" style="min-width:200px ; min-height:200px">
 														
 														
