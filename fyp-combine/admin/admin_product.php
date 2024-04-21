@@ -262,7 +262,7 @@
                             product.product_desc, 
                             product.image, 
                             product.price, 
-                            product.qty,
+                            product.stock,
                             product_status.product_status, 
                             brand.brand_name, 
                             category.category,
@@ -281,7 +281,7 @@
                                 product.product_desc, 
                                 product.image, 
                                 product.price, 
-                                product.qty,
+                                product.stock,
                                 product_status.product_status, 
                                 brand.brand_name, 
                                 category.category,
@@ -347,7 +347,7 @@
                                                                         <label style="margin-right:16.5px;">
                                                                             <b>Stock</b>
                                                                         </label>
-                                                                        <?php echo $row['qty'] ?>
+                                                                        <?php echo $row['stock'] ?>
                                                                     </div>
 
                                                                     <div class="form-group mb-4">
@@ -411,9 +411,9 @@
                                     </td>
 
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
-                                        <?php echo $row['qty'] ?><br>
-                                        <div style="font-size:80%; color:<?php echo ($row['qty'] < 1) ? 'red' : 'green'; ?>">
-                                            <?php echo ($row['qty'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
+                                        <?php echo $row['stock'] ?><br>
+                                        <div style="font-size:80%; color:<?php echo ($row['stock'] < 1) ? 'red' : 'green'; ?>">
+                                            <?php echo ($row['stock'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
                                         </div>
                                     </td>
 
@@ -584,7 +584,7 @@
                                                                     <label class="form-label" for="qty">Stock:</label>
                                                                     <div class="input-group mb-3">
                                                                         <input type="text" class="form-control" id="qty"
-                                                                            name="qty" value="<?php echo $row["qty"] ?>">
+                                                                            name="qty" value="<?php echo $row["stock"] ?>">
                                                                         <span class="input-group-text">pcs</span>
                                                                     </div>
                                                                 </div>

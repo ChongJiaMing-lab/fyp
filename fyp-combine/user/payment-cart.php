@@ -149,7 +149,7 @@
                                             <?php
                                         } else { ?>
                                             <br><input type="text" name="address"
-                                                value="<?php echo $row2['address'] . ', ' . $row2['postcode'] . ', ' . $row2['city'] . ', ' . $row2['state'] ?>"
+                                                value="<?php echo $row2['address'] . ', ' . $row2['postcode'] . ', ' . $row2['city'] . ', ' . $row2['state'] ?> " readonly
                                                 autocomplete="off"></br>
                                             <?php
                                         }
@@ -180,7 +180,7 @@
                                                                           <li class="flex-item"><input type="radio" id="javascript" name="fav_language"
                                                                             value="<?php echo $row['address_id']?>">
                                                                         <label for="<?php echo $row['address_id']?>"><?php echo $row['address'] . ', ' . $row['postcode'] . ', ' . $row['city']
-                                                                . ', ' . $row['state'];?></label></li>
+                                                                . ', ' . $row['state'] ;?></label></li>
                                                                         <?php
                                                                         $address_id = $row['address_id'];
                                                                         $count++;
@@ -205,9 +205,7 @@
                                         <br>Accepted Payment method
                                         <div class="icon-container">
                                             <i class="fa fa-cc-visa"  name="Credit_Cart" style="color:navy;"></i>
-                                            <i class="fa fa-cc-amex"  name="Credit_Cart" style="color:blue;"></i>
                                             <i class="fa fa-cc-mastercard"  name="Credit_Cart" style="color:red;"></i>
-                                            <i class="fa fa-cc-discover"  name="Credit_Cart" style="color:orange;"></i>
                                         </div>
                                         <br>Name on card
                                         <br><input type="text" id="NameCard" placeholder="ALI" autocomplete="off"></br>

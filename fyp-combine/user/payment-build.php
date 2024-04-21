@@ -149,7 +149,7 @@ $id= $_SESSION['ID'];
                          <?php   
                         }else
                         {?>
-                          <br><input type="text" name="address" value="<?php echo $row2['address'].', '.$row2['postcode'].', '.$row2['city'].', '.$row2['state']?>" autocomplete="off"></br>
+                          <br><input type="text" name="address" value="<?php echo $row2['address'].', '.$row2['postcode'].', '.$row2['city'].', '.$row2['state']?>"  readonly autocomplete="off"></br>
                          <?php 
                         }}}}
                         ?>
@@ -166,9 +166,7 @@ $id= $_SESSION['ID'];
                         <br>Accepted Payment method
                         <div class="icon-container">
                             <i class="fa fa-cc-visa" style="color:navy;"></i>
-                            <i class="fa fa-cc-amex" style="color:blue;"></i>
                             <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                            <i class="fa fa-cc-discover" style="color:orange;"></i>
                         </div>
                         <br>Name on card
                         <br><input type="text" id="NameCard" placeholder="ALI" autocomplete="off"></br>

@@ -318,7 +318,7 @@ session_start();
                                     echo '<div class="dropdown-item">Hi,' . $_SESSION["name"] . '</div>';
                                     ?>
                                     <a class="dropdown-item" href="myaccount.php?ID=<?php echo $_SESSION['ID']; ?>">My
-                                        account</a>
+                                        Account</a>
                                     <a class="dropdown-item mobile" href="...">My Profile</a>
                                     <a class="dropdown-item mobile" href="...s">My Addresses</a>
                                     <a class="dropdown-item mobile" href="...">Change Password</a>

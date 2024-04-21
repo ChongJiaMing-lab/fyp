@@ -15,7 +15,7 @@ if (isset($_POST["save_product"]))
     $qty = $_POST["qty"];
 
     $status = "1";
-    $insert = "INSERT INTO product(category_id, brand_id, product_status, product_name, product_desc, image, price, qty, product_type) 
+    $insert = "INSERT INTO product(category_id, brand_id, product_status, product_name, product_desc, image, price, stock, product_type) 
                 VALUES ('$c','$b','$status','$pd','$d','$img','$price','$qty','$type')";
     $run = mysqli_query($connect, $insert);
 
