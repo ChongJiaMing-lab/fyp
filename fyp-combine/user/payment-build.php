@@ -56,6 +56,10 @@ $id= $_SESSION['ID'];
             flex: 75%;
         }
 
+        .col-70 {
+            flex: 70%;
+        }
+
         .col-50 {
             flex: 50%;
         }
@@ -63,10 +67,15 @@ $id= $_SESSION['ID'];
         .col-25 {
             flex: 25%;
         }
+        .col-15 {
+            flex: 15%;
+        }
 
         .col-75,
+        .col-70,
         .col-50,
-        .col-25 {
+        .col-25,
+        .col-15 {
             padding: 0 16px;
         }
 
@@ -100,6 +109,16 @@ $id= $_SESSION['ID'];
             margin-left:auto;
             font-size:15px;
         }
+        .valid {
+            display: flex;
+        }
+
+        .valid input[type="text"] {
+            width: 50%;
+        }
+        .slash{
+            margin:0px 10px;
+        }
 
 
     </style>
@@ -131,9 +150,9 @@ $id= $_SESSION['ID'];
         if ($row = mysqli_fetch_assoc($result)) {?>
 
             <br>Full Name : 
-            <br><input type="text" name="name" value ="<?php echo $row['name']?>"readonly  autocomplete="off"></br>
+            <br><input type="text" name="name" value ="<?php echo $row['name']?>" autocomplete="off"></br>
             <br>Phone Number : 
-            <br><input type="text" name="ph" value ="<?php echo $row['contactnumber']?>"readonly autocomplete="off"></br>
+            <br><input type="text" name="ph" value ="<?php echo $row['contactnumber']?>" autocomplete="off"></br>
             
 
             <?php
@@ -149,7 +168,22 @@ $id= $_SESSION['ID'];
                          <?php   
                         }else
                         {?>
-                          <br><input type="text" name="address" value="<?php echo $row2['address'].', '.$row2['postcode'].', '.$row2['city'].', '.$row2['state']?>"  readonly autocomplete="off"></br>
+                            <br>Address : 
+                            <br><input type="text" name="address" value="<?php echo $row2['address']?>"  readonly autocomplete="off"></br>
+                            <div class="row">
+                            <div class="col-25">
+                                <br>City : 
+                                <br><input type="text" name="state" value="<?php echo $row2['city'] ?>" readonly autocomplete="off"></br>
+                            </div>
+                            <div class="col-25">
+                                <br>State : 
+                                <br><input type="text" name="code" value="<?php echo $row2['state'] ?>" readonly autocomplete="off"></br>
+                            </div>
+                            <div class="col-25">
+                                <br>Postcode : 
+                                <br><input type="text" name="code" value="<?php echo $row2['postcode'] ?>" readonly autocomplete="off"></br>
+                            </div>
+                        </div>
                          <?php 
                         }}}}
                         ?>
@@ -174,13 +208,17 @@ $id= $_SESSION['ID'];
                         <br><input type="text" id="numCard" placeholder="1111 1111 1111 1111" autocomplete="off"></br>
 
                         <div class="row">
-                            <div class="col-50">
+                            <div class="col-25">
                                 <br>Valid Thru
-                                <br><input type="text" id="validThru" placeholder="12/12" autocomplete="off"></br>
+                                <div class="valid">
+                                <input type="text" id="validThru" name="validMonth" placeholder="12(Month)" autocomplete="off">
+                                <span class="slash">/</span>
+                                <input type="text" id="validThru" name="validYear" placeholder="24(Year)" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="col-50">
+                            <div class="col-25">
                                 <br>CVV
-                                <br><input type="text" id="CVV" placeholder="123" autocomplete="off"></br>
+                                <br><input type="text" id="CVV" name="cvv" placeholder="123" autocomplete="off"></br>
                             </div>
                         </div>
                     </div>
@@ -229,7 +267,7 @@ $id= $_SESSION['ID'];
                         else{
                             $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                             $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".$myarray[$i]." : ".$row2['product_name']."<span class='pricee'>RM ".$row2['price']."</span></br>";
+                            echo "<br>".ucfirst($myarray[$i])." : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
                             $total += $row2['price'];
                         }
                         $i = $i + 1;
@@ -252,8 +290,29 @@ $id= $_SESSION['ID'];
 
 if(isset($_POST['pay']))
 {
-
 $currentTimestamp = time();
+$num_card = $_POST['numCard'];
+$validMonth = $_POST['validMonth'];
+$validYear = $_POST['validYear'];
+$cvv = $_POST['cvv'];
+$currentMonth = date("m", $currentTimestamp);
+$currentYear = date("Y", $currentTimestamp);
+
+if($validYear < $currentYear){
+    echo"Invalid Year";
+}
+else if($validMonth < $currentMonth){
+    echo "Invalid Month";
+}
+else{
+    if(isset($num_card)){
+        $card = mysqli_query($connect,"SELECT * FROM card WHERE card_id = $num_card");
+        $result3 = mysqli_fetch_assoc($card);
+        
+    }
+}
+
+
 $currentDateTime = date("Y-m-d", $currentTimestamp);
 $name = $_POST['name'];
 $ph = $_POST['ph'];
@@ -273,4 +332,24 @@ $address = 1;
 
 </div>
 </body>
+<script>
+document.getElementById('numCard').addEventListener('input', function(event) {
+    let input = event.target;
+    let trimmedValue = input.value.replace(/\s+/g, ''); // Remove existing spaces
+    let formattedValue = '';
+    for (let i = 0; i < trimmedValue.length; i++) {
+        if (i > 0 && i % 4 === 0) {
+            formattedValue += ' '; // Add a space after every 4 digits
+        }
+        formattedValue += trimmedValue.charAt(i);
+    }
+    input.value = formattedValue;
+    if (trimmedValue.length >= 19) {
+        input.value = input.value.slice(0, 19); // Truncate input if it exceeds 19 characters
+        input.blur(); // Remove focus to prevent further input
+    }
+    
+});
+
+</script>
 </html>
