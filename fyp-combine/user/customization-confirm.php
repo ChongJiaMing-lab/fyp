@@ -155,8 +155,8 @@ while($i < mysqli_num_fields($result))
     else{
         $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
         $row2 = mysqli_fetch_assoc($query2);
-        echo '<td>'.ucwords($myarray[$i]).'</td>';
-        echo '<td><img src="image/'.$row2["image"].'"</td>';
+        echo '<td>'.str_replace('_', ' ', ucfirst($myarray[$i])).'</td>';
+        echo '<td><img src="../image/'.$row2["image"].'"</td>';
         echo '<td>'.$row2["product_name"].'</td>';
         echo '<td id="center">'.$row2["price"].'</td>';
         echo '<td id="center"><a href="product_details.php?id='.$row2['product_id'].'">Click Me!</a></td>';
