@@ -183,7 +183,8 @@
 							</div>
 
 							<div class="buttons">
-								<input type="submit" value="Save" class="button btn-action" />
+								<input type="submit" value="Save" id="input_submit"
+									class="input_submit button btn-action" />
 							</div>
 						</div>
 					</form>
@@ -194,7 +195,8 @@
 		</div>
 
 	</section>
-
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+	</script>
 	<script>
 		$('#pw_valid').on('keyup', function () {
 			pw_valid_value = $(this).val();
@@ -241,6 +243,24 @@
 			}
 
 		})
+
+		$('#input_submit').on("click", function (e) {
+			e.preventDefault();
+			var actives = false;
+			$('.newpw_require ul li').each(function () {
+				if (!$(this).hasClass('active')) {
+					actives = true;
+					return false;
+				}
+			});
+
+			if (actives) {
+				$('.newpw_require ul li:not(.active)').effect("shake", { times: 2 }, 500);
+			} else {
+				$('form').submit();
+			}
+		});
+
 	</script>
 </body>
 
