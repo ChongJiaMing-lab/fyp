@@ -185,7 +185,7 @@
 								<div id="zone_display" class="field">
 									<label class="label ">
 										State									</label>
-                                        <select name="zone_id"  name="state" value="<?php echo $row['state']?>" />
+                                        <select  name="state" value="<?php echo $row['state']?>" />
 										
 									<option value="Johor" >Johor</option>
 									<option value="Kedah" >Kedah</option>
