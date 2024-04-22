@@ -83,7 +83,38 @@
 <body class="body-style wide  clamp-1">
 <?php include"head.php"?>
 		
-		
+<style>
+	.btn-wishlist , .btn-compare {
+
+		display: none;
+	}
+
+	.title {
+    color: black; 
+	
+}
+
+input.button.btn-login{
+            background-color:black;
+        }
+
+a.button.view-password
+{
+            background-color:black;
+        }
+.txt-interactt 
+{
+    color: skyblue !important;
+}
+.txt-data, .input.txt-data
+{
+	color:#2586c6;
+}
+.body-style button, .body-style .button 
+{
+    background-color:black;
+}
+	</style>		
 					
 					
         		
