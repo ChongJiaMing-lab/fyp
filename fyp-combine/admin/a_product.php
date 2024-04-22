@@ -72,16 +72,15 @@ if(isset($_POST["edit_product"]))
     $c = $_POST["cate"];
     $d = $_POST["desc"];
     if(empty($_POST["img"]))
-        $img = $_SESSION["alr"];
+        $img =$_POST["old-img"];
     else
         $img = $_POST["img"];
     $price = $_POST["price"];
     $qty = $_POST["qty"];
 
     $update = "UPDATE product SET category_id='$c',brand_id='$b',product_name='$pd',
-                product_desc='$d',image='$img',price='$price', qty='$qty',product_type='$type' WHERE product_id = '$id'";
+                product_desc='$d',image='$img',price='$price', stock='$qty',product_type='$type' WHERE product_id = '$id'";
     $update_run = mysqli_query($connect, $update);
-    unset($_SESSION["alr"]);
     if($update_run)
     {
         $_SESSION['title'] = "Congrats!";
