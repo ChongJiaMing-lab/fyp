@@ -1,6 +1,4 @@
-<?php include("data_connection.php")
 
-?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="ready">
 <head>
@@ -67,20 +65,7 @@
     <link defer id="customize_css" href="https://www.techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1709874806" rel="stylesheet" type="text/css" />
 	
 		
-		<style>
-	.btn-wishlist , .btn-compare {
-		display: none;
-	}
-
-	.title {
-    color: black; 
 	
-}
-
-.body-style button{
-            background-color:#1d3f66;
-        }
-	</style>
 		
 	
 	<!-- TITLE -->
@@ -91,7 +76,30 @@
 </head>
 <body class="body-style wide  clamp-1">
 <?php include"head.php"?>
-				
+<style>
+	.btn-wishlist , .btn-compare {
+
+		display: none;
+	}
+
+	.title {
+    color: black; 
+	
+}
+
+input.button.btn-login{
+            background-color:black;
+        }
+
+a.button.view-password
+{
+            background-color:black;
+        }
+.txt-interactt 
+{
+    color: skyblue !important;
+}
+	</style>			
 									
         <!-- END HEADER -->
 </script>
@@ -108,8 +116,8 @@
 				<div id="login">
 					<div class="account-access-header">
 					
-						<div class="title" >Log in</div>
-														<div class="title-message">New Customer? <a class="txt-interact txt-underline" href="register.php">Register here</a></div>
+						<div class="title" style="color:black;">Log in</div>
+														<div class="title-message" >New Customer? <a class="txt-interactt txt-underline" href="register.php" >Register here</a></div>
 											</div>
 					<!-- LOGIN FORM -->
 					<form id="form1" name="form1" method="post" action="#">
@@ -148,7 +156,7 @@
 
 							<!-- FORGOT PASSWORD -->
 							<div class="forget-password">
-								<a href="forgot_password.php" class="txt-interact txt-underline">Forgot password?</a>
+								<a href="forgot_password.php" class="txt-interactt txt-underline">Forgot password?</a>
 							</div>
 
 														<!-- //JUST FUNCTION NOTHING WITH DESIGN// -->

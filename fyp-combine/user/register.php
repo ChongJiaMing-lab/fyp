@@ -1,4 +1,4 @@
-<?php include ("data_connection.php") ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="ready">
 
@@ -93,6 +93,8 @@
         .btn-compare {
             display: none;
         }
+
+        
     </style>
 
 
@@ -105,6 +107,30 @@
 
 <body class="body-style wide  clamp-1">
     <?php include "head.php" ?>
+    <style>
+	.btn-wishlist , .btn-compare {
+		
+		display: none;
+	}
+
+	.title {
+    color: black; 
+	
+}
+
+input.button.btn-login{
+            background-color:black;
+        }
+
+a.button.view-password
+{
+            background-color:black;
+        }
+.txt-interactt 
+{
+    color: skyblue !important;
+}
+	</style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("form1").addEventListener("submit", function (event) {
@@ -190,7 +216,7 @@
                             <div class="account-access-header">
                                 <div class="title">Register Account</div>
                                 <div class="title-message">Already have an account? <a
-                                        class="txt-interact txt-underline" href="Login.php">Log in</a></div>
+                                        class="txt-interactt txt-underline" href="Login.php">Log in</a></div>
                             </div>
                             <form id="form1" name="form1" method="post" action="#">
                                 <input type="hidden" name="register_token" value="TVRjeE1EQXdOalF3T0E9PQ">
@@ -282,7 +308,7 @@
                                 <div class="form-footer">
                                     <div class="field">
                                         <input type="hidden" name="agree" value="1" />
-                                        <input type="submit" id="btn_submit" name="register" value="Confirm Register"
+                                        <input type="submit" class="button btn-login" id="btn_submit" name="register" value="Confirm Register"
                                             class="button" />
 
                                     </div>
