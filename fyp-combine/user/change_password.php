@@ -116,7 +116,42 @@
 		display: none;
 	}
 </style>
+<style>
+	.btn-wishlist , .btn-compare {
 
+		display: none;
+	}
+
+	.title {
+    color: black; 
+	
+}
+
+input.button.btn-login{
+            background-color:black;
+        }
+
+a.button.view-password
+{
+            background-color:black;
+        }
+.txt-interactt 
+{
+    color: skyblue !important;
+}
+.txt-data, .input.txt-data
+{
+	color:#2586c6;
+}
+.body-style button, .body-style .button 
+{
+    background-color:black;
+}
+.newpw_require ul li
+{
+	color: #50d282 !important;
+}
+	</style>	
 <body class="body-style wide  clamp-1">
 	<!-- END HEADER -->
 	<section id="account-password" class="section container myaccounts">
