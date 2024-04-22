@@ -417,8 +417,8 @@
                                         </div>
                                     </td>
 
-                                    <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
-                                        <?php echo $row['product_status'] ?>
+                                    <td>
+                                        <button type="button" class="status" style="border:0px solid green;text-align:center;"><?php echo $row['product_status']; ?></button>
                                     </td>
 
                             </form>
@@ -560,15 +560,16 @@
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group mb-4">
-                                                                
                                                                     <label class="form-label"
                                                                         for="imgInput<?php echo $row['image']; ?>">Product
-                                                                        Image</label>
+                                                                        Image
+                                                                    </label>
                                                                     <input type="file" class="form-control"
                                                                         id="imgInput<?php echo $row['image']; ?>" name="img">
+                                                                    <input type="hidden" name="old-img"
+                                                                        value="<?php echo $row['image']?>">
                                                                 </div>
                                                             </div>
-
                                                             <div class="col-md-6">
                                                                 <div class="form-group mb-4">
                                                                     <label class="form-label" for="price">Price:</label>

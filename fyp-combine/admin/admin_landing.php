@@ -30,17 +30,20 @@ include 'databaseconnect.php';
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #D7E0D4;
+    background: #DFF5DB;
     border-radius: 20px;
     box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08)
   }
-
+  .cards .ccard:hover{
+    background-color: #97EA88;
+    cursor:pointer;
+  }
   .icon {
     font-size: 55px;
   }
 
   .number {
-    color: #32871F;
+    /* color: #32871F; */
     font-size: 45px;
   }
 
