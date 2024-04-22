@@ -113,11 +113,44 @@
 		}
 </style>
 <div id="module-price-sort" class="box utilities">
+<div class="searchbar">
+							<i class="icon-search"></i>
+							<input type="text" name="search"  id="live_search" value="" autocomplete="off" placeholder="Search..."/>
+						</div>
+						<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+					<script type="text/javascript">
+					$(document).ready(function()
+					{
+						$("#live_search").keyup(function()
+						{
+							var input = $(this).val();
+							
+							if(input != "")
+							{
+								$.ajax({
 
+									url:"live_search.php",
+									method:"POST",
+									data:{input:input},
+
+									success:function(data)
+									{
+										$(".product-listing .box-content").html(data).css("display", "");
+									}
+								});
+							}
+							else
+							{
+								$(".product-listing .box-content").css("display","none");
+							}
+						});
+					});
+					</script>
 	<div class="title">
   		Shop By Price	</div>
 	
 	<div class="box-content">
+        
 		                                        <div class="list-group">
                                                     
                                                     <input type="hidden" id="hidden_minimum_price" value="0" />

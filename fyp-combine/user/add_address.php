@@ -200,11 +200,9 @@
 									<label class="label label-is-success">
 										<span id="country-required" class="required"></span>
 										Country									</label>
-									<select name="country_id" class="">
-										<option value=""> --- Please Select --- </option>
+									<select name="country_id" class="">	
+																<option value="Malaysia" >Malaysia</option>
 																				
-																				<option value="1" >Malaysia</option>
-																				<option value="2" >Singapora</option>
 																			</select>
 																	</div>
 
@@ -212,8 +210,26 @@
 								<div id="zone_display" class="field">
 									<label class="label ">
 										State									</label>
-                                    <input type="text" class="input " name="zone_id" value="" /></select>
-																	</div>
+                                    <select name="zone_id" value="" >
+									<option value="Johor" >Johor</option>
+									<option value="Kedah" >Kedah</option>
+									<option value="Kelantan" >Kelantan</option>
+									<option value="Malacca" >Malacca</option>
+									<option value="Negeri Sembilan" >Negeri Sembilan</option>
+									<option value="Pahang" >Pahang</option>
+									<option value="Penang" >Penang</option>
+									<option value="Perak" >Perak</option>
+									<option value="Perlis" >Perlis</option>
+									<option value="Sabah" >Sabah</option>
+									<option value="Sarawak" >Sarawak</option>
+									<option value="Selangor" >Selangor</option>
+									<option value="Terenggaru" >Terenggaru</option>
+		
+																				
+																				</select>
+																		</div>
+	
+									
 
 								<!-- CITY -->
 								<div id="city_display" class="field">
@@ -276,9 +292,9 @@ if(isset($_POST["savebtn"]) && $_POST["savebtn"] == "Save") {
     $e = $_POST["zone_id"];
     $f = $_POST["city"];
     $g = $_POST["postcode"];
-	$f = '0';
+	$h = '0';
 
-     mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,country,state,city,postcode,default_address) VALUES ('$id','$a', '$b', '$c','$d','$e','$f','$g','$f')");
+     mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,country,state,city,postcode,default_address) VALUES ('$id','$a', '$b', '$c','$d','$e','$f','$g','$h')");
      
 	 session_start();
 	 $ID = $_SESSION['ID'];

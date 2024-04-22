@@ -74,7 +74,12 @@
 
 	.title {
     color: black; 
+	
 }
+
+.body-style button{
+            background-color:#1d3f66;
+        }
 	</style>
 		
 	

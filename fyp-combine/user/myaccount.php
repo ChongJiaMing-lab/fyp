@@ -112,7 +112,7 @@
 							
 						</li>
 						<li class="sub">
-							<a href="myaccount.php">Change password</a>
+							<a href="change_password.php?ID=<?PHP echo $id;?>">Change password</a>
 						</li>
 						</ul>
 						<!-- MY ORDERS -->
@@ -183,10 +183,16 @@
 							</div>
 							<div class="address-info txt-data">
 								<div class="shipping-info-detail">
+									
 																		<div class="shipping-name"><div class="txt-data"><?php echo $row2['name']; ?></div></div>
+																		<div class="shipping-telephone"><div class="txt-data"><?php echo $row2['contact_number']; ?></div></div>
+																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['country']; ?></div> </div>
 																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['address']; ?></div> </div>
+																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['city']; ?></div> </div>
+																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['state']; ?></div> </div>
+																		<div class="shipping-address-1"><div class="txt-data"><?php echo $row2['postcode']; ?></div> </div>
 
-									<div class="shipping-telephone"><div class="txt-data"><?php echo $row2['contact_number']; ?></div></div>
+									
 																	</div>
 							</div>
 						</div>

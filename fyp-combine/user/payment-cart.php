@@ -57,6 +57,10 @@
             flex: 75%;
         }
 
+        .col-70 {
+            flex: 70%;
+        }
+
         .col-50 {
             flex: 50%;
         }
@@ -64,10 +68,15 @@
         .col-25 {
             flex: 25%;
         }
+        .col-15 {
+            flex: 15%;
+        }
 
         .col-75,
+        .col-70,
         .col-50,
-        .col-25 {
+        .col-25,
+        .col-15 {
             padding: 0 16px;
         }
 
@@ -101,6 +110,18 @@
             display: flex;
             margin-left: auto;
             font-size: 15px;
+        }
+
+        .valid {
+            display: flex;
+        }
+
+        .valid input[type="text"] {
+            width: 50%;
+        }
+
+        .slash{
+            margin:0px 10px;
         }
 
     </style>
@@ -148,9 +169,22 @@
 
                                             <?php
                                         } else { ?>
-                                            <br><input type="text" name="address"
-                                                value="<?php echo $row2['address'] . ', ' . $row2['postcode'] . ', ' . $row2['city'] . ', ' . $row2['state'] ?> " readonly
-                                                autocomplete="off"></br>
+                                            <br>Address : 
+                                            <br><input type="text" name="address" value="<?php echo $row2['address']?>"  readonly autocomplete="off"></br>
+                                            <div class="row">
+                                            <div class="col-25">
+                                                <br>City : 
+                                                <br><input type="text" name="state" value="<?php echo $row2['city'] ?>" readonly autocomplete="off"></br>
+                                            </div>
+                                            <div class="col-25">
+                                                <br>State : 
+                                                <br><input type="text" name="code" value="<?php echo $row2['state'] ?>" readonly autocomplete="off"></br>
+                                            </div>
+                                            <div class="col-25">
+                                                <br>Postcode : 
+                                                <br><input type="text" name="code" value="<?php echo $row2['postcode'] ?>" readonly autocomplete="off"></br>
+                                            </div>
+                                        </div>
                                             <?php
                                         }
                                         ?>
@@ -213,12 +247,16 @@
                                         <br><input type="text" id="numCard" placeholder="1111 1111 1111 1111"
                                             autocomplete="off"></br>
 
-                                        <div class="row">
-                                            <div class="col-50">
-                                                <br>Valid Thru
-                                                <br><input type="text" id="validThru" placeholder="12/12" autocomplete="off"></br>
-                                            </div>
-                                            <div class="col-50">
+                                            <div class="row">
+                                                <div class="col-25">
+                                                    <br>Valid Thru
+                                                    <div class="valid">
+                                                    <input type="text" id="validThru" name="validMonth" placeholder="12(Month)" autocomplete="off">
+                                                    <span class="slash">/</span>
+                                                    <input type="text" id="validThru" name="validYear" placeholder="24(Year)" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            <div class="col-25">
                                                 <br>CVV
                                                 <br><input type="text" id="CVV" placeholder="123" autocomplete="off"></br>
                                             </div>
@@ -319,5 +357,24 @@ if (isset($_POST['pay'])) {
 ?>
 
 </body>
+<script>
+document.getElementById('numCard').addEventListener('input', function(event) {
+    let input = event.target;
+    let trimmedValue = input.value.replace(/\s+/g, ''); // Remove existing spaces
+    let formattedValue = '';
+    for (let i = 0; i < trimmedValue.length; i++) {
+        if (i > 0 && i % 4 === 0) {
+            formattedValue += ' '; // Add a space after every 4 digits
+        }
+        formattedValue += trimmedValue.charAt(i);
+    }
+    input.value = formattedValue;
+    if (trimmedValue.length >= 19) {
+        input.value = input.value.slice(0, 19); // Truncate input if it exceeds 19 characters
+        input.blur(); // Remove focus to prevent further input
+    }
+    
+});
 
+</script>
 </html>

@@ -5,7 +5,7 @@ $output = '';
 if(isset($_POST["input"])){
 
     $input = $_POST["input"];
-
+	
 	$query = "SELECT * FROM product WHERE product_status = '1' AND (brand_id LIKE '{$input}%' OR product_name LIKE '{$input}%')";
 	if (isset($_POST["category"])) {
         $category_filter = implode("','", $_POST["category"]);
