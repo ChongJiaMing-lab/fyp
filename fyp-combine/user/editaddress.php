@@ -185,7 +185,26 @@
 								<div id="zone_display" class="field">
 									<label class="label ">
 										State									</label>
-                                        <input type="text" class="input " name="state" value="<?php echo $row['state']?>" />
+                                        <select name="zone_id"  name="state" value="<?php echo $row['state']?>" />
+										
+									<option value="Johor" >Johor</option>
+									<option value="Kedah" >Kedah</option>
+									<option value="Kelantan" >Kelantan</option>
+									<option value="Malacca" >Malacca</option>
+									<option value="Negeri Sembilan" >Negeri Sembilan</option>
+									<option value="Pahang" >Pahang</option>
+									<option value="Penang" >Penang</option>
+									<option value="Perak" >Perak</option>
+									<option value="Perlis" >Perlis</option>
+									<option value="Sabah" >Sabah</option>
+									<option value="Sarawak" >Sarawak</option>
+									<option value="Selangor" >Selangor</option>
+									<option value="Terenggaru" >Terenggaru</option>
+		
+																				
+																				</select>
+																	
+	
 																	</div>
 
 								<!-- CITY -->

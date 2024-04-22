@@ -170,8 +170,25 @@
                                             <div class="txt-data"><?php echo $user_contactnumber; ?></div>
                                         </div>
                                         <div class="address-add">
+                                            <div class="txt-info">country</div>
+                                            <div class="txt-data"><?php echo $row2['country']; ?></div>
+                                        </div>
+                                        <div class="address-add">
                                             <div class="txt-info">Address</div>
                                             <div class="txt-data"><?php echo $row2['address']; ?></div>
+                                        </div>
+                                        <div class="address-add">
+                                            <div class="txt-info">city</div>
+                                            <div class="txt-data"><?php echo $row2['city']; ?></div>
+                                        </div>
+                                        <div class="address-add">
+                                            <div class="txt-info">state</div>
+                                            <div class="txt-data"><?php echo $row2['state']; ?></div>
+                                        </div>
+                                        
+                                        <div class="address-add">
+                                            <div class="txt-info">postcod</div>
+                                            <div class="txt-data"><?php echo $row2['postcode']; ?></div>
                                         </div>
 										</div>
                                         <div class="address-btn" style= "padding:10px">
