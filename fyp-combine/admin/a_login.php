@@ -9,7 +9,7 @@ if (isset($_POST["a_login"])) {
     $result = mysqli_query($connect, $find);
     $row = mysqli_fetch_array($result);
 
-    if (empty($row)) {
+    if(empty($row)) {
         $_SESSION['login_text'] = "The admin '$id' is not exist!";
         $_SESSION['login_icon'] = "error";
         header("location: admin_login.php");

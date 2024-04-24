@@ -1,5 +1,6 @@
 <!-- ###AIO### -->
 <!-- ###AIO### -->
+<?php include "head.php" ?>
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en-US" class="ready">
@@ -100,31 +101,190 @@
     <script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 
 </head>
+<style>
+	.newpw_require ul {
+		padding: 0;
+		margin: 0 0;
+		list-style: none;
+	}
 
+	.newpw_require ul li {
+		margin-bottom: 8px;
+		color: red;
+		/* font-weight: 700; */
+	}
+
+	.newpw_require ul li.active {
+		display: none;
+	}
+
+	.newpw_require ul li span::before {
+		display: inline;
+	}
+
+	.newpw_require ul li.active span:before {
+		display: none;
+	}
+</style>
+<?php
+date_default_timezone_set("Asia/Kuching");
+	if(isset($_GET["email"]))
+	{
+		$current_time = time();
+		$select_query = mysqli_connect($connect ,"SELECT * FROM user_information WHERE email='$email' AND expire = '0'");
+		$expire_check = $mysqli_query($connect, $email);
+		if(mysqli_num_rows($expire_check)<1)
+		{
+			echo "<script>alert('Hi, the link is expired, please send the request again.');
+			window.location = 'Login.php';</script>";
+		}
+	}
+?>
 <body class="body-style wide  clamp-1">
-    <?php include "head.php" ?>
-    <!-- END HEADER -->
-    <section id="account-forgotten" class="section container account-access">
-        <form action="" method="POST">
-            <div class="form-body">
-                <!-- EMAIL -->
-                <div class="field">
-                    <label class="label ">
-                        Email Address </label>
-                    <div class="control">
-                        <input type="text" class="input" name="pwd" value="" placeholder="Enter new password"/>
-                        <input type="text" class="input" name="repeat-pwd" value="" placeholder="Repeat new password"/>
-                    </div>
-                </div>
-            </div>
+	<!-- END HEADER -->
+	<section id="account-password" class="section container myaccounts">
+		<div id="contents">
+			<div id="sidebar-left">
+				<div class="sidebar-nav-list"></div>
+			</div>
 
-            <div class="form-footer field">
-                <input type="submit" name="reset-request-submit" value="Continue" class="button" />
-            </div>
-        </form>
+			<div id="main-content" class="password">
 
-    </section>
+				<!-- PASSWORD -->
+				<div class="holder">
+					<div class="title">Reset Password</div>
+					<form class="myaccount-body" action="https://techzone.com.my/account_password" method="post"
+						enctype="multipart/form-data">
 
+						<div class="myaccount-content">
+							<!-- PASSWORD -->
+							<div class="field">
+								<label class="label">
+									New Password</label>
+								<div class="field has-addons">
+									<div class="control addon-fix">
+										<input id="pw_valid" type="password" class="input " name="password" value=""
+											required>
+									</div>
+									<div class="control">
+										<a class="button view-password">
+											<span><i class="mdi mdi-eye-off"></i></span>
+										</a>
+									</div>
+								</div>
+								<div class="newpw_require">
+									<ul>
+										<li class="letter"><span></span>At least one letter</li>
+										<li class="num"><span></span>At least one number</li>
+										<li class="special"><span></span>At least one special character</li>
+										<li class="15_len"><span></span>At least 15 characters</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- PASSWORD CONFIRM -->
+							<div class="field">
+								<label class="label">
+									Confirm New Password </label>
+								<div class="field has-addons">
+									<div class="control addon-fix">
+										<input id="con_pw" type="password" class="input" name="confirm" value=""
+											required>
+									</div>
+									<div class="control">
+										<a class="button view-password">
+											<span><i class="mdi mdi-eye-off"></i></span>
+										</a>
+									</div>
+								</div>
+								<div class="newpw_require">
+									<ul>
+										<li class="confirm_password"><span></span>Must be same with the new password
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="buttons">
+								<input type="submit" value="Save" id="input_submit"
+									class="input_submit button btn-action" />
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+	</script>
+	<script>
+		$('#pw_valid').on('keyup', function () {
+			pw_valid_value = $(this).val();
+
+			if (pw_valid_value.match(/[a-z]/g)) {
+				$('.letter').addClass('active');
+			}
+			else {
+				$('.letter').removeClass('active');
+			}
+
+
+			if (pw_valid_value.match(/[0-9]/g)) {
+				$('.num').addClass('active');
+			}
+			else {
+				$('.num').removeClass('active');
+			}
+
+
+			if (pw_valid_value.match(/[!@#$%^&*]/g)) {
+				$('.special').addClass('active');
+			}
+			else {
+				$('.special').removeClass('active');
+			}
+
+
+			if (pw_valid_value.length == 15 || pw_valid_value.length > 8) {
+				$('.15_len').addClass('active');
+			}
+			else {
+				$('.15_len').removeClass('active');
+			}
+		})
+
+		$('#con_pw').on('keyup', function () {
+			con_pw_value = $(this).val();
+			if (con_pw_value == pw_valid_value) {
+				$('.confirm_password').addClass('active');
+			}
+			else {
+				$('.confirm_password').removeClass('active');
+			}
+
+		})
+
+		$('#input_submit').on("click", function (e) {
+			e.preventDefault();
+			var actives = false;
+			$('.newpw_require ul li').each(function () {
+				if (!$(this).hasClass('active')) {
+					actives = true;
+					return false;
+				}
+			});
+
+			if (actives) {
+				$('.newpw_require ul li:not(.active)').effect("shake", { times: 2 }, 500);
+			} else {
+				$('form').submit();
+			}
+		});
+
+	</script>
 </body>
 
 </html>

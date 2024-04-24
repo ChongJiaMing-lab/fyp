@@ -167,9 +167,7 @@ if (isset($_POST["reset-request-submit"])) {
 		// generate token by binaryhexa 
 		$token = bin2hex(openssl_random_pseudo_bytes(25));
 
-		// session_start ();
-		$_SESSION['token'] = $token;
-		$_SESSION['email'] = $_POST["email"];
+		$email_to_reset = $_POST["email"];
 
 		require "Mail/phpmailer/PHPMailerAutoload.php";
 		$mail = new PHPMailer;
@@ -195,8 +193,7 @@ if (isset($_POST["reset-request-submit"])) {
 		$mail->Body = "<b>Dear $name,</b>
                 <h3>We received a request to reset your password.</h3>
                 <p>Kindly click the below link to reset your password</p>
-                
-                <a href='http://localhost/fyp/fyp-combine/user/create-new-password.php'>click here</a>";
+                <a href='http://localhost/fyp/fyp-combine/user/create-new-password.php?email=<?php echo $email_to_reset; ?>'>click here</a>";
 		//change the file location that for change pass word want 
 		if (!$mail->send()) {
 			?>
@@ -205,6 +202,8 @@ if (isset($_POST["reset-request-submit"])) {
 			</script>
 			<?php
 		} else {
+			$time = time();
+			$insert_forgot = mysqli_query($connect, "INSERT INTO forgot_pass(email, expire, expire_time)values('$email_to_reset','0','$time')");
 			?>
 			<script>
 				alert("<?php echo "Hi, please check your email for the password reset." ?>");
@@ -213,6 +212,4 @@ if (isset($_POST["reset-request-submit"])) {
 		}
 	}
 }
-
-
 ?>

@@ -116,42 +116,13 @@
 		display: none;
 	}
 </style>
-<style>
-	.btn-wishlist , .btn-compare {
-
-		display: none;
-	}
-
-	.title {
-    color: black; 
-	
-}
-
-input.button.btn-login{
-            background-color:black;
-        }
-
-a.button.view-password
+<?php 
+if(isset($_GET["ID"]))
 {
-            background-color:black;
-        }
-.txt-interactt 
-{
-    color: skyblue !important;
-}
-.txt-data, .input.txt-data
-{
-	color:#2586c6;
-}
-.body-style button, .body-style .button 
-{
-    background-color:black;
-}
-.newpw_require ul li
-{
-	color: #50d282 !important;
-}
-	</style>	
+	$user_id = $_GET["ID"];
+	$pw = mysqli_query($connect, "SELECT * FROM user_information WHERE ID='$user_id'");
+	$row = mysqli_fetch_assoc($pw);
+}?>
 <body class="body-style wide  clamp-1">
 	<!-- END HEADER -->
 	<section id="account-password" class="section container myaccounts">
@@ -165,11 +136,30 @@ a.button.view-password
 				<!-- PASSWORD -->
 				<div class="holder">
 					<div class="title">Change Password</div>
-					<form class="myaccount-body" action="https://techzone.com.my/account_password" method="post"
+					<form class="myaccount-body" action="" method="post"
 						enctype="multipart/form-data">
-
 						<div class="myaccount-content">
 							<!-- PASSWORD -->
+							<div class="field">
+								<label class="label">
+									Old Password</label>
+								<div class="field has-addons">
+									<div class="control addon-fix">
+										<input id="old_pw" type="password" class="input " name="password" value=""
+											required>
+									</div>
+									<div class="control">
+										<a class="button view-password">
+											<span><i class="mdi mdi-eye-off"></i></span>
+										</a>
+									</div>
+								</div>
+								<div class="newpw_require">
+									<ul>
+										<li class="old"><span></span>Must be same with current password</li>
+									</ul>
+								</div>
+							</div>
 							<div class="field">
 								<label class="label">
 									New Password</label>
@@ -218,7 +208,7 @@ a.button.view-password
 							</div>
 
 							<div class="buttons">
-								<input type="submit" value="Save" id="input_submit"
+								<input type="submit" value="Save" id="input_submit" name="changepw"
 									class="input_submit button btn-action" />
 							</div>
 						</div>
@@ -233,9 +223,20 @@ a.button.view-password
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
 	</script>
 	<script>
+		$('#old_pw').on('keyup', function () {
+			var current = "<?php echo $row['password']?>"
+			old_pw = $(this).val();
+			if (old_pw == current) {
+				$('.old').addClass('active');
+			}
+			else {
+				$('.old').removeClass('active');
+			}
+		})
+
 		$('#pw_valid').on('keyup', function () {
 			pw_valid_value = $(this).val();
-
+			
 			if (pw_valid_value.match(/[a-z]/g)) {
 				$('.letter').addClass('active');
 			}
@@ -298,5 +299,22 @@ a.button.view-password
 
 	</script>
 </body>
-
 </html>
+
+<?php
+	if(isset($_POST["changepw"]))
+	{
+		$new = $_POST["confirm"];
+		$change = "UPDATE user_information SET password = '$new' WHERE ID='$user_id'";
+		$change_query = mysqli_query($connect, $change);
+
+		if($change_query)
+		{
+			?>
+			<script>
+				alert("<?php echo "Success to change your password!" ?>");
+			</script>
+			<?php
+		}
+	}
+?>
