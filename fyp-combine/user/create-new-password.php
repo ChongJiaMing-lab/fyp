@@ -130,10 +130,10 @@
 date_default_timezone_set("Asia/Kuching");
 	if(isset($_GET["email"]))
 	{
+		$email = $_GET["email"];
 		$current_time = time();
-		$select_query = mysqli_connect($connect ,"SELECT * FROM user_information WHERE email='$email' AND expire = '0'");
-		$expire_check = $mysqli_query($connect, $email);
-		if(mysqli_num_rows($expire_check)<1)
+		$select_query = mysqli_query($connect ,"SELECT * FROM forgot_pass WHERE email='$email' AND expire = '0'");
+		if(mysqli_num_rows($select_query) < 1)
 		{
 			echo "<script>alert('Hi, the link is expired, please send the request again.');
 			window.location = 'Login.php';</script>";
@@ -153,7 +153,7 @@ date_default_timezone_set("Asia/Kuching");
 				<!-- PASSWORD -->
 				<div class="holder">
 					<div class="title">Reset Password</div>
-					<form class="myaccount-body" action="https://techzone.com.my/account_password" method="post"
+					<form class="myaccount-body" action="update_password.php" method="post"
 						enctype="multipart/form-data">
 
 						<div class="myaccount-content">
@@ -206,9 +206,10 @@ date_default_timezone_set("Asia/Kuching");
 							</div>
 
 							<div class="buttons">
-								<input type="submit" value="Save" id="input_submit"
+								<input type="submit" value="Save" id="input_submit" name="forgot_pw"
 									class="input_submit button btn-action" />
 							</div>
+							<input type="hidden" id="" name="email" value="<?php echo $email ?>">
 						</div>
 					</form>
 				</div>
@@ -286,25 +287,4 @@ date_default_timezone_set("Asia/Kuching");
 
 	</script>
 </body>
-
 </html>
-
-<?php
-if(isset($_POST["reset-request-submit"]))
-{
-    $pwd = $_POST["pwd"];
-    $email = $_SESSION["email"];
-    $update = "UPDATE user_information SET password = '$pwd' WHERE email = '$email'";
-    $update_run = mysqli_query($connect, $update);
-
-    if($update_run)
-    {
-        ?>
-			<script>
-				alert("<?php echo "Hi, please try to login with new password." ?>");
-                window.location.replace("Login.php");
-			</script>
-			<?php
-    }
-}
-?>

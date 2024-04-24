@@ -115,14 +115,17 @@
 	.newpw_require ul li.active span:before {
 		display: none;
 	}
-</style>
-<?php 
-if(isset($_GET["ID"]))
-{
-	$user_id = $_GET["ID"];
-	$pw = mysqli_query($connect, "SELECT * FROM user_information WHERE ID='$user_id'");
-	$row = mysqli_fetch_assoc($pw);
-}?>
+	.btn-wishlist , .btn-compare {
+
+		display: none;
+	}
+
+	.title {
+    color: black; 
+	
+}
+
+	</style>	
 <body class="body-style wide  clamp-1">
 	<!-- END HEADER -->
 	<section id="account-password" class="section container myaccounts">
@@ -138,28 +141,9 @@ if(isset($_GET["ID"]))
 					<div class="title">Change Password</div>
 					<form class="myaccount-body" action="" method="post"
 						enctype="multipart/form-data">
+
 						<div class="myaccount-content">
 							<!-- PASSWORD -->
-							<div class="field">
-								<label class="label">
-									Old Password</label>
-								<div class="field has-addons">
-									<div class="control addon-fix">
-										<input id="old_pw" type="password" class="input " name="password" value=""
-											required>
-									</div>
-									<div class="control">
-										<a class="button view-password">
-											<span><i class="mdi mdi-eye-off"></i></span>
-										</a>
-									</div>
-								</div>
-								<div class="newpw_require">
-									<ul>
-										<li class="old"><span></span>Must be same with current password</li>
-									</ul>
-								</div>
-							</div>
 							<div class="field">
 								<label class="label">
 									New Password</label>
@@ -208,8 +192,7 @@ if(isset($_GET["ID"]))
 							</div>
 
 							<div class="buttons">
-								<input type="submit" value="Save" id="input_submit" name="changepw"
-									class="input_submit button btn-action" />
+								<input type="submit" name=”changepw“ class="input_submit button btn-action" value="Save" id="input_submit" />
 							</div>
 						</div>
 					</form>
@@ -220,23 +203,11 @@ if(isset($_GET["ID"]))
 		</div>
 
 	</section>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
-	</script>
-	<script>
-		$('#old_pw').on('keyup', function () {
-			var current = "<?php echo $row['password']?>"
-			old_pw = $(this).val();
-			if (old_pw == current) {
-				$('.old').addClass('active');
-			}
-			else {
-				$('.old').removeClass('active');
-			}
-		})
 
+	<script>
 		$('#pw_valid').on('keyup', function () {
 			pw_valid_value = $(this).val();
-			
+
 			if (pw_valid_value.match(/[a-z]/g)) {
 				$('.letter').addClass('active');
 			}
@@ -280,6 +251,7 @@ if(isset($_GET["ID"]))
 
 		})
 
+		
 		$('#input_submit').on("click", function (e) {
 			e.preventDefault();
 			var actives = false;
@@ -296,25 +268,23 @@ if(isset($_GET["ID"]))
 				$('form').submit();
 			}
 		});
-
 	</script>
 </body>
-</html>
 
 <?php
-	if(isset($_POST["changepw"]))
+if (isset($_POST["changepw"])) {
+	$pwd = $_POST["confirm"];
+	$update = "UPDATE user_information SET password = '$pwd' WHERE ID='$user_id'";
+	$update_run = mysqli_query($connect, $update);
+	if ($update_run) 
 	{
-		$new = $_POST["confirm"];
-		$change = "UPDATE user_information SET password = '$new' WHERE ID='$user_id'";
-		$change_query = mysqli_query($connect, $change);
-
-		if($change_query)
-		{
-			?>
-			<script>
-				alert("<?php echo "Success to change your password!" ?>");
-			</script>
-			<?php
-		}
+		?>
+		<script>
+			alert("<?php echo "Success to change the password!" ?>");
+			window.location.replace("Login.php");
+		</script>
+		<?php
 	}
+}
 ?>
+</html>

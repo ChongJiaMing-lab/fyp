@@ -193,7 +193,7 @@ if (isset($_POST["reset-request-submit"])) {
 		$mail->Body = "<b>Dear $name,</b>
                 <h3>We received a request to reset your password.</h3>
                 <p>Kindly click the below link to reset your password</p>
-                <a href='http://localhost/fyp/fyp-combine/user/create-new-password.php?email=<?php echo $email_to_reset; ?>'>click here</a>";
+                <a href='http://localhost/fyp/fyp-combine/user/create-new-password.php?email=$email_to_reset'>click here</a>";
 		//change the file location that for change pass word want 
 		if (!$mail->send()) {
 			?>
