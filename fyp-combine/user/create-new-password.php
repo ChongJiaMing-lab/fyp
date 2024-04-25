@@ -210,10 +210,10 @@ date_default_timezone_set("Asia/Kuching");
 									class="input_submit button btn-action" />
 							</div>
 							<input type="hidden" id="" name="email" value="<?php echo $email ?>">
+							<input type="hidden" name="forgot_pass" value="">
 						</div>
 					</form>
 				</div>
-
 			</div>
 
 		</div>

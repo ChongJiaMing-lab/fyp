@@ -1,6 +1,8 @@
 
 <?php
 include "head.php"; 
+if(isset($_POST["forgot_pass"]))
+{
     $pwd = $_POST["confirm"];
     $email = $_POST["email"];
     $update = "UPDATE user_information SET password = '$pwd' WHERE email = '$email'";
@@ -8,6 +10,8 @@ include "head.php";
 
     if($update_run)
     {
+        $expire = "UPDATE forgot_pass SET expire = '1' WHERE email = '$email'";
+        $exipre_run = mysqli_query($connect, $expire);
         ?>
 			<script>
 				alert("<?php echo "Hi, please try to login with new password." ?>");
@@ -15,4 +19,10 @@ include "head.php";
 			</script>
 			<?php
     }
+}
+
+if(isset($_POST["change_pw"]))
+{
+    
+}
 ?>
