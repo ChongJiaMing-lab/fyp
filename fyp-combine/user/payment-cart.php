@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
     <title>Checkout</title>
 
     <style type="text/css">
@@ -337,21 +339,26 @@ if (isset($_POST['pay'])) {
     
  
     if (mysqli_affected_rows($connect) > 0) {
-       
         mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
-
-     
         
-
-        session_start();
-		$ID = $_SESSION['ID'];
-        echo '<script>alert("Record updated successfully");</script>';
-        echo '<script>window.location.href = "main_page.php?ID=' . $ID. '";</script>'; 
+        $ID = $_SESSION['ID'];
+        ?>
+        <script>
+            Swal.fire({
+                title: "Good job!",
+                text: "Payment was successful!",
+                icon: "success",
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
+                }
+            });
+        </script>
+        <?php
         exit;
-        
     } else {
-       
-        echo "Error inserting data into cart_order_detail table.";
+        echo "<script>alert('Error inserting data into cart_order_detail table.');</script>";
     }
 }
 ?>
