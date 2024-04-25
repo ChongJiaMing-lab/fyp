@@ -73,61 +73,90 @@
 
 <body class="body-style wide  clamp-1">  
 <?php include"head.php" ?>  
-<div class="title" style="color:black;">Order Detail</div>
-<table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Order#</th>
-                        <th scope="col">Payment Status</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Delivery Status</th>
-                        <th scope="col">Created Time</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    <?php
-                    $q = "SELECT * FROM user_information";
+<section id="account-order-list" class="section container myaccounts">
 
-                    $result = mysqli_query($connect, $q);
-                    $count = mysqli_num_rows($result);
+	
 
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            ?>
-                            <tr onclick="window.location='cust_detail.php?ID=<?php echo $row['ID'] ?>';">
-                                <th scope="row">
-                                    <?php echo $row["ID"] ?>
-                                </th>
-                                <td>
-                                    <?php echo $row["name"]; ?><br>
-                                    <div style="font-size:11px;"><i>from </i>
-                                        <!--< ?php echo $row["country"] ?> -->
-                                    </div>
-                                </td>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    Telephone.No:
-                                    <?php echo $row["contactnumber"] ?><br>
-                                    Email:
-                                    <?php echo $row["email"] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row["gender"] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row["join_time"] ?>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                    } else {
-                        ?>
-                        <td colspan="5" style="text-align:center"><b>No record found :(</b></td>
-                        <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+<?php
+	$id = $_GET['ID'];
+    $query = "SELECT * FROM user_information WHERE ID='$id'";
+	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+    $result = mysqli_query($connect, $query);
+	$result2 = mysqli_query($connect, $query2);
+    if($result && $result2)
+    {
+		
+        if ($row = mysqli_fetch_assoc($result)) 
+		{
+			?>
+            <div id="contents">
+			<div id="sidebar-left">
+		<div class="sidebar-nav-list">
+			<ul class="nav-container">
+				<li class="item">
+					<a class="txt-interactt is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
+					<ul class="item-container">
+						<li class="sub">
+							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
+						</li>
+						<li class="sub">
+							<a href="view_address.php?ID=<?php echo $id;?>">My address</a>
+							
+						</li>
+						<li class="sub">
+							<a href="myaccount.php">Change password</a>
+						</li>
+						</ul>
+						<!-- MY ORDERS -->
+	<li class="item">
+		<a href="...">My orders</a>
+			</li>
+		<!-- MY COUPON -->
+	<li class="item"><a href="...">My coupon</a></li>
+			<!-- MY REWARD POINT -->
+	<li class="item"><a href="...">My reward point</a></li>
+			<!-- MY TRANSACTION -->
+	<li class="item"><a  href="...">My store credit</a></li>
+			</ul>
+						</div>
+		</div>
+        <?php
+        }
+    }
+    ?>	
 
-</body>
-</html>
+        <div id="main-content" class="order">
+            <!-- ORDER -->
+            <div class="holder">
+				<div class="title">My orders</div>
+			
+				<div class="order-list">
+					<div class="tabs">
+						<ul>
+							<li data-tab="tab-to-pay"><a>To pay</a></li>
+							<li data-tab="tab-to-ship"><a>To ship</a></li>
+							<li data-tab="tab-completed"><a>Completed</a></li>
+							<li data-tab="tab-cancelled"><a>Cancelled</a></li>
+						</ul>
+					</div>
+					
+					<div class="tab-content">
+						<div class="loading"><img src="catalog/view/multi_store/techzone/loading.svg" /></div>
+						<div data-content="tab-to-pay"></div>
+						<div data-content="tab-to-ship"></div>
+						<div data-content="tab-completed"></div>
+						<div data-content="tab-cancelled"></div>
+					</div>
+				</div>
+			</div>
+        </div>
+		
+    </div>
+	
+</section>
+
+
+		
+			
+    </body>
+</html><script>

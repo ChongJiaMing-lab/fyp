@@ -259,7 +259,7 @@
                                                 </div>
                                             <div class="col-25">
                                                 <br>CVV
-                                                <br><input type="text" id="CVV" placeholder="123" autocomplete="off"></br>
+                                                <br><input type="text" class="required" id="CVV" name="cvv" placeholder="123" autocomplete="off"></br>
                                             </div>
                                         </div>
                                     </div>
