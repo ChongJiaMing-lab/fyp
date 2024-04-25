@@ -116,13 +116,13 @@
 		display: none;
 	}
 </style>
-<?php 
-if(isset($_GET["ID"]))
-{
+<?php
+if (isset($_GET["ID"])) {
 	$user_id = $_GET["ID"];
 	$pw = mysqli_query($connect, "SELECT * FROM user_information WHERE ID='$user_id'");
 	$row = mysqli_fetch_assoc($pw);
-}?>
+} ?>
+
 <body class="body-style wide  clamp-1">
 	<!-- END HEADER -->
 	<section id="account-password" class="section container myaccounts">
@@ -136,8 +136,7 @@ if(isset($_GET["ID"]))
 				<!-- PASSWORD -->
 				<div class="holder">
 					<div class="title">Change Password</div>
-					<form class="myaccount-body" action="" method="post"
-						enctype="multipart/form-data">
+					<form class="myaccount-body" action="update_password.php" method="post" enctype="multipart/form-data">
 						<div class="myaccount-content">
 							<!-- PASSWORD -->
 							<div class="field">
@@ -211,6 +210,8 @@ if(isset($_GET["ID"]))
 								<input type="submit" value="Save" id="input_submit" name="changepw"
 									class="input_submit button btn-action" />
 							</div>
+							<input type="hidden" id="" name="user_id" value="<?php echo $user_id ?>">
+							<input type="hidden" name="change_pass" value="">
 						</div>
 					</form>
 				</div>
@@ -224,7 +225,7 @@ if(isset($_GET["ID"]))
 	</script>
 	<script>
 		$('#old_pw').on('keyup', function () {
-			var current = "<?php echo $row['password']?>"
+			var current = "<?php echo $row['password'] ?>"
 			old_pw = $(this).val();
 			if (old_pw == current) {
 				$('.old').addClass('active');
@@ -236,7 +237,7 @@ if(isset($_GET["ID"]))
 
 		$('#pw_valid').on('keyup', function () {
 			pw_valid_value = $(this).val();
-			
+
 			if (pw_valid_value.match(/[a-z]/g)) {
 				$('.letter').addClass('active');
 			}
@@ -299,22 +300,5 @@ if(isset($_GET["ID"]))
 
 	</script>
 </body>
+
 </html>
-
-<?php
-	if(isset($_POST["changepw"]))
-	{
-		$new = $_POST["confirm"];
-		$change = "UPDATE user_information SET password = '$new' WHERE ID='$user_id'";
-		$change_query = mysqli_query($connect, $change);
-
-		if($change_query)
-		{
-			?>
-			<script>
-				alert("<?php echo "Success to change your password!" ?>");
-			</script>
-			<?php
-		}
-	}
-?>

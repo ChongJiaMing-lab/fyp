@@ -21,8 +21,19 @@ if(isset($_POST["forgot_pass"]))
     }
 }
 
-if(isset($_POST["change_pw"]))
+if(isset($_POST["change_pass"]))
 {
-    
+    $new = $_POST["confirm"];
+    $user_id = $_POST["user_id"];
+	$change = "UPDATE user_information SET password = '$new' WHERE ID='$user_id'";
+	$change_query = mysqli_query($connect, $change);
+
+	if ($change_query) {
+		?>
+		<script>
+			alert("<?php echo "Success to change your password!" ?>");
+		</script>
+		<?php
+	}
 }
 ?>
