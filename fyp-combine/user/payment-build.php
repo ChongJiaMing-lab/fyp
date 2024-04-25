@@ -237,6 +237,7 @@ $id= $_SESSION['ID'];
                 <?php 
                     
                     $result = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'pay'");
+                    $item = mysqli_num_rows($result);
                     $row = mysqli_fetch_array($result); 
 
                     $build_id = $row['build_id'];
@@ -279,7 +280,13 @@ $id= $_SESSION['ID'];
                 ?>
                 <hr>
                 <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total,2) ?></b></span></p>
-                <button name="pay" >Pay Now</button>
+                <?php if($item != 0){ ?>
+                    <button name="pay">Pay Now</button>
+                    <?php 
+                }else{ 
+                    ?>
+                        <button onclick="error_alert()">Pay Now</button>
+                    <?php }?>
             </div>
         </div>
     </div>
@@ -432,7 +439,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         }
     });
-
+    function error_alert(){
+            alert("Your shopping cart is empty!");
+        }
 
 </script>
 </html>
