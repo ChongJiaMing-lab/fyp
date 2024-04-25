@@ -254,10 +254,15 @@
                                 </div>
                             </form>
                             <?php
-                            if (isset($_SESSION['ID'])) { ?>
+                            if (isset($_SESSION['ID'])&& $count != 0) { ?>
                                 <button id="my-order-checkout" type="button" class="button btn-checkout"
                                 onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
                             <?php
+                            }
+                            else{?>
+                                <button id="my-order-checkout" type="button" class="button btn-checkout"
+                                onclick="error_alert()">
+                                <?php
                             }
                             ?>
                             <!-- CHECKOUT BUTTON -->
@@ -354,6 +359,9 @@
             })
         });
 
+        function error_alert(){
+            alert("Your shopping cart is empty!");
+        }
             
         </script>
 
