@@ -261,19 +261,16 @@ $id= $_SESSION['ID'];
                         if($i>2)
                         {
                         
-                        if (!isset(${$myarray[$i]}))
-                        {
-                            
+                            if (isset(${$myarray[$i]}))
+                            {
+                                $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
+                                $row2 = mysqli_fetch_assoc($query2);
+                                echo "<br>".str_replace('_', ' ', ucfirst($myarray[$i]))." : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
+                                $total += $row2['price'];
+                            }
+                            $i = $i + 1;
                         }
                         
-                        else{
-                            $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
-                            $row2 = mysqli_fetch_assoc($query2);
-                            echo "<br>".str_replace('_', ' ', ucfirst($myarray[$i]))." : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
-                            $total += $row2['price'];
-                        }
-                        $i = $i + 1;
-                        }
                         else{
                             $i = $i + 1;
                         }
