@@ -345,15 +345,17 @@ if (isset($_POST['pay'])) {
     $user_id = $_GET['ID']; 
     $payment_method = 'Credit_Cart'; 
     $total_amount = $ttotal;
-
+    $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
+     $currentDateTime = $now->format('d-m-Y H:i:s'); 
+    
     
     $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
     while($row = mysqli_fetch_assoc($result))
     {
         $cart_id = $row['cart_id'];
         $qty = $row['qty'];
-        mysqli_query($connect, "INSERT INTO cart_order_detail (user_id, address_id, cart_id, qty, payment_method, total_amount) 
-        VALUES ('$user_id', '$address_id', '$cart_id', '$qty', '$payment_method', '$total_amount')");
+        mysqli_query($connect, "INSERT INTO cart_order_detail (user_id, address_id, cart_id, qty, payment_method, total_amount,order_datetime) 
+        VALUES ('$user_id', '$address_id', '$cart_id', '$qty', '$payment_method', '$total_amount','$currentDateTime')");
                             
     }
     

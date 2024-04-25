@@ -136,7 +136,7 @@ a.button.view-password
 							
 						</li>
 						<li class="sub">
-							<a href="myaccount.php">Change password</a>
+                        <a href="change_password.php?ID=<?PHP echo $id;?>">Change password</a>
 						</li>
 						</ul>
 						<!-- MY ORDERS -->
