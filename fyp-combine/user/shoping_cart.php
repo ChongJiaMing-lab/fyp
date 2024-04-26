@@ -130,7 +130,7 @@
                                 </div>
                                 <?php
                                 if ($result) {
-                                    // foreach($result as $row)
+                                  
                                     while ($row = mysqli_fetch_array($result)) { 
                                     ?>
 

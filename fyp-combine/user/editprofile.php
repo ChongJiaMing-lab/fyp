@@ -128,7 +128,7 @@
 						</ul>
 						<!-- MY ORDERS -->
 	<li class="item">
-	<a href="order_detail.php?ID=<?php echo $id;?>">My orders</a>
+	<a href="orderlist.php?ID=<?php echo $id;?>">My orders</a>
 			</li>
 		<!-- MY COUPON -->
 	<li class="item"><a href="...">My coupon</a></li>

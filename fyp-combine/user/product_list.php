@@ -187,7 +187,7 @@ a.button.view-password
                                                     
                                                     <input type="hidden" id="hidden_minimum_price" value="0" />
                                                     <input type="hidden" id="hidden_maximum_price" value="20000" />
-                                                    <p id="price_show">150 -20000</p>
+                                                    <p id="price_show">0 -20000</p>
                                                     <div id="price_range"></div> 
                                                     
                                                     
@@ -404,10 +404,10 @@ a.button.view-password
             
             $('#price_range').slider({
         range:true,
-        min:150,
+        min:0,
         max:20000,
-        values:[150,20000],
-        step:100,
+        values:[0,20000],
+        step:1,
         stop:function(event,ui)
         {
             $('#price_show').html(ui.values[0]+'-' + ui.values[1]);

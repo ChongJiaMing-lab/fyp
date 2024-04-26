@@ -34,7 +34,7 @@ if (isset($_POST["action"])) {
             
             
 						
-                                            <div >
+                                            <div>
 									<div class="frame" >
                                     
                                                        
@@ -71,7 +71,7 @@ if (isset($_POST["action"])) {
 											
 											
 
-											<div class="floating-cart-button" style="background-color:gray">
+											<div class="floating-cart-button" style="background-color:gray; " >
 												
 																									<div class="button">
 																													<span class="icon-add-cart"></span>

@@ -140,7 +140,7 @@ a.button.view-password
 							
 						</li>
 						<li class="sub">
-							<a href="myaccount.php">Change password</a>
+							<a href="change_password.php?ID=<?php echo $id;?>" >Change password</a>
 						</li>
 						</ul>
 						<!-- MY ORDERS -->
@@ -148,7 +148,7 @@ a.button.view-password
 		<a href="...">My orders</a>
 			</li>
 		<!-- MY COUPON -->
-	<li class="item"><a href="...">My coupon</a></li>
+	<li class="item"><a href="orderlist.php?ID=<?php echo $id;?>">My coupon</a></li>
 			<!-- MY REWARD POINT -->
 	<li class="item"><a href="...">My reward point</a></li>
 			<!-- MY TRANSACTION -->
