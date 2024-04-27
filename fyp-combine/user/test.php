@@ -124,6 +124,10 @@
     display: block;
     flex-direction: row;
 		}
+
+		ul {
+    list-style: none !important; 
+}
 	</style>
 
 	</style>
@@ -187,7 +191,7 @@
 						<div class="order-list">
 							<div class="tabs">
 								<ul>
-									<li data-tab="tab-to-pay"><a>To pay</a></li>
+									<li data-tab="tab-to-pay"><a>Processing</a></li>
 									<li data-tab="tab-to-ship"><a>To ship</a></li>
 									<li data-tab="tab-completed"><a>Completed</a></li>
 									<li data-tab="tab-cancelled"><a>Cancelled</a></li>
@@ -203,21 +207,22 @@
 
 										<?php
 										$id = $_SESSION["ID"];
-										$query = "SELECT * FROM order
+										$query = "SELECT * FROM order_
+														INNER JOIN cart_order_detail  ON order_.order_id = cart_order_detail.order_id 
 														INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
 														INNER JOIN product ON cart.product_id = product.product_id 
-														WHERE cart_order_detail.user_id = '$id' 
-														GROUP BY order_datetime
-
-														HAVING COUNT(*) > 1";
+														WHERE order_.user_id = '$id' 
+														AND delivery_status='Processing'
+														GROUP BY order_.order_id";
 										$result = mysqli_query($connect, $query);
-										$count = mysqli_num_rows($result);
+										
 										if ($result) {
 											while ($row = mysqli_fetch_array($result)) {
 
 												?>
+											
 												<!-- CHECKOUT CART LISTING -->
-												<div class="input-group"><?php echo $row['order_datetime'] ?></div>
+												<div class="input-group"><?php echo $row['time_status'] ?></div>
 
 												<div class="my-checkout-listing"
 													onclick="window.location='order_detail.php?order_datetime=<?php echo urlencode($row['order_datetime']); ?>&ID=<?php echo $id; ?>';">
@@ -237,18 +242,18 @@
 
 																	<!-- PRODUCT NAME -->
 																	<a class="product-name"
-																		href=""><?php echo $row['product_name'] ?></a>
+																		href="">Order Id :#<?php echo $row['order_id'] ?></a>
 																	<!-- VARIATIONS -->
 																</div>
 
 																<!-- UNIT PRICE -->
 																<div class="column is-3 product-price">
-																	RM<?php echo $row['total_amount'] ?>
+																
 																</div>
 
 																<!-- QUANTITY -->
 																<div class="column is-3 product-price">
-																	QTY:<?php echo $row['qty'] ?>
+																RM<?php echo $row['total_amount'] ?>
 
 
 
