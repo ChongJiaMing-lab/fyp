@@ -319,50 +319,52 @@
                 var minusButtons = document.querySelectorAll('.btn-minus');
 
                 plusButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
-                        var inputElement = button.parentElement.querySelector('.input-quantity');
-                        var currentValue = parseInt(inputElement.value);
-                        inputElement.value = currentValue + 1;
-                        calculateTotal();
-                    });
-                });
+    button.addEventListener('click', function () {
+        var inputElement = button.parentElement.querySelector('.input-quantity');
+        var currentValue = parseInt(inputElement.value);
+        var newValue = currentValue + 1;
+        inputElement.value = newValue;
+        
+        updateQuantityDatabase(2659, newValue);  
 
-                minusButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
-                        var inputElement = button.parentElement.querySelector('.input-quantity');
-                        var currentValue = parseInt(inputElement.value);
-                        if (currentValue > 1) {
-                            inputElement.value = currentValue - 1;
-                            calculateTotal();
-                        }
-                    });
-                });
+        calculateTotal();
+    });
+});
+
+minusButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        var inputElement = button.parentElement.querySelector('.input-quantity');
+        var currentValue = parseInt(inputElement.value);
+        if (currentValue > 1) {
+            var newValue = currentValue - 1;
+            inputElement.value = newValue;
+
+            updateQuantityDatabase(2659, newValue);  
+
+            calculateTotal();
+        }
+    });
+});
                     
                 // Calculate total when the page loads
                 calculateTotal();
             });
-            $(document).ready(function () {
-            $('input[name="quantity[2659]]').on('onchange', function () {
-                 var newqty =  $('input[name="quantity[2659]]').val(); 
-                 var user = <?php echo $_SESSION["ID"]; ?>;
-                 var product = $(this).closest('.my-checkout-listing').data('product-id');
-                $.ajax({
-                    url: "change_qty.php",
-                    method: "POST",
-                    data: {
-                       qty:newqty,
-                       pd:product,
-                       id:user_id
-                    },
-                   
-                })
-            })
-        });
+           
 
         function error_alert(){
             alert("Your shopping cart is empty!");
         }
-            
+        function updateQuantityDatabase(productId, newQuantity) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "add_quantity.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            console.log(this.responseText);
+        }
+    };
+    xhr.send("productId=" + productId + "&newQuantity=" + newQuantity);
+}  
         </script>
 
     </section>

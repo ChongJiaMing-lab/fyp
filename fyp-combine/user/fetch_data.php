@@ -30,6 +30,18 @@ if (isset($_POST["action"])) {
     $total_row = $result->num_rows; // Use num_rows property
     if ($total_row > 0) {
         foreach ($result as $row) {
+            if($row['stock']>0)
+            {
+                $available = '<a href="addtocart.php?product_id='.$row ["product_id"].'">
+                                <input type="button" name="add" value="Add to Cart" )" />
+                                </a>   ';
+            }
+            else
+            {
+                $available = '  <a>
+                                <input type="button" name="add" value="Out of stock" )" />
+                                </a>   ';
+            }
             $output .= '
             
             
@@ -70,15 +82,13 @@ if (isset($_POST["action"])) {
 																																		</div>
 											
 											
-
+                                            
 											<div class="floating-cart-button" style="background-color:gray; " >
 												
 																									<div class="button">
 																													<span class="icon-add-cart"></span>
 															<span class="btn-add-cart">
-                                                            <a href="addtocart.php?product_id='.$row ["product_id"].'">
-                                                            <input type="button" name="add" value="Add to Cart" )" />
-                                                            </a>    
+                                                           '. $available.'
 															</span>
 																											</div>
 																							</div>
