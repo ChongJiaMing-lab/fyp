@@ -351,22 +351,33 @@ if (isset($_POST['pay'])) {
 
 
     $user_id = $_GET['ID']; 
-    $payment_method = 'Credit_Cart'; 
+    
     $status = 'Processing';
     $total_amount = $ttotal;
     $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
      $currentDateTime = $now->format('d-m-Y H:i:s'); 
+  
      
-    
-    
     $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
+
+    $query = mysqli_query($connect,"INSERT INTO order_ (user_id,time_status,total_amount,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$status')" );
+     $order_id =mysqli_insert_id($connect);
+     if(!$query)
+          {
+            echo "<script>alert('failed to insert into order table');</script>";
+          }
     while($row = mysqli_fetch_assoc($result))
     {
         $cart_id = $row['cart_id'];
         $qty = $row['qty'];
-        mysqli_query($connect, "INSERT INTO cart_order_detail (user_id, address_id, cart_id, qty, payment_method, total_amount,order_datetime,order_status) 
-        VALUES ('$user_id', '$address_id', '$cart_id', '$qty', '$payment_method', '$total_amount','$currentDateTime','$status')");
-                            
+
+        
+      
+         
+        $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id, address_id, cart_id) 
+        VALUES ('$order_id', '$address_id', '$cart_id')");
+
+                       
     }
     
  

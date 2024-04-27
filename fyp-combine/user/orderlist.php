@@ -218,7 +218,7 @@
                                                         </div>
 
                                                         <!-- QUANTITY -->
-                                                        <div class="column is-3 product-price">QTY:<?php echo $count ?>
+                                                        <div class="column is-3 product-price">QTY:<?php echo $row['qty'] ?>
                                                                
                                                            
 

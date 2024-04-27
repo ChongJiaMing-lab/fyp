@@ -1,5 +1,3 @@
-<!-- ###AIO### -->
-<!-- ###AIO### -->
 <?php include "head.php" ?>
 <!DOCTYPE html>
 
@@ -131,8 +129,9 @@ date_default_timezone_set("Asia/Kuching");
 	if(isset($_GET["email"]))
 	{
 		$email = $_GET["email"];
+		$token = $_GET["token"];
 		$current_time = time();
-		$select_query = mysqli_query($connect ,"SELECT * FROM forgot_pass WHERE email='$email' AND expire = '0'");
+		$select_query = mysqli_query($connect ,"SELECT * FROM forgot_pass WHERE token='$token' AND email='$email' AND expire = '0'");
 		if(mysqli_num_rows($select_query) < 1)
 		{
 			echo "<script>alert('Hi, the link is expired, please send the request again.');
@@ -149,10 +148,9 @@ date_default_timezone_set("Asia/Kuching");
 			</div>
 
 			<div id="main-content" class="password">
-
 				<!-- PASSWORD -->
 				<div class="holder">
-					<div class="title">Reset Password</div>
+					<div class="title">Reset password</div>
 					<form class="myaccount-body" action="update_password.php" method="post"
 						enctype="multipart/form-data">
 
