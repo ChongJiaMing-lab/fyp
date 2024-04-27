@@ -11,7 +11,14 @@ $id= $_SESSION['ID'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
     <title>Checkout</title>
 
     <style type="text/css">
@@ -123,6 +130,20 @@ $id= $_SESSION['ID'];
             /* background-color:blue; */
         }
 
+        .flex-container {
+        display: block;
+        padding: 0;
+        }
+
+        .flex-item {
+            display: flex; 
+
+        }
+
+        .flex-item input[type="radio"] {
+            margin-right: 10px; 
+        }
+
     </style>
 </head>
 <body>
@@ -191,12 +212,49 @@ $id= $_SESSION['ID'];
                         ?>
 
 
-                        <div class="row">
-                            <div class="col-50">
-                                    <button>change address</button>
-                            </div>
-                        </div>
-                    </div>
+                                        <div class="row">
+                                            <div class="col-50">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">
+                                                    Change
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                
+                                                                    <?php
+                                                                    $query = "SELECT * FROM user_address WHERE customer_id='$id'";
+                                                                    $result = mysqli_query($connect, $query); ?>
+                                                                    <ul class="flex-container longhand">
+                                                                        <?php 
+                                                                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                          <li class="flex-item"><input type="radio" id="javascript" name="fav_language"
+                                                                            value="<?php echo $row['address_id']?>">
+                                                                        <label for="<?php echo $row['address_id']?>"><?php echo $row['address'] . ', ' . $row['postcode'] . ', ' . $row['city']
+                                                                . ', ' . $row['state'] ;?></label></li>
+                                                                        <?php
+                                                                        $address_id = $row['address_id'];
+                                                                        $count++;
+                                                                    }
+                                                                    ?> 
+                                                                    </ul>                 
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save
+                                                                    changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                     <div class="col-50">
                         <br>Accepted Payment method
@@ -236,27 +294,27 @@ $id= $_SESSION['ID'];
                 </h4>
                 <?php 
                     
-                    $result = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'pay'");
-                    $item = mysqli_num_rows($result);
-                    $row = mysqli_fetch_array($result); 
+                    $result4 = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = '$id' AND pay_status != 'payed'");
+                    $item = mysqli_num_rows($result4);
+                    $row4 = mysqli_fetch_array($result4); 
 
-                    $build_id = $row['build_id'];
-                    $monitor = $row['monitor']?? null;
-                    $chassis = $row['chassis']?? null;
-                    $motherboard = $row['motherboard']?? null;
-                    $processor= $row['processor']?? null;
-                    $graphic_card = $row['graphic_card']?? null;
-                    $ram1 = $row['ram1']?? null;
-                    $ram2 = $row['ram2']?? null;
-                    $memory = $row['memory']?? null;
-                    $cooler = $row['cooler']?? null;
-                    $power_supply = $row['power_supply']?? null;
+                    $build_id = $row4['build_id'];
+                    $monitor = $row4['monitor']?? null;
+                    $chassis = $row4['chassis']?? null;
+                    $motherboard = $row4['motherboard']?? null;
+                    $processor= $row4['processor']?? null;
+                    $graphic_card = $row4['graphic_card']?? null;
+                    $ram1 = $row4['ram1']?? null;
+                    $ram2 = $row4['ram2']?? null;
+                    $memory = $row4['memory']?? null;
+                    $cooler = $row4['cooler']?? null;
+                    $power_supply = $row4['power_supply']?? null;
 
                     $i=0;
                     $total = 0;
-                    while($i < mysqli_num_fields($result))
+                    while($i < mysqli_num_fields($result4))
                     {
-                        $fld = mysqli_fetch_field($result);
+                        $fld = mysqli_fetch_field($result4);
                         $myarray[]=$fld->name;
                         
                         if($i>2)
@@ -266,7 +324,7 @@ $id= $_SESSION['ID'];
                             {
                                 $query2 = mysqli_query($connect,"SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
                                 $row2 = mysqli_fetch_assoc($query2);
-                                echo "<br>".str_replace('_', ' ', ucfirst($myarray[$i]))." : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
+                                echo "<br><span style='font-weight:bold;'>".str_replace('_', ' ', ucfirst($myarray[$i]))."</span> : ".$row2['product_name']."</br><br><span class='pricee'>RM ".$row2['price']."</span></br>";
                                 $total += $row2['price'];
                             }
                             $i = $i + 1;
@@ -398,6 +456,7 @@ document.getElementById('CVV').addEventListener('input', function(event) {
         input.blur();
     }
 });
+
 document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('form[name="billfrm"]').addEventListener('submit', function(event) {
             if (!validateForm()) {
