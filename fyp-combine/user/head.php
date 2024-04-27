@@ -185,7 +185,7 @@ session_start();
 
 
                                     </div>
-                                </div> <a class="navbar-item" href="customization.php"><span>PCbuild</span></a>
+                                </div> <a class="navbar-item" href="build_home.php"><span>PCbuild</span></a>
                                 <?php
                                 if (isset($_SESSION['ID'])) { ?>
                                     <a class="navbar-item" href="contact_us.php?ID=<?php echo $_SESSION['ID']; ?>">Contact
