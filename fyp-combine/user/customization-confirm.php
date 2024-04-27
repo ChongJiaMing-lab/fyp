@@ -74,9 +74,7 @@ $id = $_SESSION['ID'];
             margin-left:10px;
             margin-bottom:20px;
         }
-        .button-container{
-            margin-left:70%;
-        }
+        
 
         #center{
             text-align:center;
@@ -89,6 +87,18 @@ $id = $_SESSION['ID'];
         .tbody img{
             width:100px;
             height:100px;
+        }
+        .vouncher-container{
+            display: flex;
+            border:1px black solid;
+            width:70%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .button-container{
+            display:block;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -179,11 +189,12 @@ while($i < mysqli_num_fields($result))
         
     </table>
 <br>
+<div class="vouncher-container">
+    dd
 <div class="button-container">
-
 <a href="customization.php"><button class="back">back</button></a>
 <button id="confirm">Pay now</button>
-
+</div>
 </div>
 
 </body>
