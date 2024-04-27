@@ -1,5 +1,3 @@
-<!-- ###AIO### -->
-<!-- ###AIO### -->
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en-US" class="ready">
@@ -193,7 +191,7 @@ if (isset($_POST["reset-request-submit"])) {
 		$mail->Body = "<b>Dear $name,</b>
                 <h3>We received a request to reset your password.</h3>
                 <p>Kindly click the below link to reset your password</p>
-                <a href='http://localhost/fyp/fyp-combine/user/create-new-password.php?email=$email_to_reset'>click here</a>";
+                <a href='http://localhost/fyp/fyp-combine/user/create-new-password.php?email=$email_to_reset&token=$token'>click here</a>";
 		//change the file location that for change pass word want 
 		if (!$mail->send()) {
 			?>
@@ -203,7 +201,8 @@ if (isset($_POST["reset-request-submit"])) {
 			<?php
 		} else {
 			$time = time();
-			$insert_forgot = mysqli_query($connect, "INSERT INTO forgot_pass(email, expire, expire_time)values('$email_to_reset','0','$time')");
+			$expire = mysqli_query($connect, "UPDATE forgot_pass SET expire='1' WHERE email ='$email_to_reset'");
+			$insert_forgot = mysqli_query($connect, "INSERT INTO forgot_pass(email, expire, expire_time, token)values('$email_to_reset','0','$time', '$token')");
 			?>
 			<script>
 				alert("<?php echo "Hi, please check your email for the password reset." ?>");
