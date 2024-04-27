@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PC Builder</title>
 </head>
 
 <style>
@@ -15,7 +15,7 @@
         background-size: cover;
     }
    .main-content{
-        padding:5% 0 0 5%;
+        padding:12% 0 0 5%;
     }
     h2{
         font-size: 44px;
