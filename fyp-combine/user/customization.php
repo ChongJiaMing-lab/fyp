@@ -168,16 +168,16 @@ else if(isset($_SESSION['alert_c'])){
         $row = mysqli_fetch_array($query); 
         
 
-        $monitor = $row['monitor']?? null;
-        $chassis = $row['chassis']?? null;
-        $motherboard = $row['motherboard']?? null;
-        $processor= $row['processor']?? null;
-        $graphic_card = $row['graphic_card']?? null;
-        $ram1 = $row['ram1']?? null;
-        $ram2 = $row['ram2']?? null;
-        $memory = $row['memory']?? null;
-        $cooler = $row['cooler']?? null;
-        $power_supply = $row['power_supply']?? null;
+        $monitor = isset($row['monitor']) ? $row['monitor'] : null;
+        $chassis = isset($row['chassis']) ? $row['chassis'] : null;
+        $motherboard = isset($row['motherboard']) ? $row['motherboard'] : null;
+        $processor = isset($row['processor']) ? $row['processor'] : null;
+        $graphic_card = isset($row['graphic_card']) ? $row['graphic_card'] : null;
+        $ram1 = isset($row['ram1']) ? $row['ram1'] : null;
+        $ram2 = isset($row['ram2']) ? $row['ram2'] : null;
+        $memory = isset($row['memory']) ? $row['memory'] : null;
+        $cooler = isset($row['cooler']) ? $row['cooler'] : null;
+        $power_supply = isset($row['power_supply']) ? $row['power_supply'] : null;
         
 ?>
 
