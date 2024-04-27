@@ -179,6 +179,8 @@
                                $query = "SELECT * FROM cart_order_detail 
                                            INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
                                            INNER JOIN product ON cart.product_id = product.product_id 
+                                           INNER JOIN user_address ON cart_order_detail.address_id = user_address.address_id
+                                           INNER JOIN order_ ON cart_order_detail.order_id = order_.order_id
                                            WHERE cart.user_id = '$user_id' AND cart_order_detail.order_id = '$order_id' ";
                                
                                $result = mysqli_query($connect, $query);
@@ -186,7 +188,11 @@
                                 if ($result) { ?>
                                 <div class="title">Order #<?php echo $order_id?></div>
                         <div>
-
+                                    <div>Name:<?php echo $row['name']?></div>
+                                    <div>Contact Number:<?php echo $row['contactnumber']?></div>
+                                    <div>Address:<?php echo $row['address']?></div>
+                                    <div>Total payment:RM<?php echo $row['total_amount']?></div>
+                                    <div>Delivery Status :<?php echo $row['delivery_status']?></div>
                         </div>
                     
 
