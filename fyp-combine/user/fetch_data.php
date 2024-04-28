@@ -78,7 +78,7 @@ if (isset($_POST["action"])) {
 																<div class="price-new">RM' . $row['price'] . '</div>
 														<div class="price-old"></div> 
                                                         
-                                                        <p>Desc: ' . $row['product_desc'] . ' <br/></p>
+                                                     
 																																		</div>
 											
 											
