@@ -225,7 +225,7 @@
                                                 <div class="input-group"><?php echo $row['time_status'] ?></div>
 
                                                 <div class="my-checkout-listing"
-                                                    onclick="window.location='order_detail.php?order_id=<?php echo urlencode($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
@@ -296,7 +296,7 @@
                                             <div class="input-group"><?php echo $row['time_status'] ?></div>
 
                                             <div class="my-checkout-listing"
-                                            onclick="window.location='order_detail.php?order_id=<?php echo urlencode($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                            onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
                                                 <div class="columns is-mobile">
@@ -366,7 +366,7 @@
                                             <div class="input-group"><?php echo $row['time_status'] ?></div>
 
                                             <div class="my-checkout-listing"
-                                            onclick="window.location='order_detail.php?order_id=<?php echo urlencode($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                            onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 

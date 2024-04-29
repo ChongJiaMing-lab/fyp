@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="ready">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -98,20 +97,74 @@
     #account-order-list .order-list .tab-content>div.is-active {
         display: block;
     }
-   
 </style>
 
 <body class="body-style wide  clamp-1">
     <?php include "head.php" ?>
     <section id="account-order-list" class="section container myaccounts">
-<style>
- .tab-content
-    {
-        border: 1px black solid;
-        padding-top: 10px;
+        <style>
+            .tab-content {
+                border: 1px black solid;
+                padding-top: 10px;
 
-    }
-</style>
+            }
+
+            /* Styling for Address Container */
+            .address-container {
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .txt-info {
+                margin-bottom: 10px;
+                font-size: 16px;
+                color: black;
+                font-weight: bold;
+            }
+
+            /* Styling for Product Listings */
+            .tab-content {
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-image img {
+                width: 100%;
+                max-width: 100px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-info {
+                padding: 20px;
+            }
+
+            .product-info a {
+                color: #3498db;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .product-price {
+                font-size: 18px;
+                color: #16a085;
+                font-weight: bold;
+            }
+
+            .product-quantity {
+                padding: 20px;
+            }
+
+            .columns.is-mobile>.column.is-3 {
+                flex: none;
+                width: 30%;
+            }
+        </style>
 
 
         <?php
@@ -163,100 +216,102 @@
             <div id="main-content" class="order">
                 <!-- ORDER -->
                 <div class="holder">
-                    
-                            
-                            
 
-                                <?php
-                               $order_id = $_GET['order_id'];
-                               $user_id = $_GET['ID'];
-                              
-                             
-                               if ($_SESSION['ID'] !== $user_id) {
-                                   die('Error');
-                               }
-                               
-                               $query = "SELECT * FROM cart_order_detail 
+
+
+
+                    <?php
+                    $order_id = $_GET['order_id'];
+
+                    $query = "SELECT * FROM cart_order_detail 
                                            INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
                                            INNER JOIN product ON cart.product_id = product.product_id 
-                                           INNER JOIN user_address ON cart_order_detail.address_id = user_address.address_id
-                                           INNER JOIN order_ ON cart_order_detail.order_id = order_.order_id
-                                           WHERE cart.user_id = '$user_id' AND cart_order_detail.order_id = '$order_id' ";
-                               
-                               $result = mysqli_query($connect, $query);
+                                           WHERE cart_order_detail.order_id = '$order_id' ";
 
-                                if ($result) { ?>
-                                <div class="title">Order #<?php echo $order_id?></div>
-                        <div>
-                                    <div>Name:<?php echo $row['name']?></div>
-                                    <div>Contact Number:<?php echo $row['contactnumber']?></div>
-                                    <div>Address:<?php echo $row['address']?></div>
-                                    <div>Total payment:RM<?php echo $row['total_amount']?></div>
-                                    <div>Delivery Status :<?php echo $row['delivery_status']?></div>
-                        </div>
+                    $query2 = "SELECT * FROM order_
+                                           INNER JOIN user_address ON order_.address_id = user_address.address_id
+                                           INNER JOIN user_information ON order_.user_id = user_information.ID
+                                           WHERE order_.order_id = '$order_id'";
+
+                    $result = mysqli_query($connect, $query);
+                    $result2 = mysqli_query($connect, $query2);
+                   
                     
+                    if ($result) { 
+                        $row2 = mysqli_fetch_assoc($result2);?>
+                        <div class="title">Order #<?php echo $order_id ?></div>
+                        <div class="myaccount-body">
+                            <div class="address-container">
+                                <div class="txt-info">Name            : <?php echo $row2['name'] ?></div>
+                                <div class="txt-info">Contact Number  : <?php echo $row2['contact_number'] ?></div>
+                                <div class="txt-info">Address         : <?php echo $row2['address'] ?></div>
+                                <div class="txt-info">Total payment   : RM<?php echo $row2['total_amount'] ?></div>
+                                <div class="txt-info">Delivery Status : <?php echo $row2['delivery_status'] ?></div>
+                            </div>
+                        </div>
+
 
                         <div class="tab-content">
                             <?php
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        ?>
-                                       
-                                        <div data-content="tab-to-pay" class="is-active" >
-                                            
-                                        <div class="columns is-mobile">
-                                            <!-- IMG -->
-                                            <div class="column is-2 product-image">
-                                                <a href=".."><img class="img-responsive"
-                                                        src="../image/<?php echo $row['image'] ?>"></a>
-                                            </div>
+                            while ($row = mysqli_fetch_array($result)) {
+                                ?>
 
-                                            <!-- INFO -->
-                                            <div class="column is-10">
-                                                <div class="columns is-mobile">
-                                                    <div class="column is-5 product-info" style="padding:50px">
-                                                        <!-- PRODUCT NAME -->
-                                                        <a class="product-name" href=""><?php echo $row['product_name'] ?></a>
-                                                        <!-- VARIATIONS -->
-                                                    </div>
+                                <div data-content="tab-to-pay" class="is-active">
 
-                                                    <!-- UNIT PRICE -->
-                                                    <div class="column is-3 product-price" style="padding:50px">
-                                                        RM<?php echo $row['price'] ?></div>
+                                    <div class="columns is-mobile">
+                                        <!-- IMG -->
+                                        <div class="column is-2 product-image">
+                                            <a href=".."><img class="img-responsive"
+                                                    src="../image/<?php echo $row['image'] ?>"></a>
+                                        </div>
 
-                                                    <!-- QUANTITY -->
-                                                    <div class="column is-4 product-quantity" style="padding:50px">
-                                                        <div class="input-group">
-                                                            <a class="product-name" href="">QTY: <?php echo $row['qty'] ?></a>
-                                                        </div>
-                                                    </div>
+                                        <!-- INFO -->
+                                        <div class="column is-10">
+                                            <div class="columns is-mobile">
+                                                <div class="column is-5 product-info" style="padding:50px">
+                                                    <!-- PRODUCT NAME -->
+                                                    <a class="product-name" href=""><?php echo $row['product_name'] ?></a>
+                                                    <!-- VARIATIONS -->
+                                                </div>
+
+                                                <!-- UNIT PRICE -->
+                                                <div class="column is-3 product-price" style="padding:50px">
+                                                    RM<?php echo $row['price'] ?></div>
+
+                                                <!-- QUANTITY -->
+                                                <div class="column is-3 product-price" style="padding:50px">
+                                                  
+                                                        <a class="product-name" href="">QTY: <?php echo $row['qty'] ?></a>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
-                                        </div>
-                                        <?php
-                                    }
-                                
-                                }
-                                
-                                
-                                ?>
-
-                           
-
-                            <div data-content="tab-cancelled">
-                                <div class="empty-product-listing">
-
-
-
+                                    </div>
                                 </div>
+                                <?php
+                            }
+
+                    }
+
+
+                    ?>
+
+
+
+                        <div data-content="tab-cancelled">
+                            <div class="empty-product-listing">
+
+
+
                             </div>
                         </div>
-                    
+                    </div>
+
                 </div>
             </div>
 
         </div>
-        
+
 
     </section>
 

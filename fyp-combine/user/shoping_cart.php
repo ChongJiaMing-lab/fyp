@@ -130,11 +130,11 @@
                                 </div>
                                 <?php
                                 if ($result) {
-                                  
-                                    while ($row = mysqli_fetch_array($result)) { 
-                                    ?>
 
-                                    
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        ?>
+
+
                                         <!-- CHECKOUT CART LISTING -->
                                         <div class="my-checkout-listing">
                                             <div class="columns is-mobile ">
@@ -194,7 +194,7 @@
                                         </div>
 
                                         <?php
-                                        
+
                                     }
                                 } else {
                                     echo "no records found :(";
@@ -254,21 +254,20 @@
                                 </div>
                             </form>
                             <?php
-                            if (isset($_SESSION['ID'])&& $count != 0) { ?>
+                            if (isset($_SESSION['ID']) && $count != 0) { ?>
                                 <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
-                            <?php
-                            }
-                            else{?>
-                                <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                onclick="error_alert()">
-                                <?php
+                                    onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
+                                    <?php
+                            } else { ?>
+                                    <button id="my-order-checkout" type="button" class="button btn-checkout"
+                                        onclick="error_alert()">
+                                        <?php
                             }
                             ?>
-                            <!-- CHECKOUT BUTTON -->
-                            
-                                PROCEED TO CHECKOUT </button>
-                            <!-- #END CHECKOUT BUTTON -->
+                                    <!-- CHECKOUT BUTTON -->
+
+                                    PROCEED TO CHECKOUT </button>
+                                <!-- #END CHECKOUT BUTTON -->
 
                         </div>
                     </div>
@@ -319,52 +318,52 @@
                 var minusButtons = document.querySelectorAll('.btn-minus');
 
                 plusButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-        var inputElement = button.parentElement.querySelector('.input-quantity');
-        var currentValue = parseInt(inputElement.value);
-        var newValue = currentValue + 1;
-        inputElement.value = newValue;
-        
-        updateQuantityDatabase(2659, newValue);  
+                    button.addEventListener('click', function () {
+                        var inputElement = button.parentElement.querySelector('.input-quantity');
+                        var currentValue = parseInt(inputElement.value);
+                        var newValue = currentValue + 1;
+                        inputElement.value = newValue;
 
-        calculateTotal();
-    });
-});
+                        updateQuantityDatabase(2659, newValue);
 
-minusButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-        var inputElement = button.parentElement.querySelector('.input-quantity');
-        var currentValue = parseInt(inputElement.value);
-        if (currentValue > 1) {
-            var newValue = currentValue - 1;
-            inputElement.value = newValue;
+                        calculateTotal();
+                    });
+                });
 
-            updateQuantityDatabase(2659, newValue);  
+                minusButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        var inputElement = button.parentElement.querySelector('.input-quantity');
+                        var currentValue = parseInt(inputElement.value);
+                        if (currentValue > 1) {
+                            var newValue = currentValue - 1;
+                            inputElement.value = newValue;
 
-            calculateTotal();
-        }
-    });
-});
-                    
+                            updateQuantityDatabase(2659, newValue);
+
+                            calculateTotal();
+                        }
+                    });
+                });
+
                 // Calculate total when the page loads
                 calculateTotal();
             });
-           
 
-        function error_alert(){
-            alert("Your shopping cart is empty!");
-        }
-        function updateQuantityDatabase(productId, newQuantity) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "add_quantity.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            console.log(this.responseText);
-        }
-    };
-    xhr.send("productId=" + productId + "&newQuantity=" + newQuantity);
-}  
+
+            function error_alert() {
+                alert("Your shopping cart is empty!");
+            }
+            function updateQuantityDatabase(productId, newQuantity) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "add_quantity.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                        console.log(this.responseText);
+                    }
+                };
+                xhr.send("productId=" + productId + "&newQuantity=" + newQuantity);
+            }  
         </script>
 
     </section>

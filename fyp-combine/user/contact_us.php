@@ -132,24 +132,7 @@ a.button.view-password
         <!-- END HEADER -->
 <section id="information-contact" class="section container page-form">
 
-	<!-- BREADCUMB -->
-	<div id="breadcrumb">
-		<nav class="breadcrumb" aria-label="breadcrumbs">
-			<ul>
-								<li>
-					<a href="main_page.php">
-						<span>Home</span>
-					</a>
-				</li>
-								<li>
-					<a href="contact_us.php">
-						<span>Contact Us</span>
-					</a>
-				</li>
-							</ul>
-		</nav>
-		
-        	</div>
+	
 	
 	<div id="contents">
 

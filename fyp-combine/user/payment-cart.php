@@ -360,7 +360,7 @@ if (isset($_POST['pay'])) {
      
     $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
 
-    $query = mysqli_query($connect,"INSERT INTO order_ (user_id,time_status,total_amount,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$status')" );
+    $query = mysqli_query($connect,"INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$address_id','$status')" );
      $order_id =mysqli_insert_id($connect);
      if(!$query)
           {
@@ -374,8 +374,8 @@ if (isset($_POST['pay'])) {
         
       
          
-        $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id, address_id, cart_id) 
-        VALUES ('$order_id', '$address_id', '$cart_id')");
+        $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id,cart_id) 
+        VALUES ('$order_id','$cart_id')");
 
                        
     }
