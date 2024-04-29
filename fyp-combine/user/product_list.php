@@ -145,39 +145,7 @@ a.button.view-password
 		}
 </style>
 <div id="module-price-sort" class="box utilities">
-<div class="searchbar">
-							<i class="icon-search"></i>
-							<input type="text" name="search"  id="live_search" value="" autocomplete="off" placeholder="Search..."/>
-						</div>
-						<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-					<script type="text/javascript">
-					$(document).ready(function()
-					{
-						$("#live_search").keyup(function()
-						{
-							var input = $(this).val();
-							
-							if(input != "")
-							{
-								$.ajax({
 
-									url:"live_search.php",
-									method:"POST",
-									data:{input:input},
-
-									success:function(data)
-									{
-										$(".product-listing .box-content").html(data).css("display", "");
-									}
-								});
-							}
-							else
-							{
-								$(".product-listing .box-content").css("display","none");
-							}
-						});
-					});
-					</script>
 	<div class="title">
   		Shop By Price	</div>
 	
@@ -203,6 +171,31 @@ a.button.view-password
 #module-category .box-content {
 			background-color:rgba(255, 255, 255, 1) !important;
 		}
+
+        #contents #sidebar-left .module-container .box .box-content, #contents #sidebar-right .module-container .box .box-content, #contents #sidebar-left .module-container .box .box-content a, #contents #sidebar-right .module-container .box .box-content a {
+        font-size: 14px;
+        padding:20px;
+    }
+
+    .list-group
+    {
+        padding: 20px;
+        padding-top: 10px;
+        border: 20px;
+        width: 200px !important;
+    }
+    .list-group-item {
+    padding: 10px 5px !important;
+    border: none;
+    width: 200px !important;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+#label
+{
+    padding-bottom: 1000px !important;
+}
 </style>
 <div id="module-category" class="box utilities">
         <div class="title">Brand</div>
