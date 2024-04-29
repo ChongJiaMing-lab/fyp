@@ -6,69 +6,51 @@
 
 
     <!-- BULMA -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet"
-        type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css"
-        rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css" rel="stylesheet" type="text/css" />
 
 
     <!-- MAIN STYLESHEET -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1713610527" rel="stylesheet"
-        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1713610527" rel="stylesheet" type="text/css" />
 
     <!-- CAROUSEL -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet"
-        type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet"
-        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet" type="text/css" />
 
     <!-- FONT AWESOME -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
 
     <!-- MATERIAL DESIGN ICON -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
 
     <!-- STAATLICHES -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
 
     <!-- ANIMATION -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet"
-        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet" type="text/css" />
 
     <!-- BULMA CALENDAR -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css"
-        rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css" rel="stylesheet" type="text/css" />
 
     <!-- JQUERY -->
     <script src="catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
-    <script defer type="text/javascript"
-        src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
+    <script defer type="text/javascript" src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 
     <!-- TOTAL STORAGE -->
-    <script defer type="text/javascript"
-        src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
+    <script defer type="text/javascript" src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
 
     <!-- FANCYBOX -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
 
     <!-- ELEVATEZOOM -->
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
 
     <!-- LAZYLOAD -->
     <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
-    <script
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
+    <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
 
 
 
@@ -78,9 +60,7 @@
 
 
     <!-- CUSTOMIZE -->
-    <link defer id="customize_css"
-        href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1713610527"
-        rel="stylesheet" type="text/css" />
+    <link defer id="customize_css" href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1713610527" rel="stylesheet" type="text/css" />
 
 
 
@@ -144,7 +124,7 @@
             if ($result && $result2) {
 
                 if ($row = mysqli_fetch_assoc($result)) {
-                    ?>
+            ?>
                     <div id="contents">
                         <div id="sidebar-left">
                             <div class="sidebar-nav-list">
@@ -177,10 +157,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <?php
+                <?php
                 }
             }
-            ?>
+                ?>
 
                 <div id="main-content" class="order">
                     <div class="title">My orders</div>
@@ -207,6 +187,7 @@
 
                                         <?php
                                         $id = $_SESSION["ID"];
+                                        $first = "SELECT * FROM order_ WHERE user_id = $id AND delivery_status='Processing'";
                                         $query = "SELECT * FROM order_
 														INNER JOIN cart_order_detail  ON order_.order_id = cart_order_detail.order_id 
 														INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
@@ -214,26 +195,327 @@
 														WHERE order_.user_id = '$id' 
 														AND delivery_status='Processing'
 														GROUP BY order_.order_id";
+                                        $q2 = "SELECT * FROM order_
+                                                INNER JOIN build_order_detail  ON order_.order_id = build_order_detail.order_id 
+                                                INNER JOIN pc_build ON build_order_detail.build_id = pc_build.build_id 
+                                                WHERE order_.user_id = '$id' 
+                                                AND delivery_status='Processing'
+                                                GROUP BY order_.order_id";
+
+                                        $first_result = mysqli_query($connect, $first);
                                         $result = mysqli_query($connect, $query);
+                                        $row = mysqli_fetch_array($result);
+                                        $r2 = mysqli_query($connect, $q2);
+                                        $rw2 = mysqli_fetch_array($r2);
 
-                                        if ($result) {
-                                            while ($row = mysqli_fetch_array($result)) {
+                                        if (mysqli_num_rows($first_result) > 0) {
+                                            while ($first_row = mysqli_fetch_array($first_result)) {
+                                                if ($row != null) {
+                                                    if ($first_row['order_id'] == $row['order_id']) {
+                                        ?>
 
-                                                ?>
+                                                        <!-- CHECKOUT CART LISTING -->
+                                                        <div class="input-group"><?php echo $row['time_status'] ?></div>
 
+                                                        <div class="my-checkout-listing" onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+
+                                                            <div class="columns is-mobile">
+                                                                <!-- IMG -->
+                                                                <div class="column is-2 product-image">
+                                                                    <a href=".."><img class="img-responsive" src="../image/<?php echo $row['image'] ?>" /></a>
+                                                                </div>
+
+                                                                <!-- INFO -->
+                                                                <div class="column is-10">
+                                                                    <div class="columns is-mobile">
+                                                                        <div class="column is-5 product-info">
+
+                                                                            <!-- PRODUCT NAME -->
+                                                                            <a class="product-name" href="">Order Id
+                                                                                :#<?php echo $row['order_id'] ?></a>
+                                                                            <!-- VARIATIONS -->
+                                                                        </div>
+
+                                                                        <!-- UNIT PRICE -->
+                                                                        <div class="column is-3 product-price">
+
+                                                                        </div>
+
+                                                                        <!-- QUANTITY -->
+                                                                        <div class="column is-3 product-price">
+                                                                            RM<?php echo $row['total_amount'] ?>
+
+
+
+                                                                            <!-- DELETE -->
+                                                                            <div class="product-delete">
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    <?php
+                                                        $row = mysqli_fetch_array($result);
+                                                    } else { ?>
+                                                        <!-- CHECKOUT CART LISTING -->
+                                                        <div class="input-group"><?php echo $rw2['time_status'] ?></div>
+
+                                                        <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+
+                                                            <div class="columns is-mobile">
+                                                                <!-- IMG -->
+                                                                <div class="column is-2 product-image">
+                                                                    <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                                </div>
+
+                                                                <!-- INFO -->
+                                                                <div class="column is-10">
+                                                                    <div class="columns is-mobile">
+                                                                        <div class="column is-5 product-info">
+
+                                                                            <!-- PRODUCT NAME -->
+                                                                            <a class="product-name" href="">Order Id
+                                                                                :#<?php echo $rw2['order_id'] ?></a>
+                                                                            <!-- VARIATIONS -->
+                                                                        </div>
+
+                                                                        <!-- UNIT PRICE -->
+                                                                        <div class="column is-3 product-price">
+
+                                                                        </div>
+
+                                                                        <!-- QUANTITY -->
+                                                                        <div class="column is-3 product-price">
+                                                                            RM<?php echo $rw2['total_amount'] ?>
+
+
+
+                                                                            <!-- DELETE -->
+                                                                            <div class="product-delete">
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    <?php
+                                                        $rw2 = mysqli_fetch_array($result);
+                                                    }
+                                                } else { ?>
+                                                    <!-- CHECKOUT CART LISTING -->
+                                                    <div class="input-group"><?php echo $rw2['time_status'] ?></div>
+
+                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+
+                                                        <div class="columns is-mobile">
+                                                            <!-- IMG -->
+                                                            <div class="column is-2 product-image">
+                                                                <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                            </div>
+
+                                                            <!-- INFO -->
+                                                            <div class="column is-10">
+                                                                <div class="columns is-mobile">
+                                                                    <div class="column is-5 product-info">
+
+                                                                        <!-- PRODUCT NAME -->
+                                                                        <a class="product-name" href="">Order Id
+                                                                            :#<?php echo $rw2['order_id'] ?></a>
+                                                                        <!-- VARIATIONS -->
+                                                                    </div>
+
+                                                                    <!-- UNIT PRICE -->
+                                                                    <div class="column is-3 product-price">
+
+                                                                    </div>
+
+                                                                    <!-- QUANTITY -->
+                                                                    <div class="column is-3 product-price">
+                                                                        RM<?php echo $rw2['total_amount'] ?>
+
+
+
+                                                                        <!-- DELETE -->
+                                                                        <div class="product-delete">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                        <?php
+                                                    $rw2 = mysqli_fetch_array($result);
+                                                }
+                                            }
+                                        }else{
+                                            ?>
+                                            <div data-content="tab-completed">
+                                            nothing here hehe
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div data-content="tab-to-ship">
+                                    <?php
+                                    $id = $_SESSION["ID"];
+                                    $first = "SELECT * FROM order_ WHERE user_id = $id AND delivery_status='Shipping'";
+                                    $query = "SELECT * FROM order_
+														INNER JOIN cart_order_detail  ON order_.order_id = cart_order_detail.order_id 
+														INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
+														INNER JOIN product ON cart.product_id = product.product_id 
+														WHERE order_.user_id = '$id' 
+														AND delivery_status='Shipping'
+														GROUP BY order_.order_id";
+                                    $q2 = "SELECT * FROM order_
+                                        INNER JOIN build_order_detail  ON order_.order_id = build_order_detail.order_id 
+                                        INNER JOIN pc_build ON build_order_detail.build_id = pc_build.build_id 
+                                        WHERE order_.user_id = '$id' 
+                                        AND delivery_status='Shipping'
+                                        GROUP BY order_.order_id";
+
+                                    $first_result = mysqli_query($connect, $first);
+                                    $result = mysqli_query($connect, $query);
+                                    $row = mysqli_fetch_array($result) ? $row['order_id'] : null;
+                                    $r2 = mysqli_query($connect, $q2);
+                                    $rw2 = mysqli_fetch_array($r2);
+
+                                    if (mysqli_num_rows($first_result) > 0) {
+                                        while ($first_row = mysqli_fetch_array($first_result)) {
+                                            if ($row != null) {
+                                                if ($first_row['order_id'] == $row['order_id']) {
+                                    ?>
+                                                    <!-- CHECKOUT CART LISTING -->
+                                                    <div class="input-group"><?php echo $row['time_status'] ?></div>
+
+                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+                                                        <div class="columns is-mobile">
+                                                            <!-- IMG -->
+                                                            <div class="column is-2 product-image">
+                                                                <a href=".."><img class="img-responsive" src="../image/<?php echo $row['image'] ?>" /></a>
+                                                            </div>
+
+                                                            <!-- INFO -->
+                                                            <div class="column is-10">
+                                                                <div class="columns is-mobile">
+                                                                    <div class="column is-5 product-info">
+
+                                                                        <!-- PRODUCT NAME -->
+                                                                        <a class="product-name" href="">Order Id
+                                                                            :#<?php echo $row['order_id'] ?></a>
+                                                                        <!-- VARIATIONS -->
+                                                                    </div>
+
+                                                                    <!-- UNIT PRICE -->
+                                                                    <div class="column is-3 product-price">
+
+                                                                    </div>
+
+                                                                    <!-- QUANTITY -->
+                                                                    <div class="column is-3 product-price">
+                                                                        RM<?php echo $row['total_amount'] ?>
+
+
+
+                                                                        <!-- DELETE -->
+                                                                        <div class="product-delete">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                <?php
+                                                    $row = mysqli_fetch_array($result);
+                                                } else { ?>
+                                                    <!-- CHECKOUT CART LISTING -->
+                                                    <div class="input-group"><?php echo $rw2['time_status'] ?></div>
+
+                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+
+                                                        <div class="columns is-mobile">
+                                                            <!-- IMG -->
+                                                            <div class="column is-2 product-image">
+                                                                <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                            </div>
+
+                                                            <!-- INFO -->
+                                                            <div class="column is-10">
+                                                                <div class="columns is-mobile">
+                                                                    <div class="column is-5 product-info">
+
+                                                                        <!-- PRODUCT NAME -->
+                                                                        <a class="product-name" href="">Order Id
+                                                                            :#<?php echo $rw2['order_id'] ?></a>
+                                                                        <!-- VARIATIONS -->
+                                                                    </div>
+
+                                                                    <!-- UNIT PRICE -->
+                                                                    <div class="column is-3 product-price">
+
+                                                                    </div>
+
+                                                                    <!-- QUANTITY -->
+                                                                    <div class="column is-3 product-price">
+                                                                        RM<?php echo $rw2['total_amount'] ?>
+
+
+
+                                                                        <!-- DELETE -->
+                                                                        <div class="product-delete">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                <?php
+                                                    $rw2 = mysqli_fetch_array($result);
+                                                }
+                                            } else { ?>
                                                 <!-- CHECKOUT CART LISTING -->
-                                                <div class="input-group"><?php echo $row['time_status'] ?></div>
+                                                <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                <div class="my-checkout-listing"
-                                                    onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                     <div class="columns is-mobile">
                                                         <!-- IMG -->
                                                         <div class="column is-2 product-image">
-                                                            <a href=".."><img class="img-responsive"
-                                                                    src="../image/<?php echo $row['image'] ?>" /></a>
+                                                            <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
                                                         </div>
 
                                                         <!-- INFO -->
@@ -243,7 +525,7 @@
 
                                                                     <!-- PRODUCT NAME -->
                                                                     <a class="product-name" href="">Order Id
-                                                                        :#<?php echo $row['order_id'] ?></a>
+                                                                        :#<?php echo $rw2['order_id'] ?></a>
                                                                     <!-- VARIATIONS -->
                                                                 </div>
 
@@ -254,7 +536,7 @@
 
                                                                 <!-- QUANTITY -->
                                                                 <div class="column is-3 product-price">
-                                                                    RM<?php echo $row['total_amount'] ?>
+                                                                    RM<?php echo $rw2['total_amount'] ?>
 
 
 
@@ -270,85 +552,25 @@
                                                     </div>
 
                                                 </div>
-                                                <?php
+                                    <?php
+                                                $rw2 = mysqli_fetch_array($result);
                                             }
                                         }
+                                    }else{
                                         ?>
-                                    </div>
-                                </div>
-                                <div data-content="tab-to-ship">
-                                    <?php
-                                    $id = $_SESSION["ID"];
-                                    $query = "SELECT * FROM order_
-														INNER JOIN cart_order_detail  ON order_.order_id = cart_order_detail.order_id 
-														INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
-														INNER JOIN product ON cart.product_id = product.product_id 
-														WHERE order_.user_id = '$id' 
-														AND delivery_status='Shipping'
-														GROUP BY order_.order_id";
-                                    $result = mysqli_query($connect, $query);
-                                    $count = mysqli_num_rows($result);
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_array($result)) {
-
-                                            ?>
-                                            <!-- CHECKOUT CART LISTING -->
-                                            <div class="input-group"><?php echo $row['time_status'] ?></div>
-
-                                            <div class="my-checkout-listing"
-                                            onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
-
-
-                                                <div class="columns is-mobile">
-                                                    <!-- IMG -->
-                                                    <div class="column is-2 product-image">
-                                                        <a href=".."><img class="img-responsive"
-                                                                src="../image/<?php echo $row['image'] ?>" /></a>
-                                                    </div>
-
-                                                    <!-- INFO -->
-                                                    <div class="column is-10">
-                                                        <div class="columns is-mobile">
-                                                            <div class="column is-5 product-info">
-
-                                                                <!-- PRODUCT NAME -->
-                                                                <a class="product-name" href="">Order Id
-                                                                    :#<?php echo $row['order_id'] ?></a>
-                                                                <!-- VARIATIONS -->
-                                                            </div>
-
-                                                            <!-- UNIT PRICE -->
-                                                            <div class="column is-3 product-price">
-
-                                                            </div>
-
-                                                            <!-- QUANTITY -->
-                                                            <div class="column is-3 product-price">
-                                                                RM<?php echo $row['total_amount'] ?>
-
-
-
-                                                                <!-- DELETE -->
-                                                                <div class="product-delete">
-
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <?php
-                                        }
+                                        <div data-content="tab-completed">
+                                        nothing here hehe
+                                        </div>
+                                        <?php
                                     }
+
                                     ?>
 
                                 </div>
                                 <div data-content="tab-completed">
                                     <?php
                                     $id = $_SESSION["ID"];
+                                    $first = "SELECT * FROM order_ WHERE user_id = $id AND delivery_status='Completed'";
                                     $query = "SELECT * FROM order_
 														INNER JOIN cart_order_detail  ON order_.order_id = cart_order_detail.order_id 
 														INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
@@ -356,63 +578,182 @@
 														WHERE order_.user_id = '$id' 
 														AND delivery_status='Completed'
 														GROUP BY order_.order_id";
+                                    $q2 = "SELECT * FROM order_
+                                     INNER JOIN build_order_detail  ON order_.order_id = build_order_detail.order_id 
+                                     INNER JOIN pc_build ON build_order_detail.build_id = pc_build.build_id 
+                                     WHERE order_.user_id = '$id' 
+                                     AND delivery_status='Completed'
+                                     GROUP BY order_.order_id";
+
+                                    $first_result = mysqli_query($connect, $first);
                                     $result = mysqli_query($connect, $query);
-                                    $count = mysqli_num_rows($result);
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_array($result)) {
+                                    $row = mysqli_fetch_array($result);
+                                    $r2 = mysqli_query($connect, $q2);
+                                    $rw2 = mysqli_fetch_array($r2);
 
-                                            ?>
-                                            <!-- CHECKOUT CART LISTING -->
-                                            <div class="input-group"><?php echo $row['time_status'] ?></div>
+                                    if (mysqli_num_rows($first_result) > 0) {
+                                        while ($first_row = mysqli_fetch_array($first_result)) {
+                                            if ($row != null) {
+                                                if ($first_row['order_id'] == $row['order_id']) {
+                                    ?>
+                                                    <!-- CHECKOUT CART LISTING -->
+                                                    <div class="input-group"><?php echo $row['time_status'] ?></div>
 
-                                            <div class="my-checkout-listing"
-                                            onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
-                                                <div class="columns is-mobile">
-                                                    <!-- IMG -->
-                                                    <div class="column is-2 product-image">
-                                                        <a href=".."><img class="img-responsive"
-                                                                src="../image/<?php echo $row['image'] ?>" /></a>
-                                                    </div>
-
-                                                    <!-- INFO -->
-                                                    <div class="column is-10">
                                                         <div class="columns is-mobile">
-                                                            <div class="column is-5 product-info">
-
-                                                                <!-- PRODUCT NAME -->
-                                                                <a class="product-name" href="">Order Id
-                                                                    :#<?php echo $row['order_id'] ?></a>
-                                                                <!-- VARIATIONS -->
+                                                            <!-- IMG -->
+                                                            <div class="column is-2 product-image">
+                                                                <a href=".."><img class="img-responsive" src="../image/<?php echo $row['image'] ?>" /></a>
                                                             </div>
 
-                                                            <!-- UNIT PRICE -->
-                                                            <div class="column is-3 product-price">
+                                                            <!-- INFO -->
+                                                            <div class="column is-10">
+                                                                <div class="columns is-mobile">
+                                                                    <div class="column is-5 product-info">
 
-                                                            </div>
+                                                                        <!-- PRODUCT NAME -->
+                                                                        <a class="product-name" href="">Order Id
+                                                                            :#<?php echo $row['order_id'] ?></a>
+                                                                        <!-- VARIATIONS -->
+                                                                    </div>
 
-                                                            <!-- QUANTITY -->
-                                                            <div class="column is-3 product-price">
-                                                                RM<?php echo $row['total_amount'] ?>
+                                                                    <!-- UNIT PRICE -->
+                                                                    <div class="column is-3 product-price">
+
+                                                                    </div>
+
+                                                                    <!-- QUANTITY -->
+                                                                    <div class="column is-3 product-price">
+                                                                        RM<?php echo $row['total_amount'] ?>
 
 
 
-                                                                <!-- DELETE -->
-                                                                <div class="product-delete">
+                                                                        <!-- DELETE -->
+                                                                        <div class="product-delete">
+
+                                                                        </div>
+                                                                    </div>
 
                                                                 </div>
                                                             </div>
 
                                                         </div>
+
+                                                    </div>
+                                                <?php
+                                                    $row = mysqli_fetch_array($result);
+                                                } else { ?>
+                                                    <!-- CHECKOUT CART LISTING -->
+                                                    <div class="input-group"><?php echo $rw2['time_status'] ?></div>
+
+                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+
+                                                        <div class="columns is-mobile">
+                                                            <!-- IMG -->
+                                                            <div class="column is-2 product-image">
+                                                                <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                            </div>
+
+                                                            <!-- INFO -->
+                                                            <div class="column is-10">
+                                                                <div class="columns is-mobile">
+                                                                    <div class="column is-5 product-info">
+
+                                                                        <!-- PRODUCT NAME -->
+                                                                        <a class="product-name" href="">Order Id
+                                                                            :#<?php echo $rw2['order_id'] ?></a>
+                                                                        <!-- VARIATIONS -->
+                                                                    </div>
+
+                                                                    <!-- UNIT PRICE -->
+                                                                    <div class="column is-3 product-price">
+
+                                                                    </div>
+
+                                                                    <!-- QUANTITY -->
+                                                                    <div class="column is-3 product-price">
+                                                                        RM<?php echo $rw2['total_amount'] ?>
+
+
+
+                                                                        <!-- DELETE -->
+                                                                        <div class="product-delete">
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                <?php
+                                                    $rw2 = mysqli_fetch_array($result);
+                                                }
+                                            } else { ?>
+                                                <!-- CHECKOUT CART LISTING -->
+                                                <div class="input-group"><?php echo $rw2['time_status'] ?></div>
+
+                                                <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+
+
+
+                                                    <div class="columns is-mobile">
+                                                        <!-- IMG -->
+                                                        <div class="column is-2 product-image">
+                                                            <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                        </div>
+
+                                                        <!-- INFO -->
+                                                        <div class="column is-10">
+                                                            <div class="columns is-mobile">
+                                                                <div class="column is-5 product-info">
+
+                                                                    <!-- PRODUCT NAME -->
+                                                                    <a class="product-name" href="">Order Id
+                                                                        :#<?php echo $rw2['order_id'] ?></a>
+                                                                    <!-- VARIATIONS -->
+                                                                </div>
+
+                                                                <!-- UNIT PRICE -->
+                                                                <div class="column is-3 product-price">
+
+                                                                </div>
+
+                                                                <!-- QUANTITY -->
+                                                                <div class="column is-3 product-price">
+                                                                    RM<?php echo $rw2['total_amount'] ?>
+
+
+
+                                                                    <!-- DELETE -->
+                                                                    <div class="product-delete">
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
                                                     </div>
 
                                                 </div>
-
-                                            </div>
-                                            <?php
+                                    <?php
+                                                $rw2 = mysqli_fetch_array($result);
+                                            }
                                         }
+                                    }else{
+                                        ?>
+                                        <div data-content="tab-completed">
+                                        nothing here hehe
+                                        </div>
+                                        <?php
                                     }
                                     ?>
                                 </div>
@@ -428,19 +769,19 @@
                     </div>
                 </div>
 
-            </div>
+                    </div>
 
         </section>
     </section>
     <script>
         var currenttab = '';
 
-        $(document).on("click", ".order-list .pagination a", function () {
+        $(document).on("click", ".order-list .pagination a", function() {
             $('.order-list .tab-content div[data-content="' + currenttab + '"]').load(this.href);
             return false;
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.order-list .tabs ul li').first().addClass('is-active');
             var activeTab = $('.order-list .tabs ul li').first().data('tab');
             currenttab = activeTab;
@@ -449,7 +790,7 @@
             getTotalOrdersAjax();
         });
 
-        $('.order-list .tabs ul li').on('click', function () {
+        $('.order-list .tabs ul li').on('click', function() {
             var activeTab = $(this).data('tab');
             $('.order-list .tabs ul li').removeClass('is-active');
             $(this).addClass('is-active');
@@ -458,17 +799,7 @@
             $('.order-list .tab-content div[data-content="' + activeTab + '"]').addClass('is-active');
             getOrderajax(activeTab);
         });
-
-
-
-
     </script>
-
-
-
-
-
-
 </body>
 
 </html>

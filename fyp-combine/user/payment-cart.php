@@ -156,7 +156,7 @@
                                     <br><input type="text" name="name" value="<?php echo $row['name'] ?>" readonly
                                         autocomplete="off"></br>
                                     <br>Phone Number :
-                                    <br><input type="text" name="ph" value="<?php echo $row['contactnumber'] ?>" readonly
+                                    <br><input type="text" name="ph" value="<?php echo $row['contact_number'] ?>" readonly
                                         autocomplete="off"></br>
 
 
@@ -355,7 +355,7 @@ if (isset($_POST['pay'])) {
     $status = 'Processing';
     $total_amount = $ttotal;
     $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
-     $currentDateTime = $now->format('d-m-Y H:i:s'); 
+    $currentDateTime = $now->format('d-m-Y H:i:s'); 
   
      
     $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");

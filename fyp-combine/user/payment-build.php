@@ -130,9 +130,9 @@ $id = $_SESSION['ID'];
             margin: 0px 10px;
         }
 
-        .body-style button {
-            /* background-color:blue; */
-        }
+        /* .body-style button {
+            background-color:blue;
+        } */
 
         .flex-container {
             display: block;
@@ -178,7 +178,7 @@ $id = $_SESSION['ID'];
                                         <br>Full Name :
                                         <br><input type="text" name="name" value="<?php echo $row['name'] ?>" autocomplete="off"></br>
                                         <br>Phone Number :
-                                        <br><input type="text" name="ph" value="<?php echo $row['contactnumber'] ?>" autocomplete="off"></br>
+                                        <br><input type="text" name="ph" value="<?php echo $row['contact_number'] ?>" autocomplete="off"></br>
 
 
                                         <?php
@@ -299,16 +299,15 @@ $id = $_SESSION['ID'];
                         $row4 = mysqli_fetch_array($result4);
 
                         $build_id = $row4['build_id'];
-                        $monitor = $row4['monitor'] ?? null;
-                        $chassis = $row4['chassis'] ?? null;
-                        $motherboard = $row4['motherboard'] ?? null;
-                        $processor = $row4['processor'] ?? null;
-                        $graphic_card = $row4['graphic_card'] ?? null;
-                        $ram1 = $row4['ram1'] ?? null;
-                        $ram2 = $row4['ram2'] ?? null;
-                        $memory = $row4['memory'] ?? null;
-                        $cooler = $row4['cooler'] ?? null;
-                        $power_supply = $row4['power_supply'] ?? null;
+                        $chassis = isset($row['chassis']) ? $row['chassis'] : null;
+                        $motherboard = isset($row['motherboard']) ? $row['motherboard'] : null;
+                        $processor = isset($row['processor']) ? $row['processor'] : null;
+                        $graphic_card = isset($row['graphic_card']) ? $row['graphic_card'] : null;
+                        $ram1 = isset($row['ram1']) ? $row['ram1'] : null;
+                        $ram2 = isset($row['ram2']) ? $row['ram2'] : null;
+                        $memory = isset($row['memory']) ? $row['memory'] : null;
+                        $cooler = isset($row['cooler']) ? $row['cooler'] : null;
+                        $power_supply = isset($row['power_supply']) ? $row['power_supply'] : null;
 
                         $i = 0;
                         $total = 0;
@@ -366,13 +365,18 @@ $id = $_SESSION['ID'];
                     $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
                     if ($result3 = mysqli_fetch_assoc($card)) {
                         if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv) {
-                            $currentDateTime = date("Y-m-d", $currentTimestamp);
+                            $currentDateTime = date("Y-m-d H:i:s", $currentTimestamp);
                             $name = $_POST['name'];
                             $ph = $_POST['ph'];
-                            $address = 1;
 
-                            mysqli_query($connect, "INSERT INTO order_details(user_id,address_id,build_id,time,price) 
-                        VALUES ($id,$address,$build_id,'$currentDateTime',$total)");
+                            $query = mysqli_query($connect,"INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) 
+                            VALUES ('$id','$currentDateTime','$total','$address_id','Processing')" );
+
+                            $order_id =mysqli_insert_id($connect);  
+
+
+                            mysqli_query($connect, "INSERT INTO build_order_details(user_id,address_id,order_id,build_id,time,price) 
+                            VALUES ($id,$address_id,$order_id,$build_id,'$currentDateTime',$total)");
 
                             if (mysqli_affected_rows($connect) > 0) {
                                 $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");

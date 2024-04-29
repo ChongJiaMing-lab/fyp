@@ -221,7 +221,8 @@
 
 
                     <?php
-                    $order_id = $_GET['order_id'];
+                    if(isset($_GET['order_id'])){
+                        $order_id = $_GET['order_id'];
 
                     $query = "SELECT * FROM cart_order_detail 
                                            INNER JOIN cart ON cart_order_detail.cart_id = cart.cart_id 
@@ -292,6 +293,113 @@
                             }
 
                     }
+                }else if(isset($_GET['build_order_id']))
+                { ?>
+                    <div id="main-content" class="order">
+                    <!-- ORDER -->
+                    <div class="holder">
+    
+                        <?php
+                        if(isset($_GET['build_order_id'])){
+                        $order_id = $_GET['build_order_id'];
+                        $query = "SELECT * FROM build_order_detail WHERE order_id = $order_id";  
+                        $query2 = "SELECT * FROM order_
+                                               INNER JOIN user_address ON order_.address_id = user_address.address_id
+                                               INNER JOIN user_information ON order_.user_id = user_information.ID
+                                               WHERE order_.order_id = '$order_id'";
+                        
+    
+                        $result = mysqli_query($connect, $query);
+                        $result2 = mysqli_query($connect, $query2);
+                        $row = mysqli_fetch_assoc($result);
+                        
+                        $build_id = $row['build_id'];
+                        $query3 = "SELECT * FROM pc_build WHERE build_id = $build_id";
+                        $result3 = mysqli_query($connect,$query3);
+                        $item = mysqli_num_rows($result3);
+                        $row3 = mysqli_fetch_array($result3);
+                        $chassis = isset($row3['chassis']) ? $row3['chassis'] : null;
+                        $motherboard = isset($row3['motherboard']) ? $row3['motherboard'] : null;
+                        $processor = isset($row3['processor']) ? $row3['processor'] : null;
+                        $graphic_card = isset($row3['graphic_card']) ? $row3['graphic_card'] : null;
+                        $ram1 = isset($row3['ram1']) ? $row3['ram1'] : null;
+                        $ram2 = isset($row3['ram2']) ? $row3['ram2'] : null;
+                        $memory = isset($row3['memory']) ? $row3['memory'] : null;
+                        $cooler = isset($row3['cooler']) ? $row3['cooler'] : null;
+                        $power_supply = isset($row3['power_supply']) ? $row3['power_supply'] : null;
+                        
+
+                            $row2 = mysqli_fetch_assoc($result2);?>
+                            <div class="title">Order #<?php echo $order_id ?></div>
+                            <div class="myaccount-body">
+                                <div class="address-container">
+                                    <div class="txt-info">Name            : <?php echo $row2['name'] ?></div>
+                                    <div class="txt-info">Contact Number  : <?php echo $row2['contact_number'] ?></div>
+                                    <div class="txt-info">Address         : <?php echo $row2['address'] ?></div>
+                                    <div class="txt-info">Total payment   : RM<?php echo $row2['total_amount'] ?></div>
+                                    <div class="txt-info">Delivery Status : <?php echo $row2['delivery_status'] ?></div>
+                                </div>
+                            </div>
+
+                            <div class="tab-content">
+                            <?php
+                            
+                            $i = 0;
+                            $total = 0;
+                            
+                            while ($i < mysqli_num_fields($result3)) {
+                                $fld = mysqli_fetch_field($result3);
+                                $myarray[] = $fld->name;
+    
+                                if ($i > 2) {
+                                    if (isset(${$myarray[$i]})) {
+                                        $query4 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$i]}");
+                                        $row4 = mysqli_fetch_assoc($query4);
+                                        ?>
+
+                                <div data-content="tab-to-pay" class="is-active">
+
+                                    <div class="columns is-mobile">
+                                        <!-- IMG -->
+                                        <div class="column is-2 product-image">
+                                            <a href=".."><img class="img-responsive"
+                                                    src="../image/<?php echo $row4['image'] ?>"></a>
+                                        </div>
+
+                                        <!-- INFO -->
+                                        <div class="column is-10">
+                                            <div class="columns is-mobile">
+                                                <div class="column is-5 product-info" style="padding:50px">
+                                                    <!-- PRODUCT NAME -->
+                                                    <a class="product-name" href=""><?php echo $row4['product_name'] ?></a>
+                                                    <!-- VARIATIONS -->
+                                                </div>
+
+                                                <!-- UNIT PRICE -->
+                                                <div class="column is-3 product-price" style="padding:50px">
+                                                    RM<?php echo $row4['price'] ?></div>
+
+                                                <!-- QUANTITY -->
+                                                <div class="column is-3 product-price" style="padding:50px">
+                                                  
+                                                        <a class="product-name" href="">QTY: 1</a>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                                    }
+                                    $i = $i + 1;
+                                } else {
+                                    $i = $i + 1;
+                                }
+                            
+                                
+                }
+            }
+            }
 
 
                     ?>
