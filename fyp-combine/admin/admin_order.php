@@ -62,10 +62,7 @@
                 <label>Filter by:</label>
                 <select class="form-select" id="f1" aria-label="Default select example" name="o_filt">
                     <option value="" selected>General</option>
-                    <optgroup label="Payment Status in:">
-                        <option value="1">Paid</option>
-                        <option value="2">Cancelled</option>
-                    <optgroup label="Delivery Status in:">
+                    <optgroup label="Delivery Status:">
                         <option value="Processing">Processing</option>
                         <option value="Shipping">Shipping</option>
                         <option value="Completed">Completed</option>
