@@ -1,9 +1,10 @@
 <?php include 'admin_sidebar.php';
 include 'databaseconnect.php';
 ?>
-
+<head>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
 <style>
     .card {
         padding: 20px;
@@ -17,7 +18,6 @@ include 'databaseconnect.php';
 
     input[type=text] {
         background-color: white;
-        background-image: url('searchicon.png');
         background-position: 10px 10px;
         background-repeat: no-repeat;
         padding-left: 40px;
@@ -49,7 +49,7 @@ include 'databaseconnect.php';
         position: absolute;
         top: 17%;
         font-size: 30px;
-        left: 5.7px;
+        left: 4.7px;
     }
 </style>
 
@@ -88,7 +88,6 @@ include 'databaseconnect.php';
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Contact</th>
-                        <th scope="col">gender</th>
                         <th scope="col">Joined Time</th>
                     </tr>
                 </thead>
@@ -117,9 +116,6 @@ include 'databaseconnect.php';
                                     <?php echo $row["contactnumber"] ?><br>
                                     Email:
                                     <?php echo $row["email"] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row["gender"] ?>
                                 </td>
                                 <td>
                                     <?php echo $row["join_time"] ?>
