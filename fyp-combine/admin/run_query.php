@@ -48,10 +48,12 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2'])) {
     else
         $f2 = '';
 
-    $query = "SELECT * FROM order_ WHERE 1";
+    $query = "SELECT *,user_information.name 
+    FROM order_ 
+    JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
 
     if (!empty($o))
-        $query .= " AND order_id LIKE '%$o%'";
+        $query .= " AND name LIKE '%$o%'";
 
     if (!empty($f1))
         $query .= " AND delivery_status= '$f1'";
@@ -74,7 +76,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2'])) {
         $o_output .= '<tr onclick="window.location=\'order_detail.php?order_id=' . $row['order_id'] . '\';">
         <th scope="row">' . $row["order_id"] . '</th>
         <td>
-            ' . $row["user_id"] . '<br>
+            ' . $row["name"] . '<br>
         </td>
         <td>
            ' . $row["address_id"] . '

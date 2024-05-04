@@ -99,7 +99,10 @@
                 </thead>
                 <tbody id="table-body">
                     <?php
-                    $q = "SELECT * FROM order_";
+                    $q = "SELECT *,user_information.name 
+                    FROM order_ 
+                    JOIN user_information ON order_.user_id = user_information.ID;                                      
+                    ";
 
                     $result = mysqli_query($connect, $q);
                     $count = mysqli_num_rows($result);
@@ -112,7 +115,7 @@
                                     <?php echo $row["order_id"] ?>
                                 </th>
                                 <td>
-                                    <?php echo $row["user_id"]; ?><br>
+                                    <?php echo $row["name"]; ?><br>
                                     <!-- <div style="font-size:11px;"><i>from </i>
                                         < ?php echo $row["country"] ?> -->
                                     <!-- </div> -->
