@@ -156,7 +156,7 @@
                                     <br><input type="text" name="name" value="<?php echo $row['name'] ?>" readonly
                                         autocomplete="off"></br>
                                     <br>Phone Number :
-                                    <br><input type="text" name="ph" value="<?php echo $row['contact_number'] ?>" readonly
+                                    <br><input type="text" name="ph" value="<?php echo $row['contactnumber'] ?>" readonly
                                         autocomplete="off"></br>
 
 
