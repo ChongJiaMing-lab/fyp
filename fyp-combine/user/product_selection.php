@@ -120,7 +120,7 @@ $row = mysqli_fetch_assoc($query);
             echo '<td><img src="../image/'.$row2["image"].'"></td>';
             echo '<td><span class="product_name">'.$row2["product_name"].'</span></td>';
             echo '<td>RM'.$row2["price"].'</td>';
-            echo '<td><a href="">test</a></td>';
+            echo '<td><a href="product_detail.php?product_id='.$row2['product_id'].'">Click Me</a></td>';
             echo '<td><a href="a_product.php?pid='.$row2["product_id"].'">Add Product</a></td>';
             echo '</tr>';
         }
