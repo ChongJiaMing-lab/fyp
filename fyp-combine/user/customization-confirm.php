@@ -217,7 +217,7 @@ $id = $_SESSION['ID'];
                     echo '<td><img src="../image/' . $row2["image"] . '"</td>';
                     echo '<td>' . $row2["product_name"] . '</td>';
                     echo '<td id="center">' . $row2["price"] . '</td>';
-                    echo '<td id="center"><a href="product_details.php?id=' . $row2['product_id'] . '">Click Me!</a></td>';
+                    echo '<td id="center"><a href="product_detail.php?product_id=' . $row2['product_id'] . '">Click Me!</a></td>';
                     echo '</div>';
 
                     if ($myarray[$i] == 'ram2' && !isset(${$myarray[$i - 1]})) {

@@ -147,6 +147,13 @@ $id = $_SESSION['ID'];
         .flex-item input[type="radio"] {
             margin-right: 10px;
         }
+        .product{
+            height: 60vh;
+            overflow: auto;
+        }
+        .product::-webkit-scrollbar {
+    display: none; /* Hide scroll bar for Chrome, Safari, and Opera */
+}
     </style>
 </head>
 
@@ -233,7 +240,14 @@ $id = $_SESSION['ID'];
                                                         <ul class="flex-container longhand">
                                                             <?php
                                                             while ($row = mysqli_fetch_assoc($result)) { ?>
-                                                                <li class="flex-item"><input type="radio" id="javascript" name="fav_language" value="<?php echo $row['address_id'] ?>">
+                                                                <li class="flex-item">
+                                                                <input type="radio" name="address_option"
+                                                                                
+                                                                                data-address="<?php echo ($row['address']); ?>"
+                                                                                data-city="<?php echo ($row['city']); ?>"
+                                                                                data-state="<?php echo ($row['state']); ?>"
+                                                                                data-postcode="<?php echo ($row['postcode']); ?>"
+                                                                                id="<?php echo ($row['address_id']); ?>">
                                                                     <label for="<?php echo $row['address_id'] ?>"><?php echo $row['address'] . ', ' . $row['postcode'] . ', ' . $row['city']
                                                                                                                         . ', ' . $row['state']; ?></label>
                                                                 </li>
@@ -246,7 +260,7 @@ $id = $_SESSION['ID'];
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save
+                                                        <button type="button" class="btn btn-primary" id="saveChangesButton">Save
                                                             changes</button>
                                                     </div>
                                                 </div>
@@ -255,6 +269,30 @@ $id = $_SESSION['ID'];
                                     </div>
                                 </div>
                             </div>
+                            <script>
+                                        $(document).ready(function () {
+                                            $('#saveChangesButton').click(function () {
+
+                                                var selected = $('input[name="address_option"]:checked');
+
+                                                
+                                                var address = selected.data('address');
+                                                var city = selected.data('city');
+                                                var state = selected.data('state');
+                                                var postcode = selected.data('postcode');
+                                               
+
+
+                                                $('input[name="address"]').val(address);
+                                                $('input[name="city"]').val(city);
+                                                $('input[name="state"]').val(state);
+                                                $('input[name="postcode"]').val(postcode);
+
+
+                                                $('#exampleModal').modal('hide');
+                                            });
+                                        });
+                                    </script>
 
                             <div class="col-50">
                                 <br>Accepted Payment method
@@ -292,6 +330,8 @@ $id = $_SESSION['ID'];
                                 <i class="fa fa-shopping-cart"></i>
                             </span>
                         </h4>
+                        <hr>
+                        <div class="product">
                         <?php
 
                         $result4 = mysqli_query($connect, "SELECT * FROM pc_build WHERE user_id = '$id' AND pay_status != 'payed'");
@@ -299,15 +339,15 @@ $id = $_SESSION['ID'];
                         $row4 = mysqli_fetch_array($result4);
 
                         $build_id = $row4['build_id'];
-                        $chassis = isset($row['chassis']) ? $row['chassis'] : null;
-                        $motherboard = isset($row['motherboard']) ? $row['motherboard'] : null;
-                        $processor = isset($row['processor']) ? $row['processor'] : null;
-                        $graphic_card = isset($row['graphic_card']) ? $row['graphic_card'] : null;
-                        $ram1 = isset($row['ram1']) ? $row['ram1'] : null;
-                        $ram2 = isset($row['ram2']) ? $row['ram2'] : null;
-                        $memory = isset($row['memory']) ? $row['memory'] : null;
-                        $cooler = isset($row['cooler']) ? $row['cooler'] : null;
-                        $power_supply = isset($row['power_supply']) ? $row['power_supply'] : null;
+                        $chassis = isset($row4['chassis']) ? $row4['chassis'] : null;
+                        $motherboard = isset($row4['motherboard']) ? $row4['motherboard'] : null;
+                        $processor = isset($row4['processor']) ? $row4['processor'] : null;
+                        $graphic_card = isset($row4['graphic_card']) ? $row4['graphic_card'] : null;
+                        $ram1 = isset($row4['ram1']) ? $row4['ram1'] : null;
+                        $ram2 = isset($row4['ram2']) ? $row4['ram2'] : null;
+                        $memory = isset($row4['memory']) ? $row4['memory'] : null;
+                        $cooler = isset($row4['cooler']) ? $row4['cooler'] : null;
+                        $power_supply = isset($row4['power_supply']) ? $row4['power_supply'] : null;
 
                         $i = 0;
                         $total = 0;
@@ -329,6 +369,7 @@ $id = $_SESSION['ID'];
                             }
                         }
                         ?>
+                        </div>
                         <hr>
                         <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total, 2) ?></b></span></p>
                         <?php if ($item != 0) { ?>
