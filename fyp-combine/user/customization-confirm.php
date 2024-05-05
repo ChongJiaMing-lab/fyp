@@ -157,6 +157,19 @@ $id = $_SESSION['ID'];
             height: 90%;
             border:1px gray solid;
         }
+        .flex-container {
+            display: block;
+            padding: 0;
+        }
+
+        .flex-item {
+            display: flex;
+
+        }
+
+        .flex-item input[type="radio"] {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -237,7 +250,7 @@ $id = $_SESSION['ID'];
     <br></br>
     <table class="right">
         <tr>
-            <td>Vouncher/Discount : <input id="vouncher-code" readonly></input>
+            <td>Vouncher/Discount : <input id="vouncher-code" name='voucher_code' readonly></input>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Select
                     </button>
@@ -247,18 +260,40 @@ $id = $_SESSION['ID'];
                             <div class="modal-body">
 
                                 <?php
-
-
+                                    $r1 = mysqli_query($connect,"SELECT * FROM voucher WHERE user_id = $id AND v_status = 0");
+                                    while($rw1= mysqli_fetch_assoc($r1))
+                                    {?>
+                                        <li class="flex-item">
+                                        <input type="radio" name="voucher_option" data-v_code = "<?php echo $rw1['v_code']?>">
+                                        <label for="<?php echo $rw1['v_code'] ?>"><?php echo $rw1['v_code'] . ', ' . ($rw1['v_rate']*100).'%';?></label>
+                                        </li>
+                                        <?php
+                                    }
                                 ?>
                                 </ul>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" style="width:100%;">Select Vouncher</button>
+                                <button type="button" class="btn btn-primary" style="width:100%;" id="saveChangesButton">Select Vouncher</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <script>
+                                        $(document).ready(function () {
+                                            $('#saveChangesButton').click(function () {
+
+                                                var selected = $('input[name="voucher_option"]:checked');
+
+                                                
+                                                var code = selected.data('v_code');
+
+                                                $('input[name="voucher_code"]').val(code);
+
+                                                $('#exampleModal').modal('hide');
+                                            });
+                                        });
+                                    </script>
             </td>
         </tr>
         <tr>
