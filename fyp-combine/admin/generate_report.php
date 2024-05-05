@@ -83,13 +83,12 @@ if (isset($_POST["order_receipt"])) {
 
     $pdf->AddPage();
 
-    $pdf->SetFont("Arial", "B", 30);
-
+    $pdf->SetFont("Arial", "B", 35);
+    $pdf->Cell(130, 15, "Invoice", 0, 1);
+    $pdf->SetFont("Arial", "B", 20);
     $pdf->Cell(130, 15, "SKT PC", 0, 1);
     $pdf->SetFont("Arial", "", 14);
     $pdf->Cell(50, 5, "Thanks for choosing us!", 0, 1);
-    $pdf->Cell(50, 5, "If there are any issu with your product, do sent a message to us, we are always", 0, 1);
-    $pdf->Cell(50, 5, "here to assist you! ", 0, 1);
     $pdf->Cell(0, 5, "------------------------------------------------------------------------------------------------------------------", 0, 1);
 
     $order = "SELECT * FROM order_ WHERE order_id = '$order_id'";
