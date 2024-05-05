@@ -12,7 +12,7 @@ if(isset($_GET["pid"])) {
     $query2 = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $uid AND pay_status != 'payed'");
     $row2 = mysqli_fetch_assoc($query2);
     if(mysqli_num_rows($query2) > 0) {
-        if($row['category'] == "ram") {
+        if($row['category'] == "ram"||$row['category'] == "Ram") {
             if(is_null($row2['ram1'])) {
                 $update = mysqli_query($connect, "UPDATE pc_build SET ram1 = $pid WHERE user_id = $uid AND pay_status != 'payed'");
             } else {
@@ -22,9 +22,17 @@ if(isset($_GET["pid"])) {
             $update = mysqli_query($connect, "UPDATE pc_build SET {$row['category']} = $pid WHERE user_id = $uid AND pay_status != 'payed'");
         }
     } else {
+        if($row['category'] == "ram"||$row['category'] == "Ram") {
+            if(is_null($row2['ram1'])) {
+                $insert = "INSERT INTO pc_build(pay_status,user_id,'ram1') VALUES('cart',$uid,$pid)";
+            } else {
+                $insert = "INSERT INTO pc_build(pay_status,user_id,'ram2') VALUES('cart',$uid,$pid)";
+            }
+        }else{
         $insert = "INSERT INTO pc_build(pay_status,user_id,{$row['category']}) VALUES('cart',$uid,$pid)";
         $add = mysqli_query($connect,$insert);
     }
+}
 
     if(isset($update) || isset($add)) {
         echo '<script>';
