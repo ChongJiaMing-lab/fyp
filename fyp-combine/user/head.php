@@ -154,7 +154,7 @@ session_start();
                             <div class="navbar">
 
                                 <a class="navbar-item" href="main_page.php"><span>Home</span></a>
-                                <a class="navbar-item" href="..."><span>Brands</span></a>
+                               
                                 <div class="navbar-item has-dropdown is-hoverable">
 
 

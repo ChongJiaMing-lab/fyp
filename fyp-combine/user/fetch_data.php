@@ -100,7 +100,7 @@ if (isset($_POST["action"])) {
         }
         
     } else {
-        $output = '<h3>No Data Found</h3>';
+        $output = '<h3>No Product Found</h3>';
     }
     echo $output;
 }

@@ -179,8 +179,8 @@
 									</div>
 									<div class="newpw_require">
 										<ul>
-											<li class="letter1"><span></span>At least one letter</li>
-											<li class="email"><span></span>must have @</li>
+											<li class="letter1"><span></span></li>
+											<li class="email"><span>Not Included In @gmail</span></li>
 
 										</ul>
 									</div>
@@ -258,7 +258,7 @@
 								<div class="newpw_require">
 									<ul>
 
-										<li class="day"><span></span>Day Should Be 0-31</li>
+										<li class="day"><span></span>Day should Be 0-31</li>
 										<li class="Year"><span></span>Start at 2000-2024</li>
 
 									</ul>
