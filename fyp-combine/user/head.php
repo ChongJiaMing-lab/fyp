@@ -1,5 +1,10 @@
 <?php include ("data_connection.php");
 session_start();
+if(isset($_SESSION['v_alert']))
+{
+    echo $_SESSION['v_alert'];
+    unset($_SESSION['v_alert']);
+}
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="">

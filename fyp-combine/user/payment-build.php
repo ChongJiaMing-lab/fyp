@@ -423,7 +423,7 @@ $id = $_SESSION['ID'];
                                 $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
                                 $point = (int)($total/100);
                                 mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
-                                mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id) VALUES ('Completed Purchased.','+$point','$id','$order_id')");
+                                mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$id','$order_id','$currentDateTime')");
                                     echo "<script>window.location.href = 'main_page.php';</script>";
                             }
                         } else {

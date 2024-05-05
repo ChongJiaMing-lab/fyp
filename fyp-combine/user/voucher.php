@@ -305,7 +305,7 @@
 			<article class="card fl-left">
 				<section class="date">
 					<time>
-						<?php $rate = $row["voucher_rate"] * 100?>
+						<?php $rate = $row["voucher_rate"] * 100; ?>
 						<span><?php echo $rate?></span><span>%</span>
 					</time>
 				</section>
@@ -318,7 +318,7 @@
 							<span>&nbspGet a <?php echo $rate?>% with purchasing our product!</span>
 						</time>
 					</div>
-					<a href="#">Claim</a>
+					<a href="redeem.php?id=<?php echo $row['voucher_id'] ?>">Claim</a>
 				</section>
 			</article>
 		</div>

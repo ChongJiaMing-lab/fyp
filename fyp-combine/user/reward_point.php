@@ -214,22 +214,28 @@ th{
                                 <th width="70%">Description</th>
                                 <th width="15%">Point</th>
                             </tr>
-                            <tr>
+                            
                                 <?php 
-                                $query4 = mysqli_query($connect,"SELECT * FROM point_details WHERE point_id = $row3[point_id]");
+                                $query4 = mysqli_query($connect,"SELECT * FROM point_details WHERE user_id = $id");
                                 if(mysqli_num_rows($query4) == 0){?>
                                 <td colspan=3>You do not have any reward points yet. Start collecting now!</td>
                                 <?php 
                                 }else{ 
                                     while($row4 = mysqli_fetch_assoc($query4)){
-                                    $query5 = mysqli_query($connect,"SELECT * FROM order_ WHERE order_id = $row4[order_id]");
-                                    $row5 = mysqli_fetch_assoc($query5);
-                                    
-                                echo "<td>".$row5['time_status']."</td>";
-                                echo "<td>Order #".$row5['order_id']." : ".$row4['description']."</td>";
+                                        $desc = "";
+                                        if(isset($row4['order_id']))
+                                    {
+                                        $query5 = mysqli_query($connect,"SELECT * FROM order_ WHERE order_id = $row4[order_id]");
+                                        $row5 = mysqli_fetch_assoc($query5);
+                                        $desc = "Order #".$row5['order_id']." : ";
+                                    }
+                                echo"<tr>";
+                                echo "<td>".$row4['time_status']."</td>";
+                                echo "<td>".$desc.$row4['description']."</td>";
                                 echo "<td>".$row4['changes']."</td>";
+                                echo"</tr>";
                                 }}?>
-                            </tr>
+                            
 
                         </table>
                     </div>
