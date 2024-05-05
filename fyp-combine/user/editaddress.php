@@ -188,26 +188,8 @@ a.button.view-password
                                             <span id="country-required" class="required"></span>
                                             Country
                                         </label>
-                                        <select name="country_id" class="">
-                                            <?php
-                                            // 用户当前选择的国家
-                                            $selectedCountry = $row['country'];
-
-                                            // 定义国家列表
-                                            $countries = array(
-                                                1 => "Malaysia",
-                                                2 => "Singapore"
-                                                // 添加更多国家...
-                                            );
-
-                                            // 循环遍历国家列表
-                                            foreach ($countries as $countryId => $countryName) {
-                                                // 检查当前国家是否与用户选择的国家匹配
-                                                $selected = ($selectedCountry == $countryId) ? 'selected' : '';
-                                                // 输出选项
-                                                echo '<option value="' . $countryId . '" ' . $selected . '>' . $countryName . '</option>';
-                                            }
-                                            ?>
+                                        <select name="country_id" class=""><?php echo $row['country']?>
+										<option value="Malaysia" >Malaysia</option>
                                         </select>
                                     </div>
 
@@ -216,7 +198,7 @@ a.button.view-password
 								<div id="zone_display" class="field">
 									<label class="label ">
 										State									</label>
-                                        <select  name="state" value="<?php echo $row['state']?>" />
+                                        <select  name="state" value="<?php echo $row['state']?>" >
 										
 									<option value="Johor" >Johor</option>
 									<option value="Kedah" >Kedah</option>
@@ -333,7 +315,7 @@ if (isset($_POST['updatebtn'])) {
     if (!$result && $result2) {
         die('Error: ' . mysqli_error($connect));
     } else {
-		session_start();
+		
 		$ID = $_SESSION['ID'];
     echo '<script>alert("Record updated successfully");</script>';
     echo '<script>window.location.href = "view_address.php?ID=' . $ID. '";</script>'; 

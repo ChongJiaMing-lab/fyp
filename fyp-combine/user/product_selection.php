@@ -94,7 +94,7 @@ $row = mysqli_fetch_assoc($query);
 
     <div class="header">
     <h1>Computer Builder</h2>
-    <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href='product_selection.php?c_id=1'>  <?php echo $row['category'] ?></a>
+    <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href='product_selection.php?c_id=<?php echo $c_id ?>'>  <?php echo $row['category'] ?></a>
     </div>
     
     <table class="build">

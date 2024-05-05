@@ -108,6 +108,32 @@
         ul {
             list-style: none !important;
         }
+
+        .title {
+    color: black; 
+	
+}
+
+input.button.btn-login{
+            background-color:black;
+        }
+
+a.button.view-password
+{
+            background-color:black;
+        }
+.txt-interactt 
+{
+    color: skyblue !important;
+}
+.txt-data, .input.txt-data
+{
+	color:#2586c6;
+}
+
+.tabs li.is-active a, .modal-card-title {
+    color: #50d282;
+}
     </style>
 
     </style>

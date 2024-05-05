@@ -154,7 +154,7 @@ session_start();
                             <div class="navbar">
 
                                 <a class="navbar-item" href="main_page.php"><span>Home</span></a>
-                                <a class="navbar-item" href="..."><span>Brands</span></a>
+                               
                                 <div class="navbar-item has-dropdown is-hoverable">
 
 
@@ -299,7 +299,7 @@ session_start();
                                     <a class="dropdown-item mobile" href="...s">My Addresses</a>
                                     <a class="dropdown-item mobile" href="...">Change Password</a>
                                     <a class="dropdown-item" href="orderlist.php?ID=<?php echo $_SESSION['ID']; ?>">My Order</a>
-                                    <a class="dropdown-item" href="...">My Reward Point</a>
+                                    <a class="dropdown-item" href="reward_point.php">My Reward Point</a>
                                     <a class="dropdown-item" href="..">My Store Credit</a>
                                     <a class="dropdown-item" href="Logout.php">Logout</a>
                                     <?php

@@ -236,7 +236,8 @@ a.button.view-password
                                                       <?php
                                                    }?>
                                                     <!-- DELETE BUTTON -->
-                                                    <a class="txt-interactt txt-underline delete-btn" href="...">Delete</a>
+                                                    <a class="txt-interactt txt-underline delete-btn" href="delete_address.php?address_id=<?php echo $row2['address_id']; ?>">Delete</a>
+
                                                     </div>
                                                 </div>
                                            

@@ -1,6 +1,4 @@
-
-<!-- ###AIO### -->
-<!-- ###AIO### -->
+<?php include"head.php"?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="ready">
 <head>
@@ -75,12 +73,42 @@
 </head>
 
 <body class="body-style wide  clamp-1">
-<?php include"head.php"?>
+
 		
 		
 		
 				
-				
+		<style>
+			.title {
+    color: black; 
+	
+}
+
+input.button.btn-login{
+            background-color:black;
+        }
+
+a.button.view-password
+{
+            background-color:black;
+        }
+.txt-interactt 
+{
+    color: skyblue !important;
+}
+.txt-data, .input.txt-data
+{
+	color:#2586c6;
+}
+.body-style button, .body-style .button 
+{
+    background-color:black;
+}
+
+.txt-interact {
+    color: skyblue !important;
+}
+		</style>		
 					
 
             
@@ -263,7 +291,7 @@ if (isset($_POST['updatebtn'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $contactnumber = mysqli_real_escape_string($connect, $_POST['contactnumber']);
     $dateofbirth = mysqli_real_escape_string($connect, $_POST['dateofbirth']);
-    $gender = mysqli_real_escape_string($connect, $_POST['gender']);
+ 
 
    
     $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email = '$email' AND ID != '$product_id'");
@@ -271,13 +299,12 @@ if (isset($_POST['updatebtn'])) {
         echo "<script>alert('The email has already been used. Please choose another email.');</script>";
     } else {
         
-        $result = mysqli_query($connect, "UPDATE user_information SET
-                                          name = '$name', 
-                                          email = '$email', 
-                                          contactnumber = '$contactnumber',
-                                          dateofbirth = '$dateofbirth',
-                                          gender = '$gender'
-                                          WHERE ID = '$product_id'");
+		$result = mysqli_query($connect, "UPDATE user_information SET
+												 email = '$email', 
+												 name = '$name', 
+												 contactnumber = '$contactnumber',
+												 dateofbirth = '$dateofbirth'
+												 WHERE ID = '$product_id'");
 
         if (!$result) {
             die('Error: ' . mysqli_error($connect));
