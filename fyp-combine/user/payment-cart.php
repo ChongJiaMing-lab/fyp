@@ -420,7 +420,6 @@
         $currentYear = date("Y", $currentTimestamp);
         $num_card = str_replace(' ', '', $num_card);
 
-
         if ("20" . $validYear < $currentYear) {
             echo "<script>alert('Invalid Year!')</script>";
         } else if ($validMonth < $currentMonth) {
@@ -443,6 +442,12 @@
                         $result = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
 
                         $query = mysqli_query($connect, "INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$address_id','$status')");
+                        $new_point = number_format(($total_amount / 10), 2);
+                        $select_point = mysqli_query($connect, "SELECT * FROM point WHERE user_id = '$user_id'");
+                        $row_point = mysqli_fetch_assoc($select_point);
+                        $row_point["point"]+= $new_point;
+                        $new_point = $row_point["point"];
+                        $update_point = mysqli_query($connect, "UPDATE point SET point = '$new_point'");
                         $order_id = mysqli_insert_id($connect);
                         if (!$query) {
                             echo "<script>alert('failed to insert into order table');</script>";
@@ -450,9 +455,6 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             $cart_id = $row['cart_id'];
                             $qty = $row['qty'];
-
-
-
 
                             $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id,cart_id) 
         VALUES ('$order_id','$cart_id')");

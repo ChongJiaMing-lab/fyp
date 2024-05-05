@@ -120,6 +120,12 @@
                         <span>Sales Report</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="admin_voucher.php" class="sidebar-link">
+                        <i class="lni lni-cog"></i>
+                        <span>Voucher</span>
+                    </a>
+                </li>
             </ul>
         </aside>
     </div>
