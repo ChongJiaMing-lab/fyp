@@ -130,9 +130,6 @@
                 <ion-icon class="magni" name="search-outline"></ion-icon>
                 <input type="text" class="input" placeholder="Search" name="search" id="search">
             </form>
-            <!-- <form method="POST" action="generate_report.php">
-            <button type="submit" class="btn btn-success" name="order_receipt">Generate Report</button>
-            </form> -->
         </div>
         <hr>
         <div class="card">
