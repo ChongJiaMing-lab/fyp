@@ -1,11 +1,9 @@
-
+<?php include "head.php" ?>
 <!DOCTYPE html>
+
 <html dir="ltr" lang="en-US" class="ready">
 
 <head>
-
-
-
 
 
 
@@ -18,7 +16,7 @@
 
 
     <!-- MAIN STYLESHEET -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1710049660" rel="stylesheet"
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1710050486" rel="stylesheet"
         type="text/css" />
 
     <!-- CAROUSEL -->
@@ -48,9 +46,8 @@
         rel="stylesheet" type="text/css" />
 
     <!-- JQUERY -->
-    <script src="https://techzone.com.my/catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
-    <script defer type="text/javascript"
-        src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
+    <script src="catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
+    <script defer type="text/javascript" src="catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 
     <!-- TOTAL STORAGE -->
     <script defer type="text/javascript"
@@ -84,7 +81,7 @@
 
     <!-- CUSTOMIZE -->
     <link defer id="customize_css"
-        href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710049660"
+        href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710050486"
         rel="stylesheet" type="text/css" />
 
 
@@ -93,277 +90,383 @@
         .btn-compare {
             display: none;
         }
-
-        
     </style>
 
 
     <!-- TITLE -->
-    <title>Register Account</title>
+    <title>Register</title>
 
     <script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 
 </head>
+<style>
+	.newpw_require ul {
+		padding: 0;
+		margin: 0 0;
+		list-style: none;
+	}
 
-<body class="body-style wide  clamp-1">
-    <?php include "head.php" ?>
-    <style>
-	.btn-wishlist , .btn-compare {
-		
+	.newpw_require ul li {
+		margin-bottom: 8px;
+		color: red;
+		/* font-weight: 700; */
+	}
+
+	.newpw_require ul li.active {
+		display: none;
+	}
+
+	.newpw_require ul li span::before {
+		display: inline;
+	}
+
+	.newpw_require ul li.active span:before {
+		display: none;
+	}
+
+	.btn-wishlist,
+	.btn-compare {
+
 		display: none;
 	}
 
 	.title {
-    color: black; 
-	
-}
+		color: black;
 
-input.button.btn-login{
-            background-color:black;
-        }
+	}
 
-a.button.view-password
-{
-            background-color:black;
-        }
-.txt-interactt 
-{
-    color: skyblue !important;
-}
-	</style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("form1").addEventListener("submit", function (event) {
-                var email = document.getElementsByName("email")[0].value;
-                var name = document.getElementsByName("Name")[0].value;
-                var contactNumber = document.getElementsByName("telephone")[0].value;
-                var dobDay = parseInt(document.getElementsByName("dob_day")[0].value);
-                var dobYear = parseInt(document.getElementsByName("dob_year")[0].value);
-                var password = document.getElementsByName("password")[0].value;
+	input.button.btn-login {
+		background-color: black;
+	}
 
-                var emailError = document.getElementById("email-error");
-                var nameError = document.getElementById("name-error");
-                var contactNumberError = document.getElementById("contact-number-error");
-                var DayError = document.getElementById("Day-error");
-                var YearError = document.getElementById("Year-error");
-                var passwordError = document.getElementById("password-error");
+	a.button.view-password {
+		background-color: black;
+	}
 
-                var errorMessages = "";
+	.txt-interactt {
+		color: skyblue !important;
+	}
 
-                if (email.trim() === "") {
-                    errorMessages += "Email should be entered.<br>";
-                    emailError.innerHTML = "Email should be entered.";
-                } else {
-                    emailError.innerHTML = "";
-                }
+	.body-style button,
+	.body-style .button {
+		border-radius: 0px;
+		text-transform: capitalize;
+		background-color: black;
+	}
+</style>
 
-                if (name.trim().length < 6) {
-                    errorMessages += "Name should be at least 6 characters long.<br>";
-                    nameError.innerHTML = "Name should be at least 6 characters long.";
-                } else {
-                    nameError.innerHTML = "";
-                }
+<body class="body-style wide  clamp-1">
 
-                if (contactNumber.trim() === "") {
-                    errorMessages += "Contact Number should be entered.<br>";
-                    contactNumberError.innerHTML = "Contact Number should be entered.";
-                } else {
-                    contactNumberError.innerHTML = "";
-                }
 
-                if (contactNumber.trim().length != 11 && contactNumber.trim().length != 10) {
-                        errorMessages += "Invalid number length!<br>Please enter valid number.<br>";
-                        contactNumberError.innerHTML = "Invalid number length!<br>Please enter valid number.";
-                    } else {
-                        contactNumberError.innerHTML = "";
-                    }
-                if (isNaN(dobDay) || dobDay < 1 || dobDay > 31) {
-                    errorMessages += "Day should be a number between 1 and 31.<br>";
-                    DayError.innerHTML = "Day should be a number between 1 and 31.";
-                } else {
-                    DayError.innerHTML = "";
-                }
 
-                if (isNaN(dobYear) || dobYear < 1900 || dobYear > 2024) {
-                    errorMessages += "Year should be a number between 1900 and 2024.<br>";
-                    YearError.innerHTML = "Year should be a number between 1900 and 2024.";
-                } else {
-                    YearError.innerHTML = "";
-                }
+	<section id="account-register" class="section container account-access">
+		<div id="contents">
+			<div id="main-content">
+				<div class="holder">
+					<div id="register">
+						<div class="account-access-header">
+							<div class="title">Register Account</div>
+							<div class="title-message">Already have an account? <a class="txt-interactt txt-underline"
+									href="Login.php">Log in</a></div>
+						</div>
+						<form id="form1" name="form1" method="post" action="update_user.php">
+							<input type="hidden" name="register_token" value="TVRjeE1EQXdOalF3T0E9PQ">
+							<div class="form-body">
+								<div class="field">
+									<label class="label">Email Address</label>
+									<div class="control">
+										<input type="text" class="input" id="email" name="email" value="" />
+									</div>
+									<div class="newpw_require">
+										<ul>
+											<li class="letter1"><span></span>At least one letter</li>
+											<li class="email"><span></span>must have @</li>
 
-                if (password.trim().length < 14) {
-                    errorMessages += "Password should be at least 14 characters long.<br>";
-                    passwordError.innerHTML = "Password should be at least 14 characters long.";
-                } else {
-                    passwordError.innerHTML = "";
-                }
+										</ul>
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">Name</label>
+									<div class="control">
+										<input type="text" class="input" id="name" name="Name" value="" />
+									</div>
+									<div class="newpw_require">
+										<ul>
+											<li class="6_len"><span></span>At least 6 characters</li>
+										</ul>
+									</div>
+								</div>
+								<div class="field">
+									<label class="label">Contact Number</label>
+									<div class="control">
+										<input type="text" class="input" id="telephone" name="telephone" value="" />
+									</div>
+									<div class="newpw_require">
+										<ul>
 
-                if (errorMessages !== "") {
-                    event.preventDefault(); 
-                    document.getElementById("error-messages").innerHTML = errorMessages;
-                }
-            });
-        });
-    </script>
-    </head>
+											<li class="15_len2"><span></span>At least 10 number</li>
+											<li class="15_len2"><span></span>Example: 011xxxxxxx</li>
 
-    <body class="body-style wide  clamp-1">
-        <section id="account-register" class="section container account-access">
-            <div id="contents">
-                <div id="main-content">
-                    <div class="holder">
-                        <div id="register">
-                            <div class="account-access-header">
-                                <div class="title">Register Account</div>
-                                <div class="title-message">Already have an account? <a
-                                        class="txt-interactt txt-underline" href="Login.php">Log in</a></div>
-                            </div>
-                            <form id="form1" name="form1" method="post" action="#">
-                                <input type="hidden" name="register_token" value="TVRjeE1EQXdOalF3T0E9PQ">
-                                <div class="form-body">
-                                    <div class="field">
-                                        <label class="label">Email Address</label>
-                                        <div class="control">
-                                            <input type="text" class="input" name="email" value="" />
-                                        </div>
-                                        <div id="email-error" style="color: red;"></div>
-                                    </div>
-                                    <div class="field">
-                                        <label class="label">Name</label>
-                                        <div class="control">
-                                            <input type="text" class="input" name="Name" value="" />
-                                        </div>
-                                        <div id="name-error" style="color: red;"></div>
-                                    </div>
-                                    <div class="field">
-                                        <label class="label">Contact Number</label>
-                                        <div class="control">
-                                            <input type="text" class="input" name="telephone" value="" />
-                                        </div>
-                                        <div id="contact-number-error" style="color: red;"></div>
-                                    </div>
-                                    <div class="field-group">
-                                        <div class="field dob">
-                                            <div class="month-input">
-                                                <label class="label">
-                                                    Date of Birth </label>
-                                                <div class="control">
-                                                    <select id="dob_month" name="dob_month" class="">
-                                                        <option value="0">January</option>
-                                                        <option value="1">February</option>
-                                                        <option value="2">March</option>
-                                                        <option value="3">April</option>
-                                                        <option value="4">May</option>
-                                                        <option value="5">Jun</option>
-                                                        <option value="6">July</option>
-                                                        <option value="7">August</option>
-                                                        <option value="8">September</option>
-                                                        <option value="9">October</option>
-                                                        <option value="10">November</option>
-                                                        <option value="11">December</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="day-input">
-                                                <label class="label">
-                                                    Day </label>
-                                                <div class="control">
-                                                    <input id="dob_day" name="dob_day" type='number' class="input"
-                                                        min="1" placeholder="DD" value="" pattern="[0-9] " />
-                                                </div>
+										</ul>
+									</div>
+								</div>
+								<div class="field-group">
+									<div class="field dob">
+										<div class="month-input">
+											<label class="label">
+												Date of Birth </label>
+											<div class="control">
+												<select id="dob_month" name="dob_month" class="">
+                                                    <option value="0">Select</option>
+													<option value="1">January</option>
+													<option value="2">February</option>
+													<option value="3">March</option>
+													<option value="4">April</option>
+													<option value="5">May</option>
+													<option value="6">Jun</option>
+													<option value="7">July</option>
+													<option value="8">August</option>
+													<option value="9">September</option>
+													<option value="10">October</option>
+													<option value="11">November</option>
+													<option value="12">December</option>
+												</select>
+											</div>
+										</div>
+										<div class="day-input">
+											<label class="label">
+												Day </label>
+											<div class="control">
+												<input id="dob_day" name="dob_day" type='number' class="input" min="1"
+													placeholder="DD" value="" pattern="[0-9] " />
+											</div>
 
-                                            </div>
-                                            <div class="year-input">
-                                                <label class="label ">
-                                                    Year </label>
-                                                <div class="control">
-                                                    <input id="dob_year" name="dob_year" type='number' class="input"
-                                                        min="1869" placeholder="YYYY" value="" pattern="[0-9]" />
-                                                </div>
+										</div>
+										<div class="year-input">
+											<label class="label ">
+												Year </label>
+											<div class="control">
+												<input id="dob_year" name="dob_year" type='number' class="input"
+													min="1869" placeholder="YYYY" value="" pattern="[0-9]" />
+											</div>
 
-                                            </div>
-                                            <input type="hidden" class="input " id="birthday_date" readonly="readonly"
-                                                name="birthday_date" value="">
-                                        </div>
-                                        <div id="Day-error" style="color: red;"></div>
-                                        <div id="Year-error" style="color: red;"></div>
-                                    </div>
-        
-                                    <div class="field">
-                                        <label class="label ">
-                                            Password <span class="help-password"> *at least 14 characters</span> </label>
+										</div>
+										<input type="hidden" class="input " id="birthday_date" readonly="readonly"
+											name="birthday_date" value="">
+									</div>
+								</div>
+								<div class="newpw_require">
+									<ul>
 
-                                        <div class="field has-addons">
-                                            <div class="control addon-fix">
-                                                <input type="password" class="input " name="password" value="" />
-                                            </div>
-                                            <div class="control">
-                                                <a class="button view-password"><i class="mdi mdi-eye-off"></i></a>
-                                            </div>
-                                        </div>
+										<li class="day"><span></span>Day Should Be 0-31</li>
+										<li class="Year"><span></span>Start at 2000-2024</li>
 
-                                        <div id="password-error" style="color: red;"></div>
-                                    </div>
-                                </div>
-                                <div class="form-footer">
+									</ul>
+								</div>
+							</div>
+
+							<div class="myaccount-content">
+								<!-- PASSWORD -->
+								<div class="field">
+									<label class="label">
+										New Password</label>
+									<div class="field has-addons">
+										<div class="control addon-fix">
+											<input id="pw_valid" type="password" class="input " name="password" value=""
+												required>
+										</div>
+										<div class="control">
+											<a class="button view-password">
+												<span><i class="mdi mdi-eye-off"></i></span>
+											</a>
+										</div>
+									</div>
+									<div class="newpw_require">
+										<ul>
+											<li class="letter"><span></span>At least one letter</li>
+											<li class="num"><span></span>At least one number</li>
+											<li class="special"><span></span>At least one special character</li>
+											<li class="14_len"><span></span>At least 15 characters</li>
+										</ul>
+									</div>
+								</div>
+
+
+
+								<div class="form-footer">
                                     <div class="field">
                                         <input type="hidden" name="agree" value="1" />
-                                        <input type="submit" class="button btn-login" id="btn_submit" name="register" value="Confirm Register"
-                                            class="button" />
+                                        <input type="submit" class="button btn-login" id="btn_submit" name="register"
+                                            value="Confirm Register" class="button" />
 
                                     </div>
+									</div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
+			<script>
+				document.addEventListener("DOMContentLoaded", function () {
 
-                document.querySelector(".view-password").addEventListener("click", function () {
-                    var passwordInput = document.getElementsByName("password")[0];
-                    var eyeIcon = document.querySelector(".view-password i");
+					document.querySelector(".view-password").addEventListener("click", function () {
+						var passwordInput = document.getElementsByName("password")[0];
+						var eyeIcon = document.querySelector(".view-password i");
 
 
-                    if (passwordInput.type === "password") {
-                        passwordInput.type = "text";
-                        eyeIcon.classList.remove("mdi-eye-off");
-                        eyeIcon.classList.add("mdi-eye");
-                    } else {
-                        passwordInput.type = "password";
-                        eyeIcon.classList.remove("mdi-eye");
-                        eyeIcon.classList.add("mdi-eye-off");
-                    }
-                });
-            });
-        </script>
-    </body>
+						if (passwordInput.type === "password") {
+							passwordInput.type = "text";
+							eyeIcon.classList.remove("mdi-eye-off");
+							eyeIcon.classList.add("mdi-eye");
+						} else {
+							passwordInput.type = "password";
+							eyeIcon.classList.remove("mdi-eye");
+							eyeIcon.classList.add("mdi-eye-off");
+						}
+					});
+				});
+
+				
+			</script>
+
+	</section>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
+	</script>
+	<script>
+		$('#email').on('keyup', function () {
+
+			email_value = $(this).val();
+			if (email_value.match(/[a-z]/g)) {
+				$('.letter1').addClass('active');
+			}
+			else {
+				$('.letter1').removeClass('active');
+			}
+
+
+			if (email_value.match(/[@]/g)) {
+				$('.email').addClass('active');
+			}
+			else {
+				$('.email').removeClass('active');
+			}
+
+		})
+
+		$('#name').on('keyup', function () {
+
+			name_value = $(this).val();
+			if (name_value.length == 6 || name_value.length > 6) {
+				$('.6_len').addClass('active');
+			}
+			else {
+				$('.6_len').removeClass('active');
+			}
+
+
+		})
+
+		$('#dob_month, #dob_day, #dob_year').on('change', function () {
+    var month = parseInt($('#dob_month').val());
+    var day = parseInt($('#dob_day').val());
+    var year = parseInt($('#dob_year').val());
+
+    if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
+    
+        if (year >= 2000 && year <= 2024 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+        
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentDay = currentDate.getDate();
+            if (year == currentYear && month > currentMonth) {
+                $('.day').removeClass('active').addClass('error');
+                $('.Year').removeClass('active');
+            } else if (year == currentYear && month == currentMonth && day > currentDay) {
+                $('.day').removeClass('active').addClass('error');
+                $('.Year').removeClass('active');
+            } else {
+                $('.day').removeClass('error').addClass('active');
+                $('.Year').removeClass('error').addClass('active');
+            }
+        } else {
+          
+            $('.day').removeClass('active').addClass('error');
+            $('.Year').removeClass('active').addClass('error');
+        }
+    } else {
+     
+    }
+});
+
+		$('#telephone').on('keyup', function () {
+
+			telephone_value = $(this).val();
+			if (telephone_value.length == 10 || telephone_value.length > 10) {
+				$('.15_len2').addClass('active');
+			}
+			else {
+				$('.15_len2').removeClass('active');
+			}
+
+
+		})
+
+		$('#pw_valid').on('keyup', function () {
+			pw_valid_value = $(this).val();
+
+			if (pw_valid_value.match(/[a-z]/g)) {
+				$('.letter').addClass('active');
+			}
+			else {
+				$('.letter').removeClass('active');
+			}
+
+
+			if (pw_valid_value.match(/[0-9]/g)) {
+				$('.num').addClass('active');
+			}
+			else {
+				$('.num').removeClass('active');
+			}
+
+
+			if (pw_valid_value.match(/[!@#$%^&*]/g)) {
+				$('.special').addClass('active');
+			}
+			else {
+				$('.special').removeClass('active');
+			}
+
+
+			if (pw_valid_value.length == 14 || pw_valid_value.length > 8) {
+				$('.14_len').addClass('active');
+			}
+			else {
+				$('.14_len').removeClass('active');
+			}
+		})
+
+
+
+		$('#btn_submit').on("click", function (e) {
+			e.preventDefault();
+			var actives = false;
+			$('.newpw_require ul li').each(function () {
+				if (!$(this).hasClass('active')) {
+					actives = true;
+					return false;
+				}
+			});
+
+			if (actives) {
+				$('.newpw_require ul li:not(.active)').effect("shake", { times: 2 }, 500);
+			} else {
+				$('form').submit();
+			}
+		});
+
+	</script>
+</body>
 
 </html>
-
-<?php
-if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
-   
-    $a = $_POST["email"];
-    $b = $_POST["Name"];
-    $c = $_POST["telephone"];
-    $d = $_POST["dob_month"];
-    $f = $_POST["password"];
-    $g = $_POST["dob_day"];
-    $h = $_POST["dob_year"];
-    $i = $g . '-' . $d . '-' . $h;
-
-
-        
-        $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email='$a'");
-        if (mysqli_num_rows($verify_query) > 0) {
-            echo "<script>alert('The email has already been used. Please choose another email.');</script>";
-            exit;
-        } else {
-            
-            echo "<script>alert('Register Successful!');</script>";
-            mysqli_query($connect, "INSERT INTO user_information(email,name,contactnumber,dateofbirth,password) VALUES('$a','$b','$c','$i','$f')");
-        }
-    }
-?>
