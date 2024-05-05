@@ -84,9 +84,9 @@
 
     .magni {
         position: absolute;
-        top: 29%;
+        top: 19%;
         font-size: 30px;
-        left: 10px;
+        left: 7px;
     }
 
     .input {
