@@ -22,7 +22,7 @@ if(isset($_GET["product_id"])) {
             mysqli_query($connect, $insert_query);
         }
 
-        echo "<script>window.location.href='product_list.php';</script>";
+        echo "<script>window.location.href='search.php';</script>";
     }
 } else {
     echo '<script>alert("add product unsuccessful");</script>';

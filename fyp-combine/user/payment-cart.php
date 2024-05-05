@@ -12,8 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Checkout</title>
 
     <style type="text/css">
@@ -70,6 +71,7 @@
         .col-25 {
             flex: 25%;
         }
+
         .col-15 {
             flex: 15%;
         }
@@ -122,10 +124,54 @@
             width: 50%;
         }
 
-        .slash{
-            margin:0px 10px;
+        .slash {
+            margin: 0px 10px;
         }
 
+        .flex-container {
+            display: block;
+            padding: 0;
+        }
+
+        .flex-item {
+            display: flex;
+
+        }
+
+        .flex-item input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .btn-wishlist,
+        .btn-compare {
+
+            display: none;
+        }
+
+        .title {
+            color: black;
+
+        }
+
+        input.button.btn-login {
+            background-color: black;
+        }
+
+        a.button.view-password {
+            background-color: black;
+        }
+
+        .txt-interactt {
+            color: skyblue !important;
+        }
+
+        .body-style button,
+        .body-style .button {
+            border-radius: 0px;
+            text-transform: capitalize;
+            background-color: skyblue !important;
+            color: black;
+        }
     </style>
 </head>
 
@@ -143,7 +189,7 @@
                             <h3>Billing Details</h3>
                             <?php
                             $id = $_GET['ID'];
-                           
+
                             $query = "SELECT * FROM user_information WHERE ID='$id'";
                             $query2 = "SELECT * FROM user_address WHERE customer_id='$id' AND default_address = '1' ";
                             $result = mysqli_query($connect, $query);
@@ -171,26 +217,30 @@
 
                                             <?php
                                         } else { ?>
-                                            <br>Address : 
-                                            <br><input type="text" name="address" value="<?php echo $row2['address']?>"  readonly autocomplete="off"></br>
+                                            <br>Address :
+                                            <br><input type="text" name="address" value="<?php echo $row2['address'] ?>" readonly
+                                                autocomplete="off"></br>
                                             <div class="row">
-                                            <div class="col-25">
-                                                <br>City : 
-                                                <br><input type="text" name="state" value="<?php echo $row2['city'] ?>" readonly autocomplete="off"></br>
+                                                <div class="col-25">
+                                                    <br>City :
+                                                    <br><input type="text" name="city" value="<?php echo $row2['city'] ?>" readonly
+                                                        autocomplete="off"></br>
+                                                </div>
+                                                <div class="col-25">
+                                                    <br>State :
+                                                    <br><input type="text" name="state" value="<?php echo $row2['state'] ?>" readonly
+                                                        autocomplete="off"></br>
+                                                </div>
+                                                <div class="col-25">
+                                                    <br>Postcode :
+                                                    <br><input type="text" name="postcode" value="<?php echo $row2['postcode'] ?>"
+                                                        readonly autocomplete="off"></br>
+                                                </div>
                                             </div>
-                                            <div class="col-25">
-                                                <br>State : 
-                                                <br><input type="text" name="code" value="<?php echo $row2['state'] ?>" readonly autocomplete="off"></br>
-                                            </div>
-                                            <div class="col-25">
-                                                <br>Postcode : 
-                                                <br><input type="text" name="code" value="<?php echo $row2['postcode'] ?>" readonly autocomplete="off"></br>
-                                            </div>
-                                        </div>
                                             <?php
                                         }
                                         ?>
-    
+
 
                                         <div class="row">
                                             <div class="col-50">
@@ -205,30 +255,38 @@
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-body">
+
+                                                                <?php
+                                                                $id = $_GET['ID'];
+                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id'";
+                                                                $result = mysqli_query($connect, $query);?>
                                                                 
-                                                                    <?php
-                                                                    $id = $_GET['ID'];
-                                                                    $query = "SELECT * FROM user_address WHERE customer_id='$id'";
-                                                                    $result = mysqli_query($connect, $query); ?>
-                                                                    <ul class="flex-container longhand">
-                                                                        <?php 
-                                                                    while ($row = mysqli_fetch_assoc($result)) { ?>
-                                                                          <li class="flex-item"><input type="radio" id="javascript" name="fav_language"
-                                                                            value="<?php echo $row['address_id']?>">
-                                                                        <label for="<?php echo $row['address_id']?>"><?php echo $row['address'] . ', ' . $row['postcode'] . ', ' . $row['city']
-                                                                . ', ' . $row['state'] ;?></label></li>
-                                                                        <?php
-                                                                        $address_id = $row['address_id'];
-                                                                        $count++;
-                                                                    }
-                                                                    ?> 
-                                                                    </ul>                 
+                                                                <ul class="flex-container longhand">
+                                                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                        <li class="flex-item">
+                                                                            <input type="radio" name="address_option"
+                                                                                
+                                                                                data-address="<?php echo ($row['address']); ?>"
+                                                                                data-city="<?php echo ($row['city']); ?>"
+                                                                                data-state="<?php echo ($row['state']); ?>"
+                                                                                data-postcode="<?php echo ($row['postcode']); ?>"
+                                                                                id="<?php echo ($row['address_id']); ?>">
+                                                                            <label for="<?php echo ($row['address_id']); ?>">
+                                                                                <?php echo ($row['address'] . ', ' . $row['postcode'] . ', ' . $row['city'] . ', ' . $row['state']); ?>
+                                                                            </label>
+                                                                        </li>
+                                                                    <?php 
+                                                                      $address_id = $row['address_id'];
+                                                                      $count++;
+                                                                } ?>
+                                                                </ul>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save
-                                                                    changes</button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    id="saveChangesButton">Save Changes</button>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -236,30 +294,58 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#saveChangesButton').click(function () {
 
+                                                var selected = $('input[name="address_option"]:checked');
+
+                                                
+                                                var address = selected.data('address');
+                                                var city = selected.data('city');
+                                                var state = selected.data('state');
+                                                var postcode = selected.data('postcode');
+                                               
+
+
+                                                $('input[name="address"]').val(address);
+                                                $('input[name="city"]').val(city);
+                                                $('input[name="state"]').val(state);
+                                                $('input[name="postcode"]').val(postcode);
+
+
+                                                $('#exampleModal').modal('hide');
+                                            });
+                                        });
+                                    </script>
                                     <div class="col-50">
                                         <br>Accepted Payment method
                                         <div class="icon-container">
-                                            <i class="fa fa-cc-visa"  name="Credit_Cart" style="color:navy;"></i>
-                                            <i class="fa fa-cc-mastercard"  name="Credit_Cart" style="color:red;"></i>
+                                            <i class="fa fa-cc-visa" name="Credit_Cart" style="color:navy;"></i>
+                                            <i class="fa fa-cc-mastercard" name="Credit_Cart" style="color:red;"></i>
                                         </div>
                                         <br>Name on card
-                                        <br><input type="text" class="required" id="NameCard" placeholder="ALI" autocomplete="off"></br>
+                                        <br><input type="text" class="required" id="NameCard" placeholder="ALI"
+                                            autocomplete="off"></br>
                                         <br>Card Number
-                                        <br><input type="text" class="required" id="numCard" name="numCard" placeholder="1111 1111 1111 1111" autocomplete="off"></br>
+                                        <br><input type="text" class="required" id="numCard" name="numCard"
+                                            placeholder="1111 1111 1111 1111" autocomplete="off"></br>
 
-                                            <div class="row">
-                                                <div class="col-25">
-                                                    <br>Valid Thru
-                                                    <div class="valid">
-                                                    <input type="text" class="required validThru" id="validMonth" name="validMonth" placeholder="12(Month)" autocomplete="off">
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <br>Valid Thru
+                                                <div class="valid">
+                                                    <input type="text" class="required validThru" id="validMonth" name="validMonth"
+                                                        placeholder="12(Month)" autocomplete="off">
                                                     <span class="slash">/</span>
-                                                    <input type="text" class="required validThru" id="validYear" name="validYear" placeholder="24(Year)" autocomplete="off">
-                                                    </div>
+                                                    <input type="text" class="required validThru" id="validYear" name="validYear"
+                                                        placeholder="24(Year)" autocomplete="off">
                                                 </div>
+                                            </div>
                                             <div class="col-25">
                                                 <br>CVV
-                                                <br><input type="text" class="required" id="CVV" name="cvv" placeholder="123" autocomplete="off"></br>
+                                                <br><input type="text" class="required" id="CVV" name="cvv" placeholder="123"
+                                                    autocomplete="off"></br>
                                             </div>
                                         </div>
                                     </div>
@@ -311,149 +397,147 @@
                     <hr>
                     <p>Total <span class="pricee"
                             style="color:black"><b>RM<?php echo number_format($ttotal, 2) ?></b></span></p>
-                            <?php if($item != 0){ ?>
-                    <button name="pay">Pay Now</button>
-                    <?php 
-                }else{ 
-                    ?>
+                    <?php if ($item != 0) { ?>
+                        <button name="pay">Pay Now</button>
+                        <?php
+                    } else {
+                        ?>
                         <button onclick="error_alert()">Pay Now</button>
-                    <?php }?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </form>
 
     <?php
-if (isset($_POST['pay'])) {
-    $currentTimestamp = time();
-    $num_card = $_POST['numCard'];
-    $validMonth = $_POST['validMonth'];
-    $validYear = $_POST['validYear'];
-    $cvv = $_POST['cvv'];
-    $currentMonth = date("m", $currentTimestamp);
-    $currentYear = date("Y", $currentTimestamp);
-    $num_card = str_replace(' ','',$num_card);
-   
-    
-        if("20".$validYear < $currentYear){
+    if (isset($_POST['pay'])) {
+        $currentTimestamp = time();
+        $num_card = $_POST['numCard'];
+        $validMonth = $_POST['validMonth'];
+        $validYear = $_POST['validYear'];
+        $cvv = $_POST['cvv'];
+        $currentMonth = date("m", $currentTimestamp);
+        $currentYear = date("Y", $currentTimestamp);
+        $num_card = str_replace(' ', '', $num_card);
+
+
+        if ("20" . $validYear < $currentYear) {
             echo "<script>alert('Invalid Year!')</script>";
-        }
-        else if($validMonth < $currentMonth){
+        } else if ($validMonth < $currentMonth) {
             echo "<script>alert('Invalid Month!')</script>";
-        }
-        else{
-            if(isset($num_card)){
-                $card = mysqli_query($connect,"SELECT * FROM credit_card WHERE card_id = '$num_card'");
-                if($result3 = mysqli_fetch_assoc($card))
-                {
-                    if($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv)
-                    {
+        } else {
+            if (isset($num_card)) {
+                $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
+                if ($result3 = mysqli_fetch_assoc($card)) {
+                    if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv) {
 
 
-    $user_id = $_GET['ID']; 
-    
-    $status = 'Processing';
-    $total_amount = $ttotal;
-    $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
-    $currentDateTime = $now->format('d-m-Y H:i:s'); 
-  
-     
-    $result = mysqli_query($connect,"SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
+                        $user_id = $_GET['ID'];
 
-    $query = mysqli_query($connect,"INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$address_id','$status')" );
-     $order_id =mysqli_insert_id($connect);
-     if(!$query)
-          {
-            echo "<script>alert('failed to insert into order table');</script>";
-          }
-    while($row = mysqli_fetch_assoc($result))
-    {
-        $cart_id = $row['cart_id'];
-        $qty = $row['qty'];
+                        $status = 'Processing';
+                        $total_amount = $ttotal;
+                        $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
+                        $currentDateTime = $now->format('d-m-Y H:i:s');
+                       
 
-        
-      
-         
-        $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id,cart_id) 
+                        $result = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
+
+                        $query = mysqli_query($connect, "INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$address_id','$status')");
+                        $order_id = mysqli_insert_id($connect);
+                        if (!$query) {
+                            echo "<script>alert('failed to insert into order table');</script>";
+                        }
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $cart_id = $row['cart_id'];
+                            $qty = $row['qty'];
+
+
+
+
+                            $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id,cart_id) 
         VALUES ('$order_id','$cart_id')");
 
-                       
-    }
-    
- 
-    if (mysqli_affected_rows($connect) > 0) {
-        mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
-        
-        $ID = $_SESSION['ID'];
-        ?>
-        <script>
-            Swal.fire({
-                title: "Good job!",
-                text: "Payment was successful!",
-                icon: "success",
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.value) {
-                    window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
+
+                        }
+
+
+                        if (mysqli_affected_rows($connect) > 0) {
+                            mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
+
+                            $ID = $_SESSION['ID'];
+                            ?>
+                                <script>
+                                    Swal.fire({
+                                        title: "Payment was successful!",
+                                        text: "You order have benn save in your order page!",
+                                        icon: "success",
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.value) {
+                                            window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
+                                        }
+                                    });
+                                </script>
+                                <?php
+                                exit;
+                        } else {
+                            echo "<script>alert('Error inserting data into cart_order_detail table.');</script>";
+                        }
+                    }
                 }
-            });
-        </script>
-        <?php
-        exit;
-    } else {
-        echo "<script>alert('Error inserting data into cart_order_detail table.');</script>";
+            }
+        }
     }
-}}}}}
-?>
+    ?>
 
 </body>
 <script>
-document.getElementById('numCard').addEventListener('input', function(event) {
-    let input = event.target;
-    let trimmedValue = input.value.replace(/\s+/g, '');
-    let formattedValue = '';
-    for (let i = 0; i < trimmedValue.length; i++) {
-        if (i > 0 && i % 4 === 0) {
-            formattedValue += ' ';
-        }
-        formattedValue += trimmedValue.charAt(i);
-    }
-    input.value = formattedValue;
-    if (trimmedValue.length >= 16) {
-        input.value = input.value.slice(0, 19);
-        input.blur();
-    }
-    
-});
-
-document.querySelectorAll('.validThru').forEach(function(input) {
-    input.addEventListener('input', function(event) {
-
-        if (input.value.length >= 2) {
-            input.value = input.value.slice(0, 2);
-            input.blur();
-
-            let nextInput = input.nextElementSibling;
-            while (nextInput) {
-                if (nextInput.classList.contains('validThru')) {
-                    nextInput.focus();
-                    break;
-                }
-                nextInput = nextInput.nextElementSibling;
+    document.getElementById('numCard').addEventListener('input', function (event) {
+        let input = event.target;
+        let trimmedValue = input.value.replace(/\s+/g, '');
+        let formattedValue = '';
+        for (let i = 0; i < trimmedValue.length; i++) {
+            if (i > 0 && i % 4 === 0) {
+                formattedValue += ' ';
             }
+            formattedValue += trimmedValue.charAt(i);
+        }
+        input.value = formattedValue;
+        if (trimmedValue.length >= 16) {
+            input.value = input.value.slice(0, 19);
+            input.blur();
+        }
+
+    });
+
+    document.querySelectorAll('.validThru').forEach(function (input) {
+        input.addEventListener('input', function (event) {
+
+            if (input.value.length >= 2) {
+                input.value = input.value.slice(0, 2);
+                input.blur();
+
+                let nextInput = input.nextElementSibling;
+                while (nextInput) {
+                    if (nextInput.classList.contains('validThru')) {
+                        nextInput.focus();
+                        break;
+                    }
+                    nextInput = nextInput.nextElementSibling;
+                }
+            }
+        });
+    });
+    document.getElementById('CVV').addEventListener('input', function (event) {
+        let input = event.target;
+
+        if (input.value.length >= 3) {
+            input.value = input.value.slice(0, 3);
+            input.blur();
         }
     });
-});
-document.getElementById('CVV').addEventListener('input', function(event) {
-    let input = event.target;
-
-    if (input.value.length >= 3) {
-        input.value = input.value.slice(0, 3);
-        input.blur();
-    }
-});
-document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('form[name="billfrm"]').addEventListener('submit', function(event) {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form[name="billfrm"]').addEventListener('submit', function (event) {
             if (!validateForm()) {
                 event.preventDefault();
             }
@@ -493,9 +577,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         }
     });
-    function error_alert(){
-            alert("Your shopping cart is empty!");
-        }
+    function error_alert() {
+        alert("Your shopping cart is empty!");
+    }
 
 </script>
+
 </html>

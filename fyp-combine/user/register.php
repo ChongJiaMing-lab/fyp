@@ -191,9 +191,9 @@ a.button.view-password
                     YearError.innerHTML = "";
                 }
 
-                if (password.trim().length < 6) {
-                    errorMessages += "Password should be at least 6 characters long.<br>";
-                    passwordError.innerHTML = "Password should be at least 6 characters long.";
+                if (password.trim().length < 14) {
+                    errorMessages += "Password should be at least 14 characters long.<br>";
+                    passwordError.innerHTML = "Password should be at least 14 characters long.";
                 } else {
                     passwordError.innerHTML = "";
                 }
@@ -291,7 +291,7 @@ a.button.view-password
         
                                     <div class="field">
                                         <label class="label ">
-                                            Password <span class="help-password"> *at least 6 characters</span> </label>
+                                            Password <span class="help-password"> *at least 14 characters</span> </label>
 
                                         <div class="field has-addons">
                                             <div class="control addon-fix">
@@ -362,7 +362,7 @@ if (isset($_POST["register"]) && $_POST["register"] == "Confirm Register") {
             exit;
         } else {
             
-            echo "<script>alert('success.');</script>";
+            echo "<script>alert('Register Successful!');</script>";
             mysqli_query($connect, "INSERT INTO user_information(email,name,contactnumber,dateofbirth,password) VALUES('$a','$b','$c','$i','$f')");
         }
     }

@@ -39,7 +39,7 @@ if (isset($_POST["action"])) {
             else
             {
                 $available = '  <a>
-                                <input type="button" name="add" value="Out of stock" )" />
+                                <input type="button" name="add" value="Out of stock" disabled )" />
                                 </a>   ';
             }
             $output .= '

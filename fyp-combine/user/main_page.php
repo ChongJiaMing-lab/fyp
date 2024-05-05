@@ -105,6 +105,14 @@
 				<div class="holder">
 
 					<style>
+						html,
+						body {
+							overflow: hidden;
+						
+							height: 100%;
+				
+						}
+
 						.slideshow-container {
 							max-width: 1000px;
 							position: relative;
@@ -258,6 +266,11 @@
 						.btn-header:hover {
 							background-color: #2980b9;
 							box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+						}
+
+						.cover-heading span {
+							color: #fff;
+							text-align: center;
 						}
 					</style>
 

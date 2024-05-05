@@ -99,27 +99,24 @@
 
 
     <style>
+        #product-product {
+            max-width: 800px;
+            width: 100%;
 
 
+        }
 
-#product-product {
-    max-width: 800px; 
-    width: 100%; 
+        #product-product #main-content #product-frame .product-infos table tr td:first-child {
+            width: 300px !important;
+            opacity: 0.7;
+        }
 
-    
-}
-
-#product-product #main-content #product-frame .product-infos table tr td:first-child {
-     width: 300px !important;
-     opacity: 0.7; 
-}
-
-#product-product #main-content #product-frame .product-infos {
-    width: calc(100% - 350px);
-    padding: 5px;
-    padding-top: 0px;
-}
-</style>
+        #product-product #main-content #product-frame .product-infos {
+            width: calc(100% - 350px);
+            padding: 5px;
+            padding-top: 0px;
+        }
+    </style>
 
 
     <section id="product-product" class="section content container per-row-4">
@@ -194,7 +191,7 @@
 
                                             <!-- STOCK AVAILABILITY -->
                                             <tr class="availability">
-                                                <td >Availability</td>
+                                                <td>Availability</td>
                                                 <td>
                                                     <div style=" color:<?php echo ($row['stock'] < 1) ? 'red' : 'green'; ?>">
                                                         <?php echo ($row['stock'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
@@ -203,7 +200,7 @@
                                             </tr>
 
                                             <!-- ESTIMATE SHIPPING -->
-                                         
+
 
 
                                             <!-- CSS LINE-->
@@ -221,12 +218,15 @@
                                                     Quantity </td>
                                                 <td>
                                                     <div class="input-group" style="width:150px">
-                                                        <button type="button" class="button btn-number btn-minus" data-type="minus">
+                                                        <button type="button" class="button btn-number btn-minus" data-type="minus"
+                                                            onclick="adjustQuantity(-1)">
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                                         </button>
-                                                        <input class="input" type="text" name="quantity" size="2" value="1" />
-                                                        <input type="hidden" name="product_id" size="2" value="2696" />
-                                                        <button type="button" class="button btn-number btn-plus" data-type="plus">
+                                                        <input class="input" type="text" id="quantity" name="quantity" size="2"
+                                                            value="1" />
+                                                        <input type="hidden" id="product_id" name="product_id" value="2696" />
+                                                        <button type="button" class="button btn-number btn-plus" data-type="plus"
+                                                            onclick="adjustQuantity(1)">
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
@@ -234,19 +234,49 @@
 
                                                 </td>
 
-                                                
+
                                             </tr>
-                                            
+
                                             <!-- END QUANTITY -->
                                         </table>
 
                                         <span class="btn-add-cart">
-                                                    <input type="button" value="Add to Cart" class="button" fdprocessedid="rfl2z">
-                                         </span>
+                                            <?php if ($row['stock'] < 1): ?>
+                                                <input type="button" value="Out of Stock" class="button" disabled>
+                                            <?php else: ?>
+                                                <input type="button" value="Add to Cart" class="button"
+                                                    onclick="addToCart('<?php echo $row['product_id']; ?>')" fdprocessedid="rfl2z">
+                                            <?php endif; ?>
+                                            </span>
+
+                                            <script>
+                                                function adjustQuantity(change) {
+                                                    var input = document.getElementById('quantity');
+                                                    var currentValue = parseInt(input.value);
+                                                    currentValue += change;
+                                                    if (currentValue < 1) currentValue = 1;  // Prevent negative quantities
+                                                    input.value = currentValue;
+                                                }
+                                                
+                                                function addToCart(product_id) {
+                                                    var xhr = new XMLHttpRequest();
+                                                    xhr.open('GET', 'addtocart.php?product_id=' + product_id, true);
+                                                    xhr.onload = function () {
+                                                        console.log(xhr.responseText);
+                                                        alert('Product added to cart!');
+                                                        window.location.reload();
+                                                    };
+                                                    xhr.onerror = function () {
+                                                        alert('Request failed; please try again.');
+                                                    };
+                                                    xhr.send();
+                                                }
+                                            </script>
+
                                     </div>
 
                                     <!-- BUTTONS -->
-                                   
+
 
                                 </div>
                                 <!-- END PRODUCT INFOS -->
@@ -257,7 +287,7 @@
 
 
                             <!-- SOCIAL SHARING -->
-                           
+
                             <!-- PRODUCT TABS -->
                             <div class="tabs is-centered prod-desc-tab">
                                 <ul>
@@ -295,7 +325,7 @@
 
                             </div>
 
-                            
+
 
 
                             <!-- ========== END PRODUCT TABS CONTENT ========== -->

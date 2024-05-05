@@ -69,6 +69,30 @@
 	.btn-wishlist , .btn-compare {
 		display: none;
 	}
+
+	.btn-wishlist , .btn-compare {
+
+display: none;
+}
+
+.title {
+color: black !important; 
+
+}
+
+input.button.btn-login{
+	background-color:black;
+}
+
+a.button.view-password
+{
+	background-color:black;
+}
+.txt-interactt 
+{
+color: skyblue !important;
+}
+
 	</style>
 		
 	
@@ -134,74 +158,7 @@
 					});
 					</script>
 						
-						<label class="lbl-sort-by">Category</label>
-						<select name="category_id" id="category_select">
-							
-							<?php
-							$query2 = "SELECT DISTINCT p.category_id, c.category
-							FROM product p 
-							INNER JOIN category c ON p.category_id = c.category_id
-							WHERE p.product_status ='1' 
-							ORDER BY p.product_id DESC";
-
-								$statement_category = $connect->prepare($query2); // Use a different variable for statement object
-								$execute_result_category = $statement_category->execute(); // Execute the statement
-								if ($execute_result_category) {
-									$result_category = $statement_category->get_result();
-									foreach ($result_category as $row) {
-										?>
-										<div class="sort-by">
-											<label>
-												<option value="<?php echo $row['category_id']; ?>">
-												<?php echo $row['category']; ?></option>
-											</label>
-										</div>
-
-										<?php
-									}
-								} else {
-									// Handle the case where execute() failed
-									echo "Error executing query: " . $statement_category->error;
-								}
-							?>
-						</select>
-								<script>
-									 $(document).ready(function () {
-            filter_data();
-            function filter_data() {
-                $('.product-listing .box-content').html('<div id="loading"></div>'); 
-                var action = 'live_search';
-                
-                var category = get_filter('category');
-                $.ajax({
-                    url: "live_search.php",
-                    method: "POST",
-                    data: {
-                        action: action, category: category
-                    },
-                    success: function (data) {
-                        $('.product-listing .box-content').html(data);
-                    }
-                })
-
-
-            }
-
-            function get_filter(class_name) {
-                var filter = [];
-                $('.' + class_name + ':checked').each(function () {
-                    filter.push($(this).val());
-                });
-                return filter;
-            }
-
-            $('.common_selector').click(function () {
-                filter_data();
-            });
-            
-           
-        });
-									</script>
+						
 							
 						
 						

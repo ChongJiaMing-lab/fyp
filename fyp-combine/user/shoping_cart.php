@@ -95,7 +95,30 @@
     <?php include "head.php" ?>
 
 
+    <style>
+        .btn-wishlist,
+        .btn-compare {
 
+            display: none;
+        }
+
+        .title {
+            color: black;
+
+        }
+
+        input.button.btn-login {
+            background-color: black;
+        }
+
+        a.button.view-password {
+            background-color: black;
+        }
+
+        .txt-interactt {
+            color: skyblue !important;
+        }
+    </style>
 
 
     <!-- END HEADER -->
@@ -169,15 +192,18 @@
                                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                                 </button>
 
-                                                                <input type="text" id="quantity_0" name="quantity[2659]"
+                                                                <input type="text" id="quantity_0"
+                                                                    name="quantity[<?php echo $row['cart_id']; ?>]"
                                                                     class="input-quantity" value="<?php echo $row['qty'] ?>"
                                                                     min="1" max="999999">
+
                                                                 <button type="button" id="quantity_0_plus"
                                                                     class="button btn-number btn-plus btn-default"
                                                                     data-type="plus" data-field="quantity[2659]">
                                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                                 </button>
                                                             </div>
+
 
                                                             <!-- DELETE -->
                                                             <div class="product-delete">
@@ -277,43 +303,42 @@
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                // Function to calculate subtotal and total
+
                 function calculateTotal() {
-                    // Get all product rows
+
                     var productRows = document.querySelectorAll('.my-checkout-listing');
 
-                    // Initialize subtotal and total variables
+
                     var subtotal = 0;
                     var total = 0;
 
-                    // Loop through each product row
+
                     productRows.forEach(function (row) {
-                        // Get price and quantity elements
+
                         var priceElement = row.querySelector('.product-price');
                         var quantityElement = row.querySelector('.input-quantity');
 
-                        // Get price and quantity values
+
                         var price = parseFloat(priceElement.textContent.replace('RM', '').trim());
                         var quantity = parseInt(quantityElement.value);
 
-                        // Calculate subtotal for each product
                         var productSubtotal = price * quantity;
 
-                        // Add product subtotal to total
+
                         subtotal += productSubtotal;
                     });
 
-                    // Calculate total (for now, total is same as subtotal)
+
                     total = subtotal;
 
-                    // Update subtotal and total elements on the page
+
                     var subtotalElement = document.querySelector('.row-subtotal .summary-price');
                     var totalElement = document.querySelector('.row-total .summary-price');
                     subtotalElement.textContent = 'RM' + subtotal.toFixed(2);
                     totalElement.textContent = 'RM' + total.toFixed(2);
                 }
 
-                // Add event listeners to plus and minus buttons
+
                 var plusButtons = document.querySelectorAll('.btn-plus');
                 var minusButtons = document.querySelectorAll('.btn-minus');
 
@@ -321,10 +346,10 @@
                     button.addEventListener('click', function () {
                         var inputElement = button.parentElement.querySelector('.input-quantity');
                         var currentValue = parseInt(inputElement.value);
+                        var cartId = inputElement.getAttribute('name').replace('quantity[', '').replace(']', '');
                         var newValue = currentValue + 1;
                         inputElement.value = newValue;
-
-                        updateQuantityDatabase(2659, newValue);
+                        updateQuantityDatabase(cartId, newValue); 
 
                         calculateTotal();
                     });
@@ -334,16 +359,28 @@
                     button.addEventListener('click', function () {
                         var inputElement = button.parentElement.querySelector('.input-quantity');
                         var currentValue = parseInt(inputElement.value);
+                        var cartId = inputElement.getAttribute('name').replace('quantity[', '').replace(']', '');
                         if (currentValue > 1) {
                             var newValue = currentValue - 1;
                             inputElement.value = newValue;
 
-                            updateQuantityDatabase(2659, newValue);
+                            updateQuantityDatabase(cartId, newValue); 
 
                             calculateTotal();
                         }
                     });
                 });
+                function updateQuantityDatabase(cart_id, newValue) {
+                    $.ajax({
+                        url: 'update_cart.php',
+                        method: 'POST',
+                        data: { cart_id: cart_id, new_qty: newValue },
+                        success: function (response) {
+                            alert("Record successfully updated");
+                        }
+                    });
+                }
+
 
                 // Calculate total when the page loads
                 calculateTotal();
@@ -353,17 +390,6 @@
             function error_alert() {
                 alert("Your shopping cart is empty!");
             }
-            function updateQuantityDatabase(productId, newQuantity) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "add_quantity.php", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                        console.log(this.responseText);
-                    }
-                };
-                xhr.send("productId=" + productId + "&newQuantity=" + newQuantity);
-            }  
         </script>
 
     </section>

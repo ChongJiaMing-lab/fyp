@@ -84,12 +84,7 @@
 		rel="stylesheet" type="text/css" />
 
 
-	<style>
-		.btn-wishlist,
-		.btn-compare {
-			display: none;
-		}
-	</style>
+	
 
 
 	<!-- TITLE -->
@@ -101,7 +96,46 @@
 
 <body class="body-style wide  clamp-1">
 	<?php include "head.php" ?>
-	<!-- END HEADER -->
+	
+	
+	<style>
+		.btn-wishlist,
+		.btn-compare {
+			display: none;
+		}
+
+		.btn-wishlist,
+		.btn-compare {
+
+			display: none;
+		}
+
+		.title {
+			color: black !important;
+
+		}
+
+		input.button.btn-login {
+			background-color: black;
+		}
+
+		a.button.view-password {
+			background-color: black;
+		}
+
+		.txt-interactt {
+			color: skyblue !important;
+		}
+
+		.body-style button,
+		.body-style .button {
+			border-radius: 0px;
+			text-transform: capitalize;
+			background-color: black !important;
+			
+			
+		}
+	</style>
 	<section id="account-forgotten" class="section container account-access">
 
 		<div id="contents">
@@ -111,7 +145,7 @@
 					<div id="forget-password">
 						<div class="account-access-header">
 							<div class="title">Reset your password</div>
-							<div class="title-message">Go back to <a class="txt-interact txt-underline"
+							<div class="title-message">Go back to <a class="txt-interactt txt-underline"
 									href="Login.php">login</a></div>
 						</div>
 
