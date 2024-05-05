@@ -185,7 +185,7 @@ $id = $_SESSION['ID'];
                                         <br>Full Name :
                                         <br><input type="text" name="name" value="<?php echo $row['name'] ?>" autocomplete="off"></br>
                                         <br>Phone Number :
-                                        <br><input type="text" name="ph" value="<?php echo $row['contact_number'] ?>" autocomplete="off"></br>
+                                        <br><input type="text" name="ph" value="<?php echo $row['contactnumber'] ?>" autocomplete="off"></br>
 
 
                                         <?php
@@ -416,11 +416,15 @@ $id = $_SESSION['ID'];
                             $order_id =mysqli_insert_id($connect);  
 
 
-                            mysqli_query($connect, "INSERT INTO build_order_details(user_id,address_id,order_id,build_id,time,price) 
+                            mysqli_query($connect, "INSERT INTO build_order_detail(user_id,address_id,order_id,build_id,time,price) 
                             VALUES ($id,$address_id,$order_id,$build_id,'$currentDateTime',$total)");
 
                             if (mysqli_affected_rows($connect) > 0) {
                                 $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
+                                $point = (int)($total/100);
+                                mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
+                                mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id) VALUES ('Completed Purchased.','+$point','$id','$order_id')");
+                                    echo "<script>window.location.href = 'main_page.php';</script>";
                             }
                         } else {
                             echo "<script>alert('Card Information Incorrect!')</script>";
