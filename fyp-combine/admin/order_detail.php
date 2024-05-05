@@ -133,21 +133,35 @@ include 'databaseconnect.php';
                 </tfoot>
             </table>
             <hr>
+            <div style="display: flex; justify-content: space-between;">
             <h1>Update Order Status</h1>
+            <h1>Invoice</h1>
+            </div>
             <hr>
-            <form action="" method="POST">
-                <div class="input-group" style="width:25%;">
-                    <select name="status" id="mySelect" class="form-select" onchange="myFunction()">
-                        <option selected>Update order status</option>
-                        <option value="Processing">Processing</option>
-                        <option value="Shipping">Shipping</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Cancelled">Cancelled</option>
-                    </select>
-                    <button type="submit" name="update_order" id="btn" class="btn btn-primary text-white"
-                        disabled>Update</button>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <form action="" method="POST">
+                        <div class="input-group" style="width: 100%; display:flex;">
+                            <select name="status" id="mySelect" class="form-select" onchange="myFunction()">
+                                <option selected>Update order status</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Shipping">Shipping</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                            <button type="submit" name="update_order" id="btn" class="btn btn-primary text-white"
+                                disabled>Update</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                <div>
+                    <form method="POST" action="generate_report.php">
+                        <input type="hidden" name="o_id" value="<?php echo $row["order_id"] ?>">
+                        <button type="submit" class="btn btn-success" name="order_receipt">Print Invoice</button>
+                    </form>
+                </div>
+            </div>
+
         </div><!-- end of big card-->
     </div><!-- end of main-->
 </body>
