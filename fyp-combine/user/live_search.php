@@ -22,6 +22,18 @@ if(isset($_POST["input"])){
     {
 		foreach($result as $row)
 		{
+			if($row['stock']>0)
+            {
+                $available = '<a href="addtocart_search.php?product_id='.$row ["product_id"].'">
+                                <input type="button" name="add" value="Add to Cart" )" />
+                                </a>   ';
+            }
+            else
+            {
+                $available = '  <a>
+                                <input type="button" name="add" value="Out of stock" )" />
+                                </a>   ';
+            }
 			$output .= '
 		
         
@@ -33,7 +45,7 @@ if(isset($_POST["input"])){
                                     
                                                        
 										<div class="item-img">
-											<a href="...">
+										<a href="product_detail.php?product_id='.$row ["product_id"].'">
 																										<div class="image" style="min-width:200px ; min-height:200px">
 														
 														
@@ -60,7 +72,7 @@ if(isset($_POST["input"])){
 																<div class="price-new">RM' . $row['price'] . '</div>
 														<div class="price-old"></div> 
                                                         
-                                                        <p>Desc: ' . $row['product_desc'] . ' <br/></p>
+                                                        
 																																		</div>
 											
 											
@@ -69,9 +81,9 @@ if(isset($_POST["input"])){
 												
 																									<div class="button">
 																													<span class="icon-add-cart"></span>
-															<span class="btn-add-cart">
-																<input type="button" value="Add to Cart" onclick="..." />
-															</span>
+																													<span class="btn-add-cart">
+																													'. $available.'
+																													 </span>
 																											</div>
 																							</div>
 										    </div>
