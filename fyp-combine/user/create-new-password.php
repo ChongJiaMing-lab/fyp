@@ -123,6 +123,35 @@
 	.newpw_require ul li.active span:before {
 		display: none;
 	}
+
+	.btn-wishlist , .btn-compare {
+
+display: none;
+}
+
+.title {
+color: black; 
+
+}
+
+input.button.btn-login{
+	background-color:black;
+}
+
+a.button.view-password
+{
+	background-color:black;
+}
+.txt-interactt 
+{
+color: skyblue !important;
+}
+
+.body-style button, .body-style .button {
+    border-radius: 0px;
+    text-transform: capitalize;
+    background-color:black;
+}
 </style>
 <?php
 date_default_timezone_set("Asia/Kuching");
@@ -190,7 +219,7 @@ date_default_timezone_set("Asia/Kuching");
 											required>
 									</div>
 									<div class="control">
-										<a class="button view-password">
+										<a class="button view-password2">
 											<span><i class="mdi mdi-eye-off"></i></span>
 										</a>
 									</div>
@@ -215,7 +244,46 @@ date_default_timezone_set("Asia/Kuching");
 			</div>
 
 		</div>
+		<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            document.querySelector(".view-password").addEventListener("click", function() {
+                var passwordInput = document.getElementsByName("password")[0];
+                var eyeIcon = document.querySelector(".view-password i");
 
+                
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    eyeIcon.classList.remove("mdi-eye-off");
+                    eyeIcon.classList.add("mdi-eye");
+                } else {
+                    passwordInput.type = "password";
+                    eyeIcon.classList.remove("mdi-eye");
+                    eyeIcon.classList.add("mdi-eye-off");
+                }
+            });
+        });
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            document.querySelector(".view-password2").addEventListener("click", function() {
+                var passwordInput = document.getElementsByName("confirm")[0];
+                var eyeIcon = document.querySelector(".view-password i");
+
+                
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    eyeIcon.classList.remove("mdi-eye-off");
+                    eyeIcon.classList.add("mdi-eye");
+                } else {
+                    passwordInput.type = "password";
+                    eyeIcon.classList.remove("mdi-eye");
+                    eyeIcon.classList.add("mdi-eye-off");
+                }
+            });
+        });
+    </script>
+	
 	</section>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
 	</script>
