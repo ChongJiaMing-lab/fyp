@@ -56,14 +56,16 @@
     .filter label {
         margin: 0 10px 0 10px;
     }
-    .top input[type=text]
+    .from, .to
     {
         border:1px solid black;
         display:flex;
+        width:175px;
+        text-align:left;
         margin-bottom:15px;
         border-radius:10px;
     }
-    input[type=text] {
+    input[type=text]{
         background-color: white;
         background-image: url('searchicon.png');
         background-position: 10px 10px;
@@ -84,7 +86,7 @@
 
     .magni {
         position: absolute;
-        top: 19%;
+        top: 28.5%;
         font-size: 30px;
         left: 7px;
     }
@@ -120,9 +122,9 @@
                     <option value="d">Lowest Total</option>
                 </select>
                 <label for="from">From</label>
-                <input type="text" id="from" name="from" >
+                <input type="text" id="from" class="from" name="from" >
                 <label for="to">to</label>
-                <input type="text" id="to" name="to">
+                <input type="text" id="to" class="to" name="to">
             </form>
             <form method="POST" action="" class="searchbar">
                 <ion-icon class="magni" name="search-outline"></ion-icon>
