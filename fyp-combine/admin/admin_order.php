@@ -4,6 +4,43 @@
 <head>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            var dateFormat = "dd-mm-yy",
+                from = $("#from")
+                    .datepicker({
+                        defaultDate: "+1w",
+                        changeMonth: true,
+                        numberOfMonths: 1
+                    })
+                    .on("change", function () {
+                        to.datepicker("option", "minDate", getDate(this));
+                    }),
+                to = $("#to").datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1
+                })
+                    .on("change", function () {
+                        from.datepicker("option", "maxDate", getDate(this));
+                    });
+
+            function getDate(element) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate(dateFormat, element.value);
+                } catch (error) {
+                    date = null;
+                }
+
+                return date;
+            }
+        });
+    </script>
 </head>
 <style>
     .top .filter {
@@ -19,7 +56,13 @@
     .filter label {
         margin: 0 10px 0 10px;
     }
-
+    .top input[type=text]
+    {
+        border:1px solid black;
+        display:flex;
+        margin-bottom:15px;
+        border-radius:10px;
+    }
     input[type=text] {
         background-color: white;
         background-image: url('searchicon.png');
@@ -41,9 +84,9 @@
 
     .magni {
         position: absolute;
-        top: 29%;
+        top: 19%;
         font-size: 30px;
-        left: 10px;
+        left: 7px;
     }
 
     .input {
@@ -76,6 +119,10 @@
                     <option value="c">Highest Total</option>
                     <option value="d">Lowest Total</option>
                 </select>
+                <label for="from">From</label>
+                <input type="text" id="from" name="from" >
+                <label for="to">to</label>
+                <input type="text" id="to" name="to">
             </form>
             <form method="POST" action="" class="searchbar">
                 <ion-icon class="magni" name="search-outline"></ion-icon>
@@ -93,6 +140,7 @@
                         <th scope="col" style="width:1px;">Order#</th>
                         <th scope="col">Created by:</th>
                         <th scope="col">Created Time</th>
+                        <th scope="col">Shipped to</th>
                         <th scope="col" style="width:1px;">Total</th>
                         <th scope="col">Delivery Status</th>
                     </tr>
@@ -101,14 +149,22 @@
                     <?php
                     $q = "SELECT *,user_information.name 
                     FROM order_ 
-                    JOIN user_information ON order_.user_id = user_information.ID;                                      
+                    JOIN user_information ON order_.user_id = user_information.ID;                                
                     ";
-
                     $result = mysqli_query($connect, $q);
                     $count = mysqli_num_rows($result);
 
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
+                            $user_id = $row["user_id"];
+                            $user = "SELECT * FROM user_information WHERE ID = '$user_id'";
+                            $user_run = mysqli_query($connect, $user);
+                            $row_user = mysqli_fetch_assoc($user_run);
+
+                            $address_id = $row["address_id"];
+                            $add = "SELECT * FROM user_address WHERE address_id = '$address_id'";
+                            $add_run = mysqli_query($connect, $add);
+                            $row_add = mysqli_fetch_assoc($add_run);
                             ?>
                             <tr onclick="window.location='order_detail.php?order_id=<?php echo $row['order_id'] ?>';">
                                 <th scope="row">
@@ -119,10 +175,16 @@
                                     <!-- <div style="font-size:11px;"><i>from </i>
                                         < ?php echo $row["country"] ?> -->
                                     <!-- </div> -->
+                                </td>   
+                                <td>
+                                    <?php echo $row["time_status"]?>
                                 </td>
                                 <td>
-                                    <?php echo $row["address_id"] ?>
+                                    <?php echo
+                                        $row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
+                                        . ", " . $row_add["state"]; ?>
                                 </td>
+                             
                                 <td>
                                     RM<?php echo $row["total_amount"] ?>
                                 </td>
@@ -142,14 +204,16 @@
             </table>
             <script>
                 $(document).ready(function () {
-                    $('#f1, #f2, input[name="search"]').on('change keyup', function () {
+                    $('#f1, #f2, input[name="search"], #from, #to').on('change keyup', function () {
                         var f1 = $('#f1').val();
                         var f2 = $('#f2').val();
                         var order = $('input[name="search"]').val();
+                        var from = $('#from').val();
+                        var to = $('#to').val();
                         $.ajax({
                             url: 'run_query.php',
                             method: 'POST',
-                            data: { f1: f1, f2: f2, order: order },
+                            data: { f1: f1, f2: f2, order: order, from: from, to: to },
                             success: function (response) {
                                 $('#table-body').html(response);
                             }
