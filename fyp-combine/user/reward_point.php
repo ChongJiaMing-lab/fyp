@@ -200,9 +200,9 @@ th{
                             <div class="txt-info"> Point(s)</div>
                             <div class="positive-amount">
                             <?php 
-                                $query = mysqli_query($connect,"SELECT * FROM point WHERE user_id = $id");
-                                $row = mysqli_fetch_assoc($query);
-                                echo $row['point'];
+                                $query3 = mysqli_query($connect,"SELECT * FROM point WHERE user_id = $id");
+                                $row3 = mysqli_fetch_assoc($query3);
+                                echo $row3['point'];
                             ?>
                             </div>
                         </div>
@@ -215,13 +215,20 @@ th{
                                 <th width="15%">Point</th>
                             </tr>
                             <tr>
-                                <?php if($row['point'] == 0){?>
+                                <?php 
+                                $query4 = mysqli_query($connect,"SELECT * FROM point_details WHERE point_id = $row3[point_id]");
+                                if(mysqli_num_rows($query4) == 0){?>
                                 <td colspan=3>You do not have any reward points yet. Start collecting now!</td>
-                                <?php }else{ ?>
-                                <td>Date</td>
-                                <td>Description</td>
-                                <td>Point</td>
-                                <?php }?>
+                                <?php 
+                                }else{ 
+                                    while($row4 = mysqli_fetch_assoc($query4)){
+                                    $query5 = mysqli_query($connect,"SELECT * FROM order_ WHERE order_id = $row4[order_id]");
+                                    $row5 = mysqli_fetch_assoc($query5);
+                                    
+                                echo "<td>".$row5['time_status']."</td>";
+                                echo "<td>Order #".$row5['order_id']." : ".$row4['description']."</td>";
+                                echo "<td>".$row4['changes']."</td>";
+                                }}?>
                             </tr>
 
                         </table>
