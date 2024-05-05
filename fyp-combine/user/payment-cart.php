@@ -469,7 +469,7 @@
                                 <script>
                                     Swal.fire({
                                         title: "Payment was successful!",
-                                        text: "You order have benn save in your order page!",
+                                        text: "You order have been save in your order page!",
                                         icon: "success",
                                         confirmButtonText: 'OK'
                                     }).then((result) => {

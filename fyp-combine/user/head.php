@@ -158,41 +158,8 @@ session_start();
                                 <div class="navbar-item has-dropdown is-hoverable">
 
 
-                                    <a class="navbar-link" href="product_list.php"><span>Products</span></a>
+                                    <a class="navbar-item" href="product_list.php"><span>Products</span></a>
                                     <i class="accordion"></i>
-                                    <div class="navbar-dropdown">
-
-                                        <?php
-                                        $query2 = "SELECT DISTINCT p.category_id, c.category
-                                            FROM product p 
-                                            INNER JOIN category c ON p.category_id = c.category_id
-                                            WHERE p.product_status ='1' 
-                                            ORDER BY p.product_id DESC";
-
-                                        $statement_category = $connect->prepare($query2); // Use a different variable for statement object
-                                        $execute_result_category = $statement_category->execute(); // Execute the statement
-                                        if ($execute_result_category) {
-                                            $result_category = $statement_category->get_result();
-                                            foreach ($result_category as $row) {
-                                                ?>
-                                                <div class="list-group-item checkbox">
-                                                    <a href="product_filter.php" class="navbar-item"
-                                                        data-value="<?php echo $row['category_id']; ?>">
-                                                        <?php echo $row['category']; ?>
-                                                    </a>
-
-                                                </div>
-
-                                                <?php
-                                            }
-                                        } else {
-                                            // Handle the case where execute() failed
-                                            echo "Error executing query: " . $statement_category->error;
-                                        }
-                                        ?>
-
-
-                                    </div>
                                 </div> <a class="navbar-item" href="build_home.php"><span>PCbuild</span></a>
                                 <?php
                                 if (isset($_SESSION['ID'])) { ?>

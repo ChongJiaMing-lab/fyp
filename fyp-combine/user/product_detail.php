@@ -247,31 +247,32 @@
                                                 <input type="button" value="Add to Cart" class="button"
                                                     onclick="addToCart('<?php echo $row['product_id']; ?>')" fdprocessedid="rfl2z">
                                             <?php endif; ?>
-                                            </span>
+                                        </span>
 
-                                            <script>
-                                                function adjustQuantity(change) {
-                                                    var input = document.getElementById('quantity');
-                                                    var currentValue = parseInt(input.value);
-                                                    currentValue += change;
-                                                    if (currentValue < 1) currentValue = 1;  // Prevent negative quantities
-                                                    input.value = currentValue;
-                                                }
-                                                
-                                                function addToCart(product_id) {
-                                                    var xhr = new XMLHttpRequest();
-                                                    xhr.open('GET', 'addtocart.php?product_id=' + product_id, true);
-                                                    xhr.onload = function () {
-                                                        console.log(xhr.responseText);
-                                                        alert('Product added to cart!');
-                                                        window.location.reload();
-                                                    };
-                                                    xhr.onerror = function () {
-                                                        alert('Request failed; please try again.');
-                                                    };
-                                                    xhr.send();
-                                                }
-                                            </script>
+                                        <script>
+                                            function adjustQuantity(change) {
+                                                var input = document.getElementById('quantity');
+                                                var currentValue = parseInt(input.value);
+                                                currentValue += change;
+                                                if (currentValue < 1) currentValue = 1;  // Prevent negative quantities
+                                                input.value = currentValue;
+                                            }
+
+                                            function addToCart(product_id) {
+                                                var xhr = new XMLHttpRequest();
+                                                var quantity = parseInt(document.getElementById('quantity').value); // 获取当前数量值
+                                                xhr.open('GET', 'addtocart_detail.php?product_id=' + product_id + '&quantity=' + quantity, true);
+                                                xhr.onload = function () {
+                                                    console.log(xhr.responseText);
+                                                    alert('Product added to cart!');
+                                                    window.location.reload();
+                                                };
+                                                xhr.onerror = function () {
+                                                    alert('Request failed; please try again.');
+                                                };
+                                                xhr.send();
+                                            }
+                                        </script>
 
                                     </div>
 
