@@ -156,10 +156,11 @@
             color: #50d282;
         }
 
-        .body-style button, .body-style .button {
-    border-radius: 0px;
-    text-transform: capitalize;
-    background-color: black;
+        .body-style button,
+        .body-style .button {
+            border-radius: 0px;
+            text-transform: capitalize;
+            background-color: black;
         }
     </style>
 
@@ -202,9 +203,9 @@
                                         <a href="orderlist.php?ID=<?php echo $id; ?>">My orders</a>
                                     </li>
                                     <!-- MY COUPON -->
-                                    <li class="item"><a href="...">My coupon</a></li>
+                                    <li class="item"><a href="...">My Voucher</a></li>
                                     <!-- MY REWARD POINT -->
-                                    <li class="item"><a href="...">My reward point</a></li>
+                                    <li class="item"><a href="reward_point.php?ID=<?PHP echo $id; ?>">My reward point</a></li>
                                     <!-- MY TRANSACTION -->
                                     <li class="item"><a href="...">My store credit</a></li>
                                 </ul>
@@ -431,8 +432,7 @@
                                                 <div class="empty-product-listing">
                                                     <span>
                                                         Nothing to show here. <div class="buttons">
-                                                            <div class="right"><a
-                                                                    href="product_list.php"
+                                                            <div class="right"><a href="product_list.php"
                                                                     class="button">Continue shopping</a></div>
                                                         </div>
                                                     </span>
@@ -635,8 +635,7 @@
                                             <div class="empty-product-listing">
                                                 <span>
                                                     Nothing to show here. <div class="buttons">
-                                                        <div class="right"><a
-                                                                href="product_list.php"
+                                                        <div class="right"><a href="product_list.php"
                                                                 class="button">Continue shopping</a></div>
                                                     </div>
                                                 </span>
@@ -838,11 +837,10 @@
                                     } else {
                                         ?>
                                         <div data-content="tab-completed">
-                                        <div class="empty-product-listing">
+                                            <div class="empty-product-listing">
                                                 <span>
                                                     Nothing to show here. <div class="buttons">
-                                                        <div class="right"><a
-                                                                href="product_list.php"
+                                                        <div class="right"><a href="product_list.php"
                                                                 class="button">Continue shopping</a></div>
                                                     </div>
                                                 </span>
@@ -854,15 +852,14 @@
                                 </div>
                                 <div data-content="tab-cancelled">
                                     <div>
-                                    <div class="empty-product-listing">
-                                                <span>
-                                                    Nothing to show here. <div class="buttons">
-                                                        <div class="right"><a
-                                                                href="product_list.php"
-                                                                class="button">Continue shopping</a></div>
-                                                    </div>
-                                                </span>
-                                            </div>
+                                        <div class="empty-product-listing">
+                                            <span>
+                                                Nothing to show here. <div class="buttons">
+                                                    <div class="right"><a href="product_list.php"
+                                                            class="button">Continue shopping</a></div>
+                                                </div>
+                                            </span>
+                                        </div>
 
                                     </div>
                                 </div>
