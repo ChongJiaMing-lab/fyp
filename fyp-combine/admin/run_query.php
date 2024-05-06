@@ -137,7 +137,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
 }
 
 if (isset($_POST['from2']) && isset($_POST['to2'])) {
-
+    $total = 0;
     if (isset($_POST['from2'])) {
         $f = $_POST['from2'];
         $from = explode("/", $f);
@@ -177,6 +177,7 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
     $o_output = '';
 
     while ($row = mysqli_fetch_assoc($o_run)) {
+        $total += $row["total_amount"];
         $user_id = $row["user_id"];
         $user = "SELECT * FROM user_information WHERE ID = '$user_id'";
         $user_run = mysqli_query($connect, $user);
@@ -200,8 +201,13 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
         <td>
             ' . $row["delivery_status"] . '
         </td>
-    </tr>';
+       
+    </tr>'?>
+    <?php
     }
+    $o_output.='<tr>
+        <td colspan="4" style="text-align:right;"><b>Total&nbsp&nbsp&nbsp&nbsp</b>'.$total.'</td>
+    </tr>';
     echo $o_output;
 }
 ?>
