@@ -22,6 +22,8 @@ if (isset($_POST["agree"])) {
 	else 
 	{
         mysqli_query($connect, "INSERT INTO user_information(email,name,contactnumber,dateofbirth,password,join_time) VALUES('$a','$b','$c','$i','$f','$currentDateTime')");
+        $ID = mysqli_insert_id($connect);
+        mysqli_query($connect, "INSERT INTO point(point,user_id) VALUES('0','$ID')");
 		echo "<script>alert('Register Successful!'); window.location.href='Login.php';</script>";
 		exit; 
     }

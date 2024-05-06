@@ -170,7 +170,9 @@
 									<a href="orderlist.php?ID=<?php echo $id; ?>">My orders</a>
 								</li>
 								<!-- MY COUPON -->
-								<li class="item"><a href="coupon.php?ID=<?php echo $id; ?>">My gift</a></li>
+								<li class="item"><a href="...">My Voucher</a></li>
+								<!-- MY REWARD POINT -->
+								<li class="item"><a href="reward_point.php?ID=<?PHP echo $id; ?>">My reward point</a></li>
 							</ul>
 						</div>
 					</div>
@@ -265,7 +267,7 @@
 
 
 
-			<?php
+				<?php
 				}
 			} else {
 				echo "no records found :(";

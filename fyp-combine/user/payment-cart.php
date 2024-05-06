@@ -462,11 +462,14 @@
 
                         }
 
-
                         if (mysqli_affected_rows($connect) > 0) {
                             mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
 
                             $ID = $_SESSION['ID'];
+                            $point = (int)($total/100);
+                            mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
+                            mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$ID','$order_id','$currentDateTime')");
+
                             ?>
                                 <script>
                                     Swal.fire({

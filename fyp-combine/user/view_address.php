@@ -143,10 +143,10 @@ a.button.view-password
 	<li class="item">
 		<a href="orderlist.php?ID=<?php echo $id;?>">My orders</a>
 			</li>
-		<!-- MY COUPON -->
-	<li class="item"><a href="...">My coupon</a></li>
+			<!-- MY COUPON -->
+	<li class="item"><a href="...">My Voucher</a></li>
 			<!-- MY REWARD POINT -->
-	<li class="item"><a href="...">My reward point</a></li>
+	<li class="item"><a href="reward_point.php?ID=<?PHP echo $id;?>">My reward point</a></li>
 			<!-- MY TRANSACTION -->
 	<li class="item"><a  href="...">My store credit</a></li>
 			</ul>
