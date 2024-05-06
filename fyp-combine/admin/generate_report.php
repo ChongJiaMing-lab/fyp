@@ -135,7 +135,7 @@ if (isset($_POST["order_receipt"])) {
     $item = "SELECT * FROM cart_order_detail WHERE order_id = '$order_id'";
     $item_run = mysqli_query($connect, $item);
     $count = 1;
-    $total_qty =0;
+    $total_qty = 0;
     while ($row_item = mysqli_fetch_assoc($item_run)) {
         $cart_id = $row_item["cart_id"];
         $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
@@ -153,14 +153,14 @@ if (isset($_POST["order_receipt"])) {
         $pdf->Cell(35, 8, number_format($row_cart['qty'] * $row_product['price'], 2), 1, 1);
         $total_qty += $row_cart['qty'];
     }
-    $pdf->Cell(109 + 17 + 28, 10, "Sub-total(".$total_qty." items)", 'L,B,R', 0, 'R');
-    $pdf->Cell(35, 10,number_format($row["total_amount"],2), 'R,B', 1, 'R');
+    $pdf->Cell(109 + 17 + 28, 10, "Sub-total(" . $total_qty . " items)", 'L,B,R', 0, 'R');
+    $pdf->Cell(35, 10, number_format($row["total_amount"], 2), 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Vouncher", 'L,B,R', 0, 'R');
     $pdf->Cell(35, 10, "-5.00", 'R,B', 1, 'R');
     // $pdf->Cell(109 + 17 + 28, 10, "Shipping", 'L,B,R', 0, 'R');
     // $pdf->Cell(35, 10, "5.00", 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Total", 'L,B,R', 0, 'R');
-    $pdf->Cell(35, 10, number_format($row["total_amount"],2 ), 'R,B', 1, 'R');
+    $pdf->Cell(35, 10, number_format($row["total_amount"], 2), 'R,B', 1, 'R');
     $pdf->Output();
 }
 
@@ -195,5 +195,22 @@ if (isset($_POST["sales_report"])) {
         }
     } else
         $to = '';
+
+    $query = "SELECT *,user_information.name 
+        FROM order_ 
+        JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
+    if (!empty($f))
+        $query .= " AND time_status >= '$f'";
+    if (!empty($t))
+        $query .= " AND time_status <= '$t'";
+
+        $pdf = new FPDF("p", "mm", "A4");
+
+        $pdf->AddPage();
+    
+        $pdf->SetFont("Arial", "B", 5);
+        $pdf->Cell(130, 15, "Invoice".$query, 0, 1);
+        
+        $pdf->output();
 }
 ?>

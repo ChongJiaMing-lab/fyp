@@ -62,7 +62,7 @@
             <input type="text" id="from" class="from" name="from"><br>
             <label for="to">To Date</label>
             <input type="text" id="to" class="to" name="to">
-            <br><button type="button" name="sales_report" class="btn btn-success" style="margin-top:20px;">Generate
+            <br><button type="submit" name="sales_report" class="btn btn-success" style="margin-top:20px;">Generate
                 Report</button>
         </form>
         <table class="table" style="margin-top:20px;">
