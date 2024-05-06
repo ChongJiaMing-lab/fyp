@@ -6,7 +6,7 @@ if(isset($_POST["input"])){
 
     $input = $_POST["input"];
 	
-	$query = "SELECT * FROM product WHERE product_status = '1' AND (brand_id LIKE '{$input}%' OR product_name LIKE '{$input}%')";
+	$query = "SELECT * FROM product WHERE product_status = '1' AND (brand_id LIKE  '%{$input}%' OR product_name LIKE  '%{$input}%')";
 	if (isset($_POST["category"])) {
         $category_filter = implode("','", $_POST["category"]);
         $query .= " AND category_id IN ('" . $category_filter . "')";
@@ -94,7 +94,7 @@ if(isset($_POST["input"])){
 								}   
     }else
     {
-        echo "<h6 class='text-danger' text-center mt-3>Np data Found</h6>";
+        echo "<h6 class='text-danger' text-center mt-3>No Product Found</h6>";
     }
 	echo $output;
 

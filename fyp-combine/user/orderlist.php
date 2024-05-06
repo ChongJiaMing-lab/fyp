@@ -160,6 +160,7 @@
     border-radius: 0px;
     text-transform: capitalize;
     background-color: black;
+        }
     </style>
 
     </style>

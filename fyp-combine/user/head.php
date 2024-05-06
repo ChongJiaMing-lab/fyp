@@ -108,6 +108,15 @@ if(isset($_SESSION['v_alert']))
     justify-content: space-between;
     overflow: hidden;
         }
+
+        .body-style button, .body-style .button {
+    border-radius: 0px;
+    text-transform: capitalize;
+    background-color: black;
+        }
+
+        .title, .tabs li.is-active a, .modal-card-title {
+    color: black;
     </style>
 
 
@@ -311,7 +320,7 @@ if(isset($_SESSION['v_alert']))
                                 } else { ?>
                                     <a class="dropdown-item" href="Login.php">Login</a>
                                 <?php
-                                }
+                                }   
                                 ?>
                             </div>
                         </div>

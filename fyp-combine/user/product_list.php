@@ -264,7 +264,7 @@ label {
                                 <div class="list-group-item checkbox">
                                     <label ><input type="checkbox" class="common_selector category"
                                             value="<?php echo $row['category_id']; ?>">
-                                        <?php echo $row['category']; ?>
+                                        <?php echo str_replace("_"," ",$row['category']); ?>
                                     </label>
                                 </div>
 

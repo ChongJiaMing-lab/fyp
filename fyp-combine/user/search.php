@@ -1,7 +1,7 @@
 
-<!-- ###AIO### -->
-<!-- ###AIO### -->
+
 <!DOCTYPE html>
+
 <html dir="ltr" lang="en-US" class="ready">
 <head>
 	
@@ -92,6 +92,8 @@ a.button.view-password
 {
 color: skyblue !important;
 }
+
+
 
 	</style>
 		
@@ -217,7 +219,7 @@ color: skyblue !important;
 										</div>
 							<!-- END PRODUCT LISTING -->
 
-							<div class="pagination"><div class="footer_pagination_page links"> <b class="selected_pagination">1</b>  <a class="beh_pagination" href="...">2</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=3">3</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=4">4</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=5">5</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=6">6</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=7">7</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=8">8</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=9">9</a>  <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=2">&gt;</a> <a class="beh_pagination" href="https://techzone.com.my/index.php?route=product/search&amp;search=keyboard&amp;page=9">&gt;|</a> </div><div class="footer_pagination_entry results">Showing 1 to 15 of 126 </div></div>
+						
 
 												<!-- END PRODUCTS -->
 					
