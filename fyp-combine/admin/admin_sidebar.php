@@ -115,7 +115,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="admin_salesrpt.php" class="sidebar-link">
                         <i class="lni lni-cog"></i>
                         <span>Sales Report</span>
                     </a>

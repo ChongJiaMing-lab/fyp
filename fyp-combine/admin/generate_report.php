@@ -163,4 +163,37 @@ if (isset($_POST["order_receipt"])) {
     $pdf->Cell(35, 10, number_format($row["total_amount"],2 ), 'R,B', 1, 'R');
     $pdf->Output();
 }
+
+
+if (isset($_POST["sales_report"])) {
+    $from = $_POST["from"];
+    $to = $_POST["to"];
+
+    if (isset($_POST['from'])) {
+        $f = $_POST['from'];
+        $from = explode("/", $f);
+
+        //index1 = date, 0 = month; 2 = year;
+        if (isset($from[2]) && isset($from[1]) && isset($from[0])) {
+            $f = $from[1] . '-' . $from[0] . '-' . $from[2];
+            $f = $f . " 00:00:00";
+        } else {
+            $f = '';
+        }
+    } else
+        $from = '';
+
+    if (isset($_POST['to'])) {
+        $t = $_POST['to'];
+        $to = explode("/", $t);
+
+        if (isset($to[2]) && isset($to[1]) && isset($to[0])) {
+            $t = $to[1] . '-' . $to[0] . '-' . $to[2];
+            $t = $t . " 23:59:59";
+        } else {
+            $t = '';
+        }
+    } else
+        $to = '';
+}
 ?>
