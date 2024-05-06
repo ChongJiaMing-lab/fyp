@@ -6,51 +6,69 @@
 
 
     <!-- BULMA -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet" type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet"
+        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css"
+        rel="stylesheet" type="text/css" />
 
 
     <!-- MAIN STYLESHEET -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1713610527" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1713610527" rel="stylesheet"
+        type="text/css" />
 
     <!-- CAROUSEL -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet" type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet"
+        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet"
+        type="text/css" />
 
     <!-- FONT AWESOME -->
-    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
+    <link defer rel="stylesheet"
+        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
 
     <!-- MATERIAL DESIGN ICON -->
-    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
+    <link defer rel="stylesheet"
+        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
 
     <!-- STAATLICHES -->
-    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
+    <link defer rel="stylesheet"
+        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
 
     <!-- ANIMATION -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet"
+        type="text/css" />
 
     <!-- BULMA CALENDAR -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css"
+        rel="stylesheet" type="text/css" />
 
     <!-- JQUERY -->
     <script src="catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
-    <script defer type="text/javascript" src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
+    <script defer type="text/javascript"
+        src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 
     <!-- TOTAL STORAGE -->
-    <script defer type="text/javascript" src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
+    <script defer type="text/javascript"
+        src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
 
     <!-- FANCYBOX -->
-    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
-    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
+    <link defer rel="stylesheet"
+        href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
+    <script async
+        src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
 
     <!-- ELEVATEZOOM -->
-    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
-    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
-    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
+    <script async
+        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
+    <script async
+        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
+    <script async
+        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
 
     <!-- LAZYLOAD -->
     <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
-    <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
+    <script
+        src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
 
 
 
@@ -60,7 +78,9 @@
 
 
     <!-- CUSTOMIZE -->
-    <link defer id="customize_css" href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1713610527" rel="stylesheet" type="text/css" />
+    <link defer id="customize_css"
+        href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1713610527"
+        rel="stylesheet" type="text/css" />
 
 
 
@@ -110,30 +130,36 @@
         }
 
         .title {
-    color: black; 
-	
-}
+            color: black;
 
-input.button.btn-login{
-            background-color:black;
         }
 
-a.button.view-password
-{
-            background-color:black;
+        input.button.btn-login {
+            background-color: black;
         }
-.txt-interactt 
-{
-    color: skyblue !important;
-}
-.txt-data, .input.txt-data
-{
-	color:#2586c6;
-}
 
-.tabs li.is-active a, .modal-card-title {
-    color: #50d282;
-}
+        a.button.view-password {
+            background-color: black;
+        }
+
+        .txt-interactt {
+            color: skyblue !important;
+        }
+
+        .txt-data,
+        .input.txt-data {
+            color: #2586c6;
+        }
+
+        .tabs li.is-active a,
+        .modal-card-title {
+            color: #50d282;
+        }
+
+        .body-style button, .body-style .button {
+    border-radius: 0px;
+    text-transform: capitalize;
+    background-color: black;
     </style>
 
     </style>
@@ -150,7 +176,7 @@ a.button.view-password
             if ($result && $result2) {
 
                 if ($row = mysqli_fetch_assoc($result)) {
-            ?>
+                    ?>
                     <div id="contents">
                         <div id="sidebar-left">
                             <div class="sidebar-nav-list">
@@ -183,10 +209,10 @@ a.button.view-password
                                 </ul>
                             </div>
                         </div>
-                <?php
+                        <?php
                 }
             }
-                ?>
+            ?>
 
                 <div id="main-content" class="order">
                     <div class="title">My orders</div>
@@ -238,19 +264,21 @@ a.button.view-password
                                             while ($first_row = mysqli_fetch_array($first_result)) {
                                                 if ($row != null) {
                                                     if ($first_row['order_id'] == $row['order_id']) {
-                                        ?>
+                                                        ?>
 
                                                         <!-- CHECKOUT CART LISTING -->
                                                         <div class="input-group"><?php echo $row['time_status'] ?></div>
 
-                                                        <div class="my-checkout-listing" onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                        <div class="my-checkout-listing"
+                                                            onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                             <div class="columns is-mobile">
                                                                 <!-- IMG -->
                                                                 <div class="column is-2 product-image">
-                                                                    <a href=".."><img class="img-responsive" src="../image/<?php echo $row['image'] ?>" /></a>
+                                                                    <a href=".."><img class="img-responsive"
+                                                                            src="../image/<?php echo $row['image'] ?>" /></a>
                                                                 </div>
 
                                                                 <!-- INFO -->
@@ -287,20 +315,22 @@ a.button.view-password
                                                             </div>
 
                                                         </div>
-                                                    <?php
+                                                        <?php
                                                         $row = mysqli_fetch_array($result);
                                                     } else { ?>
                                                         <!-- CHECKOUT CART LISTING -->
                                                         <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                        <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                        <div class="my-checkout-listing"
+                                                            onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                             <div class="columns is-mobile">
                                                                 <!-- IMG -->
                                                                 <div class="column is-2 product-image">
-                                                                    <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                                    <a href=".."><img class="img-responsive"
+                                                                            src="image/pc_build.jpeg" /></a>
                                                                 </div>
 
                                                                 <!-- INFO -->
@@ -337,21 +367,23 @@ a.button.view-password
                                                             </div>
 
                                                         </div>
-                                                    <?php
+                                                        <?php
                                                         $rw2 = mysqli_fetch_array($result);
                                                     }
                                                 } else { ?>
                                                     <!-- CHECKOUT CART LISTING -->
                                                     <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    <div class="my-checkout-listing"
+                                                        onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                         <div class="columns is-mobile">
                                                             <!-- IMG -->
                                                             <div class="column is-2 product-image">
-                                                                <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                                <a href=".."><img class="img-responsive"
+                                                                        src="image/pc_build.jpeg" /></a>
                                                             </div>
 
                                                             <!-- INFO -->
@@ -388,14 +420,22 @@ a.button.view-password
                                                         </div>
 
                                                     </div>
-                                        <?php
+                                                    <?php
                                                     $rw2 = mysqli_fetch_array($result);
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             ?>
                                             <div data-content="tab-completed">
-                                            nothing here hehe
+                                                <div class="empty-product-listing">
+                                                    <span>
+                                                        Nothing to show here. <div class="buttons">
+                                                            <div class="right"><a
+                                                                    href="product_list.php"
+                                                                    class="button">Continue shopping</a></div>
+                                                        </div>
+                                                    </span>
+                                                </div>
                                             </div>
                                             <?php
                                         }
@@ -430,17 +470,19 @@ a.button.view-password
                                         while ($first_row = mysqli_fetch_array($first_result)) {
                                             if ($row != null) {
                                                 if ($first_row['order_id'] == $row['order_id']) {
-                                    ?>
+                                                    ?>
                                                     <!-- CHECKOUT CART LISTING -->
                                                     <div class="input-group"><?php echo $row['time_status'] ?></div>
 
-                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    <div class="my-checkout-listing"
+                                                        onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
                                                         <div class="columns is-mobile">
                                                             <!-- IMG -->
                                                             <div class="column is-2 product-image">
-                                                                <a href=".."><img class="img-responsive" src="../image/<?php echo $row['image'] ?>" /></a>
+                                                                <a href=".."><img class="img-responsive"
+                                                                        src="../image/<?php echo $row['image'] ?>" /></a>
                                                             </div>
 
                                                             <!-- INFO -->
@@ -477,20 +519,22 @@ a.button.view-password
                                                         </div>
 
                                                     </div>
-                                                <?php
+                                                    <?php
                                                     $row = mysqli_fetch_array($result);
                                                 } else { ?>
                                                     <!-- CHECKOUT CART LISTING -->
                                                     <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    <div class="my-checkout-listing"
+                                                        onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                         <div class="columns is-mobile">
                                                             <!-- IMG -->
                                                             <div class="column is-2 product-image">
-                                                                <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                                <a href=".."><img class="img-responsive"
+                                                                        src="image/pc_build.jpeg" /></a>
                                                             </div>
 
                                                             <!-- INFO -->
@@ -527,21 +571,23 @@ a.button.view-password
                                                         </div>
 
                                                     </div>
-                                                <?php
+                                                    <?php
                                                     $rw2 = mysqli_fetch_array($result);
                                                 }
                                             } else { ?>
                                                 <!-- CHECKOUT CART LISTING -->
                                                 <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                <div class="my-checkout-listing"
+                                                    onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                     <div class="columns is-mobile">
                                                         <!-- IMG -->
                                                         <div class="column is-2 product-image">
-                                                            <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                            <a href=".."><img class="img-responsive"
+                                                                    src="image/pc_build.jpeg" /></a>
                                                         </div>
 
                                                         <!-- INFO -->
@@ -578,14 +624,22 @@ a.button.view-password
                                                     </div>
 
                                                 </div>
-                                    <?php
+                                                <?php
                                                 $rw2 = mysqli_fetch_array($result);
                                             }
                                         }
-                                    }else{
+                                    } else {
                                         ?>
                                         <div data-content="tab-completed">
-                                        nothing here hehe
+                                            <div class="empty-product-listing">
+                                                <span>
+                                                    Nothing to show here. <div class="buttons">
+                                                        <div class="right"><a
+                                                                href="product_list.php"
+                                                                class="button">Continue shopping</a></div>
+                                                    </div>
+                                                </span>
+                                            </div>
                                         </div>
                                         <?php
                                     }
@@ -621,18 +675,20 @@ a.button.view-password
                                         while ($first_row = mysqli_fetch_array($first_result)) {
                                             if ($row != null) {
                                                 if ($first_row['order_id'] == $row['order_id']) {
-                                    ?>
+                                                    ?>
                                                     <!-- CHECKOUT CART LISTING -->
                                                     <div class="input-group"><?php echo $row['time_status'] ?></div>
 
-                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    <div class="my-checkout-listing"
+                                                        onclick="window.location='order_detail.php?order_id=<?php echo ($row['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                         <div class="columns is-mobile">
                                                             <!-- IMG -->
                                                             <div class="column is-2 product-image">
-                                                                <a href=".."><img class="img-responsive" src="../image/<?php echo $row['image'] ?>" /></a>
+                                                                <a href=".."><img class="img-responsive"
+                                                                        src="../image/<?php echo $row['image'] ?>" /></a>
                                                             </div>
 
                                                             <!-- INFO -->
@@ -669,20 +725,22 @@ a.button.view-password
                                                         </div>
 
                                                     </div>
-                                                <?php
+                                                    <?php
                                                     $row = mysqli_fetch_array($result);
                                                 } else { ?>
                                                     <!-- CHECKOUT CART LISTING -->
                                                     <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                    <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                    <div class="my-checkout-listing"
+                                                        onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                         <div class="columns is-mobile">
                                                             <!-- IMG -->
                                                             <div class="column is-2 product-image">
-                                                                <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                                <a href=".."><img class="img-responsive"
+                                                                        src="image/pc_build.jpeg" /></a>
                                                             </div>
 
                                                             <!-- INFO -->
@@ -719,21 +777,23 @@ a.button.view-password
                                                         </div>
 
                                                     </div>
-                                                <?php
+                                                    <?php
                                                     $rw2 = mysqli_fetch_array($result);
                                                 }
                                             } else { ?>
                                                 <!-- CHECKOUT CART LISTING -->
                                                 <div class="input-group"><?php echo $rw2['time_status'] ?></div>
 
-                                                <div class="my-checkout-listing" onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
+                                                <div class="my-checkout-listing"
+                                                    onclick="window.location='order_detail.php?build_order_id=<?php echo ($rw2['order_id']); ?>&ID=<?php echo $id; ?>';">
 
 
 
                                                     <div class="columns is-mobile">
                                                         <!-- IMG -->
                                                         <div class="column is-2 product-image">
-                                                            <a href=".."><img class="img-responsive" src="image/pc_build.jpeg" /></a>
+                                                            <a href=".."><img class="img-responsive"
+                                                                    src="image/pc_build.jpeg" /></a>
                                                         </div>
 
                                                         <!-- INFO -->
@@ -770,14 +830,22 @@ a.button.view-password
                                                     </div>
 
                                                 </div>
-                                    <?php
+                                                <?php
                                                 $rw2 = mysqli_fetch_array($result);
                                             }
                                         }
-                                    }else{
+                                    } else {
                                         ?>
                                         <div data-content="tab-completed">
-                                        nothing here hehe
+                                        <div class="empty-product-listing">
+                                                <span>
+                                                    Nothing to show here. <div class="buttons">
+                                                        <div class="right"><a
+                                                                href="product_list.php"
+                                                                class="button">Continue shopping</a></div>
+                                                    </div>
+                                                </span>
+                                            </div>
                                         </div>
                                         <?php
                                     }
@@ -785,8 +853,15 @@ a.button.view-password
                                 </div>
                                 <div data-content="tab-cancelled">
                                     <div>
-                                        fdsfsdfsd
-                                        fdsfsdfsddasdsadasdasdsa
+                                    <div class="empty-product-listing">
+                                                <span>
+                                                    Nothing to show here. <div class="buttons">
+                                                        <div class="right"><a
+                                                                href="product_list.php"
+                                                                class="button">Continue shopping</a></div>
+                                                    </div>
+                                                </span>
+                                            </div>
 
                                     </div>
                                 </div>
@@ -795,19 +870,19 @@ a.button.view-password
                     </div>
                 </div>
 
-                    </div>
+            </div>
 
         </section>
     </section>
     <script>
         var currenttab = '';
 
-        $(document).on("click", ".order-list .pagination a", function() {
+        $(document).on("click", ".order-list .pagination a", function () {
             $('.order-list .tab-content div[data-content="' + currenttab + '"]').load(this.href);
             return false;
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.order-list .tabs ul li').first().addClass('is-active');
             var activeTab = $('.order-list .tabs ul li').first().data('tab');
             currenttab = activeTab;
@@ -816,7 +891,7 @@ a.button.view-password
             getTotalOrdersAjax();
         });
 
-        $('.order-list .tabs ul li').on('click', function() {
+        $('.order-list .tabs ul li').on('click', function () {
             var activeTab = $(this).data('tab');
             $('.order-list .tabs ul li').removeClass('is-active');
             $(this).addClass('is-active');

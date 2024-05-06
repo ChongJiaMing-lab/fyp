@@ -116,31 +116,31 @@
 		display: none;
 	}
 
-	input.button.btn-login{
-            background-color:black;
-        }
+	input.button.btn-login {
+		background-color: black;
+	}
 
-a.button.view-password
-{
-            background-color:black;
-        }
-.txt-interactt 
-{
-    color: skyblue !important;
-}
-.txt-data, .input.txt-data
-{
-	color:#2586c6;
-}
-.body-style button, .body-style .button 
-{
-    background-color:black;
-}
+	a.button.view-password {
+		background-color: black;
+	}
 
-.title
-{
-	color:black;
-}
+	.txt-interactt {
+		color: skyblue !important;
+	}
+
+	.txt-data,
+	.input.txt-data {
+		color: #2586c6;
+	}
+
+	.body-style button,
+	.body-style .button {
+		background-color: black;
+	}
+
+	.title {
+		color: black;
+	}
 </style>
 <?php
 if (isset($_GET["ID"])) {
@@ -152,61 +152,60 @@ if (isset($_GET["ID"])) {
 <body class="body-style wide  clamp-1">
 	<!-- END HEADER -->
 	<section id="account-password" class="section container myaccounts">
-		
+
 		<?php
-	$id = $_GET['ID'];
-    $query = "SELECT * FROM user_information WHERE ID='$id'";
-	$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
-    $result = mysqli_query($connect, $query);
-	$result2 = mysqli_query($connect, $query2);
-    if($result && $result2)
-    {
-		
-        if ($row = mysqli_fetch_assoc($result)) 
-		{
-			?>
-			<div id="contents">
-			<div id="sidebar-left">
-		<div class="sidebar-nav-list">
-			<ul class="nav-container">
-				<li class="item">
-					<a class="txt-interactt is-active" href="myaccount.php?ID=<?php echo $id;?>">My account</a>
-					<ul class="item-container">
-						<li class="sub">
-							<a href="myprofile.php?ID=<?php echo $id;?>">My profile</a>
-						</li>
-						<li class="sub">
-							<a href="view_address.php?ID=<?php echo $id;?>">My address</a>
-							
-						</li>
-						<li class="sub">
-						<a href="change_password.php?ID=<?PHP echo $id;?>">Change password</a>
-						</li>
-						</ul>
-						<!-- MY ORDERS -->
-	<li class="item">
-	<a href="orderlist.php?ID=<?php echo $id;?>">My orders</a>
-			</li>
-		<!-- MY COUPON -->
-	<li class="item"><a href="...">My coupon</a></li>
-			<!-- MY REWARD POINT -->
-	<li class="item"><a href="...">My reward point</a></li>
-			<!-- MY TRANSACTION -->
-	<li class="item"><a  href="...">My store credit</a></li>
-			</ul>
+		$id = $_GET['ID'];
+		$query = "SELECT * FROM user_information WHERE ID='$id'";
+		$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
+		$result = mysqli_query($connect, $query);
+		$result2 = mysqli_query($connect, $query2);
+		if ($result && $result2) {
+
+			if ($row = mysqli_fetch_assoc($result)) {
+				?>
+				<div id="contents">
+					<div id="sidebar-left">
+						<div class="sidebar-nav-list">
+							<ul class="nav-container">
+								<li class="item">
+									<a class="txt-interactt is-active" href="myaccount.php?ID=<?php echo $id; ?>">My account</a>
+									<ul class="item-container">
+										<li class="sub">
+											<a href="myprofile.php?ID=<?php echo $id; ?>">My profile</a>
+										</li>
+										<li class="sub">
+											<a href="view_address.php?ID=<?php echo $id; ?>">My address</a>
+
+										</li>
+										<li class="sub">
+											<a href="change_password.php?ID=<?PHP echo $id; ?>">Change password</a>
+										</li>
+									</ul>
+									<!-- MY ORDERS -->
+								<li class="item">
+									<a href="orderlist.php?ID=<?php echo $id; ?>">My orders</a>
+								</li>
+								<!-- MY COUPON -->
+								<li class="item"><a href="...">My coupon</a></li>
+								<!-- MY REWARD POINT -->
+								<li class="item"><a href="...">My reward point</a></li>
+								<!-- MY TRANSACTION -->
+								<li class="item"><a href="...">My store credit</a></li>
+							</ul>
 						</div>
-		</div>
-		<?php
+					</div>
+					<?php
+			}
 		}
-	}
-	?>
+		?>
 
 			<div id="main-content" class="password">
 
 				<!-- PASSWORD -->
 				<div class="holder">
 					<div class="title">Change Password</div>
-					<form class="myaccount-body" action="update_password.php" method="post" enctype="multipart/form-data">
+					<form class="myaccount-body" action="update_password.php" method="post"
+						enctype="multipart/form-data">
 						<div class="myaccount-content">
 							<!-- PASSWORD -->
 							<div class="field">
@@ -214,15 +213,35 @@ if (isset($_GET["ID"])) {
 									Old Password</label>
 								<div class="field has-addons">
 									<div class="control addon-fix">
-										<input id="old_pw" type="password" class="input " name="password" value=""
+										<input id="old_pw" type="password" class="input " name="password1" value=""
 											required>
 									</div>
 									<div class="control">
-										<a class="button view-password">
+										<a class="button view-password3">
 											<span><i class="mdi mdi-eye-off"></i></span>
 										</a>
 									</div>
 								</div>
+								<script>
+									document.addEventListener("DOMContentLoaded", function () {
+
+										document.querySelector(".view-password3").addEventListener("click", function () {
+											var passwordInput = document.getElementsByName("password1")[0];
+											var eyeIcon = document.querySelector(".view-password i");
+
+
+											if (passwordInput.type === "password1") {
+												passwordInput.type = "text";
+												eyeIcon.classList.remove("mdi-eye-off");
+												eyeIcon.classList.add("mdi-eye");
+											} else {
+												passwordInput.type = "password1";
+												eyeIcon.classList.remove("mdi-eye");
+												eyeIcon.classList.add("mdi-eye-off");
+											}
+										});
+									});
+								</script>
 								<div class="newpw_require">
 									<ul>
 										<li class="old"><span></span>Must be same with current password</li>
@@ -243,6 +262,26 @@ if (isset($_GET["ID"])) {
 										</a>
 									</div>
 								</div>
+								<script>
+									document.addEventListener("DOMContentLoaded", function () {
+
+										document.querySelector(".view-password").addEventListener("click", function () {
+											var passwordInput = document.getElementsByName("password")[0];
+											var eyeIcon = document.querySelector(".view-password i");
+
+
+											if (passwordInput.type === "password") {
+												passwordInput.type = "text";
+												eyeIcon.classList.remove("mdi-eye-off");
+												eyeIcon.classList.add("mdi-eye");
+											} else {
+												passwordInput.type = "password";
+												eyeIcon.classList.remove("mdi-eye");
+												eyeIcon.classList.add("mdi-eye-off");
+											}
+										});
+									});
+								</script>
 								<div class="newpw_require">
 									<ul>
 										<li class="letter"><span></span>At least one letter</li>
@@ -263,11 +302,31 @@ if (isset($_GET["ID"])) {
 											required>
 									</div>
 									<div class="control">
-										<a class="button view-password">
+										<a class="button view-password2">
 											<span><i class="mdi mdi-eye-off"></i></span>
 										</a>
 									</div>
 								</div>
+								<script>
+									document.addEventListener("DOMContentLoaded", function () {
+
+										document.querySelector(".view-password2").addEventListener("click", function () {
+											var passwordInput = document.getElementsByName("confirm")[0];
+											var eyeIcon = document.querySelector(".view-password i");
+
+
+											if (passwordInput.type === "confirm") {
+												passwordInput.type = "text";
+												eyeIcon.classList.remove("mdi-eye-off");
+												eyeIcon.classList.add("mdi-eye");
+											} else {
+												passwordInput.type = "confirm";
+												eyeIcon.classList.remove("mdi-eye");
+												eyeIcon.classList.add("mdi-eye-off");
+											}
+										});
+									});
+								</script>
 								<div class="newpw_require">
 									<ul>
 										<li class="confirm_password"><span></span>Must be same with the new password

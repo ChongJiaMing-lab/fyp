@@ -185,16 +185,30 @@ a.button.view-password
         width: 200px !important;
     }
     .list-group-item {
-    padding: 10px 5px !important;
+    padding: 4px 0px !important;
+    font-weight: bold;
     border: none;
-    width: 200px !important;
+    width: 150px !important;
     font-family: "Arial", sans-serif;
-    font-size: 16px;
+    font-size: 11px;
     color: #333;
 }
 #label
 {
     padding-bottom: 1000px !important;
+}
+
+label {
+   
+   display: flex;
+   align-items: center;
+   gap: 10px; 
+}
+
+.checkbox
+{
+   width: 100px !important;
+   
 }
 </style>
 <div id="module-category" class="box utilities">
@@ -230,6 +244,7 @@ a.button.view-password
                                     </div>
                                     
     </div>
+
     <div class="title">Category</div>
     <div class="box-content">
                     <div class="list-group">
@@ -247,7 +262,7 @@ a.button.view-password
                             foreach ($result_category as $row) {
                                 ?>
                                 <div class="list-group-item checkbox">
-                                    <label><input type="checkbox" class="common_selector category"
+                                    <label ><input type="checkbox" class="common_selector category"
                                             value="<?php echo $row['category_id']; ?>">
                                         <?php echo $row['category']; ?>
                                     </label>
