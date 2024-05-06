@@ -209,8 +209,7 @@ if (isset($_POST["sales_report"])) {
         $pdf->AddPage();
     
         $pdf->SetFont("Arial", "B", 5);
-        $pdf->Cell(130, 15, "Invoice".$query, 0, 1);
-        
+        $pdf->Cell(130, 15, "Sales Report".$query, 0, 1);
         $pdf->output();
 }
 ?>
