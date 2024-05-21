@@ -236,7 +236,7 @@ if (isset($_POST["sales_report"])) {
         $pdf->Cell(100, 6.5, $row_item["time_status"], 1, 0);
         $pdf->Cell(38, 6.5, $row_item["total_amount"], 1, 1);
     }
-    $pdf->Cell(23+32+100+38, 6.5, "Total ".$total, 1, 1);
+    $pdf->Cell(23+32+100+38, 6.5, "Total111 ".$total, 1, 1);
 
     $pdf->Output();
 }
