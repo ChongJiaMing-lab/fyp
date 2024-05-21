@@ -46,6 +46,7 @@ include 'databaseconnect.php';
         <hr>
         <h1>Purchase History</h1>
         <table class="table">
+        <?php $order = mysqli_query($connect, "SELECT * FROM order_ WHERE user_id = '$id'");?>
             <thead>
                 <tr>
                     <th scope="col">Order#</th>
@@ -55,26 +56,18 @@ include 'databaseconnect.php';
                 </tr>
             </thead>
             <tbody>
+            <?php while($row_order = mysqli_fetch_assoc($order))
+            {       
+                ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row"><?php echo $row_order["order_id"];?></th>
+                    <td><?php echo $row_order["time_status"];?></td>
+                    <td><?php echo $row_order["total_amount"];?></td>
+                    <td><?php echo $row_order["delivery_status"];?></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
-                    <td>@twitter</td>
-                </tr>
+            <?php
+            }?>
             </tbody>
         </table>
-
     </div><!--end of main-->
 </body>
