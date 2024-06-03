@@ -195,7 +195,7 @@
                         }
                     } else {
                         ?>
-                        <td colspan="5" style="text-align:center"><b>No record found :(</b></td>
+                        <td colspan="5" style="text-align:center"><b>No record found</b></td>
                         <?php
                     }
                     ?>

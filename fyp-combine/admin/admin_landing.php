@@ -34,10 +34,12 @@ include 'databaseconnect.php';
     border-radius: 20px;
     box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08)
   }
-  .cards .ccard:hover{
+
+  .cards .ccard:hover {
     background-color: #97EA88;
-    cursor:pointer;
+    cursor: pointer;
   }
+
   .icon {
     font-size: 55px;
   }
@@ -76,6 +78,10 @@ include 'databaseconnect.php';
     display: grid;
     grid-template-columns: 1fr 2fr;
   }
+
+  .recent, .card{
+    border-radius: 12px;
+  }
 </style>
 
 <body>
@@ -85,11 +91,12 @@ include 'databaseconnect.php';
     $staff = mysqli_query($connect, "SELECT * FROM staff");
     $user = mysqli_query($connect, "SELECT * FROM user_information");
     $product = mysqli_query($connect, "SELECT * FROM product");
-    //  $order = mysqli_query($connect, "SELECT * FROM `order`");   
+    $order = mysqli_query($connect, "SELECT * FROM `order_`");
+
     $staff_row = mysqli_num_rows($staff);
     $user_row = mysqli_num_rows($user);
     $product_row = mysqli_num_rows($product);
-    // $order_row = mysqli_num_rows($order);
+    $order_row = mysqli_num_rows($order);
     ?>
     <div class="cards">
       <div class="ccard" onclick="window.location='admin_staff.php';">
@@ -124,7 +131,7 @@ include 'databaseconnect.php';
 
       <div class="ccard" onclick="window.location='admin_order.php';">
         <div class="content">
-          <div class="number">400</div>
+          <div class="number"><?php echo $order_row ?></div>
           <div class="name">Order</div>
         </div>
         <div class="icon">
@@ -148,12 +155,62 @@ include 'databaseconnect.php';
 
     <br>
     <hr><br>
+    <?php
+    $todo = mysqli_query($connect, "SELECT *, user_information.name FROM order_ JOIN user_information ON order_.user_id = user_information.ID WHERE delivery_status = 'Processing'")
+      ?>
     <div class="recent">
       <div class="recent1">
-        <h1>Recent Order/Activities</h1>
+        <div class="card">
+          <h1 style="margin:15px 15px 15px 15px">To-do List</h1>
+          <table class="table table-borderless table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              while ($todo_row = mysqli_fetch_assoc($todo)) {
+                ?>
+                <tr onclick="window.location='order_detail.php?order_id=<?php echo $todo_row['order_id'] ?>';"
+                  style="cursor:pointer">
+                  <th scope="row"><?php echo $todo_row["order_id"] ?></th>
+                  <td><?php echo $todo_row["time_status"] ?></td>
+                  <td><?php echo $todo_row["name"] ?></td>
+                  <td><?php echo $todo_row["delivery_status"] ?></td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="recent2">
-        <h1>Recent >>>>></h1>
+      <?php $new_c = mysqli_query($connect, "SELECT * FROM user_information ORDER BY ID DESC LIMIT 5")
+        ?>
+      <div class="recent2" style="margin-left: 25px;">
+        <div class="card">
+          <h1 style="margin:15px 15px 15px 15px">Recent Customers</h1>
+          <table class="table table-borderless">
+            <hr style="width:98%; margin:auto auto auto auto;">
+            <tbody>
+              <?php
+              while ($new_row = mysqli_fetch_assoc($new_c)) {
+                  ?>
+                  <tr>
+                    <th scope="row"><?php echo $new_row["name"] ?></th>
+                    <td><?php echo $new_row["contactnumber"] ?></td>
+                    <td><?php echo $new_row["email"] ?></td>
+                  </tr>
+                  <?php
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
       </div>
     </div>
 
