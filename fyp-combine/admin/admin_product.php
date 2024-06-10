@@ -68,6 +68,9 @@
         font-size: 30px;
         left: 5.7px;
     }
+    
+	span { color:red; font-size: 0.9em; }
+
 </style>
 
 <body>
@@ -118,7 +121,7 @@
                                     <div class="form-group mb-4">
                                         <label for="prodcuct_title">Product:</label>
                                         <input type="text" class="form-control" name="product_name"
-                                            placeholder="product name">
+                                            placeholder="product name" required>
                                     </div>
                                 </div>
                                 <!-- brand -->
@@ -126,7 +129,7 @@
                                     <div class="form-group mb-4">
                                         <label>Brand:</label>
                                         <select class="form-select" id="brand" aria-label="Default select example"
-                                            name="brand">
+                                            name="brand" required>
                                             <?php
                                             $b = mysqli_query($connect, "SELECT * FROM brand");
                                             if (mysqli_num_rows($b) > 0) {
@@ -153,7 +156,7 @@
                                                 ?>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="radio"
-                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>">
+                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>" required/>
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         <?php echo $row['type'] ?>
                                                     </label>
@@ -169,7 +172,7 @@
                                     <div class="form-group mb-4">
                                         <label>Category:</label>
                                         <select class="form-select" id="category" aria-label="Default select example"
-                                            name="cate"></select>
+                                            name="cate" required></select>
                                     </div>
                                 </div>
 
@@ -195,14 +198,14 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Description</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder="product desc" name="desc"></textarea>
+                                                placeholder="product description" name="desc" required></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="customFile">Product Image</label>
-                                        <input type="file" class="form-control" id="customFile" name="img" />
+                                        <input type="file" class="form-control" id="customFile" name="img" required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -210,17 +213,19 @@
                                         <label class="form-label" for="price">Price:</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">RM</span>
-                                            <input type="text" class="form-control" id="price" name="price">
+                                            <input type="text" class="form-control" id="price" name="price" placeholder="00.00"required>
                                         </div>
+                                        <br><span id="check_price">Please enter a valid price</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="qty">Stock:</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="qty" name="qty">
+                                            <input type="text" class="form-control" id="qty" name="qty" required>
                                             <span class="input-group-text">pcs</span>
                                         </div>
+                                        <br><span id="check_stock">Please enter a valid quantity</span>
                                     </div>
                                 </div>
                             </div>
@@ -555,7 +560,7 @@
                                                                             for="exampleFormControlTextarea1">Description</label>
                                                                         <textarea class="form-control"
                                                                             id="exampleFormControlTextarea1" rows="3"
-                                                                            placeholder="product desc"
+                                                                            placeholder="product description"
                                                                             name="desc"><?php echo $row["product_desc"] ?></textarea>
                                                                     </div>
                                                                 </div>
