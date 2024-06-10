@@ -117,6 +117,7 @@ if(isset($_SESSION['v_alert']))
 
         .title, .tabs li.is-active a, .modal-card-title {
     color: black;
+    text-transform: unset; 
         }
     </style>
 

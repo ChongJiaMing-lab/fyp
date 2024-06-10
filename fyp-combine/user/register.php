@@ -8,95 +8,95 @@
 
 
 
-    <!-- BULMA -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet"
-        type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css"
-        rel="stylesheet" type="text/css" />
+	<!-- BULMA -->
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet"
+		type="text/css" />
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css"
+		rel="stylesheet" type="text/css" />
 
 
-    <!-- MAIN STYLESHEET -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1710050486" rel="stylesheet"
-        type="text/css" />
+	<!-- MAIN STYLESHEET -->
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1710050486" rel="stylesheet"
+		type="text/css" />
 
-    <!-- CAROUSEL -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet"
-        type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet"
-        type="text/css" />
+	<!-- CAROUSEL -->
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet"
+		type="text/css" />
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet"
+		type="text/css" />
 
-    <!-- FONT AWESOME -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
+	<!-- FONT AWESOME -->
+	<link defer rel="stylesheet"
+		href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
 
-    <!-- MATERIAL DESIGN ICON -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
+	<!-- MATERIAL DESIGN ICON -->
+	<link defer rel="stylesheet"
+		href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
 
-    <!-- STAATLICHES -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
+	<!-- STAATLICHES -->
+	<link defer rel="stylesheet"
+		href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
 
-    <!-- ANIMATION -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet"
-        type="text/css" />
+	<!-- ANIMATION -->
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet"
+		type="text/css" />
 
-    <!-- BULMA CALENDAR -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css"
-        rel="stylesheet" type="text/css" />
+	<!-- BULMA CALENDAR -->
+	<link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css"
+		rel="stylesheet" type="text/css" />
 
-    <!-- JQUERY -->
-    <script src="catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
-    <script defer type="text/javascript" src="catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
+	<!-- JQUERY -->
+	<script src="catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
+	<script defer type="text/javascript" src="catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 
-    <!-- TOTAL STORAGE -->
-    <script defer type="text/javascript"
-        src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
+	<!-- TOTAL STORAGE -->
+	<script defer type="text/javascript"
+		src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
 
-    <!-- FANCYBOX -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
+	<!-- FANCYBOX -->
+	<link defer rel="stylesheet"
+		href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
+	<script async
+		src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
 
-    <!-- ELEVATEZOOM -->
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
+	<!-- ELEVATEZOOM -->
+	<script async
+		src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
+	<script async
+		src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
+	<script async
+		src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
 
-    <!-- LAZYLOAD -->
-    <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
-    <script
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
-
-
-
-    <!-- GOOGLE RECAPTCHA -->
-    <script defer async src='https://www.google.com/recaptcha/api.js'></script>
+	<!-- LAZYLOAD -->
+	<script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
+	<script
+		src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
 
 
 
-    <!-- CUSTOMIZE -->
-    <link defer id="customize_css"
-        href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710050486"
-        rel="stylesheet" type="text/css" />
+	<!-- GOOGLE RECAPTCHA -->
+	<script defer async src='https://www.google.com/recaptcha/api.js'></script>
 
 
-    <style>
-        .btn-wishlist,
-        .btn-compare {
-            display: none;
-        }
-    </style>
+
+	<!-- CUSTOMIZE -->
+	<link defer id="customize_css"
+		href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710050486"
+		rel="stylesheet" type="text/css" />
 
 
-    <!-- TITLE -->
-    <title>Register</title>
+	<style>
+		.btn-wishlist,
+		.btn-compare {
+			display: none;
+		}
+	</style>
 
-    <script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
+
+	<!-- TITLE -->
+	<title>Register</title>
+
+	<script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 
 </head>
 <style>
@@ -153,6 +153,10 @@
 		text-transform: capitalize;
 		background-color: black;
 	}
+
+	.field-group .field {
+		width: 100%;
+	}
 </style>
 
 <body class="body-style wide  clamp-1">
@@ -180,8 +184,8 @@
 									<div class="newpw_require">
 										<ul>
 											<li class="letter1"><span></span></li>
-											<li class="email"><span>Not Included In @gmail</span></li>
-
+											<li class="email"><span></span></li>
+											<li class="email-format"><span>Invalid Email format</span></li>
 										</ul>
 									</div>
 								</div>
@@ -192,7 +196,7 @@
 									</div>
 									<div class="newpw_require">
 										<ul>
-											<li class="6_len"><span></span>At least 6 characters</li>
+											<li class="6_len"><span></span>Should have 6 characters</li>
 										</ul>
 									</div>
 								</div>
@@ -204,135 +208,130 @@
 									<div class="newpw_require">
 										<ul>
 
-											<li class="15_len2"><span></span>At least 10 number</li>
-											<li class="15_len2"><span></span>Example: 011xxxxxxx</li>
+											<li class="15_len2"><span></span>Should have 10 number</li>		
 
 										</ul>
 									</div>
 								</div>
 								<div class="field-group">
-									<div class="field dob">
-										<div class="month-input">
-											<label class="label">
-												Date of Birth </label>
+									<div class="field">
+										<label class="label">
+											Password</label>
+										<div class="field has-addons">
+											<div class="control addon-fix">
+												<input id="pw_valid" type="password" class="input " name="password"
+													value="" required>
+											</div>
 											<div class="control">
-												<select id="dob_month" name="dob_month" class="">
-                                                    <option value="0">Select</option>
-													<option value="1">January</option>
-													<option value="2">February</option>
-													<option value="3">March</option>
-													<option value="4">April</option>
-													<option value="5">May</option>
-													<option value="6">Jun</option>
-													<option value="7">July</option>
-													<option value="8">August</option>
-													<option value="9">September</option>
-													<option value="10">October</option>
-													<option value="11">November</option>
-													<option value="12">December</option>
-												</select>
+												<a class="button view-password1">
+													<span><i class="mdi mdi-eye-off"></i></span>
+												</a>
 											</div>
 										</div>
-										<div class="day-input">
-											<label class="label">
-												Day </label>
-											<div class="control">
-												<input id="dob_day" name="dob_day" type='number' class="input" min="1"
-													placeholder="DD" value="" pattern="[0-9] " />
-											</div>
+										<script>
+											document.addEventListener("DOMContentLoaded", function () {
 
-										</div>
-										<div class="year-input">
-											<label class="label ">
-												Year </label>
-											<div class="control">
-												<input id="dob_year" name="dob_year" type='number' class="input"
-													min="1869" placeholder="YYYY" value="" pattern="[0-9]" />
-											</div>
+												document.querySelector(".view-password1").addEventListener("click", function () {
+													var passwordInput = document.getElementsByName("password")[0];
+													var eyeIcon = document.querySelector(".view-password i");
 
+
+													if (passwordInput.type === "password") {
+														passwordInput.type = "text";
+														eyeIcon.classList.remove("mdi-eye-off");
+														eyeIcon.classList.add("mdi-eye");
+													} else {
+														passwordInput.type = "password";
+														eyeIcon.classList.remove("mdi-eye");
+														eyeIcon.classList.add("mdi-eye-off");
+													}
+												});
+											});
+
+
+										</script>
+										<div class="newpw_require">
+											<ul>
+												<li class="letter"><span></span>Should have one letter</li>
+												<li class="num"><span></span>Should have one number</li>
+												<li class="special"><span></span> Should have one special character</li>
+												<li class="14_len"><span></span>At least 15 characters</li>
+											</ul>
 										</div>
-										<input type="hidden" class="input " id="birthday_date" readonly="readonly"
-											name="birthday_date" value="">
 									</div>
 								</div>
-								<div class="newpw_require">
-									<ul>
 
-										<li class="day"><span></span>Day should Be 0-31</li>
-										<li class="Year"><span></span>Start at 2000-2024</li>
-
-									</ul>
-								</div>
 							</div>
 
 							<div class="myaccount-content">
 								<!-- PASSWORD -->
 								<div class="field">
 									<label class="label">
-										New Password</label>
+										Comfirm Password</label>
 									<div class="field has-addons">
 										<div class="control addon-fix">
-											<input id="pw_valid" type="password" class="input " name="password" value=""
+											<input id="cf_pass" type="password" class="input " name="cpassword" value=""
 												required>
 										</div>
 										<div class="control">
-											<a class="button view-password">
+											<a class="button view-password3">
 												<span><i class="mdi mdi-eye-off"></i></span>
 											</a>
 										</div>
 									</div>
 									<div class="newpw_require">
 										<ul>
-											<li class="letter"><span></span>At least one letter</li>
-											<li class="num"><span></span>At least one number</li>
-											<li class="special"><span></span>At least one special character</li>
-											<li class="14_len"><span></span>At least 15 characters</li>
+											
 										</ul>
 									</div>
 								</div>
 
-
-
 								<div class="form-footer">
-                                    <div class="field">
-                                        <input type="hidden" name="agree" value="1" />
-                                        <input type="submit" class="button btn-login" id="btn_submit" name="register"
-                                            value="Confirm Register" class="button" />
+									<div class="field">
+										<input type="hidden" name="agree" value="1" />
+										<input type="submit" class="button btn-login" id="btn_submit" name="register"
+											value="Confirm " class="button" />
 
-                                    </div>
 									</div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<script>
-				document.addEventListener("DOMContentLoaded", function () {
+								</div>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
 
-					document.querySelector(".view-password").addEventListener("click", function () {
-						var passwordInput = document.getElementsByName("password")[0];
-						var eyeIcon = document.querySelector(".view-password i");
+				document.querySelector(".view-password3").addEventListener("click", function () {
+					var passwordInput = document.getElementsByName("cpassword")[0];
+					var eyeIcon = document.querySelector(".view-password i");
 
 
-						if (passwordInput.type === "password") {
-							passwordInput.type = "text";
-							eyeIcon.classList.remove("mdi-eye-off");
-							eyeIcon.classList.add("mdi-eye");
-						} else {
-							passwordInput.type = "password";
-							eyeIcon.classList.remove("mdi-eye");
-							eyeIcon.classList.add("mdi-eye-off");
-						}
-					});
+					if (passwordInput.type === "password") {
+						passwordInput.type = "text";
+						eyeIcon.classList.remove("mdi-eye-off");
+						eyeIcon.classList.add("mdi-eye");
+					} else {
+						passwordInput.type = "password";
+						eyeIcon.classList.remove("mdi-eye");
+						eyeIcon.classList.add("mdi-eye-off");
+					}
 				});
+			});
 
-				
-			</script>
+
+		</script>
 
 	</section>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js">
-	</script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 	<script>
+		 function validateEmail(email) 
+		 {
+            var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return re.test(email);
+        }
+
 		$('#email').on('keyup', function () {
 
 			email_value = $(this).val();
@@ -351,6 +350,12 @@
 				$('.email').removeClass('active');
 			}
 
+			if (validateEmail(email_value)) {
+				$('.email-format').addClass('active');
+			} else {
+				$('.email-format').removeClass('active');
+			}
+
 		})
 
 		$('#name').on('keyup', function () {
@@ -366,38 +371,7 @@
 
 		})
 
-		$('#dob_month, #dob_day, #dob_year').on('change', function () {
-    var month = parseInt($('#dob_month').val());
-    var day = parseInt($('#dob_day').val());
-    var year = parseInt($('#dob_year').val());
 
-    if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
-    
-        if (year >= 2000 && year <= 2024 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
-        
-            var currentDate = new Date();
-            var currentYear = currentDate.getFullYear();
-            var currentMonth = currentDate.getMonth() + 1;
-            var currentDay = currentDate.getDate();
-            if (year == currentYear && month > currentMonth) {
-                $('.day').removeClass('active').addClass('error');
-                $('.Year').removeClass('active');
-            } else if (year == currentYear && month == currentMonth && day > currentDay) {
-                $('.day').removeClass('active').addClass('error');
-                $('.Year').removeClass('active');
-            } else {
-                $('.day').removeClass('error').addClass('active');
-                $('.Year').removeClass('error').addClass('active');
-            }
-        } else {
-          
-            $('.day').removeClass('active').addClass('error');
-            $('.Year').removeClass('active').addClass('error');
-        }
-    } else {
-     
-    }
-});
 
 		$('#telephone').on('keyup', function () {
 
@@ -447,7 +421,7 @@
 			}
 		})
 
-
+		
 
 		$('#btn_submit').on("click", function (e) {
 			e.preventDefault();
