@@ -259,13 +259,12 @@
                                                                 <?php
                                                                 $id = $_GET['ID'];
                                                                 $query = "SELECT * FROM user_address WHERE customer_id='$id'";
-                                                                $result = mysqli_query($connect, $query);?>
-                                                                
+                                                                $result = mysqli_query($connect, $query); ?>
+
                                                                 <ul class="flex-container longhand">
                                                                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                                                         <li class="flex-item">
                                                                             <input type="radio" name="address_option"
-                                                                                
                                                                                 data-address="<?php echo ($row['address']); ?>"
                                                                                 data-city="<?php echo ($row['city']); ?>"
                                                                                 data-state="<?php echo ($row['state']); ?>"
@@ -275,10 +274,10 @@
                                                                                 <?php echo ($row['address'] . ', ' . $row['postcode'] . ', ' . $row['city'] . ', ' . $row['state']); ?>
                                                                             </label>
                                                                         </li>
-                                                                    <?php 
-                                                                      $address_id = $row['address_id'];
-                                                                      $count++;
-                                                                } ?>
+                                                                        <?php
+                                                                        $address_id = $row['address_id'];
+                                                                        $count++;
+                                                                    } ?>
                                                                 </ul>
                                                             </div>
                                                             <div class="modal-footer">
@@ -300,12 +299,12 @@
 
                                                 var selected = $('input[name="address_option"]:checked');
 
-                                                
+
                                                 var address = selected.data('address');
                                                 var city = selected.data('city');
                                                 var state = selected.data('state');
                                                 var postcode = selected.data('postcode');
-                                               
+
 
 
                                                 $('input[name="address"]').val(address);
@@ -437,25 +436,26 @@
                         $total_amount = $ttotal;
                         $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
                         $currentDateTime = $now->format('d-m-Y H:i:s');
-                       
+
 
                         $result = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
 
                         $query = mysqli_query($connect, "INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) VALUES ('$user_id','$currentDateTime','$total_amount','$address_id','$status')");
+                        $order_id = mysqli_insert_id($connect);
                         $new_point = number_format(($total_amount / 10), 2);
                         $select_point = mysqli_query($connect, "SELECT * FROM point WHERE user_id = '$user_id'");
                         $row_point = mysqli_fetch_assoc($select_point);
-                        $row_point["point"]+= $new_point;
+                        $row_point["point"] += $new_point;
                         $new_point = $row_point["point"];
                         $update_point = mysqli_query($connect, "UPDATE point SET point = '$new_point'");
-                        $order_id = mysqli_insert_id($connect);
+                       
                         if (!$query) {
                             echo "<script>alert('failed to insert into order table');</script>";
                         }
                         while ($row = mysqli_fetch_assoc($result)) {
                             $cart_id = $row['cart_id'];
                             $qty = $row['qty'];
-
+                   
                             $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id,cart_id) 
         VALUES ('$order_id','$cart_id')");
 
@@ -466,9 +466,9 @@
                             mysqli_query($connect, "UPDATE cart SET status = 'payed' WHERE user_id = $user_id AND status != 'payed'");
 
                             $ID = $_SESSION['ID'];
-                            $point = (int)($total/100);
-                            mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
-                            mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$ID','$order_id','$currentDateTime')");
+                            $point = (int) ($total / 100);
+                            mysqli_query($connect, "UPDATE point SET point = point + $point WHERE user_id = $id");
+                            mysqli_query($connect, "INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$ID','$order_id','$currentDateTime')");
 
                             ?>
                                 <script>

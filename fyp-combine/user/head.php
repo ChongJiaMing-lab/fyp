@@ -320,6 +320,7 @@ if(isset($_SESSION['v_alert']))
                                     <?php
                                 } else { ?>
                                     <a class="dropdown-item" href="Login.php">Login</a>
+                                    <a class="dropdown-item" href="register.php">Register</a>
                                 <?php
                                 }   
                                 ?>
@@ -329,33 +330,7 @@ if(isset($_SESSION['v_alert']))
                 </div>
 
                 <!-- CMS BLOCK -->
-                <div id="cms_1" class="cms-block">
-                    <div class="cms-content cms_1 ">
-                        <div class="cms-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <div class="cms-text">
-                            <pre>Free Shipping</pre>
-                        </div>
-                    </div>
-
-                    <!-- CMS_2 DUPLICATE -->
-                    <div class="cms-content cms_2 ">
-                        <div class="cms-icon">
-                            <i class="fas fa-headphones-alt"></i>
-                        </div>
-                        <div class="cms-text">03-456 7554</div>
-                    </div>
-
-                    <!-- CMS_3 DUPLICATE -->
-                    <div class="cms-content cms_3 hidden">
-                        <div class="cms-icon">
-                            <i class="fas fa-headphones-alt"></i>
-                        </div>
-                        <div class="cms-text">03-456 7554</div>
-                    </div>
-                </div>
-
+                
                 <div id="cms_2" class="cms-block">
                     <div class="cms-content cms_2 ">
                         <div class="cms-icon">
