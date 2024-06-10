@@ -207,16 +207,6 @@ a.button.view-password
 							</div>
 						
 						
-						<!-- EMAIL ADDRESS -->
-						<div class="field">
-							<label class="label">
-								Email address							</label>
-							<div class="control">
-								<input type="text" name="email"class="input txt-data" value="<?php echo $row['email']?>" />
-							</div>
-						</div>
-					
-						
 							<!-- TELEPHONE -->
 							<div class="field">
 								<label class="label">
@@ -228,14 +218,8 @@ a.button.view-password
 
 							
 
-																								<!-- BIRTHDAY -->
-									<div class="field">
-										<label class="label">
-											Date of Birth										</label>
-										<div class="control">
-											<input type="text"name="dateofbirth" class="input txt-data" value="<?php echo $row['dateofbirth']?>" />
-										</div>
-									</div>
+																								
+									
 															
 															
 								
@@ -287,23 +271,17 @@ if (isset($_GET['ID'])) {
 }
 
 if (isset($_POST['updatebtn'])) {
+
     $name = mysqli_real_escape_string($connect, $_POST['name']);
-    $email = mysqli_real_escape_string($connect, $_POST['email']);
     $contactnumber = mysqli_real_escape_string($connect, $_POST['contactnumber']);
-    $dateofbirth = mysqli_real_escape_string($connect, $_POST['dateofbirth']);
+   
  
 
    
-    $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email = '$email' AND ID != '$product_id'");
-    if (mysqli_num_rows($verify_query) > 0) {
-        echo "<script>alert('The email has already been used. Please choose another email.');</script>";
-    } else {
         
-		$result = mysqli_query($connect, "UPDATE user_information SET
-												 email = '$email', 
+		$result = mysqli_query($connect, "UPDATE user_information SET 
 												 name = '$name', 
-												 contactnumber = '$contactnumber',
-												 dateofbirth = '$dateofbirth'
+												 contactnumber = '$contactnumber'
 												 WHERE ID = '$product_id'");
 
         if (!$result) {
@@ -316,7 +294,7 @@ if (isset($_POST['updatebtn'])) {
         exit;
         }
     }
-}
+
 ?>
 
 

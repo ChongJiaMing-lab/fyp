@@ -128,6 +128,13 @@
 		.body-style .button {
 			background-color: black;
 		}
+
+		.field-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    flex-direction: column;
+	}
 	</style>
 
 
@@ -210,15 +217,7 @@
 										</div>
 
 
-										<!-- EMAIL ADDRESS -->
-										<div class="field">
-											<label class="label">
-												Email address </label>
-											<div class="control">
-												<input type="text" class="input txt-data" value="<?php echo $row['email'] ?>"
-													disabled />
-											</div>
-										</div>
+										
 
 
 										<!-- TELEPHONE -->
@@ -231,17 +230,18 @@
 											</div>
 										</div>
 
-
-
-										<!-- BIRTHDAY -->
+										<!-- EMAIL ADDRESS -->
 										<div class="field">
 											<label class="label">
-												Date of Birth </label>
+												Email address </label>
 											<div class="control">
-												<input type="text" class="input txt-data"
-													value="<?php echo $row['dateofbirth'] ?>" disabled />
+												<input type="text" class="input txt-data" value="<?php echo $row['email'] ?>"
+													disabled />
 											</div>
 										</div>
+										
+
+										
 
 
 
