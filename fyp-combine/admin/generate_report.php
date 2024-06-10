@@ -198,18 +198,46 @@ if (isset($_POST["sales_report"])) {
 
     $query = "SELECT *,user_information.name 
         FROM order_ 
-        JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
+        JOIN user_information ON order_.user_id = user_information.ID WHERE 1 ";
     if (!empty($f))
         $query .= " AND time_status >= '$f'";
     if (!empty($t))
         $query .= " AND time_status <= '$t'";
 
-        $pdf = new FPDF("p", "mm", "A4");
+    $pdf = new FPDF("p", "mm", "A4");
 
-        $pdf->AddPage();
-    
-        $pdf->SetFont("Arial", "B", 5);
-        $pdf->Cell(130, 15, "Sales Report".$query, 0, 1);
-        $pdf->output();
+    $pdf->AddPage();
+
+    $pdf->SetFont("Arial", "B", 35);
+    $pdf->Cell(130, 15, "Sales Report", 0, 1);
+    $pdf->SetFont("Arial", "");
+    $query = "SELECT *,user_information.name 
+    FROM order_ 
+    JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
+
+    if (!empty($f))
+        $query .= " AND time_status >= '$f'";
+    if (!empty($t))
+        $query .= " AND time_status <= '$t'";
+
+    $o_run = mysqli_query($connect, $query);
+    $o_output = '';
+    $total = 0;
+    $count=1;
+    $pdf->SetFont("Arial", "", "13");
+    $pdf->Cell(23, 6.5, "Order#", 1, 0);
+    $pdf->Cell(32, 6.5, "Placed by:", 1, 0);
+    $pdf->Cell(100, 6.5, "Created Time", 1, 0);
+    $pdf->Cell(38, 6.5, "Total Amount", 1, 1);
+    while ($row_item = mysqli_fetch_assoc($o_run)) {
+        $total+= $row_item["total_amount"];
+        $pdf->Cell(23, 6.5, $count++, 1, 0);
+        $pdf->Cell(32, 6.5, $row_item["name"], 1, 0);
+        $pdf->Cell(100, 6.5, $row_item["time_status"], 1, 0);
+        $pdf->Cell(38, 6.5, $row_item["total_amount"], 1, 1);
+    }
+    $pdf->Cell(23+32+100+38, 6.5, "Total111 ".$total, 1, 1);
+
+    $pdf->Output();
 }
 ?>

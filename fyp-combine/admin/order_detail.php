@@ -83,7 +83,7 @@ include 'databaseconnect.php';
                     </div>
                 </div>
                 <button type="button" class="btn btn-warning" style="height:50px; width:85px;"
-                    onclick="window.location.replace('admin_order.php')">Back</button>
+                    onclick="history.go(-1)">Back</button>
             </div>
             <hr>
             <?php

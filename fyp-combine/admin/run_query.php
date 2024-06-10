@@ -201,7 +201,6 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
         <td>
             ' . $row["delivery_status"] . '
         </td>
-       
     </tr>'?>
     <?php
     }

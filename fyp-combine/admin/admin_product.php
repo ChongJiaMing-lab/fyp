@@ -235,28 +235,10 @@
             </div>
         </div><!-- modal end-->
         <hr>
-        <div class="card">
-            <p><b>Showing .. results.</b></p>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Stock(QTY)</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <form action="a_product.php" method="POST" id="pd">
-                        <?php
-                        if (isset($_POST["search"])) {
-                            $search = $_POST["search"];
-                            $query = "SELECT 
+        <?php
+        if (isset($_POST["search"])) {
+            $search = $_POST["search"];
+            $query = "SELECT 
                             product.product_id, 
                             product.product_name, 
                             product.product_desc, 
@@ -274,8 +256,8 @@
                             JOIN product_type ON product.product_type = product_type.type_id
                              WHERE product_name LIKE '%$search%'
                              ORDER BY product.product_id";
-                        } else {
-                            $query = "SELECT 
+        } else {
+            $query = "SELECT 
                                 product.product_id, 
                                 product.product_name, 
                                 product.product_desc, 
@@ -292,10 +274,29 @@
                                 JOIN product_status ON product.product_status = product_status.p_status_id
                                 JOIN product_type ON product.product_type = product_type.type_id
                                 ORDER BY product.product_id";
-                        }
-                        $result = mysqli_query($connect, $query);
-                        $_SESSION["count"] = mysqli_num_rows($result);
-                        $count = 1;
+        }
+        $result = mysqli_query($connect, $query);
+        $count_row =mysqli_num_rows($result);
+        ?>
+        <div class="card">
+            <p><b>Showing <?php echo $count_row ?> results.</b></p>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Stock(QTY)</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form action="a_product.php" method="POST" id="pd">
+                        <?php
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
@@ -418,7 +419,8 @@
                                     </td>
 
                                     <td>
-                                        <button type="button" class="status" style="border:0px solid green;text-align:center;"><?php echo $row['product_status']; ?></button>
+                                        <button type="button" class="status"
+                                            style="border:0px solid green;text-align:center;"><?php echo $row['product_status']; ?></button>
                                     </td>
 
                             </form>
@@ -567,7 +569,7 @@
                                                                     <input type="file" class="form-control"
                                                                         id="imgInput<?php echo $row['image']; ?>" name="img">
                                                                     <input type="hidden" name="old-img"
-                                                                        value="<?php echo $row['image']?>">
+                                                                        value="<?php echo $row['image'] ?>">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
