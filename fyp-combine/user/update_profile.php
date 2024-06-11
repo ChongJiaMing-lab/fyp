@@ -1,7 +1,7 @@
 <?php
 include("data_connection.php");
 
-session_start();
+
 
 
 if (isset($_GET['ID'])) {

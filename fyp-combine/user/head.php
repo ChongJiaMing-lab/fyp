@@ -176,8 +176,16 @@ if(isset($_SESSION['v_alert']))
 
                                     <a class="navbar-item" href="product_list.php"><span>Products</span></a>
                                     <i class="accordion"></i>
-                                </div> <a class="navbar-item" href="build_home.php"><span>PCbuild</span></a>
-                                <a class="navbar-item" href="voucher.php?ID=<?php echo $_SESSION['ID']?>"><span>Voucher</span></a>
+                                </div> 
+                               
+                               
+                                <a class="navbar-item" href="build_home.php"><span>PCbuild</span></a>
+                                <?php
+                                if(isset($_SESSION['ID'])) { ?>
+                                    <a class="navbar-item" href="voucher.php?ID=<?php echo $_SESSION['ID']?>"><span>Voucher</span></a>
+                                    <?php
+                                    }
+                                    ?>
                                 <?php
                                 if (isset($_SESSION['ID'])) { ?>
                                     <a class="navbar-item" href="contact_us.php?ID=<?php echo $_SESSION['ID']; ?>">Contact
