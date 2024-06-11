@@ -220,9 +220,7 @@
 															<div class="shipping-telephone">
 																<div class="txt-data"><?php echo $row2['contact_number']; ?></div>
 															</div>
-															<div class="shipping-address-1">
-																<div class="txt-data"><?php echo $row2['country']; ?></div>
-															</div>
+															
 															<div class="shipping-address-1">
 																<div class="txt-data"><?php echo $row2['address']; ?></div>
 															</div>

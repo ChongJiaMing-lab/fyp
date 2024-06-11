@@ -132,6 +132,36 @@
 		.body-style .button {
 			background-color: black;
 		}
+
+		.new_require ul {
+			padding: 0;
+			margin: 0 0;
+			list-style: none;
+		}
+
+		.new_require ul li {
+			margin-bottom: 8px;
+			color: red;
+			/* font-weight: 700; */
+		}
+
+		.new_require ul li.active {
+			display: none;
+		}
+
+		.new_require ul li span::before {
+			display: inline;
+		}
+
+		.new_require ul li.active span:before {
+			display: none;
+		}
+
+		.btn-wishlist,
+		.btn-compare {
+
+			display: none;
+		}
 	</style>
 
 
@@ -151,7 +181,7 @@
 				<div class="holder">
 					<div class="title">Edit my address</div>
 					<div class="add-form">
-						<form name="editfrm" method="post" action="" enctype="multipart/form-data">
+					
 							<div class="myaccount-content form-utility">
 								<?php
 								$id = $_GET['ID'];
@@ -159,6 +189,7 @@
 								$result = mysqli_query($connect, $query);
 								if ($result) {
 									foreach ($result as $row) { ?>
+									<form id="form1" name="form1" method="post" action="upadate_editaddress.php?ID=<?php echo $id; ?>">
 										<div class="field-group">
 
 
@@ -168,9 +199,14 @@
 													<span id="lastname-required" class="required"></span>
 													Name </label>
 												<div class="control">
-													<input type="text" class="input " name="name"
+													<input type="text" class="input " id="name" name="name"
 														value="<?php echo $row['name'] ?>" />
 
+												</div>
+												<div class="new_require">
+													<ul>
+														<li class="6_len"><span></span>Should have 6 characters</li>
+													</ul>
 												</div>
 											</div>
 										</div>
@@ -181,8 +217,13 @@
 												<span id="contact-required" class="required"></span>
 												Contact number </label>
 											<div class="control">
-												<input type="text" class="input " name="contact_number"
+												<input type="text" class="input " id="telephone" name="contact_number"
 													value="<?php echo $row['contact_number'] ?>" />
+											</div>
+											<div class="new_require">
+												<ul>
+													<li class="15_len2"><span></span>Should have 10 number</li>
+												</ul>
 											</div>
 										</div>
 
@@ -205,16 +246,7 @@
 											</div>
 
 											<!-- ADDRESS 2 -->
-											<!-- COUNTRY -->
-											<div id="country_display" class="field">
-												<label class="label label-is-success">
-													<span id="country-required" class="required"></span>
-													Country
-												</label>
-												<select name="country_id" class=""><?php echo $row['country'] ?>
-													<option value="Malaysia">Malaysia</option>
-												</select>
-											</div>
+
 
 
 											<!-- ZONE -->
@@ -260,8 +292,15 @@
 													<span id="postcode-required" class="required"></span>
 													Postcode </label>
 												<div class="control">
-													<input type="text" class="input " name="postcode"
+													<input type="text" class="input " id="postcode" name="postcode"
 														value="<?php echo $row['postcode'] ?>" />
+												</div>
+												<div class="new_require">
+													<ul>
+
+														<li class="pst"><span></span>Must be 5 digits</li>
+
+													</ul>
 												</div>
 											</div>
 										</div>
@@ -271,7 +310,7 @@
 
 
 
-									<?php
+										<?php
 									}
 								} else {
 									echo "no records found :(";
@@ -281,7 +320,9 @@
 
 								<!-- SUBMIT -->
 								<div class="buttons">
-									<input type="submit" name="updatebtn" value="Save" class="button btn-action" />
+									<input type="hidden" name="agree" value="1" />
+									<input type="submit" name="updatebtn" id="btn_submit" value="Save"
+										class="button btn-action" />
 								</div>
 							</div>
 						</form>
@@ -294,7 +335,107 @@
 
 	</section>
 
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+			checkName();
+			checkTelephone();
+			checkPostcode();
+		});
 
+		
+		function checkName() {
+			var name_value = $('#name').val();
+			if (name_value.length == 6 || name_value.length > 6) {
+				$('.6_len').addClass('active');
+			} else {
+				$('.6_len').removeClass('active');
+			}
+		}
+
+	
+		function checkTelephone() {
+			var telephone_value = $('#telephone').val();
+			if (telephone_value.length == 10 || telephone_value.length > 10) {
+				$('.15_len2').addClass('active');
+			} else {
+				$('.15_len2').removeClass('active');
+			}
+		}
+
+		function checkPostcode() {
+			var postcode_value = $('#postcode').val();
+			if (/^\d+$/.test(postcode_value) && postcode_value.length <= 5) {
+				if (postcode_value.length === 5) {
+					$('.pst').addClass('active');
+				} else {
+					$('.pst').removeClass('active');
+				}
+			}
+		}
+		$('#name').on('keyup', function () {
+
+			name_value = $(this).val();
+			if (name_value.length == 6 || name_value.length > 6) {
+				$('.6_len').addClass('active');
+			}
+			else {
+				$('.6_len').removeClass('active');
+			}
+
+
+		})
+
+		$('#telephone').on('keyup', function () {
+
+			telephone_value = $(this).val();
+			if (telephone_value.length == 10 || telephone_value.length > 10) {
+				$('.15_len2').addClass('active');
+			}
+			else {
+				$('.15_len2').removeClass('active');
+			}
+
+
+		})
+
+		$('#postcode').on('keyup', function () {
+			let postcode_value = $(this).val();
+
+
+			if (/^\d+$/.test(postcode_value) && postcode_value.length <= 5) {
+				$(this).val(postcode_value);
+				if (postcode_value.length === 5) {
+					$('.pst').addClass('active');
+				}
+				else {
+					$('.pst').removeClass('active');
+				}
+
+			}
+		})
+
+		$('#btn_submit').on("click", function (e) {
+			e.preventDefault();
+			var actives = false;
+			$('.new_require ul li').each(function () {
+				if (!$(this).hasClass('active')) {
+					actives = true;
+					return false;
+				}
+			});
+
+			if (actives) {
+				$('.new_require ul li:not(.active)').effect("shake", { times: 2 }, 500);
+			} else {
+				$('form').submit();
+			}
+		});
+
+
+	</script>
 
 
 
@@ -303,47 +444,3 @@
 </body>
 
 </html>
-<?php
-if (isset($_GET['ID'])) {
-	$id = mysqli_real_escape_string($connect, $_GET['ID']);
-
-	$result = mysqli_query($connect, "SELECT * FROM user_address WHERE address_id='$id'");
-
-
-	$row = mysqli_fetch_assoc($result);
-} else {
-	echo "user ID not provided.";
-	exit();
-}
-
-if (isset($_POST['updatebtn'])) {
-
-	$name = mysqli_real_escape_string($connect, $_POST['name']);
-	$contact_number = mysqli_real_escape_string($connect, $_POST['contact_number']);
-	$address = mysqli_real_escape_string($connect, $_POST['address']);
-	$country = mysqli_real_escape_string($connect, $_POST['country_id']);
-	$state = mysqli_real_escape_string($connect, $_POST['state']);
-	$city = mysqli_real_escape_string($connect, $_POST['city']);
-	$postcode = mysqli_real_escape_string($connect, $_POST['postcode']);
-
-	$result = mysqli_query($connect, "UPDATE user_address SET 
-                                        name='$name', 
-                                        contact_number='$contact_number', 
-                                        address='$address', 
-                                        country='$country', 
-                                        state='$state', 
-                                        city='$city', 
-                                        postcode='$postcode' 
-                                        WHERE address_id='$id'");
-
-	if (!$result && $result2) {
-		die('Error: ' . mysqli_error($connect));
-	} else {
-
-		$ID = $_SESSION['ID'];
-		echo '<script>alert("Record updated successfully");</script>';
-		echo '<script>window.location.href = "view_address.php?ID=' . $ID . '";</script>';
-		exit;
-	}
-}
-?>

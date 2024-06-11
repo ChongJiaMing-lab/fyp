@@ -140,6 +140,7 @@
 
 	.title {
 		color: black;
+		text-transform: unset; 
 	}
 </style>
 <?php
@@ -181,7 +182,7 @@ if (isset($_GET["ID"])) {
 							<!-- PASSWORD -->
 							<div class="field">
 								<label class="label">
-									Old Password</label>
+									Old password</label>
 								<div class="field has-addons">
 									<div class="control addon-fix">
 										<input id="old_pw" type="password" class="input " name="password1" value=""
@@ -221,7 +222,7 @@ if (isset($_GET["ID"])) {
 							</div>
 							<div class="field">
 								<label class="label">
-									New Password</label>
+									New password</label>
 								<div class="field has-addons">
 									<div class="control addon-fix">
 										<input id="pw_valid" type="password" class="input " name="password" value=""
@@ -266,7 +267,7 @@ if (isset($_GET["ID"])) {
 							<!-- PASSWORD CONFIRM -->
 							<div class="field">
 								<label class="label">
-									Confirm New Password </label>
+									Confirm new password </label>
 								<div class="field has-addons">
 									<div class="control addon-fix">
 										<input id="con_pw" type="password" class="input" name="confirm" value=""

@@ -165,16 +165,13 @@ a.button.view-password
                                     <div class="address-info">
                                         <div class="address-name">
                                             <div class="txt-info">Name</div>
-                                            <div class="txt-data"><?php echo $user_name; ?></div>
+                                            <div class="txt-data"><?php echo $row2['name']; ?></div>
                                         </div>
                                         <div class="address-tel">
                                             <div class="txt-info">Contact</div>
-                                            <div class="txt-data"><?php echo $user_contactnumber; ?></div>
+                                            <div class="txt-data"><?php echo $row2['contact_number']; ?></div>
                                         </div>
-                                        <div class="address-add">
-                                            <div class="txt-info">country</div>
-                                            <div class="txt-data"><?php echo $row2['country']; ?></div>
-                                        </div>
+                                        
                                         <div class="address-add">
                                             <div class="txt-info">Address</div>
                                             <div class="txt-data"><?php echo $row2['address']; ?></div>
