@@ -154,21 +154,18 @@
 									$("#live_search").keyup(function () {
 										var input = $(this).val();
 
-										if (input != "") {
+										if (input != "") 
 											$.ajax({
-
 												url: "live_search.php",
 												method: "POST",
 												data: { input: input },
-
 												success: function (data) {
 													$(".product-listing .box-content").html(data).css("display", "");
 												}
 											});
-										}
-										else {
-											$(".product-listing .box-content").css("display", "none");
-										}
+										 
+											
+										
 									});
 								});
 							</script>
@@ -247,15 +244,15 @@
 
 														<div class="button">
 															<?php
-														
+
 															$stock = $row['stock'];
 
 															if ($stock == 0) {
-																
+
 																echo '<span class="btn-out-of-stock">Out of Stock</span>';
 															} else {
-															
-																echo '<a href="product_detail.php?product_id='.$row ["product_id"].'" class="btn-view-detail">View More Detail</a>';
+
+																echo '<a href="product_detail.php?product_id=' . $row["product_id"] . '" class="btn-view-detail">View More Detail</a>';
 															}
 															?>
 														</div>
