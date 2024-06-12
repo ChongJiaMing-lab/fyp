@@ -69,7 +69,7 @@
         left: 5.7px;
     }
     
-	span { color:red; font-size: 0.9em; }
+	#check_price, #check_stock{ color:red; font-size: 0.9em; }
 
 </style>
 
