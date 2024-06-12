@@ -126,6 +126,7 @@
     $id = $_SESSION["ID"];
 
     $result = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id AND status!='payed'");
+    $result1 = mysqli_query($connect, "SELECT * FROM cart,product WHERE cart.product_id = product.product_id AND user_id = $id AND status!='payed'");
     $count = mysqli_num_rows($result);
     ?>
     <section id="checkout-cart" class="section content container">
@@ -153,8 +154,34 @@
                                 </div>
                                 <?php
                                 if ($result) {
-
+                                    $delete = 0;
                                     while ($row = mysqli_fetch_array($result)) {
+
+                                        
+
+                                        if ($row['qty'] > $row['stock']) {
+                                            
+                                            $stock = $row['stock'];
+                                            $cid = $row['cart_id'];
+                                            if ($row['stock'] != 0) {
+                                                mysqli_query($connect, "UPDATE cart SET qty = $stock WHERE cart_id =$cid");
+                                               
+                                            } else {
+                                                mysqli_query($connect, "DELETE FROM cart WHERE cart_id =$cid");
+                                                
+                                            }
+                                            $delete = 1;
+                                        }
+                                         }
+                                           
+                                        if ($delete == 1) {
+                                            echo "<script>alert('your item quantity has been modify due to the stock limit.')</script>";
+                                            
+                                            echo "<script> window.location.href='shoping_cart.php';</script>";
+                                            exit;
+                                        }
+                                    
+                                    while ($row1 = mysqli_fetch_array($result1)) {
                                         ?>
 
 
@@ -164,7 +191,7 @@
                                                 <!-- IMG -->
                                                 <div class="column is-2 product-image">
                                                     <a href=".."><img class="img-responsive"
-                                                            src="../image/<?php echo $row['image'] ?>" /></a>
+                                                            src="../image/<?php echo $row1['image'] ?>" /></a>
                                                 </div>
 
                                                 <!-- INFO -->
@@ -174,12 +201,12 @@
 
                                                             <!-- PRODUCT NAME -->
                                                             <a class="product-name"
-                                                                href=""><?php echo $row['product_name'] ?></a>
+                                                                href=""><?php echo $row1['product_name'] ?></a>
                                                             <!-- VARIATIONS -->
                                                         </div>
 
                                                         <!-- UNIT PRICE -->
-                                                        <div class="column is-3 product-price">RM<?php echo $row['price'] ?>
+                                                        <div class="column is-3 product-price">RM<?php echo $row1['price'] ?>
                                                         </div>
 
                                                         <!-- QUANTITY -->
@@ -193,9 +220,10 @@
                                                                 </button>
 
                                                                 <input type="text" id="quantity_0"
-                                                                    name="quantity[<?php echo $row['cart_id']; ?>]"
-                                                                    class="input-quantity" value="<?php echo $row['qty'] ?>"
-                                                                    min="1" max="999999">
+                                                                    name="quantity[<?php echo $row1['cart_id']; ?>]"
+                                                                    class="input-quantity" value="<?php echo $row1['qty'] ?>"
+                                                                    min="1" max="999999"
+                                                                    data-stock="<?php echo $row1['stock']; ?>">
 
                                                                 <button type="button" id="quantity_0_plus"
                                                                     class="button btn-number btn-plus btn-default"
@@ -207,7 +235,7 @@
 
                                                             <!-- DELETE -->
                                                             <div class="product-delete">
-                                                                <a href="Remove(cart).php?id=<?php echo $row['product_id']; ?>"
+                                                                <a href="Remove(cart).php?id=<?php echo $row1['product_id']; ?>"
                                                                     class="remove btn-del icon-delete"></a>
                                                             </div>
                                                         </div>
@@ -220,8 +248,9 @@
                                         </div>
 
                                         <?php
-
                                     }
+
+
                                 } else {
                                     echo "no records found :(";
                                 }
@@ -308,36 +337,29 @@
 
                     var productRows = document.querySelectorAll('.my-checkout-listing');
 
-
                     var subtotal = 0;
                     var total = 0;
-
 
                     productRows.forEach(function (row) {
 
                         var priceElement = row.querySelector('.product-price');
                         var quantityElement = row.querySelector('.input-quantity');
 
-
                         var price = parseFloat(priceElement.textContent.replace('RM', '').trim());
                         var quantity = parseInt(quantityElement.value);
 
                         var productSubtotal = price * quantity;
 
-
                         subtotal += productSubtotal;
                     });
 
-
                     total = subtotal;
-
 
                     var subtotalElement = document.querySelector('.row-subtotal .summary-price');
                     var totalElement = document.querySelector('.row-total .summary-price');
                     subtotalElement.textContent = 'RM' + subtotal.toFixed(2);
                     totalElement.textContent = 'RM' + total.toFixed(2);
                 }
-
 
                 var plusButtons = document.querySelectorAll('.btn-plus');
                 var minusButtons = document.querySelectorAll('.btn-minus');
@@ -347,10 +369,14 @@
                         var inputElement = button.parentElement.querySelector('.input-quantity');
                         var currentValue = parseInt(inputElement.value);
                         var cartId = inputElement.getAttribute('name').replace('quantity[', '').replace(']', '');
+                        var stockQuantity = parseInt(inputElement.dataset.stock);
                         var newValue = currentValue + 1;
-                        inputElement.value = newValue;
-                        updateQuantityDatabase(cartId, newValue); 
-
+                        if (newValue <= stockQuantity) {
+                            inputElement.value = newValue;
+                            updateQuantityDatabase(cartId, newValue);
+                        } else {
+                            alert('Quantity exceeds stock! Current stock: ' + stockQuantity);
+                        }
                         calculateTotal();
                     });
                 });
@@ -363,13 +389,12 @@
                         if (currentValue > 1) {
                             var newValue = currentValue - 1;
                             inputElement.value = newValue;
-
-                            updateQuantityDatabase(cartId, newValue); 
-
-                            calculateTotal();
+                            updateQuantityDatabase(cartId, newValue);
                         }
+                        calculateTotal();
                     });
                 });
+
                 function updateQuantityDatabase(cart_id, newValue) {
                     $.ajax({
                         url: 'update_cart.php',
@@ -381,11 +406,11 @@
                     });
                 }
 
-
                 // Calculate total when the page loads
                 calculateTotal();
-            });
 
+
+            });
 
             function error_alert() {
                 alert("Your shopping cart is empty!");

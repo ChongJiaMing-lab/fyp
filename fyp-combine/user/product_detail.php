@@ -138,6 +138,7 @@
 
                     include "data_connection.php";
                     if (isset($_GET["product_id"])) {
+
                         if (!isset($_SESSION["ID"])) {
                             echo "<script>alert('ERROR TO ADD PRODUCT(You need to login first!)');</script>";
                         }
@@ -224,7 +225,8 @@
                                                         </button>
                                                         <input class="input" type="text" id="quantity" name="quantity" size="2"
                                                             value="1" />
-                                                        <input type="hidden" id="product_id" name="product_id" value="2696" />
+                                                        <input type="hidden" id="product_id" name="product_id"
+                                                            value="<?php echo $row['product_id']; ?>" />
                                                         <button type="button" class="button btn-number btn-plus" data-type="plus"
                                                             onclick="adjustQuantity(1)">
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -250,17 +252,66 @@
                                         </span>
 
                                         <script>
+                                            var stockQuantity = 0;
+                                            var cartQuantity = 0;
+
+                                            function getStock(product_id) {
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('GET', 'get_stock.php?product_id=' + product_id, true);
+                                                xhr.onload = function () {
+                                                    if (xhr.status === 200) {
+                                                        var response = JSON.parse(xhr.responseText);
+                                                        stockQuantity = response.stock;
+                                                        console.log('Stock Quantity:', stockQuantity);
+                                                    } else {
+                                                        console.error('Failed to fetch stock quantity');
+                                                    }
+                                                };
+                                                xhr.onerror = function () {
+                                                    console.error('Network error');
+                                                };
+                                                xhr.send();
+                                            }
+
+                                            function getCartQuantity(product_id) {
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('GET', 'get_cart_quantity.php?product_id=' + product_id, true);
+                                                xhr.onload = function () {
+                                                    if (xhr.status === 200) {
+                                                        var response = JSON.parse(xhr.responseText);
+                                                        cartQuantity = response.cart_quantity;
+                                                        console.log('Cart Quantity:', cartQuantity);
+                                                    } else {
+                                                        console.error('Failed to fetch cart quantity');
+                                                    }
+                                                };
+                                                xhr.onerror = function () {
+                                                    console.error('Network error');
+                                                };
+                                                xhr.send();
+                                            }
+
                                             function adjustQuantity(change) {
                                                 var input = document.getElementById('quantity');
                                                 var currentValue = parseInt(input.value);
                                                 currentValue += change;
                                                 if (currentValue < 1) currentValue = 1;  // Prevent negative quantities
+                                                if (currentValue > stockQuantity - cartQuantity) {
+                                                    alert('Quantity exceeds available stock! Current stock: ' + (stockQuantity - cartQuantity));
+                                                    currentValue = stockQuantity - cartQuantity;
+                                                }
                                                 input.value = currentValue;
                                             }
 
                                             function addToCart(product_id) {
+                                                var quantity = parseInt(document.getElementById('quantity').value);
+                                                var cartqty = parseInt(cartQuantity);
+                                                if (quantity + cartqty > stockQuantity) {
+                                                    alert('Total quantity exceeds stock! Available stock: ' + (stockQuantity - cartQuantity));
+                                                    return;
+                                                }
+
                                                 var xhr = new XMLHttpRequest();
-                                                var quantity = parseInt(document.getElementById('quantity').value); // 获取当前数量值
                                                 xhr.open('GET', 'addtocart_detail.php?product_id=' + product_id + '&quantity=' + quantity, true);
                                                 xhr.onload = function () {
                                                     console.log(xhr.responseText);
@@ -272,6 +323,14 @@
                                                 };
                                                 xhr.send();
                                             }
+
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                var product_id = document.getElementById('product_id').value;
+                                                getStock(product_id);
+                                                getCartQuantity(product_id);
+                                            });
+
+                                           
                                         </script>
 
                                     </div>

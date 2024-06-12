@@ -309,42 +309,10 @@ label {
 					<!-- PRODUCT FILTER -->
 					<div class="product-filter">
 
-						<!-- PRODUCT VIEWS -->
-						<div class="display">
-							<i class="grid-view" onclick="display('grid')"></i>
-							<i class="list-view" onclick="display('list')"></i>
-						</div>
+						
+					
 
-						<div class="filter-options">
-							<!-- PRODUCT SORTING -->
-							<div class="product-sorting">
-								<div>Sort by</div>
-								<select onchange="location = this.value;">
-																										<option value="..." selected="selected">Default</option>
-																																			<option value="...">Name (A - Z)</option>
-																																			<option value="...">Name (Z - A)</option>
-																																			<option value="...">Price (Low &gt; High)</option>
-																																			<option value="...">Price (High &gt; Low)</option>
-																																			<option value="...">Rating (Highest)</option>
-																																			<option value="...">Rating (Lowest)</option>
-																																			<option value="...">Model (A - Z)</option>
-																																			<option value="...">Model (Z - A)</option>
-																																			<option value="...">Newest &gt; Oldest</option>
-																																			<option value="...">Oldest &gt; Newest</option>
-																									</select>
-							</div>
-							<!-- PRODUCT LIMITS -->
-							<div class="product-limits">
-								<div>Show result</div>
-								<select onchange="location = this.value;">
-																										<option value="..." selected="selected">1-15</option>
-																																			<option value="...">1-25</option>
-																																			<option value="...">1-50</option>
-																																			<option value="...">1-75</option>
-																																			<option value="...">1-100</option>
-																									</select>
-							</div>
-						</div>
+						
 					</div>
 					<!-- END PRODUCT FILTER -->
 
