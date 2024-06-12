@@ -186,13 +186,9 @@
 						<!-- PRODUCT FILTER -->
 						<div class="product-filter">
 
-							<!-- PRODUCT VIEWS -->
-							<div class="display">
-								<i class="grid-view" onclick="display('grid')"></i>
-								<i class="list-view" onclick="display('list')"></i>
-							</div>
 
-							
+
+
 						</div>
 						<!-- END PRODUCT FILTER -->
 
@@ -201,63 +197,75 @@
 							<div class="box-content">
 								<?php
 								$query = "SELECT * FROM product ";
-								$result = mysqli_query($connect,$query);
+								$result = mysqli_query($connect, $query);
 								if ($result) {
-									
+
 									while ($row = mysqli_fetch_assoc($result)) {
 										?>
-										<div >
-									<div class="frame" >
-                                    
-                                                       
-										<div class="item-img">
-										<a href=" product_detail.php<?php $row ["product_id"]?></a>">
-																										<div class="image" style="min-width:200px ; min-height:200px">
-														
-														
-																											
-                                                                                                        <img class="first-img lazy" src="../image/<?php $row['image'] ?>" class="img-responsive alt="" style= " width:300px ; height:auto ;display: block;margin:auto;"/>
+										<div>
+											<div class="frame">
 
-														
+
+												<div class="item-img">
+													<a
+														href="product_detail.php?product_id=<?php echo $row['product_id']; ?>"></a>
+													<div class="image" style="min-width:200px ; min-height:200px">
+
+
+
+														<img class="first-img lazy" src="../image/<?php echo $row['image']; ?>"
+															class="img-responsive" alt=""
+															style="width: 300px; height: auto; display: block; margin: auto;" />
+
+
 													</div>
-																							</a>
-										</div>
+													</a>
+												</div>
 
-										<div class="item-info">
+												<div class="item-info">
 
-											<div class="product-name">
-                                            <p align="center"><strong><a href="#">' . $row['product_name'] . '</a></strong></p>
+													<div class="product-name">
+														<p><strong><a href="#"><?php echo $row['product_name']; ?></a></strong>
+														</p>
+													</div>
+
+
+
+
+
+
+													<div class="price">
+														<div class="price-new">RM<?php echo $row['price']; ?> </div>
+														<div class="price-old"></div>
+
+
+													</div>
+
+
+
+													<div class="floating-cart-button" style="background-color:gray">
+
+														<div class="button">
+															<?php
+														
+															$stock = $row['stock'];
+
+															if ($stock == 0) {
+																
+																echo '<span class="btn-out-of-stock">Out of Stock</span>';
+															} else {
+															
+																echo '<a href="product_detail.php?product_id='.$row ["product_id"].'" class="btn-view-detail">View More Detail</a>';
+															}
+															?>
+														</div>
+													</div>
+												</div>
+
 											</div>
-											 
 
-
-
-
-
-											<div class="price">
-																<div class="price-new">RM' . $row['price'] . '</div>
-														<div class="price-old"></div> 
-                                                        
-                                                        
-																																		</div>
-											
-											
-
-											<div class="floating-cart-button" style="background-color:gray">
-												
-																									<div class="button">
-																													<span class="icon-add-cart"></span>
-																													<span class="btn-add-cart">
-																													'. $available.'
-																													 </span>
-																											</div>
-																							</div>
-										    </div>
-                                            
-									    </div>
-                                        
-                                    </div>';
-									<?php
+										</div>
+										<?php
 									}
 
 								} else {
