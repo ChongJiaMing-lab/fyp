@@ -69,10 +69,64 @@
         left: 5.7px;
     }
     
-	span { color:red; font-size: 0.9em; }
+	#check_price, #check_stock{ color:red; font-size: 0.9em; }
 
 </style>
 
+	
+<script type="text/JavaScript">
+	
+	function add_check()
+	{
+        event.preventDefault();
+		var no_error = true;
+		
+		var price = document.p_form.price.value;
+		var qty = document.p_form.qty.value;
+		
+		if (price == "")
+		{
+			document.getElementById("check_price").innerHTML="Please enter a price";
+			no_error = false;
+		}
+		else
+		{
+			if (isNaN(price))
+            {
+                document.getElementById("check_price").innerHTML = "Please enter a valid price (00.00)";
+				no_error = false;
+            }
+            else
+			{
+				document.getElementById("check_price").innerHTML="";
+			}
+		}
+		
+		if (qty == "")
+		{
+			document.getElementById("check_stock").innerHTML="Please enter a stock";
+			no_error = false;
+		}
+		else
+		{
+			if (isNaN(qty))
+			{
+				document.getElementById("check_stock").innerHTML="Please enter a valid stock";
+				no_error = false;
+			}
+			else
+			{
+				document.getElementById("check_stock").innerHTML="";
+			}
+		}
+        
+    if(no_error == false)
+        event.preventDefault();
+    else
+        document.getElementById("p_form").submit();
+	}
+	</script>
+    
 <body>
     <div class="main p-3">
         <h1>Product List</h1>
@@ -113,7 +167,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <!-- Modal body -->
-                    <form id="p_form" action="a_product.php" method="POST">
+                    <form id="p_form" name="p_form" action="a_product.php" method="POST">
                         <div class="modal-body">
                             <div class="row">
                                 <!-- product title -->
@@ -213,27 +267,28 @@
                                         <label class="form-label" for="price">Price:</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">RM</span>
-                                            <input type="text" class="form-control" id="price" name="price" placeholder="00.00"required>
+                                            <input type="text" class="form-control" id="price" name="price" placeholder="00.00">
                                         </div>
-                                        <br><span id="check_price">Please enter a valid price</span>
+                                        <span id="check_price"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="qty">Stock:</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="qty" name="qty" required>
+                                            <input type="text" class="form-control" id="qty" name="qty">
                                             <span class="input-group-text">pcs</span>
                                         </div>
-                                        <br><span id="check_stock">Please enter a valid quantity</span>
+                                        <span id="check_stock"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="save_product">
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" name="save_product">Add</button>
+                            <button onclick="add_check()" class="btn btn-primary" name="save_product">Add</button>
                         </div>
                     </form>
                 </div>
@@ -585,6 +640,7 @@
                                                                         <input type="text" class="form-control" id="price"
                                                                             name="price" value="<?php echo $row["price"] ?>">
                                                                     </div>
+                                                                    <span id="check_price"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -595,6 +651,7 @@
                                                                             name="qty" value="<?php echo $row["stock"] ?>">
                                                                         <span class="input-group-text">pcs</span>
                                                                     </div>
+                                                                    <span id="check_stock"></span>
                                                                 </div>
                                                             </div>
                                                             <input type="hidden" name="product_id"
