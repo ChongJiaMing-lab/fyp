@@ -198,12 +198,7 @@
                             if ($result && $result2) {
                                 if ($row = mysqli_fetch_assoc($result)) { ?>
 
-                                    <br>Full Name :
-                                    <br><input type="text" name="name" value="<?php echo $row['name'] ?>" readonly
-                                        autocomplete="off"></br>
-                                    <br>Phone Number :
-                                    <br><input type="text" name="ph" value="<?php echo $row['contactnumber'] ?>" readonly
-                                        autocomplete="off"></br>
+
 
 
                                     <?php
@@ -217,6 +212,14 @@
 
                                             <?php
                                         } else { ?>
+                                            <br>Full Name :
+                                            <br><input type="text" name="name" value="<?php echo $row2['name'] ?>" readonly
+                                                autocomplete="off"></br>
+
+                                            <br>Phone Number :
+                                            <br><input type="text" name="telephone" value="<?php echo $row2['contact_number'] ?>" readonly
+                                                autocomplete="off"></br>
+
                                             <br>Address :
                                             <br><input type="text" name="address" value="<?php echo $row2['address'] ?>" readonly
                                                 autocomplete="off"></br>
@@ -265,6 +268,8 @@
                                                                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                                                         <li class="flex-item">
                                                                             <input type="radio" name="address_option"
+                                                                                data-name="<?php echo ($row['name']); ?>"
+                                                                                data-telephone="<?php echo ($row['contact_number']); ?>"
                                                                                 data-address="<?php echo ($row['address']); ?>"
                                                                                 data-city="<?php echo ($row['city']); ?>"
                                                                                 data-state="<?php echo ($row['state']); ?>"
@@ -299,14 +304,16 @@
 
                                                 var selected = $('input[name="address_option"]:checked');
 
-
+                                                var name = selected.data('name');
+                                                var telephone = selected.data('telephone');
                                                 var address = selected.data('address');
                                                 var city = selected.data('city');
                                                 var state = selected.data('state');
                                                 var postcode = selected.data('postcode');
 
 
-
+                                                $('input[name="name"]').val(name);
+                                                $('input[name="telephone"]').val(telephone);
                                                 $('input[name="address"]').val(address);
                                                 $('input[name="city"]').val(city);
                                                 $('input[name="state"]').val(state);
@@ -448,18 +455,23 @@
                         $row_point["point"] += $new_point;
                         $new_point = $row_point["point"];
                         $update_point = mysqli_query($connect, "UPDATE point SET point = '$new_point'");
-                       
+
                         if (!$query) {
                             echo "<script>alert('failed to insert into order table');</script>";
                         }
                         while ($row = mysqli_fetch_assoc($result)) {
                             $cart_id = $row['cart_id'];
                             $qty = $row['qty'];
-                   
+
                             $query2 = mysqli_query($connect, "INSERT INTO cart_order_detail (order_id,cart_id) 
-        VALUES ('$order_id','$cart_id')");
+                             VALUES ('$order_id','$cart_id')");
 
-
+                            $product_id = $row['product_id'];
+                            $product_result = mysqli_query($connect, "SELECT * FROM product WHERE product_id = $product_id");
+                            $product_row = mysqli_fetch_assoc($product_result);
+                            $current_stock = $product_row['stock'];
+                            $new_stock = $current_stock - $qty;
+                            mysqli_query($connect, "UPDATE product SET stock = $new_stock WHERE product_id = $product_id");
                         }
 
                         if (mysqli_affected_rows($connect) > 0) {

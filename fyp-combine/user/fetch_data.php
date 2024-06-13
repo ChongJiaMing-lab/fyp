@@ -32,8 +32,8 @@ if (isset($_POST["action"])) {
         foreach ($result as $row) {
             if($row['stock']>0)
             {
-                $available = '<a href="addtocart.php?product_id='.$row ["product_id"].'">
-                                <input type="button" name="add" value="Add to Cart" )" />
+                $available = '<a href="product_detail.php?product_id='.$row ["product_id"].'">
+                                <input type="button" name="add" value="View more detail" )" />
                                 </a>   ';
             }
             else
