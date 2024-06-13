@@ -78,7 +78,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
     else
         $f2 = '';
 
-    $query = "SELECT *,user_information.name 
+    $query = "SELECT *,user_information.name, user_information.state, user_information.city
     FROM order_ 
     JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
 

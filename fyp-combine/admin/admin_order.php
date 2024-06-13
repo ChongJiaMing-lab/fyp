@@ -113,7 +113,6 @@
                         <option value="Processing">Processing</option>
                         <option value="Shipping">Shipping</option>
                         <option value="Completed">Completed</option>
-                        <option value="Cancelled">Cancelled</option>
                 </select>
                 <label>Sort by:</label>
                 <select class="form-select" id="f2" aria-label="Default select example" name="o_sort">
