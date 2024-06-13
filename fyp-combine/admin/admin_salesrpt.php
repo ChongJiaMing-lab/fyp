@@ -78,13 +78,14 @@
                 </tr>
             </thead>
             <tbody id="table-body">
+    
 
             </tbody>
         </table>
         <div class="chart">
         </div>
     </div>
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             $('#from, #to').on('change keyup', function () {
                 var from = $('#from').val();
@@ -99,6 +100,5 @@
                 });
             });
         });
-
-    </script>
+    </script> -->
 </body>
