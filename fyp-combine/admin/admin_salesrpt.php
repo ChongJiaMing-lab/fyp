@@ -10,12 +10,13 @@
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script>
         $(function () {
-            var dateFormat = "dd-mm-yy",
+            var dateFormat = "yy/mm/dd",
                 from = $("#from")
                     .datepicker({
                         defaultDate: "+1w",
                         changeMonth: true,
-                        numberOfMonths: 1
+                        numberOfMonths: 1,
+                        dateFormat: 'yy/mm/dd'
                     })
                     .on("change", function () {
                         to.datepicker("option", "minDate", getDate(this));
@@ -23,7 +24,8 @@
                 to = $("#to").datepicker({
                     defaultDate: "+1w",
                     changeMonth: true,
-                    numberOfMonths: 1
+                    numberOfMonths: 1,
+                    dateFormat: 'yy/mm/dd'
                 })
                     .on("change", function () {
                         from.datepicker("option", "maxDate", getDate(this));
