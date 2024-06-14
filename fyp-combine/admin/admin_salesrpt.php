@@ -50,13 +50,17 @@
     </script>
 </head>
 <style>
+    input{
+        border-radius:5px;
+        width:130px;
+    }
     .from {
-        margin-left: 30px;
+        /* margin-left: 30px; */
     }
 
-    .to {
+    .to{
         margin-top: 10px;
-        margin-left: 51px;
+        /* margin-left: 51px; */
     }
 </style>
 
@@ -65,16 +69,16 @@
         <h1>Sales Report</h1>
         <hr>
         <form action="generate_report.php" method="POST">
-            <label for="from">From Date</label>
-            <input type="text" id="from" class="from" name="from"><br>
-            <label for="to">To Date</label>
-            <input type="text" id="to" class="to" name="to">
+            <label for="from">From</label>
+            <input type="text" id="from" class="from" name="from" onchange="startDateFilter(this)">
+            <label for="to" style="margin-left:50px;">To</label>
+            <input type="text" id="to" class="to" name="to" onchange="endDateFilter(this)">
             <br><button type="submit" name="sales_report" class="btn btn-success" style="margin-top:20px;">Generate
                 Report</button>
         </form>
             <div class="chart1">
                 <h1 style="align-items: center;">Chart</h1>
-                <canvas id="chart1"></canvas>
+                <canvas id="chart1" style="width:100%;max-width:1000px; height:300px;"></canvas>
             </div>
         <table class="table" style="margin-top:20px;">
             <thead>
@@ -92,22 +96,6 @@
             </tbody>
         </table>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#from, #to').on('change keyup', function () {
-                var from = $('#from').val();
-                var to = $('#to').val();
-                $.ajax({
-                    url: 'run_query.php',
-                    method: 'POST',
-                    data: { from2: from, to2: to },
-                    success: function (response) {
-                        $('#table-body').html(response);
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 <?php
@@ -151,21 +139,24 @@ $price_arr = array_values($sales_by_day); // Array of total sales for each date
 
     const date_chart_js = date_array.map(day => new Date(day)); // Convert dates to JavaScript Date objects
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: date_chart_js,
+    const data = {
+        labels: date_chart_js,
             datasets: [{
                 label: 'Daily Sales',
                 data: <?php echo json_encode($price_arr); ?>,
-                borderWidth: 3
+                borderWidth: 3,
+                borderColor: 'orange',
             }]
-        },
+    };
+
+    const config={
+        type: 'line',
+        data,
         options: {
             scales: {
                 x: {
-                    min: '2024-06-01',
-                    max: '2024-06-31',
+                    min: '2020-01-01',
+                    max: '2020-01-02',
                     type: 'time',
                     time: {
                         unit: 'day'
@@ -176,17 +167,39 @@ $price_arr = array_values($sales_by_day); // Array of total sales for each date
                 }
             }
         }
-    });
+    };
 
     const myChart = new Chart(
-        document.getElementById('chart1');
+        document.getElementById('chart1'),
         config
     );
 
     function startDateFilter(date){
-        const startDate = new Date(text.value);
+        const startDate = new Date(date.value);
+
         console.log(startDate.setHours(0,0,0,0));
         myChart.config.options.scales.x.min =startDate.setHours(0,0,0,0);
         myChart.update();
     }
+    function endDateFilter(date){
+        const endDate = new Date(date.value);
+            
+        console.log(endDate.setHours(0,0,0,0));
+        myChart.config.options.scales.x.max =endDate.setHours(0,0,0,0);
+        myChart.update();
+    }
+        $(document).ready(function () {
+            $('#from, #to').on('change keyup', function () {
+                var from = $('#from').val();
+                var to = $('#to').val();
+                $.ajax({
+                    url: 'run_query.php',
+                    method: 'POST',
+                    data: { from2: from, to2: to },
+                    success: function (response) {
+                        $('#table-body').html(response);
+                    }
+                });
+            });
+        });
 </script>
