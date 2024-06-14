@@ -31,15 +31,17 @@ if (isset($_POST['cust'])) {
     echo $data;
 }
 
+//customer date range filter
 if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isset($_POST['from']) || isset($_POST['to'])) {
 
     if (isset($_POST['from'])) {
+        $ff = $_POST['from'];
         $f = $_POST['from'];
         $from = explode("/", $f);
-
+        //
         //index1 = date, 0 = month; 2 = year;
         if (isset($from[2]) && isset($from[1]) && isset($from[0])) {
-            $f = $from[1] . '-' . $from[0] . '-' . $from[2];
+            $f = $from[0] . '-' . $from[1] . '-' . $from[2];
             $f = $f . " 00:00:00";
         } else {
             $f = '';
@@ -48,11 +50,12 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
         $from = '';
 
     if (isset($_POST['to'])) {
+        $tt = $_POST['from'];
         $t = $_POST['to'];
         $to = explode("/", $t);
 
         if (isset($to[2]) && isset($to[1]) && isset($to[0])) {
-            $t = $to[1] . '-' . $to[0] . '-' . $to[2];
+            $t = $to[0] . '-' . $to[1] . '-' . $to[2];
             $t = $t . " 23:59:59";
         } else {
             $t = '';
@@ -75,9 +78,10 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
     else
         $f2 = '';
 
-    $query = "SELECT *,user_information.name 
+    $query = "SELECT *,user_information.name
     FROM order_ 
     JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
+
 
     if (!empty($f))
         $query .= " AND time_status >= '$f'";
@@ -134,6 +138,8 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
     </tr>';
     }
     echo $o_output;
+    // echo $f.$t;
+    // echo $ff.$tt;
 }
 
 if (isset($_POST['from2']) && isset($_POST['to2'])) {
@@ -143,7 +149,7 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
         $from = explode("/", $f);
 
         if (isset($from[2]) && isset($from[1]) && isset($from[0])) {
-            $f = $from[1] . '-' . $from[0] . '-' . $from[2];
+            $f = $from[0] . '-' . $from[1] . '-' . $from[2];
             $f = $f . " 00:00:00";
         } else {
             $f = '';
@@ -151,12 +157,13 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
     } else
         $from = '';
 
+    echo $f;
     if (isset($_POST['to2'])) {
         $t = $_POST['to2'];
         $to = explode("/", $t);
 
         if (isset($to[2]) && isset($to[1]) && isset($to[0])) {
-            $t = $to[1] . '-' . $to[0] . '-' . $to[2];
+            $t = $to[0] . '-' . $to[1] . '-' . $to[2];
             $t = $t . " 23:59:59";
         } else {
             $t = '';
@@ -201,11 +208,11 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
         <td>
             ' . $row["delivery_status"] . '
         </td>
-    </tr>'?>
-    <?php
+    </tr>' ?>
+        <?php
     }
-    $o_output.='<tr>
-        <td colspan="4" style="text-align:right;"><b>Total&nbsp&nbsp&nbsp&nbsp</b>'.$total.'</td>
+    $o_output .= '<tr>
+        <td colspan="4" style="text-align:right;"><b>Total&nbsp&nbsp&nbsp&nbsp</b>' . $total . '</td>
     </tr>';
     echo $o_output;
 }

@@ -13,6 +13,8 @@ include 'databaseconnect.php';
   <script src="
     https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js
     "></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 
 <style>
@@ -79,7 +81,8 @@ include 'databaseconnect.php';
     grid-template-columns: 1fr 2fr;
   }
 
-  .recent, .card{
+  .recent,
+  .card {
     border-radius: 12px;
   }
 </style>
@@ -199,18 +202,18 @@ include 'databaseconnect.php';
             <tbody>
               <?php
               while ($new_row = mysqli_fetch_assoc($new_c)) {
-                  ?>
-                  <tr>
-                    <th scope="row"><?php echo $new_row["name"] ?></th>
-                    <td><?php echo $new_row["contactnumber"] ?></td>
-                    <td><?php echo $new_row["email"] ?></td>
-                  </tr>
-                  <?php
-                }
                 ?>
-              </tbody>
-            </table>
-          </div>
+                <tr>
+                  <th scope="row"><?php echo $new_row["name"] ?></th>
+                  <td><?php echo $new_row["contactnumber"] ?></td>
+                  <td><?php echo $new_row["email"] ?></td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -218,6 +221,40 @@ include 'databaseconnect.php';
   </div>
 </body>
 
+<?php
+$sql = "SELECT * FROM order_ ORDER BY time_status";
+$result = mysqli_query($connect, $sql);
+
+$sales_by_day = []; // Associative array to store sales totals by day
+
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $date = date('Y-m-d', strtotime($row["time_status"]));
+    $total_amount = floatval($row["total_amount"]);
+
+    if (isset($sales_by_day[$date])) {
+      $sales_by_day[$date] += $total_amount; // Add to existing day total
+    } else {
+      $sales_by_day[$date] = $total_amount; // Initialize new day total
+    }
+  }
+}
+
+// Prepare arrays for JavaScript
+$date_arr = array_keys($sales_by_day); // Array of dates
+$price_arr = array_values($sales_by_day); // Array of total sales for each date
+
+// For debugging purposes, use print_r or var_dump
+// echo print_r($sales_by_day, true); // or
+// echo var_dump($sales_by_day);
+
+// If you want to print the array elements as a comma-separated string
+if (!empty($date_arr)) {
+  echo implode(', ', $date_arr);
+} else {
+  echo "No dates found";
+}
+?>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
@@ -225,43 +262,56 @@ include 'databaseconnect.php';
   const ctx = document.getElementById('chart1');
   const ctx2 = document.getElementById('chart2');
 
+  const date_array = <?php echo json_encode($date_arr); ?>;
+  console.log(date_array);
+
+  const date_chart_js = date_array.map(day => new Date(day)); // Convert dates to JavaScript Date objects
+
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      labels: date_chart_js,
       datasets: [{
-        label: 'Registered User(s)',
-        data: [14, 19, 3, 5, 2, 3, 5, 4, 12, 4, 1, 20],
+        label: 'Daily Sales',
+        data: <?php echo json_encode($price_arr); ?>,
         borderWidth: 3
       }]
     },
     options: {
       scales: {
+        x: {
+          type: 'time',
+          time: {
+            unit: 'day'
+          }
+        },
         y: {
           beginAtZero: true
         }
       }
     }
   });
+</script>
 
-  new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-      labels: [
-        'Red',
-        'Blue',
-        'Yellow'
-      ],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        hoverOffset: 4
-      }]
-    }
-  });
+
+new Chart(ctx2, {
+type: 'doughnut',
+data: {
+labels: [
+'Red',
+'Blue',
+'Yellow'
+],
+datasets: [{
+label: 'My First Dataset',
+data: [300, 50, 100],
+backgroundColor: [
+'rgb(255, 99, 132)',
+'rgb(54, 162, 235)',
+'rgb(255, 205, 86)'
+],
+hoverOffset: 4
+}]
+}
+});
 </script>
