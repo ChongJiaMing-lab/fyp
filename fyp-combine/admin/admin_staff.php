@@ -120,7 +120,6 @@ tr
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Icon</th>
             <th scope="col">ID</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
@@ -140,7 +139,6 @@ tr
             ?>
               <tr>
                 <th scope="row"><?php echo $row["staff_id"]; ?></th>
-                <td><img src = "image/<?php echo $row['p_pic'];?>"></td>
                 <td><?php echo $row["admin_id"];?></td>
                 <td><?php echo $row["full_name"];?></td>
                 <td><?php echo $row["staff_email"];?></td>

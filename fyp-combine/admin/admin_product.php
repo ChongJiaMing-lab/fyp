@@ -479,11 +479,6 @@
                                         </div>
                                     </td>
 
-                                    <td>
-                                        <button type="button" class="status"
-                                            style="border:0px solid green;text-align:center;"><?php echo $row['product_status']; ?></button>
-                                    </td>
-
                             </form>
                             <td class="button-action">
                                 <!-- _____________________________________EDIT__________________________________________-->
