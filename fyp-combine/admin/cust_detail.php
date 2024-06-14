@@ -13,14 +13,14 @@ include 'databaseconnect.php';
 
 <body>
     <div class="main p-3">
-        <h1>Customer Details</h1>
+        <h1>User Details</h1>
         <?php
         if ($_GET["ID"]){
             $id = $_GET["ID"];
             $query = mysqli_query($connect, "SELECT * FROM user_information WHERE ID='$id'");
             $row = mysqli_fetch_assoc($query);
         }
-        echo "Customer#" . "$id \n" ?>
+        echo "User#" . "$id \n" ?>
         <span style="font-size:35px;  font-family: Arial, Helvetica, sans-serif;max-height:30px;"><?php echo $row["name"];?></span>
         <button type="button" class="btn btn-warning" style="float:right;" onclick="history.back()">Back</button>
         <hr>
@@ -33,12 +33,19 @@ include 'databaseconnect.php';
                 <li class="list-group-item"> <b>Contact Number:</b> <?php echo $row["contactnumber"];?></li>
                 <li class="list-group-item"> <b>Joined at </b> <?php echo $row["join_time"];?></li>
                 <li class="list-group-item" style="display:flex; align-items:center;">
-                    <b>Address(ess):&nbsp&nbsp</b><select class="form-select" aria-label="Default select example"
+                    <b>Address(ess):&nbsp&nbsp</b><select class="form-select"
                         style="width:70rem; border:0.1px solid black;">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <?php 
+                        $addresses = "SELECT * FROM user_address WHERE customer_id = '$id'";
+                        $query_add = mysqli_query($connect, $addresses);
+                        while($row_add = mysqli_fetch_assoc($query_add))
+                        {
+                            ?>
+                            <option><?php echo $row_add["name"].",  ".$row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
+        . ", " . $row_add["state"]?></option>
+                            <?php
+                        }
+                        ?>
                     </select>
                 </li>
             </ul>
@@ -51,7 +58,7 @@ include 'databaseconnect.php';
                 <tr>
                     <th scope="col">Order#</th>
                     <th scope="col">Created Time</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Total(RM)</th>
                     <th scope="col">Status</th>
                 </tr>
             </thead>

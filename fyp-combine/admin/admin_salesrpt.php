@@ -66,16 +66,22 @@
 
 <body>
     <div class="main p-3">
-        <h1>Sales Report</h1>
+        <div class="head" style="display:flex;">
+            <i class="lni lni-stats-up" style="font-size:50px;"></i>
+            <h1 style="margin: 12px 0 0 30px;">Sales Report</h1>
+            <hr>
+        </div>
         <hr>
         <form action="generate_report.php" method="POST">
-            <label for="from">From</label>
-            <input type="text" id="from" class="from" name="from" onchange="startDateFilter(this)">
-            <label for="to" style="margin-left:50px;">To</label>
+            <label for="from">From date</label>
+            <input type="text" id="from" class="from" name="from" onchange="startDateFilter(this)"><i class="lni lni-angle-double-right" style="font-size:30px;
+                position:relative; left:3px; top:10px;"></i>
+            <label for="to">To date</label>
             <input type="text" id="to" class="to" name="to" onchange="endDateFilter(this)">
             <br><button type="submit" name="sales_report" class="btn btn-success" style="margin-top:20px;">Generate
                 Report</button>
         </form>
+        <hr>    
             <div class="chart1">
                 <h1 style="align-items: center;">Chart</h1>
                 <canvas id="chart1" style="width:100%;max-width:1000px; height:300px;"></canvas>

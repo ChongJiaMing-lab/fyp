@@ -118,7 +118,7 @@ include 'databaseconnect.php';
           <div class="name">User</div>
         </div>
         <div class="icon">
-          <ion-icon name="people-sharp"></ion-icon>
+        <i class="lni lni-users"></i>
         </div>
       </div>
 
@@ -138,7 +138,7 @@ include 'databaseconnect.php';
           <div class="name">Order</div>
         </div>
         <div class="icon">
-          <ion-icon name="reorder-four-outline"></ion-icon>
+        <i class="lni lni-list"></i>
         </div>
       </div>
     </div><!-- close cards-->

@@ -42,7 +42,11 @@ tr
 <body>
 <div class="main p-3">
     <div class="staff_head">
-        <h1>Staff List</h1>
+    <div class="head" style="display:flex;">
+            <i class="lni lni-user" style="font-size:50px;"></i>
+            <h1 style="margin: 12px 0 0 30px;">Staff</h1>
+            <hr>
+        </div>
       <div class="btns">
           <?php
           if(isset($_SESSION['sa']) && $_SESSION['sa'] == 1)

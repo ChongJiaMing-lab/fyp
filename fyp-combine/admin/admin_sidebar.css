@@ -20,11 +20,6 @@
 {
     display:none;
 }
-#sidebar a.active:not(#dropdown):not(.sidebar-logo a):not(.cate)
-{
-    background-color: red;
-    color: white;
-}
 
 .topbar
 {
@@ -121,7 +116,6 @@ body {
     font-size: 1.5rem;
     color: #FFF;
 }
-
 .sidebar-logo {
     margin: auto 0;
 }

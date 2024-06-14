@@ -14,7 +14,9 @@
     .table tr {
         background-color: grey;
     }
-
+    .lr {
+        display: flex;
+    }
     .top {
         display: flex;
         align-items: space-between;
@@ -46,10 +48,6 @@
 
     tr {
         cursor: pointer;
-    }
-
-    .lr {
-        display: flex;
     }
 
     .modal-edit input,
@@ -129,7 +127,11 @@
     
 <body>
     <div class="main p-3">
-        <h1>Product List</h1>
+    <div class="head" style="display:flex;">
+            <i class="lni lni-users" style="font-size:50px;"></i>
+            <h1 style="margin: 12px 0 0 30px;">Product</h1>
+            <hr>
+        </div>
         <hr>
         <div class="top">
             <form method="POST" action="" class="searchbar">
@@ -287,8 +289,8 @@
                         <input type="hidden" name="save_product">
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button onclick="add_check()" class="btn btn-primary" name="save_product">Add</button>
+                            <button onclick="add_check()" class="btn btn-primary" name="save_product"><i class="lni lni-checkmark"></i></button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="lni lni-close"></i></button>
                         </div>
                     </form>
                 </div>
@@ -350,7 +352,6 @@
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
                         <th scope="col">Stock(QTY)</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -372,9 +373,9 @@
                                                 </div>
                                                 <!-- Modal body -->
                                                 <div class="modal-body">
-                                                    <div class="up" style="display:flex;">
+                                                    <div class="up">
                                                         <img src="../image/<?php echo $row['image'] ?>"
-                                                            style="max-height:200px; width:auto;margin:auto;" />
+                                                            style="max-height:200px; width:auto;display: block;margin-left: auto; margin-right: auto;" /><hr>
                                                         <div class="p_info">
                                                             <div class="form-group">
                                                                 <b><?php echo $row['product_name'] ?></b>
@@ -429,8 +430,8 @@
                                                             <hr>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group" style="margin-left:30px;">
-                                                        <label><b>Description</b></label><br>
+                                                    <div class="form-group">
+                                                        <label><b>Description:</b></label><br>
                                                         <?php echo $row['product_desc'] ?>
                                                     </div>
                                                 </div>
@@ -488,8 +489,8 @@
                                 <!-- _____________________________________EDIT__________________________________________-->
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#e<?php echo $row["product_id"]; ?>">Edit</button>
+                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                        data-bs-target="#e<?php echo $row["product_id"]; ?>" style="border-right: 1.25px solid white;"><i class="lni lni-pencil-alt"></i></button>
 
                                     <div class="modal fade modal-edit" id="e<?php echo $row["product_id"]; ?>" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:1px solid black;">
@@ -671,9 +672,9 @@
                                     </div><!-- modal end-->
 
 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" style="border-left: 1.25px solid white;"
                                         data-bs-target="#exampleModal<?php echo $row["product_id"]; ?>">
-                                        Delete</button>
+                                        <i class="lni lni-close"></i></button>
                                     <div class="modal fade" id="exampleModal<?php echo $row["product_id"]; ?>">
                                         <div class="modal-dialog">
                                             <div class="modal-content">

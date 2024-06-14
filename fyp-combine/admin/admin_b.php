@@ -18,7 +18,7 @@
 <body>
     <div class="main p-3">
         <div class="head" style="display:flex;">
-            <i class="lni lni-lineicons-symbol" style="font-size:50px;"></i>
+        <i class="lni lni-bootstrap" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px">Category : Brand
             </h1>
             <hr>

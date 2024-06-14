@@ -109,7 +109,7 @@ if (isset($_POST["order_receipt"])) {
     $pdf->Cell(130, 5, "To:", 0, 1);
 
     $pdf->SetFont("Arial", "", 14);
-    $pdf->Cell(0, 5, $row_user['name'], 0, 1);
+    $pdf->Cell(0, 5, $row_add['name'], 0, 1);
     $pdf->Cell(130, 5, $row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
         . ", " . $row_add["state"], 0, 1);
 
