@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js
+    "></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script>
         $(function () {
             var dateFormat = "yy/mm/dd",
@@ -67,6 +72,10 @@
             <br><button type="submit" name="sales_report" class="btn btn-success" style="margin-top:20px;">Generate
                 Report</button>
         </form>
+            <div class="chart1">
+                <h1 style="align-items: center;">Chart</h1>
+                <canvas id="chart1"></canvas>
+            </div>
         <table class="table" style="margin-top:20px;">
             <thead>
                 <tr>
@@ -78,14 +87,12 @@
                 </tr>
             </thead>
             <tbody id="table-body">
-    
+
 
             </tbody>
         </table>
-        <div class="chart">
-        </div>
     </div>
-    <!-- <script>
+    <script>
         $(document).ready(function () {
             $('#from, #to').on('change keyup', function () {
                 var from = $('#from').val();
@@ -100,5 +107,86 @@
                 });
             });
         });
-    </script> -->
+    </script>
 </body>
+
+<?php
+$sql = "SELECT * FROM order_ ORDER BY time_status";
+$result = mysqli_query($connect, $sql);
+
+$sales_by_day = []; // Associative array to store sales totals by day
+
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $date = date('Y-m-d', strtotime($row["time_status"]));
+        $total_amount = floatval($row["total_amount"]);
+
+        if (isset($sales_by_day[$date])) {
+            $sales_by_day[$date] += $total_amount; // Add to existing day total
+        } else {
+            $sales_by_day[$date] = $total_amount; // Initialize new day total
+        }
+    }
+}
+
+// Prepare arrays for JavaScript
+$date_arr = array_keys($sales_by_day); // Array of dates
+$price_arr = array_values($sales_by_day); // Array of total sales for each date
+
+// For debugging purposes, use print_r or var_dump
+// echo print_r($sales_by_day, true); // or
+// echo var_dump($sales_by_day);
+
+// If you want to print the array elements as a comma-separated string
+?>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    const ctx = document.getElementById('chart1');
+    const ctx2 = document.getElementById('chart2');
+
+    const date_array = <?php echo json_encode($date_arr); ?>;
+    console.log(date_array);
+
+    const date_chart_js = date_array.map(day => new Date(day)); // Convert dates to JavaScript Date objects
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: date_chart_js,
+            datasets: [{
+                label: 'Daily Sales',
+                data: <?php echo json_encode($price_arr); ?>,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    min: '2024-06-01',
+                    max: '2024-06-31',
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const myChart = new Chart(
+        document.getElementById('chart1');
+        config
+    );
+
+    function startDateFilter(date){
+        const startDate = new Date(text.value);
+        console.log(startDate.setHours(0,0,0,0));
+        myChart.config.options.scales.x.min =startDate.setHours(0,0,0,0);
+        myChart.update();
+    }
+</script>
