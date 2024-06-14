@@ -442,7 +442,7 @@
                         $status = 'Processing';
                         $total_amount = $ttotal;
                         $now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
-                        $currentDateTime = $now->format('d-m-Y H:i:s');
+                        $currentDateTime = $now->format('Y-m-d H:i:s');
 
 
                         $result = mysqli_query($connect, "SELECT * FROM cart WHERE user_id = '$id' AND status != 'payed'");
