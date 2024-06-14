@@ -212,6 +212,17 @@
 										<div class="field-group">
 
 											<div class="field-group">
+
+											<div class="field">
+													<label class="label">
+														Email </label>
+													<div class="control">
+														<input type="text" name="name" id="name" class="input txt-data"
+															value="<?php echo $row['email'] ?> "readonly />
+													</div>
+													
+												</div>
+
 												<!--  NAME -->
 												<div class="field">
 													<label class="label">
