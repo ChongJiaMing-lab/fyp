@@ -30,7 +30,7 @@ include 'databaseconnect.php';
         }
         ?>
         <div class="head" style="display:flex;">
-            <i class="lni lni-stackoverflow" style="font-size:50px;"></i>
+        <i class="lni lni-offer" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px;">Voucher</Category:Components>
             </h1>
             <hr>

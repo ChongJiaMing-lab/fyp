@@ -118,7 +118,7 @@ include 'databaseconnect.php';
           <div class="name">User</div>
         </div>
         <div class="icon">
-          <ion-icon name="people-sharp"></ion-icon>
+        <i class="lni lni-users"></i>
         </div>
       </div>
 
@@ -138,7 +138,7 @@ include 'databaseconnect.php';
           <div class="name">Order</div>
         </div>
         <div class="icon">
-          <ion-icon name="reorder-four-outline"></ion-icon>
+        <i class="lni lni-list"></i>
         </div>
       </div>
     </div><!-- close cards-->
@@ -280,6 +280,8 @@ if (!empty($date_arr)) {
     options: {
       scales: {
         x: {
+          min:'2024-06-01',
+          max:'2024-06-31',
           type: 'time',
           time: {
             unit: 'day'
@@ -291,9 +293,8 @@ if (!empty($date_arr)) {
       }
     }
   });
-</script>
 
-
+  
 new Chart(ctx2, {
 type: 'doughnut',
 data: {

@@ -75,10 +75,10 @@ include 'databaseconnect.php';
                     <h1>User information</h1>
                     <hr>
                     <div class="card-body" style="padding:0;">
-                        <div class="info">Name: <b><?php echo $row_user["name"] ?><br></b></div>
-                        <div class="info">Email:<b><?php echo $row_user["email"] ?><br></b></div>
-                        <div class="info">Phone: <b><?php echo $row_user["contactnumber"] ?><br></b></div>
-                        <div class="info">Address: <b><?php echo $row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
+                        <div class="info">Username: <b><?php echo $row_user["name"] ?><br></b></div>
+                        <div class="info">User Email:<b><?php echo $row_user["email"] ?><br></b></div>
+                        <div class="info">User Numbers: <b><?php echo $row_user["contactnumber"] ?><br></b></div>
+                        <div class="info">Address: <b><?php echo $row_add["name"].", ".$row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
                             . ", " . $row_add["state"] ?><br></b></div>
                     </div>
                 </div>

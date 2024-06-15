@@ -42,7 +42,11 @@ tr
 <body>
 <div class="main p-3">
     <div class="staff_head">
-        <h1>Staff List</h1>
+    <div class="head" style="display:flex;">
+            <i class="lni lni-user" style="font-size:50px;"></i>
+            <h1 style="margin: 12px 0 0 30px;">Staff</h1>
+            <hr>
+        </div>
       <div class="btns">
           <?php
           if(isset($_SESSION['sa']) && $_SESSION['sa'] == 1)
@@ -116,7 +120,6 @@ tr
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Icon</th>
             <th scope="col">ID</th>
             <th scope="col">Full Name</th>
             <th scope="col">Email</th>
@@ -136,7 +139,6 @@ tr
             ?>
               <tr>
                 <th scope="row"><?php echo $row["staff_id"]; ?></th>
-                <td><img src = "image/<?php echo $row['p_pic'];?>"></td>
                 <td><?php echo $row["admin_id"];?></td>
                 <td><?php echo $row["full_name"];?></td>
                 <td><?php echo $row["staff_email"];?></td>

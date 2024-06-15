@@ -102,7 +102,11 @@
 
 <body>
     <div class="main p-3">
-        <h1>Order List</h1>
+    <div class="head" style="display:flex;">
+            <i class="lni lni-list" style="font-size:50px;"></i>
+            <h1 style="margin: 12px 0 0 30px;">Order</h1>
+            <hr>
+        </div>
         <hr>
         <div class="top">
             <form method="POST" action="" class="filter">

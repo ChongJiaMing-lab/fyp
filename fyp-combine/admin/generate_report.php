@@ -109,7 +109,7 @@ if (isset($_POST["order_receipt"])) {
     $pdf->Cell(130, 5, "To:", 0, 1);
 
     $pdf->SetFont("Arial", "", 14);
-    $pdf->Cell(0, 5, $row_user['name'], 0, 1);
+    $pdf->Cell(0, 5, $row_add['name'], 0, 1);
     $pdf->Cell(130, 5, $row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
         . ", " . $row_add["state"], 0, 1);
 
@@ -168,14 +168,13 @@ if (isset($_POST["order_receipt"])) {
 if (isset($_POST["sales_report"])) {
     $from = $_POST["from"];
     $to = $_POST["to"];
-
     if (isset($_POST['from'])) {
         $f = $_POST['from'];
         $from = explode("/", $f);
 
         //index1 = date, 0 = month; 2 = year;
         if (isset($from[2]) && isset($from[1]) && isset($from[0])) {
-            $f = $from[1] . '-' . $from[0] . '-' . $from[2];
+            $f = $from[0] . '-' . $from[1] . '-' . $from[2];
             $f = $f . " 00:00:00";
         } else {
             $f = '';
@@ -188,7 +187,7 @@ if (isset($_POST["sales_report"])) {
         $to = explode("/", $t);
 
         if (isset($to[2]) && isset($to[1]) && isset($to[0])) {
-            $t = $to[1] . '-' . $to[0] . '-' . $to[2];
+            $t = $to[0] . '-' . $to[1] . '-' . $to[2];
             $t = $t . " 23:59:59";
         } else {
             $t = '';
@@ -237,7 +236,6 @@ if (isset($_POST["sales_report"])) {
         $pdf->Cell(38, 6.5, $row_item["total_amount"], 1, 1);
     }
     $pdf->Cell(23+32+100+38, 6.5, "Total111 ".$total, 1, 1);
-
     $pdf->Output();
 }
 ?>
