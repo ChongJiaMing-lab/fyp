@@ -276,6 +276,7 @@
                                                                                 data-postcode="<?php echo ($row['postcode']); ?>"
                                                                                 id="<?php echo ($row['address_id']); ?>">
                                                                             <label for="<?php echo ($row['address_id']); ?>">
+                                                                            <strong><?php echo ($row['name'] . ' - ' . $row['contact_number']); ?></strong><br>
                                                                                 <?php echo ($row['address'] . ', ' . $row['postcode'] . ', ' . $row['city'] . ', ' . $row['state']); ?>
                                                                             </label>
                                                                         </li>
