@@ -181,9 +181,7 @@
                                                 </tr>
                                                 <?php
                                             }
-                                        } else {
-                                            echo "No records found :(";
-                                        }
+                                        } 
                                         ?>
                                     </tbody>
                                 </table>

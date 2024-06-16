@@ -50,15 +50,16 @@
     </script>
 </head>
 <style>
-    input{
-        border-radius:5px;
-        width:130px;
+    input {
+        border-radius: 5px;
+        width: 130px;
     }
+
     .from {
         /* margin-left: 30px; */
     }
 
-    .to{
+    .to {
         margin-top: 10px;
         /* margin-left: 51px; */
     }
@@ -73,19 +74,20 @@
         </div>
         <hr>
         <form action="generate_report.php" method="POST">
-            <label for="from">From date</label>
-            <input type="text" id="from" class="from" name="from" onchange="startDateFilter(this)"><i class="lni lni-angle-double-right" style="font-size:30px;
-                position:relative; left:3px; top:10px;"></i>
-            <label for="to">To date</label>
+            <label for="from">From:</label>
+            <input type="text" id="from" class="from" name="from" onchange="startDateFilter(this)"><i
+                class="lni lni-angle-double-right" style="font-size:23px;
+                position:relative; left:3px; top:5px;"></i>
+            <label for="to">To:</label>
             <input type="text" id="to" class="to" name="to" onchange="endDateFilter(this)">
             <br><button type="submit" name="sales_report" class="btn btn-success" style="margin-top:20px;">Generate
                 Report</button>
         </form>
-        <hr>    
-            <div class="chart1">
-                <h1 style="align-items: center;">Chart</h1>
-                <canvas id="chart1" style="width:100%;max-width:1000px; height:300px;"></canvas>
-            </div>
+        <hr>
+        <div class="chart1">
+            <h1 style="align-items: center;">Chart</h1>
+            <canvas id="chart1" style="width:100%;max-width:1000px; height:300px;"></canvas>
+        </div>
         <table class="table" style="margin-top:20px;">
             <thead>
                 <tr>
@@ -108,31 +110,42 @@
 $sql = "SELECT * FROM order_ ORDER BY time_status";
 $result = mysqli_query($connect, $sql);
 
-$sales_by_day = []; // Associative array to store sales totals by day
+$sales_by_day = [];
+
+$sql2 = "SELECT MIN(time_status) AS min_date, MAX(time_status) AS max_date FROM order_";
+$result2 = mysqli_query($connect, $sql2);
+
+if (mysqli_num_rows($result2) > 0) {
+    $row = mysqli_fetch_assoc($result2);
+    $start_date = $row['min_date'];
+    $end_date = $row['max_date'];
+}
+
+$start_date = date('Y-m-d', strtotime($start_date));
+$end_date = date('Y-m-d', strtotime($end_date));
+
+$current_date = $start_date;
+while ($current_date <= $end_date) {
+    $sales_by_day[$current_date] = 0;
+    $current_date = date('Y-m-d', strtotime($current_date . ' +1 day'));
+}
 
 if (mysqli_num_rows($result) > 0) {
+    mysqli_data_seek($result, 0);
+
     while ($row = mysqli_fetch_assoc($result)) {
         $date = date('Y-m-d', strtotime($row["time_status"]));
         $total_amount = floatval($row["total_amount"]);
 
         if (isset($sales_by_day[$date])) {
-            $sales_by_day[$date] += $total_amount; // Add to existing day total
-        } else {
-            $sales_by_day[$date] = $total_amount; // Initialize new day total
+            $sales_by_day[$date] += $total_amount;
         }
     }
 }
-
-// Prepare arrays for JavaScript
-$date_arr = array_keys($sales_by_day); // Array of dates
-$price_arr = array_values($sales_by_day); // Array of total sales for each date
-
-// For debugging purposes, use print_r or var_dump
-// echo print_r($sales_by_day, true); // or
-// echo var_dump($sales_by_day);
-
-// If you want to print the array elements as a comma-separated string
+$date_arr = array_keys($sales_by_day);
+$price_arr = array_values($sales_by_day);
 ?>
+
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
@@ -141,21 +154,28 @@ $price_arr = array_values($sales_by_day); // Array of total sales for each date
     const ctx2 = document.getElementById('chart2');
 
     const date_array = <?php echo json_encode($date_arr); ?>;
+    const price_array = <?php echo json_encode($price_arr); ?>;
     console.log(date_array);
 
-    const date_chart_js = date_array.map(day => new Date(day)); // Convert dates to JavaScript Date objects
+    const date_chart_js = date_array.map((day, index) => {
+        let dayjs = new Date(day);
+        return dayjs.setHours(0, 0, 0, 0);
+    })
 
     const data = {
         labels: date_chart_js,
-            datasets: [{
-                label: 'Daily Sales',
-                data: <?php echo json_encode($price_arr); ?>,
-                borderWidth: 3,
-                borderColor: 'orange',
-            }]
+        datasets: [{
+            label: 'Daily Sales',
+            data: price_array,
+            borderWidth: 3,
+            borderColor: 'orange',
+            pointRadius: function (context) {
+                return context.raw > 0 ? 3 : 0;
+            }
+        }]
     };
 
-    const config={
+    const config = {
         type: 'line',
         data,
         options: {
@@ -166,12 +186,13 @@ $price_arr = array_values($sales_by_day); // Array of total sales for each date
                     type: 'time',
                     time: {
                         unit: 'day'
-                    }
+                    },
+                    offset: true,
                 },
                 y: {
                     beginAtZero: true
                 }
-            }
+            },
         }
     };
 
@@ -180,32 +201,32 @@ $price_arr = array_values($sales_by_day); // Array of total sales for each date
         config
     );
 
-    function startDateFilter(date){
+    function startDateFilter(date) {
         const startDate = new Date(date.value);
 
-        console.log(startDate.setHours(0,0,0,0));
-        myChart.config.options.scales.x.min =startDate.setHours(0,0,0,0);
+        console.log(startDate.setHours(0, 0, 0, 0));
+        myChart.config.options.scales.x.min = startDate.setHours(0, 0, 0, 0);
         myChart.update();
     }
-    function endDateFilter(date){
+    function endDateFilter(date) {
         const endDate = new Date(date.value);
-            
-        console.log(endDate.setHours(0,0,0,0));
-        myChart.config.options.scales.x.max =endDate.setHours(0,0,0,0);
+
+        console.log(endDate.setHours(0, 0, 0, 0));
+        myChart.config.options.scales.x.max = endDate.setHours(0, 0, 0, 0);
         myChart.update();
     }
-        $(document).ready(function () {
-            $('#from, #to').on('change keyup', function () {
-                var from = $('#from').val();
-                var to = $('#to').val();
-                $.ajax({
-                    url: 'run_query.php',
-                    method: 'POST',
-                    data: { from2: from, to2: to },
-                    success: function (response) {
-                        $('#table-body').html(response);
-                    }
-                });
+    $(document).ready(function () {
+        $('#from, #to').on('change keyup', function () {
+            var from = $('#from').val();
+            var to = $('#to').val();
+            $.ajax({
+                url: 'run_query.php',
+                method: 'POST',
+                data: { from2: from, to2: to },
+                success: function (response) {
+                    $('#table-body').html(response);
+                }
             });
         });
+    });
 </script>

@@ -133,7 +133,7 @@
             </form>
             <form method="POST" action="" class="searchbar">
                 <ion-icon class="magni" name="search-outline"></ion-icon>
-                <input type="text" class="input" placeholder="Search" name="search" id="search">
+                <input type="text" class="input" placeholder="Search with name" name="search" id="search">
             </form>
         </div>
         <hr>
@@ -200,7 +200,7 @@
                         }
                     } else {
                         ?>
-                        <td colspan="5" style="text-align:center"><b>No record found</b></td>
+                        <td colspan="5" style="text-align:center"><b></b></td>
                         <?php
                     }
                     ?>
