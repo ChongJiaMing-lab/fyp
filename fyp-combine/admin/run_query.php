@@ -23,7 +23,6 @@ if (isset($_POST['cust'])) {
             <td>' . $row["name"] . '<br>
             </td>
             <td style="vertical-align: middle;">Telephone.No:' . $row["contactnumber"] . '<br>Email:' . $row["email"] . '</td>
-            <td>' . $row["gender"] . '</td>
             <td>' . $row["join_time"] . '</td>
         </tr>';
     }
