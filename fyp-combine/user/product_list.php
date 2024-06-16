@@ -210,6 +210,14 @@ label {
    width: 100px !important;
    
 }
+.module-product .frame, .tab-product .frame {
+    border-radius: 0px;
+    border: none;
+    background-color: rgba(255, 255, 255, 1);
+    vertical-align: bottom;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
 </style>
 <div id="module-category" class="box utilities">
         <div class="title">Brand</div>
