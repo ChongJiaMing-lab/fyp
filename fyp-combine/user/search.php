@@ -112,6 +112,8 @@
 		.txt-interactt {
 			color: skyblue !important;
 		}
+
+		
 	</style>
 
 
@@ -154,7 +156,7 @@
 									$("#live_search").keyup(function () {
 										var input = $(this).val();
 
-										if (input != "") 
+										if (input != "")
 											$.ajax({
 												url: "live_search.php",
 												method: "POST",
@@ -163,9 +165,9 @@
 													$(".product-listing .box-content").html(data).css("display", "");
 												}
 											});
-										 
-											
-										
+
+
+
 									});
 								});
 							</script>

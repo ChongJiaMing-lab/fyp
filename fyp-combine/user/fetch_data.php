@@ -99,6 +99,7 @@ if (isset($_POST["action"])) {
                                     </div>';
         }
         
+        
     } else {
         $output = '<h3>No Product Found</h3>';
     }
