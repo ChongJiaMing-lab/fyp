@@ -89,7 +89,7 @@ include 'databaseconnect.php';
 
 <body>
   <div class="main p-3"><!-- write content below -->
-    <h1 style="font-size:45px;">Overview</h1>
+
     <?php
     $staff = mysqli_query($connect, "SELECT * FROM staff");
     $user = mysqli_query($connect, "SELECT * FROM user_information");
@@ -118,7 +118,7 @@ include 'databaseconnect.php';
           <div class="name">User</div>
         </div>
         <div class="icon">
-        <i class="lni lni-users"></i>
+          <i class="lni lni-users"></i>
         </div>
       </div>
 
@@ -138,7 +138,7 @@ include 'databaseconnect.php';
           <div class="name">Order</div>
         </div>
         <div class="icon">
-        <i class="lni lni-list"></i>
+          <i class="lni lni-list"></i>
         </div>
       </div>
     </div><!-- close cards-->
@@ -147,8 +147,15 @@ include 'databaseconnect.php';
     <hr><br>
     <div class="charts">
       <div class="chart1">
-        <h1 style="align-items: center;">Chart</h1>
-        <canvas id="chart1" style="width:100%;max-width:700px"></canvas>
+        <div style="position: absolute; top: 255px; right: 525px;">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+          <label class="btn btn-outline-primary" for="btnradio1">Current Week</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio2">Last Week</label>
+        </div>
+        <h1 style="margin-top:10px;margin-left:10px;">Week Sales</h1>
+        <canvas id="chart1"></canvas>
       </div>
       <div class="chart2">
         <h1>Top 3 hottest product</h1>
@@ -225,35 +232,40 @@ include 'databaseconnect.php';
 $sql = "SELECT * FROM order_ ORDER BY time_status";
 $result = mysqli_query($connect, $sql);
 
-$sales_by_day = []; // Associative array to store sales totals by day
+$sales_by_day = [];
+
+$sql2 = "SELECT MIN(time_status) AS min_date, MAX(time_status) AS max_date FROM order_";
+$result2 = mysqli_query($connect, $sql2);
+
+if (mysqli_num_rows($result2) > 0) {
+  $row = mysqli_fetch_assoc($result2);
+  $start_date = $row['min_date'];
+  $end_date = $row['max_date'];
+}
+
+$start_date = date('Y-m-d', strtotime($start_date));
+$end_date = date('Y-m-d', strtotime($end_date));
+
+$current_date = $start_date;
+while ($current_date <= $end_date) {
+  $sales_by_day[$current_date] = 0;
+  $current_date = date('Y-m-d', strtotime($current_date . ' +1 day'));
+}
 
 if (mysqli_num_rows($result) > 0) {
+  mysqli_data_seek($result, 0);
+
   while ($row = mysqli_fetch_assoc($result)) {
     $date = date('Y-m-d', strtotime($row["time_status"]));
     $total_amount = floatval($row["total_amount"]);
 
     if (isset($sales_by_day[$date])) {
-      $sales_by_day[$date] += $total_amount; // Add to existing day total
-    } else {
-      $sales_by_day[$date] = $total_amount; // Initialize new day total
+      $sales_by_day[$date] += $total_amount;
     }
   }
 }
-
-// Prepare arrays for JavaScript
-$date_arr = array_keys($sales_by_day); // Array of dates
-$price_arr = array_values($sales_by_day); // Array of total sales for each date
-
-// For debugging purposes, use print_r or var_dump
-// echo print_r($sales_by_day, true); // or
-// echo var_dump($sales_by_day);
-
-// If you want to print the array elements as a comma-separated string
-if (!empty($date_arr)) {
-  echo implode(', ', $date_arr);
-} else {
-  echo "No dates found";
-}
+$date_arr = array_keys($sales_by_day);
+$price_arr = array_values($sales_by_day);
 ?>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -263,56 +275,102 @@ if (!empty($date_arr)) {
   const ctx2 = document.getElementById('chart2');
 
   const date_array = <?php echo json_encode($date_arr); ?>;
+  const price_array = <?php echo json_encode($price_arr); ?>;
   console.log(date_array);
 
-  const date_chart_js = date_array.map(day => new Date(day)); // Convert dates to JavaScript Date objects
 
-  new Chart(ctx, {
+  const date_chart_js = date_array.map((day, index) => {
+    let dayjs = new Date(day);
+    return dayjs.setHours(0, 0, 0, 0);
+  })
+
+  function getMonday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day === 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+  }
+
+  const today = new Date();
+  const startOfWeek = getMonday(today);
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+  const chartConfig = {
     type: 'line',
     data: {
       labels: date_chart_js,
       datasets: [{
-        label: 'Daily Sales',
-        data: <?php echo json_encode($price_arr); ?>,
-        borderWidth: 3
+        label: 'Day Sales',
+        data: price_array,
+        borderWidth: 3,
+        pointRadius: function (context) {
+          return context.raw > 0 ? 3 : 0;
+        },
       }]
     },
     options: {
       scales: {
         x: {
-          min:'2024-06-01',
-          max:'2024-06-31',
           type: 'time',
           time: {
             unit: 'day'
-          }
+          },
+          min: startOfWeek.toISOString().split('T')[0],
+          max: endOfWeek.toISOString().split('T')[0],
+          offset: true, 
         },
         y: {
           beginAtZero: true
         }
-      }
+      },
     }
+  };
+
+  const chart = new Chart(ctx, chartConfig);
+
+  document.getElementById('btnradio1').addEventListener('click', function () {
+    const today = new Date();
+    const startOfWeek = getMonday(today);
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+    chart.options.scales.x.min = startOfWeek.toISOString().split('T')[0];
+    chart.options.scales.x.max = endOfWeek.toISOString().split('T')[0];
+    chart.update();
   });
 
-  
-new Chart(ctx2, {
-type: 'doughnut',
-data: {
-labels: [
-'Red',
-'Blue',
-'Yellow'
-],
-datasets: [{
-label: 'My First Dataset',
-data: [300, 50, 100],
-backgroundColor: [
-'rgb(255, 99, 132)',
-'rgb(54, 162, 235)',
-'rgb(255, 205, 86)'
-],
-hoverOffset: 4
-}]
-}
-});
+  document.getElementById('btnradio2').addEventListener('click', function () {
+    const today = new Date();
+    const startOfThisWeek = getMonday(today);
+    const startOfPreviousWeek = new Date(startOfThisWeek);
+    startOfPreviousWeek.setDate(startOfThisWeek.getDate() - 7);
+    const endOfPreviousWeek = new Date(startOfPreviousWeek);
+    endOfPreviousWeek.setDate(startOfPreviousWeek.getDate() + 6);
+    chart.options.scales.x.min = startOfPreviousWeek.toISOString().split('T')[0];
+    chart.options.scales.x.max = endOfPreviousWeek.toISOString().split('T')[0];
+    chart.update();
+  });
+
+
+
+  new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Red',
+        'Blue',
+        'Yellow'
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [300, 50, 100],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    }
+  });
 </script>
