@@ -311,8 +311,7 @@
                                                 var city = selected.data('city');
                                                 var state = selected.data('state');
                                                 var postcode = selected.data('postcode');
-
-
+                                                createCookie("address_id", a_id, "10");
                                                 $('input[name="name"]').val(name);
                                                 $('input[name="telephone"]').val(telephone);
                                                 $('input[name="address"]').val(address);
@@ -324,6 +323,19 @@
                                                 $('#exampleModal').modal('hide');
                                             });
                                         });
+
+                                        function createCookie(name, value, days) {
+                                            var expires;
+                                            if (days) {
+                                                var date = new Date();
+                                                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                                expires = "; expires=" + date.toGMTString();
+                                            }
+                                            else {
+                                                expires = "";
+                                            }
+                                            document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+                                        }
                                     </script>
                                     <div class="col-50">
                                         <br>Accepted Payment method
@@ -418,6 +430,7 @@
 
     <?php
     if (isset($_POST['pay'])) {
+        $address_id = $_COOKIE["address_id"];
         $currentTimestamp = time();
         $num_card = $_POST['numCard'];
         $validMonth = $_POST['validMonth'];
@@ -497,7 +510,7 @@
                                         }
                                     });
 
-                                   
+
                                 </script>
                                 <?php
                                 exit;
