@@ -501,12 +501,12 @@
                                         createCookie("height", $(window).height(), "10");
                                     });
 
-                                    function createCookie(name, value, address_id) {
+                                    function createCookie(name, value, days) {
                                         var expires;
-                                        if (address_id) {
-                                            var address_id = new address_id();
-
-                                            expires = "; expires=" + address_id.toGMTString();
+                                        if (days) {
+                                            var date = new Date();
+                                            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                            expires = "; expires=" + date.toGMTString();
                                         }
                                         else {
                                             expires = "";
