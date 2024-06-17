@@ -286,9 +286,7 @@ $id = $_SESSION['ID'];
                                                 var state = selected.data('state');
                                                 var postcode = selected.data('postcode');
                                                 var a_id = selected.data('id');
-                                                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                                                let expires = "expires=" + d.toUTCString();
-                                                document.cookie = a+id + "=" + cvalue + ";" + expires + ";path=/";
+                                                createCookie("address_id", a_id, "10");
                                                 $('input[name="name"]').val(name);
                                                 $('input[name="telephone"]').val(telephone);
                                                 $('input[name="address"]').val(address);
@@ -301,6 +299,18 @@ $id = $_SESSION['ID'];
                                             });
                                         });
 
+                                        function createCookie(name, value, days) {
+                                        var expires;
+                                        if (days) {
+                                            var date = new Date();
+                                            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                            expires = "; expires=" + date.toGMTString();
+                                        }
+                                        else {
+                                            expires = "";
+                                        }
+                                        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+                                    }
                                     </script>
 
                             <div class="col-50">
@@ -419,7 +429,7 @@ $id = $_SESSION['ID'];
                     $x++;
                 }
             }
-            $address_id = $_COOKIE["a_id"];
+            $address_id = $_COOKIE["address_id"];
             $currentTimestamp = time();
             $num_card = $_POST['numCard'];
             $validMonth = $_POST['validMonth'];
@@ -468,7 +478,7 @@ $id = $_SESSION['ID'];
                                     $stock = $row10['stock']-1;
                                     mysqli_query($connect,"UPDATE product SET stock = $stock WHERE product_id = ${$myarray[$g]}");
                                 }
-                                    echo "<script>window.location.href = 'main_page.php;</script>";
+                                    echo "<script>window.location.href = 'main_page.php';</script>";
                             }
                         } else {
                             echo "<script>alert('Card Information Incorrect!');</script>";
