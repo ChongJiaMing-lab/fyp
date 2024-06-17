@@ -249,6 +249,14 @@
                                     <div class="txt-info">Total payment : RM<?php echo $row2['total_amount'] ?></div>
                                     <div class="txt-info">Delivery Status : <?php echo $row2['delivery_status'] ?></div>
                                 </div>
+
+                                <div>
+                                    <form method="POST" action="generate_report.php?ID=<?php echo $row2['order_id']; ?>">
+                                        <input type="hidden" name="order_id" value="<?php echo $row2["order_id"] ?>">
+                                        <button type="submit" class="btn btn-success" name="order_receipt">Print
+                                            Invoice</button>
+                                    </form>
+                                </div>
                             </div>
 
 
