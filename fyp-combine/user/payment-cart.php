@@ -426,6 +426,7 @@
         $currentMonth = date("m", $currentTimestamp);
         $currentYear = date("Y", $currentTimestamp);
         $num_card = str_replace(' ', '', $num_card);
+       
 
         if ("20" . $validYear < $currentYear) {
             echo "<script>alert('Invalid Year!')</script>";
