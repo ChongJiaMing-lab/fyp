@@ -148,7 +148,7 @@
 <body>
     <div class="main p-3">
         <div class="head" style="display:flex;">
-            <i class="lni lni-users" style="font-size:50px;"></i>
+            <i class="lni lni-cart-full" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px;">Product</h1>
             <hr>
         </div>
@@ -438,19 +438,22 @@
                 }
             }
             //sort
+            $query .= " ORDER BY product.product_status";
             $sort_p = $_POST["sort_p"];
             if ($sort_p == 'a') {
-                $query .= " ORDER BY product.product_name";
+                $query .= ", product.product_name";
             }
             if ($sort_p == 'b') {
-                $query .= " ORDER BY product.product_name DESC";
+                $query .= ", product.product_name DESC";
             }
             if ($sort_p == 'c') {
-                $query .= " ORDER BY product.price DESC";
+                $query .= ", product.price DESC";
             }
             if ($sort_p == 'd') {
-                $query .= " ORDER BY product.price";
+                $query .= ", product.price";
             }
+        }else{
+            $query .= " ORDER BY product.product_status";
         }
 
         $result = mysqli_query($connect, $query);
@@ -461,8 +464,8 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Product</th>
+                        <th scope="col">name</th>
                         <th scope="col">Brand</th>
                         <th scope="col">Type</th>
                         <th scope="col">Category</th>
@@ -563,14 +566,17 @@
                                     </div><!-- modal end-->
 
                                     <!-- first table row start-->
-                                    <th scope="row" data-bs-toggle="modal" data-bs-target="#v
-                                    <?php echo $row["product_id"]; ?>">
+                                    <!-- <th scope="row" data-bs-toggle="modal" data-bs-target="#v
+                                    <?//php echo $row["product_id"]; ?>">
                                         <?php echo $row['product_id'] ?>
-                                    </th>
+                                    </th> -->
 
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                         <img src="../image/<?php echo $row['image'] ?>"
                                             style="max-height:100px; max-width:auto;" />&nbsp&nbsp&nbsp&nbsp&nbsp
+    
+                                    </td>
+                                    <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                         <?php echo $row['product_name'] ?>
                                     </td>
 
@@ -597,11 +603,22 @@
                                             <?php echo ($row['stock'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
                                         </div>
                                     </td>
-                                    <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
-                                        <?php echo $row['product_status'] ?>
-                                    </td>
-
-
+                                    <?php
+                                        if($row['product_status']=="Available")
+                                        {?>
+                                            <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>" style="color:#0EAF09;">
+                                            <?php echo $row['product_status'] ?>
+                                        </td>
+                                        <?php
+                                        }
+                                        else
+                                        {?>
+                                            <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>" style="color:red;">
+                                            <?php echo $row['product_status'] ?>
+                                        </td>
+                                        <?php
+                                        }
+                                    ?>
                             </form>
                             <td class="button-action">
                                 <!-- _____________________________________EDIT__________________________________________-->
@@ -813,13 +830,13 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                        Current status:<b>Available</b></h5>
+                                                        Current status:<b style="color:#0EAF09;">Available</b></h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    Set this product to status:<b>Unavailable</b>?<br>
+                                                    Set this product to status:<b  style="color:red;">Unavailable</b>?<br>
                                                     <img src="../image/<?php echo $row["image"] ?>">
                                                     <?php echo $row["product_name"] ?>
                                                 </div>
@@ -838,13 +855,13 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                        Current status:<b>Unavailable</b></h5>
+                                                        Current status:<b style="color:red;">Unavailable</b></h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    Set this product to status:<b>Available</b>?<br>
+                                                    Set this product to status:<b style="color:#0EAF09;">Available</b>?<br>
                                                     <img src="../image/<?php echo $row["image"] ?>">
                                                     <?php echo $row["product_name"] ?>
                                                 </div>

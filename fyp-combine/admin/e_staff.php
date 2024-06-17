@@ -22,8 +22,9 @@ if(isset($_POST['edit_staff']))
 
     if($update_run)
     {
-        $_SESSION['status'] = 'Updated Successfully!';
-        $_SESSION['pic'] = $pic;
+        $_SESSION['title'] = "Success";
+        $_SESSION['text'] = "Your profile is succesfully updated";
+        $_SESSION['icon'] = "success";
         unset($_SESSION['default']);
         header('location:admin_staff.php');
     }

@@ -123,6 +123,23 @@
         <h1 style="margin: 12px 0 0 30px;">Staff</h1>
         <hr>
       </div>
+      <?php
+        if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
+            ?>
+            <script>
+                Swal.fire({
+                    title: "<?php echo $_SESSION['title']; ?>",
+                    text: "<?php echo $_SESSION['text']; ?>",
+                    icon: "<?php echo $_SESSION['icon']; ?>"
+                });
+            </script>
+            <?php
+            unset($_SESSION['img']);
+            unset($_SESSION['title']);
+            unset($_SESSION['text']);
+            unset($_SESSION['icon']);
+        }
+        ?>
       <div class="btns">
         <?php
         if (isset($_SESSION['sa']) && $_SESSION['sa'] == 1) {
@@ -172,14 +189,13 @@
                 <span id="check_num" style="color: red;"></span>
               </div>
             </div>
-
             <input type="hidden" name="save_staff">
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button onclick="add_check()" class="btn btn-primary" name="save_staff"><i
-                  class="lni lni-checkmark"style="margin-top:5px;"></i></button>
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
-                  class="lni lni-close" style="margin-top:5px;"></i></button>
+              <button onclick="add_check()" class="btn btn-primary" name="save_staff"><i class="lni lni-checkmark"
+                  style="margin-top:5px;"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="lni lni-close"
+                  style="margin-top:5px;"></i></button>
             </div>
           </form>
         </div>
@@ -206,11 +222,12 @@
           <th scope="col">Email</th>
           <th scope="col">Telephone.No</th>
           <th scope="col">Joined Time</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
         <?php
-        $result = mysqli_query($connect, "SELECT * FROM staff");
+        $result = mysqli_query($connect, "SELECT * FROM staff ORDER BY staff_status");
         $count = mysqli_num_rows($result);
         $count = 1;
         if (mysqli_num_rows($result) > 0) {
@@ -223,7 +240,68 @@
               <td><?php echo $row["staff_email"]; ?></td>
               <td><?php echo $row["staff_tel"]; ?></td>
               <td><?php echo $row["joined_time"]; ?></td>
+              <?php if($row["staff_status"]==1){?> <td style="color:#0EAF09">Active</td><?php } 
+                        else{?> <td style="color:red;">Inactive</td><?php } ?>
+              <!-- 1 = active, 2 = unactive -->
+              <?php if (isset($_SESSION['sa']) && $_SESSION['sa'] == 1) {
+                if ($row["staff_status"] == 1) {
+                  ?>
+                  <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                      style="border-left: 1.25px solid white;" data-bs-target="#av<?php echo $row["staff_id"]; ?>">
+                      <i class="lni lni-close" style="margin-top:5px;"></i></button></td>
+                  <?php
+                } else {
+                  ?>
+                  <td><button type="button" class="btn btn-success" data-bs-toggle="modal"
+                      style="border-left: 1.25px solid white;" data-bs-target="#unav<?php echo $row["staff_id"]; ?>">
+                      <i class="lni lni-checkmark" style="margin-top:5px;"></i></button></td>
+                  <?php
+                }
+              } ?>
             </tr>
+            <!-- modal start-->
+            <div class="modal fade" id="av<?php echo $row["staff_id"]; ?>">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Current status:<b style="color:#0EAF09">Active</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    Set this staff <b><?php echo $row["admin_id"] ?></b> to:<b style="color:red;">Inactive</b>?<br>
+
+                  </div>
+                  <div class="modal-footer">
+                    <a href="a_staff.php?staff_id=<?php echo $row["staff_id"] ?>"><button type="button"
+                        class="btn btn-primary">Yes</button></a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end av modal -->
+            <!-- modal start-->
+            <div class="modal fade" id="unav<?php echo $row["staff_id"]; ?>">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Current status:<b style="color:red">Inactive</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    Set this staff <b><?php echo $row["admin_id"] ?></b> to:<b style="color:#0EAF09;">Active</b>?<br>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="a_staff.php?staff_id=<?php echo $row["staff_id"] ?>"><button type="button"
+                        class="btn btn-primary">Yes</button></a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end av modal -->
             <?php
           }
         }
