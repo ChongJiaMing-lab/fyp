@@ -28,5 +28,27 @@ if(isset($_POST["save_staff"]))
     }
     
 }
+if(isset($_GET["staff_id"])){
+    $s  = $_GET["staff_id"];
 
+    $query = mysqli_query($connect, "SELECT * FROM staff WHERE staff_id = '$s'");
+    $row = mysqli_fetch_assoc($query);
+    $sn = $row['admin_id'];
+    $check = $row['staff_status'];
+
+    if ($check == 1) {
+        $st = "UPDATE staff SET staff_status = 2 WHERE staff_id='$s'";
+        $text = "is now inactive";
+    } else if($check ==2){
+        $st = "UPDATE staff SET staff_status = 1 WHERE staff_id='$s'";
+        $text = "is now active";
+    }
+    $status = mysqli_query($connect, $st);
+    if ($query) {
+        $_SESSION['title'] = "$sn";
+        $_SESSION['text'] = "$text";
+        $_SESSION['icon'] = "success";
+        header("location:admin_staff.php");
+    }
+}
 ?>

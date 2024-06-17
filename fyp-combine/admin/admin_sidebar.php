@@ -16,6 +16,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="admin_sidebar.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
@@ -34,6 +36,23 @@
     //exit();
 //}
     ?>
+    <?php
+    if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
+        ?>
+        <script>
+            Swal.fire({
+                title: "<?php echo $_SESSION['title']; ?>",
+                text: "<?php echo $_SESSION['text']; ?>",
+                icon: "<?php echo $_SESSION['icon']; ?>"
+            });
+        </script>
+        <?php
+        unset($_SESSION['img']);
+        unset($_SESSION['title']);
+        unset($_SESSION['text']);
+        unset($_SESSION['icon']);
+    }
+    ?>
     <div class="wrapper">
         <div class="topbar">
             <div class="logo">
@@ -44,7 +63,8 @@
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                         data-bs-toggle="dropdown" aria-expanded="false"
                         style="background:none; color:black;border-radius:20px;">
-                        <img src="image/<?php echo $_SESSION['pic']; ?>">
+                        <ion-icon name="apps-outline" style="font-size:110%; position:relative; top:3.5px;"></ion-icon>
+                        <!-- <img src="image/<//?php echo $_SESSION['pic']; ?>"> -->
                         <?php echo $_SESSION['admin_id']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -97,7 +117,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="admin_pc.php" class="sidebar-link">
-                    <i class="lni lni-stackoverflow"></i>
+                        <i class="lni lni-stackoverflow"></i>
                         <span>Component</span>
                     </a>
                 </li>
@@ -109,7 +129,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="admin_product.php" class="sidebar-link">
-                        <i class="lni lni-protection"></i>
+                    <i class="lni lni-cart-full"></i>
                         <span>Product</span>
                     </a>
                 </li>

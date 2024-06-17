@@ -37,17 +37,16 @@ if (isset($_POST["save_product"])) {
 if (isset($_GET["product_id"])) {
     $p = $_GET["product_id"];
 
-    $query = mysqli_query($connect, "SELECT product_name FROM product WHERE product_id = '$p'");
+    $query = mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$p'");
     $row = mysqli_fetch_assoc($query);
-    $check = mysqli_fetch_assoc(mysqli_query($connect, "SELECT product_status FROM product WHERE product_id = '$p'"));
     $pn = $row['product_name'];
-
-    if ($check['product_status'] == 1) {
+    $check = $row['product_status'];
+    if ($check == 1) {
         $st = "UPDATE product SET product_status = 2 WHERE product_id='$p'";
-        $text = "is now available";
-    } else {
-        $st = "UPDATE product SET product_status = 1 WHERE product_id='$p'";
         $text = "is now unavailable";
+    } else if($check ==2){
+        $st = "UPDATE product SET product_status = 1 WHERE product_id='$p'";
+        $text = "is now available";
     }
     $query = mysqli_query($connect, $st);
 

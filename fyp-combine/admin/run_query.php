@@ -36,9 +36,9 @@ if (isset($_POST['id_r'])) {
     $result = mysqli_query($connect, $id_r);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "exists"; 
+        echo "exists";
     } else {
-        echo "not_exists"; 
+        echo "not_exists";
     }
 }
 //check peri
@@ -48,9 +48,9 @@ if (isset($_POST['p'])) {
     $result = mysqli_query($connect, $c_c);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "exists"; 
+        echo "exists";
     } else {
-        echo "not_exists"; 
+        echo "not_exists";
     }
 }
 
@@ -61,9 +61,9 @@ if (isset($_POST['c'])) {
     $result = mysqli_query($connect, $c_c);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "exists"; 
+        echo "exists";
     } else {
-        echo "not_exists"; 
+        echo "not_exists";
     }
 }
 
@@ -74,9 +74,9 @@ if (isset($_POST['b'])) {
     $result = mysqli_query($connect, $c_c);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "exists"; 
+        echo "exists";
     } else {
-        echo "not_exists"; 
+        echo "not_exists";
     }
 }
 //customer date range filter
@@ -146,10 +146,12 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
             $query .= " ORDER BY order_id";
         else if ($f2 == 'b')
             $query .= " ORDER BY order_id DESC";
-        else if ($f2 == 'c')
-            $query .= " ORDER BY total_amount DESC";
-        else if ($f2 == 'd')
-            $query .= " ORDER BY total_amount";
+        else if ($f2 == 'c') {
+            $query .= " ORDER BY CAST(total_amount AS DECIMAL(10,2)) DESC";
+        } else if ($f2 == 'd') {
+            $query .= " ORDER BY CAST(total_amount AS DECIMAL(10,2))";
+        }
+
     }
 
     $o_run = mysqli_query($connect, $query);
