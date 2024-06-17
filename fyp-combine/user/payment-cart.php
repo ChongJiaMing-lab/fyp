@@ -217,8 +217,8 @@
                                                 autocomplete="off"></br>
 
                                             <br>Phone Number :
-                                            <br><input type="text" name="telephone" value="<?php echo $row2['contact_number'] ?>" readonly
-                                                autocomplete="off"></br>
+                                            <br><input type="text" name="telephone" value="<?php echo $row2['contact_number'] ?>"
+                                                readonly autocomplete="off"></br>
 
                                             <br>Address :
                                             <br><input type="text" name="address" value="<?php echo $row2['address'] ?>" readonly
@@ -276,7 +276,7 @@
                                                                                 data-postcode="<?php echo ($row['postcode']); ?>"
                                                                                 id="<?php echo ($row['address_id']); ?>">
                                                                             <label for="<?php echo ($row['address_id']); ?>">
-                                                                            <strong><?php echo ($row['name'] . ' - ' . $row['contact_number']); ?></strong><br>
+                                                                                <strong><?php echo ($row['name'] . ' - ' . $row['contact_number']); ?></strong><br>
                                                                                 <?php echo ($row['address'] . ', ' . $row['postcode'] . ', ' . $row['city'] . ', ' . $row['state']); ?>
                                                                             </label>
                                                                         </li>
@@ -426,7 +426,7 @@
         $currentMonth = date("m", $currentTimestamp);
         $currentYear = date("Y", $currentTimestamp);
         $num_card = str_replace(' ', '', $num_card);
-       
+
 
         if ("20" . $validYear < $currentYear) {
             echo "<script>alert('Invalid Year!')</script>";
@@ -496,6 +496,23 @@
                                             window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
                                         }
                                     });
+
+                                    $(document).ready(function () {
+                                        createCookie("height", $(window).height(), "10");
+                                    });
+
+                                    function createCookie(name, value, address_id) {
+                                        var expires;
+                                        if (address_id) {
+                                            var address_id = new address_id();
+
+                                            expires = "; expires=" + address_id.toGMTString();
+                                        }
+                                        else {
+                                            expires = "";
+                                        }
+                                        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+                                    }
                                 </script>
                                 <?php
                                 exit;
