@@ -65,7 +65,7 @@
         }
       }
 
-      var tel_regex = /^[0-9]{10,11}$/;
+      var tel_regex = /^\d{3}-\d{6,7}$/;
       if (tel == "") {
         document.getElementById("check_num").innerHTML = "Please enter a telephone number";
         no_error = false;

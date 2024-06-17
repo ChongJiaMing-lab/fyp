@@ -90,7 +90,7 @@
         <div class="form-floating">
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
             <label for="floatingPassword">Password</label>
-            <ion-icon name="eye-outline" id="show"></ion-icon>
+            <ion-icon name="eye" id="show"></ion-icon>
         </div>
         <button type="submit" class="btn btn-primary" name="a_login" values="a_login">Login</button>
     </form>
@@ -108,13 +108,13 @@
     show.onclick = function () {
         if (pw.type == "password") {
             pw.type = "text";
-            show.setAttribute("name", "eye-off-outline");
+            show.setAttribute("name", "eye-off");
             document.getElementById("show").style.color = "red";
 
         }
         else {
             pw.type = "password";
-            show.setAttribute("name", "eye-outline");
+            show.setAttribute("name", "eye");
             document.getElementById("show").style.color = "#54EB22";
         }
     }
