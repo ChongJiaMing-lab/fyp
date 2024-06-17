@@ -368,10 +368,20 @@ $id = $_SESSION['ID'];
                                 $i = $i + 1;
                             }
                         }
+                        if(isset($_GET['vid']))
+                        {
+                            $vid = $_GET['vid'];
+                            $result5 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
+                            $row5 = mysqli_fetch_assoc($result5);
+                            $dis = $total*$row5['v_rate'];
+                        }else{
+                            $dis = 0;
+                        }
                         ?>
                         </div>
                         <hr>
-                        <p>Total <span class="pricee" style="color:black"><b>RM<?php echo number_format($total, 2) ?></b></span></p>
+                        <p>Voucher <span class="pricee" style="color:black"><b>- RM <?php echo number_format($dis, 2) ?></b></span></p>
+                        <p>Total <span class="pricee" style="color:black"><b>RM <?php echo number_format($total-$dis, 2) ?></b></span></p>
                         <?php if ($item != 0) { ?>
                             <button name="pay">Pay Now</button>
                         <?php
@@ -388,6 +398,16 @@ $id = $_SESSION['ID'];
         <?php
 
         if (isset($_POST['pay'])) {
+            $not_a = array();
+            for($g=3;$g<$i;$g++)
+            {
+                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0");
+                if($row5 = mysqli_fetch_assoc($query5))
+                {
+                    $not_a[$g] = $row5['product_id'];
+                }
+            }
+
             $currentTimestamp = time();
             $num_card = $_POST['numCard'];
             $validMonth = $_POST['validMonth'];
@@ -397,7 +417,10 @@ $id = $_SESSION['ID'];
             $currentYear = date("Y", $currentTimestamp);
             $num_card = str_replace(' ', '', $num_card);
 
-            if ("20" . $validYear < $currentYear) {
+            if(count($not_a)>0){?>
+                <script>alert('The Required Component below is not being selected!<?php for($a=0;$a<count($not_a);$a++){echo "\\n" . $not_a[$a];} ?>');</script> 
+                <?php }
+            else if ("20" . $validYear < $currentYear) {
                 echo "<script>alert('Invalid Year!')</script>";
             } else if ($validMonth < $currentMonth) {
                 echo "<script>alert('Invalid Month!')</script>";
@@ -420,7 +443,7 @@ $id = $_SESSION['ID'];
                             VALUES ($id,$address_id,$order_id,$build_id,'$currentDateTime',$total)");
 
                             if (mysqli_affected_rows($connect) > 0) {
-                                $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
+                               // $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
                                 $point = (int)($total/100);
                                 mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
                                 mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$id','$order_id','$currentDateTime')");

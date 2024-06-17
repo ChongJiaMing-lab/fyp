@@ -78,7 +78,6 @@
     </p>
     <div class="btn-container">
         <a href="customization.php" class="btn btn-create">Create Now</a>
-        <a href="Pre-pc.php" class="btn btn-pre">Buy Pre-build PC</a>
     </div>
 </div>
 </body>
