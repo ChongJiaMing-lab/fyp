@@ -492,7 +492,7 @@ $id = $_SESSION['ID'];
     </div>
 </body>
 <script>
-    document.getElementById('numCard').addEventListener('input', function (event) {
+    ,document.getElementById('numCard').addEventListener('input', function (event) {
         let input = event.target;
         let trimmedValue = input.value.replace(/\s+/g, '');
         let formattedValue = '';

@@ -274,6 +274,7 @@
                                                                                 data-city="<?php echo ($row['city']); ?>"
                                                                                 data-state="<?php echo ($row['state']); ?>"
                                                                                 data-postcode="<?php echo ($row['postcode']); ?>"
+                                                                                data-a_id="<?php echo ($row['address_id']); ?>"
                                                                                 id="<?php echo ($row['address_id']); ?>">
                                                                             <label for="<?php echo ($row['address_id']); ?>">
                                                                                 <strong><?php echo ($row['name'] . ' - ' . $row['contact_number']); ?></strong><br>
@@ -311,6 +312,7 @@
                                                 var city = selected.data('city');
                                                 var state = selected.data('state');
                                                 var postcode = selected.data('postcode');
+                                                var a_id = selected.data('a_id');
                                                 createCookie("address_id", a_id, "10");
                                                 $('input[name="name"]').val(name);
                                                 $('input[name="telephone"]').val(telephone);
