@@ -181,13 +181,6 @@ $id = $_SESSION['ID'];
                                 $row2 = mysqli_fetch_assoc($result2);
                                 if ($result && $result2) {
                                     if ($row = mysqli_fetch_assoc($result)) { ?>
-
-                                        <br>Full Name :
-                                        <br><input type="text" name="name" value="<?php echo $row['name'] ?>" autocomplete="off"></br>
-                                        <br>Phone Number :
-                                        <br><input type="text" name="ph" value="<?php echo $row['contactnumber'] ?>" autocomplete="off"></br>
-
-
                                         <?php
                                         foreach ($result as $row) { ?>
 
@@ -197,21 +190,25 @@ $id = $_SESSION['ID'];
                                                 <br><input type="text" name="address" placeholder="No.00, Jalan xxx, Taman xxx" autocomplete="off"></br>
 
                                             <?php
-                                            } else { ?>
+                                            } else { ?>             
+                                                <br>Full Name :
+                                                <br><input type="text" name="name" readonly autocomplete="off"></br>
+                                                <br>Phone Number :
+                                                <br><input type="text" name="telephone"  readonly autocomplete="off"></br>
                                                 <br>Address :
-                                                <br><input type="text" name="address" value="<?php echo $row2['address'] ?>" readonly autocomplete="off"></br>
+                                                <br><input type="text" name="address" readonly autocomplete="off"></br>
                                                 <div class="row">
                                                     <div class="col-25">
                                                         <br>City :
-                                                        <br><input type="text" name="state" value="<?php echo $row2['city'] ?>" readonly autocomplete="off"></br>
+                                                        <br><input type="text" name="city" readonly autocomplete="off"></br>
                                                     </div>
                                                     <div class="col-25">
                                                         <br>State :
-                                                        <br><input type="text" name="code" value="<?php echo $row2['state'] ?>" readonly autocomplete="off"></br>
+                                                        <br><input type="text" name="state" readonly autocomplete="off"></br>
                                                     </div>
                                                     <div class="col-25">
                                                         <br>Postcode :
-                                                        <br><input type="text" name="code" value="<?php echo $row2['postcode'] ?>" readonly autocomplete="off"></br>
+                                                        <br><input type="text" name="postcode" readonly autocomplete="off"></br>
                                                     </div>
                                                 </div>
                                 <?php
