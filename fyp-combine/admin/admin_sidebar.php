@@ -97,7 +97,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="admin_pc.php" class="sidebar-link">
-                        <i class="lni lni-popup"></i>
+                    <i class="lni lni-stackoverflow"></i>
                         <span>Component</span>
                     </a>
                 </li>

@@ -14,16 +14,18 @@
     .table tr {
         background-color: grey;
     }
+
     .lr {
         display: flex;
     }
-    .top {
+
+    .ss {
         display: flex;
         align-items: space-between;
     }
 
     .input {
-        width: 1000px;
+        width: 1040px;
         height: 50px;
         border-radius: 10px;
     }
@@ -36,7 +38,7 @@
         padding-left: 40px;
     }
 
-    .top .btn {
+    .ss .btn {
         float: right;
     }
 
@@ -62,72 +64,90 @@
 
     .magni {
         position: absolute;
-        top: 17%;
+        top: 10%;
         font-size: 30px;
         left: 5.7px;
     }
-    
-	#check_price, #check_stock{ color:red; font-size: 0.9em; }
 
+    #check_price,
+    #check_stock {
+        color: red;
+        font-size: 0.9em;
+    }
+
+    .top .filter {
+        display: flex;
+        align-items: center;
+        margin-top: 20x;
+    }
+
+    .filter select {
+        width: 15%;
+        border: 1.5px solid black;
+    }
+
+    .filter label {
+        margin: 0 10px 0 10px;
+    }
 </style>
 
-	
+
 <script type="text/JavaScript">
-	
-	function add_check()
-	{
+
+    function add_check()
+    {
         event.preventDefault();
-		var no_error = true;
-		
-		var price = document.p_form.price.value;
-		var qty = document.p_form.qty.value;
-		
-		if (price == "")
-		{
-			document.getElementById("check_price").innerHTML="Please enter a price";
-			no_error = false;
-		}
-		else
-		{
-			if (isNaN(price))
+        var no_error = true;
+        
+        var price = document.p_form.price.value;
+        var qty = document.p_form.qty.value;
+        
+        if (price == "")
+        {
+            document.getElementById("check_price").innerHTML="Please enter a price";
+            no_error = false;
+        }
+        else
+        {
+            if (isNaN(price))
             {
                 document.getElementById("check_price").innerHTML = "Please enter a valid price (00.00)";
-				no_error = false;
+                no_error = false;
             }
             else
-			{
-				document.getElementById("check_price").innerHTML="";
-			}
-		}
-		
-		if (qty == "")
-		{
-			document.getElementById("check_stock").innerHTML="Please enter a stock";
-			no_error = false;
-		}
-		else
-		{
-			if (isNaN(qty))
-			{
-				document.getElementById("check_stock").innerHTML="Please enter a valid stock";
-				no_error = false;
-			}
-			else
-			{
-				document.getElementById("check_stock").innerHTML="";
-			}
-		}
+            {
+                document.getElementById("check_price").innerHTML="";
+            }
+        }
+        
+        if (qty == "")
+        {
+            document.getElementById("check_stock").innerHTML="Please enter a stock";
+            no_error = false;
+        }
+        else
+        {
+            if (isNaN(qty))
+            {
+                document.getElementById("check_stock").innerHTML="Please enter a valid stock";
+                no_error = false;
+            }
+            else
+            {
+                document.getElementById("check_stock").innerHTML="";
+            }
+        }
         
     if(no_error == false)
         event.preventDefault();
     else
         document.getElementById("p_form").submit();
-	}
-	</script>
-    
+    }
+    </script>
+
 <body>
     <div class="main p-3">
-    <div class="head" style="display:flex;">
+        <div class="head" style="display:flex;">
             <i class="lni lni-users" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px;">Product</h1>
             <hr>
@@ -135,12 +155,80 @@
         <hr>
         <div class="top">
             <form method="POST" action="" class="searchbar">
-                <ion-icon class="magni" name="search-outline"></ion-icon>
-                <input type="text" class="input" placeholder="Search with name" name="search">
+                <div class="ss">
+                    <ion-icon class="magni" name="search-outline"></ion-icon>
+                    <input type="text" class="input" placeholder="Search with name" name="search" style="">
+                </div>
+                <?php
+                $c = mysqli_query($connect, "SELECT * FROM category");
+                $b = mysqli_query($connect, "SELECT * FROM brand");
+                $t = mysqli_query($connect, "SELECT * FROM product_type");
+                $s = mysqli_query($connect, "SELECT * FROM product_status");
+                ?>
+                <div class="filter" style="margin-top:8px;">
+                    <label>Filter1 by:</label>
+                    <select class="form-select" name="filter1" aria-label="Default select example">
+                        <option value="" selected>-General-</option>
+                        <optgroup label="Brand:">
+                            <?php
+                            while ($row_b = mysqli_fetch_assoc($b)) {
+                                ?>
+                                <option value="b_<?php echo $row_b["brand_id"] ?>"><?php echo $row_b["brand_name"] ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        <optgroup label="Category:">
+                            <?php
+                            while ($row_c = mysqli_fetch_assoc($c)) {
+                                ?>
+                                <option value="c_<?php echo $row_c["category_id"] ?>"><?php echo $row_c["category"] ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+
+                    </select>
+                    <label>Filter2 by:</label>
+                    <select class="form-select" name="filter2" aria-label="Default select example">
+                        <option value="" selected>-General-</option>
+                        <optgroup label="Type:">
+                            <?php
+                            while ($row_t = mysqli_fetch_assoc($t)) {
+                                ?>
+                                <option value="type_<?php echo $row_t["type_id"] ?>"><?php echo $row_t["type"] ?></option>
+                                <?php
+                            }
+                            ?>
+                        <optgroup label="Stock:">
+                            <option value="in_stock">In stock</option>
+                            <option value="out_stock">Out of stock</option>
+                        <optgroup label="Product Status:">
+                            <?php
+                            while ($row_s = mysqli_fetch_assoc($s)) {
+                                ?>
+                                <option value="status_<?php echo $row_s["p_status_id"] ?>">
+                                    <?php echo $row_s["product_status"] ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                    </select>
+                    <label>Sort by:</label>
+                    <select class="form-select" name="sort_p" aria-label="Default select example">
+                        <option selected>-General-</option>
+                        <option value="a">A to Z</option>
+                        <option value="b">Z to A</option>
+                        <option value="c">Highest price</option>
+                        <option value="d">Lowest price</option>
+                    </select>
+                    <button type="submit" name="search_product" class="btn btn-dark"
+                        style="margin-left:30px; width:110px;">Search</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                        style="margin-left:240px; height:50px;">Add
+                        Product</button>
+                </div>
             </form>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
-                style="margin-left:30px;">Add
-                Product</button>
         </div>
         <?php
         if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
@@ -212,7 +300,7 @@
                                                 ?>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="radio"
-                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>" required/>
+                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>" required />
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         <?php echo $row['type'] ?>
                                                     </label>
@@ -261,7 +349,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="customFile">Product Image</label>
-                                        <input type="file" class="form-control" id="customFile" name="img" required/>
+                                        <input type="file" class="form-control" id="customFile" name="img" required />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -269,7 +357,8 @@
                                         <label class="form-label" for="price">Price:</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">RM</span>
-                                            <input type="text" class="form-control" id="price" name="price" placeholder="00.00">
+                                            <input type="text" class="form-control" id="price" name="price"
+                                                placeholder="00.00">
                                         </div>
                                         <span id="check_price"></span>
                                     </div>
@@ -289,8 +378,10 @@
                         <input type="hidden" name="save_product">
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button onclick="add_check()" class="btn btn-primary" name="save_product"><i class="lni lni-checkmark"></i></button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="lni lni-close"></i></button>
+                            <button onclick="add_check()" class="btn btn-primary" name="save_product"><i
+                                    class="lni lni-checkmark"></i></button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+                                    class="lni lni-close"></i></button>
                         </div>
                     </form>
                 </div>
@@ -298,47 +389,72 @@
         </div><!-- modal end-->
         <hr>
         <?php
-        if (isset($_POST["search"])) {
+        $query = "SELECT 
+          product.product_id, 
+          product.product_name, 
+          product.product_desc, 
+          product.image, 
+          product.price, 
+          product.stock,
+          product_status.product_status, 
+          brand.brand_name, 
+          category.category,
+          product_type.type
+          FROM product
+          JOIN brand ON product.brand_id = brand.brand_id
+          JOIN category ON product.category_id = category.category_id
+          JOIN product_status ON product.product_status = product_status.p_status_id
+          JOIN product_type ON product.product_type = product_type.type_id";
+
+        if (isset($_POST["search_product"])) {
             $search = $_POST["search"];
-            $query = "SELECT 
-                            product.product_id, 
-                            product.product_name, 
-                            product.product_desc, 
-                            product.image, 
-                            product.price, 
-                            product.stock,
-                            product_status.product_status, 
-                            brand.brand_name, 
-                            category.category,
-                            product_type.type
-                            FROM product
-                            JOIN brand ON product.brand_id = brand.brand_id
-                            JOIN category ON product.category_id = category.category_id
-                            JOIN product_status ON product.product_status = product_status.p_status_id
-                            JOIN product_type ON product.product_type = product_type.type_id
-                             WHERE product_name LIKE '%$search%'
-                             ORDER BY product.product_id";
-        } else {
-            $query = "SELECT 
-                                product.product_id, 
-                                product.product_name, 
-                                product.product_desc, 
-                                product.image, 
-                                product.price, 
-                                product.stock,
-                                product_status.product_status, 
-                                brand.brand_name, 
-                                category.category,
-                                product_type.type
-                                FROM product
-                                JOIN brand ON product.brand_id = brand.brand_id
-                                JOIN category ON product.category_id = category.category_id
-                                JOIN product_status ON product.product_status = product_status.p_status_id
-                                JOIN product_type ON product.product_type = product_type.type_id
-                                ORDER BY product.product_id";
+            $query .= " AND product_name LIKE '%$search%'";
+            //filter1
+            $filter1 = $_POST["filter1"];
+            $p1 = explode('_', $filter1);
+            $bc = $p1[0];
+            if ($bc == 'b') {
+                $b = intval($p1[1]);
+                $query .= " AND product.brand_id = '$b'";
+            } else if ($bc == 'c') {
+                $c = intval($p1[1]);
+                $query .= " AND product.category_id = '$c'";
+            }
+            //filter2
+            $filter2 = $_POST["filter2"];
+            if ($filter2 == 'in_stock')
+                $query .= " AND product.stock > 0";
+            else if ($filter2 == 'out_stock')
+                $query .= " AND product.stock = 0";
+            else {
+                $p2 = explode('_', $filter2);
+                $ts = $p2[0];
+                if ($ts == 'type') {
+                    $type = intval($p2[1]);
+                    $query .= " AND product.product_type = $type";
+                } else if ($ts == 'status') {
+                    $status = intval($p2[1]);
+                    $query .= " AND product.product_status = $status";
+                }
+            }
+            //sort
+            $sort_p = $_POST["sort_p"];
+            if ($sort_p == 'a') {
+                $query .= " ORDER BY product.product_name";
+            }
+            if ($sort_p == 'b') {
+                $query .= " ORDER BY product.product_name DESC";
+            }
+            if ($sort_p == 'c') {
+                $query .= " ORDER BY product.price DESC";
+            }
+            if ($sort_p == 'd') {
+                $query .= " ORDER BY product.price";
+            }
         }
+
         $result = mysqli_query($connect, $query);
-        $count_row =mysqli_num_rows($result);
+        $count_row = mysqli_num_rows($result);
         ?>
         <div class="card">
             <p><b>Showing <?php echo $count_row ?> results.</b></p>
@@ -352,6 +468,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
                         <th scope="col">Stock(QTY)</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -364,7 +481,7 @@
                                 <tr>
                                     <div class="modal fade" id="v<?php echo $row["product_id"]; ?>" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" style="width:40%;">
                                             <div class="modal-content">
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
@@ -375,7 +492,8 @@
                                                 <div class="modal-body">
                                                     <div class="up">
                                                         <img src="../image/<?php echo $row['image'] ?>"
-                                                            style="max-height:200px; width:auto;display: block;margin-left: auto; margin-right: auto;" /><hr>
+                                                            style="max-height:200px; width:auto;display: block;margin-left: auto; margin-right: auto;" />
+                                                        <hr>
                                                         <div class="p_info">
                                                             <div class="form-group">
                                                                 <b><?php echo $row['product_name'] ?></b>
@@ -445,7 +563,8 @@
                                     </div><!-- modal end-->
 
                                     <!-- first table row start-->
-                                    <th scope="row" data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
+                                    <th scope="row" data-bs-toggle="modal" data-bs-target="#v
+                                    <?php echo $row["product_id"]; ?>">
                                         <?php echo $row['product_id'] ?>
                                     </th>
 
@@ -478,6 +597,10 @@
                                             <?php echo ($row['stock'] < 1) ? 'Out of Stock' : 'In Stock'; ?>
                                         </div>
                                     </td>
+                                    <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
+                                        <?php echo $row['product_status'] ?>
+                                    </td>
+
 
                             </form>
                             <td class="button-action">
@@ -485,7 +608,8 @@
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
                                     <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                        data-bs-target="#e<?php echo $row["product_id"]; ?>" style="border-right: 1.25px solid white;"><i class="lni lni-pencil-alt"></i></button>
+                                        data-bs-target="#e<?php echo $row["product_id"]; ?>"
+                                        style="border-right: 1.25px solid white;"><i class="lni lni-pencil-alt"></i></button>
 
                                     <div class="modal fade modal-edit" id="e<?php echo $row["product_id"]; ?>" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:1px solid black;">
@@ -666,22 +790,36 @@
                                         </div>
                                     </div><!-- modal end-->
 
+                                    <?php
+                                    if ($row["product_status"] == "Available") {
+                                        ?>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            style="border-left: 1.25px solid white;"
+                                            data-bs-target="#av<?php echo $row["product_id"]; ?>">
+                                            <i class="lni lni-close"></i></button>
+                                        <?php
+                                    } else if ($row["product_status"] == "Unavailable") {
+                                        ?>
+                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                style="border-left: 1.25px solid white;"
+                                                data-bs-target="#unav<?php echo $row["product_id"]; ?>">
+                                                <i class="lni lni-checkmark" style="margin-top:5px;"></i></button>
+                                        <?php
+                                    }
+                                    ?>
 
-                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" style="border-left: 1.25px solid white;"
-                                        data-bs-target="#exampleModal<?php echo $row["product_id"]; ?>">
-                                        <i class="lni lni-close"></i></button>
-                                    <div class="modal fade" id="exampleModal<?php echo $row["product_id"]; ?>">
+                                    <div class="modal fade" id="av<?php echo $row["product_id"]; ?>">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                        Confirmation</h5>
+                                                        Current status:<b>Available</b></h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    Confirm to delete?:<br>
+                                                    Set this product to status:<b>Unavailable</b>?<br>
                                                     <img src="../image/<?php echo $row["image"] ?>">
                                                     <?php echo $row["product_name"] ?>
                                                 </div>
@@ -693,16 +831,37 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- end delete confirmation -->
+                                    </div><!-- end av modal -->
+
+                                    <div class="modal fade" id="unav<?php echo $row["product_id"]; ?>">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                        Current status:<b>Unavailable</b></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    Set this product to status:<b>Available</b>?<br>
+                                                    <img src="../image/<?php echo $row["image"] ?>">
+                                                    <?php echo $row["product_name"] ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="a_product.php?product_id=<?php echo $row["product_id"] ?>"><button
+                                                            type="button" class="btn btn-primary">Yes</button></a>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end unav modal -->
                                 </div>
                             </td>
                             </tr>
                             <?php
                             }
-                        } else {
-                            ?>
-                        <td style="text-align:center"><b>No record found :(</b></td>
-                        <?php
                         }
                         ?>
                 </tbody>

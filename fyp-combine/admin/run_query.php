@@ -23,14 +23,62 @@ if (isset($_POST['cust'])) {
             <td>' . $row["name"] . '<br>
             </td>
             <td style="vertical-align: middle;">Telephone.No:' . $row["contactnumber"] . '<br>Email:' . $row["email"] . '</td>
-            <td>' . $row["gender"] . '</td>
             <td>' . $row["join_time"] . '</td>
         </tr>';
     }
 
     echo $data;
 }
+//check staff (admin)id
+if (isset($_POST['id_r'])) {
+    $id = $_POST['id_r'];
+    $id_r = "SELECT * FROM staff WHERE admin_id = '$id'";
+    $result = mysqli_query($connect, $id_r);
 
+    if (mysqli_num_rows($result) > 0) {
+        echo "exists"; 
+    } else {
+        echo "not_exists"; 
+    }
+}
+//check peri
+if (isset($_POST['p'])) {
+    $p = $_POST['p'];
+    $c_c = "SELECT * FROM category WHERE category = '$p'";
+    $result = mysqli_query($connect, $c_c);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "exists"; 
+    } else {
+        echo "not_exists"; 
+    }
+}
+
+//check c 
+if (isset($_POST['c'])) {
+    $c = $_POST['c'];
+    $c_c = "SELECT * FROM category WHERE category = '$c'";
+    $result = mysqli_query($connect, $c_c);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "exists"; 
+    } else {
+        echo "not_exists"; 
+    }
+}
+
+//check b
+if (isset($_POST['b'])) {
+    $b = $_POST['b'];
+    $c_c = "SELECT * FROM brand WHERE brand_name = '$b'";
+    $result = mysqli_query($connect, $c_c);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "exists"; 
+    } else {
+        echo "not_exists"; 
+    }
+}
 //customer date range filter
 if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isset($_POST['from']) || isset($_POST['to'])) {
 

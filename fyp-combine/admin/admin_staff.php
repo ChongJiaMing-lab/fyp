@@ -26,7 +26,19 @@
           document.getElementById("check_id").innerHTML = "ID must be at least 5 characters long";
           no_error = false;
         } else {
-          document.getElementById("check_id").innerHTML = "";
+          $.ajax({
+            url: 'run_query.php',
+            method: 'POST',
+            data: { id_r: id },
+            success: function (response) {
+              if (response.trim() === "exists") {
+                document.getElementById("check_id").innerHTML = "ID is already taken";
+                no_error = false;
+              } else {
+                document.getElementById("check_id").innerHTML = "";
+              }
+            }
+          });
         }
       }
 
@@ -53,7 +65,7 @@
         }
       }
 
-      var tel_regex = /^[0-9]{10,11}$/;
+      var tel_regex = /^\d{3}-\d{6,7}$/;
       if (tel == "") {
         document.getElementById("check_num").innerHTML = "Please enter a telephone number";
         no_error = false;
@@ -164,10 +176,10 @@
             <input type="hidden" name="save_staff">
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button onclick="add_check(event)" class="btn btn-primary" name="save_staff"><i
-                  class="lni lni-checkmark"></i></button>
+              <button onclick="add_check()" class="btn btn-primary" name="save_staff"><i
+                  class="lni lni-checkmark"style="margin-top:5px;"></i></button>
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
-                  class="lni lni-close"></i></button>
+                  class="lni lni-close" style="margin-top:5px;"></i></button>
             </div>
           </form>
         </div>

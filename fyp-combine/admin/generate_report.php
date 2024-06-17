@@ -21,18 +21,15 @@ if (isset($_POST["cust_pdf"])) {
     $pdf->Cell(10, 5, "#", 1, 0);
     $pdf->Cell(35, 5, "Username", 1, 0);
     $pdf->Cell(40, 5, "Tel", 1, 0);
-    $pdf->Cell(75, 5, "Email", 1, 0);
-    $pdf->Cell(20, 5, "Gender", 1, 1);
+    $pdf->Cell(75, 5, "Email", 1, 1);
 
     $pdf->SetFont("Arial", "", 12);
-    $result = mysqli_query($connect, "SELECT ID, name, contactnumber, email, gender FROM user_information");
+    $result = mysqli_query($connect, "SELECT ID, name, contactnumber, email FROM user_information");
     while ($row = mysqli_fetch_array($result)) {
-
         $pdf->Cell(10, 5, $row["ID"], 1, 0);
         $pdf->Cell(35, 5, $row["name"], 1, 0);
         $pdf->Cell(40, 5, $row["contactnumber"], 1, 0);
-        $pdf->Cell(75, 5, $row["email"], 1, 0);
-        $pdf->Cell(20, 5, $row["gender"], 1, 1);
+        $pdf->Cell(75, 5, $row["email"], 1, 1);
     }
 
     $pdf->Output();
@@ -41,7 +38,7 @@ if (isset($_POST["cust_excel"])) {
     $output = "";
 
     if (isset($_POST["cust_excel"])) {
-        $excel = mysqli_query($connect, "SELECT ID, name, contactnumber, email, gender FROM user_information");
+        $excel = mysqli_query($connect, "SELECT ID, name, contactnumber, email FROM user_information");
 
         if (mysqli_num_rows($excel) > 0) {
             $output .= '
@@ -51,7 +48,6 @@ if (isset($_POST["cust_excel"])) {
                             <th>Username</th>
                             <th>Tel</th>
                             <th>Email</th>
-                            <th>Age</th>
                         </tr>
             ';
 
@@ -62,7 +58,6 @@ if (isset($_POST["cust_excel"])) {
                             <td>' . $row["name"] . '</td>
                             <td>' . $row["contactnumber"] . '</td>
                             <td>' . $row["email"] . '</td>
-                            <td>' . $row["gender"] . '</td>
                         </tr>
                 ';
             }

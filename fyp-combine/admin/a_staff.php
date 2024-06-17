@@ -4,15 +4,17 @@ session_start();
 date_default_timezone_set("Asia/Kuching");
 if(isset($_POST["save_staff"]))
 {
+    $id_r = "SELECT * FROM staff WHERE staff_id = '$id'";
+
     $id = $_POST["id"];
     $name = $_POST["name"];
     $email = $_POST["email"];
     $pw = $_POST["id"];
     $tel = $_POST["tel"];
-    $jt = date("d/m/Y h:i");
+    $jt = date("d/m/Y");
     $status = '1';
-    $insert = "INSERT INTO staff(admin_id, full_name, p_pic, staff_email, staff_pw, staff_tel, sa, joined_time, staff_status)
-                values('$id','$name', 'admin_default.png', '$email', '$pw', '$tel', '0', '$jt', '$status')";
+    $insert = "INSERT INTO staff(admin_id, full_name, staff_email, staff_pw, staff_tel, sa, joined_time, staff_status)
+                values('$id','$name', '$email', '$pw', '$tel', '0', '$jt', '$status')";
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {

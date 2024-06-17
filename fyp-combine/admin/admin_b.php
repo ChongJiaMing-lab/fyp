@@ -1,5 +1,38 @@
 <?php include 'admin_sidebar.php' ?>
 <?php include 'databaseconnect.php' ?>
+
+<head>
+    <script>
+        function add_check() {
+            event.preventDefault();
+            var no_error = true;
+
+            var b = document.c_form.brand.value;
+            if (b == "") {
+                document.getElementById("valid").innerHTML = "Please enter a brand";
+                no_error = false;
+            } else {
+                $.ajax({
+                    url: 'run_query.php',
+                    method: 'POST',
+                    data: { b: b },
+                    success: function (response) {
+                        if (response.trim() === "exists") {
+                            document.getElementById("valid").innerHTML = "This brand is already taken";
+                            no_error = false;
+                        } else {
+                            document.getElementById("valid").innerHTML = "";
+                            no_error = true;
+                        }
+                        if (no_error) {
+                            document.getElementById("c_form").submit();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
 <style>
     .action button {
         margin-right: 20px;
@@ -18,35 +51,27 @@
 <body>
     <div class="main p-3">
         <div class="head" style="display:flex;">
-        <i class="lni lni-bootstrap" style="font-size:50px;"></i>
+
+            <i class="lni lni-bootstrap" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px">Category : Brand
             </h1>
             <hr>
         </div>
-        <!-- < ?php
-        if (isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
+        <?php
+        if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
             ?>
             <script>
                 Swal.fire({
-                    title: "Success!",
-                    text: "The brand: << ?php echo $_SESSION['msg']; ?>> is added!",
-                    icon: "success"
+                    title: "<?php echo $_SESSION['title']; ?>",
+                    text: "<?php echo $_SESSION['text']; ?>",
+                    icon: "<?php echo $_SESSION['icon']; ?>"
                 });
             </script>
-            < ?php
-            unset($_SESSION['msg']);
-        }
-        ?> -->
-        <?php
-        if (isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
-            ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Hey!</strong>
-                <?php echo $_SESSION['msg']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
             <?php
-            unset($_SESSION['msg']);
+            unset($_SESSION['img']);
+            unset($_SESSION['title']);
+            unset($_SESSION['text']);
+            unset($_SESSION['icon']);
         }
         ?>
         <div class="container fluid px-4">
@@ -70,21 +95,25 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
 
-                                    <form action="a_category.php" method="POST">
+                                    <form action="a_category.php" method="POST" id="c_form" name="c_form">
                                         <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="form-group mb-4">
                                                 <label>New Brand</label>
-                                                <input type="text" class="form-control" placeholder="brand" name="brand"
-                                                    required>
+                                                <input type="text" class="form-control" placeholder="brand"
+                                                    name="brand">
+                                                <span id="valid" style="color: red;"></span>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="save_brand">
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary"
-                                                name="save_brand">Save</button>
+                                            <button onclick="add_check()" class="btn btn-primary" name="save_brand"><i
+                                                    class="lni lni-checkmark" style="margin-top:5px;"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+                                                    class="lni lni-close" style="margin-top:5px;"></i></button>
+
                                         </div>
                                     </form>
                                 </div>
@@ -114,7 +143,7 @@
                                                         <?php echo $row["brand_name"] ?>
                                                     </td>
                                                     <td class="action">
-                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                             data-bs-target="#e<?php echo $row["brand_id"]; ?>">Edit</button>
                                                         <div class="modal" id="e<?php echo $row["brand_id"]; ?>">
                                                             <div class="modal-dialog modal-dialog-centered">
@@ -153,11 +182,12 @@
                                                         </div><!-- modal end-->
 
                                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal<?php echo $row["brand_id"]?>">
+                                                            data-bs-target="#exampleModal<?php echo $row["brand_id"] ?>">
                                                             Delete</button>
 
-                                                        <div class="modal fade" id="exampleModal<?php echo $row["brand_id"]?>" tabindex="-1"
-                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="exampleModal<?php echo $row["brand_id"] ?>"
+                                                            tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -170,9 +200,13 @@
                                                                         Do you really want to delete this brand?:<br>
                                                                         <?php echo $row["brand_name"] ?>
                                                                     </div>
-                                                                    <div class="modal-footer">     
-                                                                     <a href="d_category.php?brand_id=<?php echo $row["brand_id"]?>"><button type="button" class="btn btn-primary">Yes</button></a>
-                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                    <div class="modal-footer">
+                                                                        <a
+                                                                            href="d_category.php?brand_id=<?php echo $row["brand_id"] ?>"><button
+                                                                                type="button"
+                                                                                class="btn btn-primary">Yes</button></a>
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">No</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -181,7 +215,7 @@
                                                 </tr>
                                                 <?php
                                             }
-                                        } 
+                                        }
                                         ?>
                                     </tbody>
                                 </table>

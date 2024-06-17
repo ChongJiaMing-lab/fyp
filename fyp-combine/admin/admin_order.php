@@ -112,7 +112,7 @@
             <form method="POST" action="" class="filter">
                 <label>Filter by:</label>
                 <select class="form-select" id="f1" aria-label="Default select example" name="o_filt">
-                    <option value="" selected>General</option>
+                    <option value="" selected>-General-</option>
                     <optgroup label="Delivery Status:">
                         <option value="Processing">Processing</option>
                         <option value="Shipping">Shipping</option>
