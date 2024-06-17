@@ -497,22 +497,7 @@
                                         }
                                     });
 
-                                    $(document).ready(function () {
-                                        createCookie("height", $(window).height(), "10");
-                                    });
-
-                                    function createCookie(name, value, address_id) {
-                                        var expires;
-                                        if (address_id) {
-                                            var address_id = new address_id();
-
-                                            expires = "; expires=" + address_id.toGMTString();
-                                        }
-                                        else {
-                                            expires = "";
-                                        }
-                                        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-                                    }
+                                   
                                 </script>
                                 <?php
                                 exit;
