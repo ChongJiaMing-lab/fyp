@@ -8,12 +8,14 @@ if(isset($_POST["save_brand"]))
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['msg'] = "Peripheral $b added successfully!";
+        $_SESSION['title'] = "New brand:";
+        $_SESSION['text'] = "$b";
+        $_SESSION['icon'] = "success";
         header("location: admin_b.php");
     }
     else
     {
-        $_SESSION['msg'] = "Failed to add brand :(";
+        echo "Failed to delete";
         header("location: admin_b.php");
     }
     
@@ -26,7 +28,9 @@ else if(isset($_POST["save_peri"]))
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['msg'] = "Peripheral $pe added successfully!";
+        $_SESSION['title'] = "New peripherals:";
+        $_SESSION['text'] = "$pe";
+        $_SESSION['icon'] = "success";
         header("location: admin_peri.php");
     }
     else
@@ -44,7 +48,9 @@ else if(isset($_POST["save_pc"]))
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['msg'] = "Component $pc added successfully!";
+        $_SESSION['title'] = "New component:";
+        $_SESSION['text'] = "$pc";
+        $_SESSION['icon'] = "success";
         header("location: admin_pc.php");
     }
     else

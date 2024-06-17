@@ -1,5 +1,38 @@
 <?php include 'admin_sidebar.php' ?>
 <?php include 'databaseconnect.php' ?>
+
+<head>
+    <script>
+        function add_check() {
+            event.preventDefault();
+            var no_error = true;
+
+            var c = document.c_form.peri.value;
+            if (c == "") {
+                document.getElementById("valid").innerHTML = "Please enter a peripheral";
+                no_error = false;
+            } else {
+                $.ajax({
+                    url: 'run_query.php',
+                    method: 'POST',
+                    data: { p: c },
+                    success: function (response) {
+                        if (response.trim() === "exists") {
+                            document.getElementById("valid").innerHTML = "This peripheral is already taken";
+                            no_error = false;
+                        } else {
+                            document.getElementById("valid").innerHTML = "";
+                            no_error = true;
+                        }
+                        if (no_error) {
+                            document.getElementById("c_form").submit();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
 <style>
     .action button {
         margin-right: 20px;
@@ -24,25 +57,20 @@
             <hr>
         </div>
         <?php
-        if (isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
+        if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
             ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Hey!</strong> <?php echo $_SESSION['msg']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <script>
+                Swal.fire({
+                    title: "<?php echo $_SESSION['title']; ?>",
+                    text: "<?php echo $_SESSION['text']; ?>",
+                    icon: "<?php echo $_SESSION['icon']; ?>"
+                });
+            </script>
             <?php
-            unset($_SESSION['msg']);
-        }
-        ?>
-        <?php
-        if (isset($_SESSION['d']) && $_SESSION['d'] != '') {
-            ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Hey!</strong> <?php echo $_SESSION['d']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php
-            unset($_SESSION['d']);
+            unset($_SESSION['img']);
+            unset($_SESSION['title']);
+            unset($_SESSION['text']);
+            unset($_SESSION['icon']);
         }
         ?>
         <div class="container fluid px-4">
@@ -56,7 +84,7 @@
                             </h4>
                         </div>
                         <!-- modal start-->
-                        <div class="modal" id="myModal">
+                        <div class="modal fade" id="myModal">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <!-- Modal Header -->
@@ -65,20 +93,23 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
 
-                                    <form action="a_category.php" method="POST">
+                                    <form action="a_category.php" method="POST" id="c_form" name="c_form">
                                         <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="form-group mb-4">
                                                 <label>New Peripheral:</label>
                                                 <input type="text" class="form-control" placeholder="peripheral"
-                                                    name="peri" required>
+                                                    name="peri">
+                                                <span id="valid" style="color: red;"></span>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="save_peri">
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary" name="save_peri">Add</button>
-                                            <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button onclick="add_check()" class="btn btn-primary" name="save_peri"><i
+                                                    class="lni lni-checkmark" style="margin-top:5px;"></i></button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+                                                    class="lni lni-close" style="margin-top:5px;"></i></button>
                                         </div>
                                     </form>
                                 </div><!--content end-->
@@ -133,9 +164,11 @@
                                                                         <!-- Modal footer -->
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn btn-primary"
-                                                                                name="save_pc">Save</button>
+                                                                                name="save_pc"><i class="lni lni-checkmark"
+                                                                                    style="margin-top:5px;"></i></button>
                                                                             <button type="button" class="btn btn-danger"
-                                                                                data-bs-dismiss="modal">Cancel</button>
+                                                                                data-bs-dismiss="modal"><i class="lni lni-close"
+                                                                                    style="margin-top:5px;"></i></button>
 
                                                                         </div>
                                                                     </form>
@@ -178,7 +211,7 @@
                                                 </tr>
                                                 <?php
                                             }
-                                        } 
+                                        }
                                         ?>
                                     </tbody>
                                 </table>

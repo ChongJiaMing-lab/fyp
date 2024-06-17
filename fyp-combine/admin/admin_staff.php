@@ -36,9 +36,6 @@
                 no_error = false;
               } else {
                 document.getElementById("check_id").innerHTML = "";
-                if (no_error) {
-                  document.s_form.submit();
-                }
               }
             }
           });
@@ -179,7 +176,7 @@
             <input type="hidden" name="save_staff">
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button onclick="add_check(event)" class="btn btn-primary" name="save_staff"><i
+              <button onclick="add_check()" class="btn btn-primary" name="save_staff"><i
                   class="lni lni-checkmark"style="margin-top:5px;"></i></button>
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
                   class="lni lni-close" style="margin-top:5px;"></i></button>
