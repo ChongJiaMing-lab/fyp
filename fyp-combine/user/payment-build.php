@@ -229,60 +229,68 @@ $id = $_SESSION['ID'];
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
 
-                                                        <?php
-                                                        $query = "SELECT * FROM user_address WHERE customer_id='$id'";
-                                                        $result = mysqli_query($connect, $query); ?>
-                                                        <ul class="flex-container longhand">
-                                                            <?php
-                                                            while ($row = mysqli_fetch_assoc($result)) { ?>
-                                                                <li class="flex-item">
-                                                                <input type="radio" name="address_option"
-                                                                                
+                                                                <?php
+                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id'";
+                                                                $result = mysqli_query($connect, $query); ?>
+
+                                                                <ul class="flex-container longhand">
+                                                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                        <li class="flex-item">
+                                                                            <input type="radio" name="address_option"
+                                                                                data-name="<?php echo ($row['name']); ?>"
+                                                                                data-telephone="<?php echo ($row['contact_number']); ?>"
                                                                                 data-address="<?php echo ($row['address']); ?>"
                                                                                 data-city="<?php echo ($row['city']); ?>"
                                                                                 data-state="<?php echo ($row['state']); ?>"
                                                                                 data-postcode="<?php echo ($row['postcode']); ?>"
-                                                                                id="<?php echo ($row['address_id']); ?>">
-                                                                    <label for="<?php echo $row['address_id'] ?>"><?php echo $row['address'] . ', ' . $row['postcode'] . ', ' . $row['city']
-                                                                                                                        . ', ' . $row['state']; ?></label>
-                                                                </li>
-                                                            <?php
-                                                                $address_id = $row['address_id'];
-                                                                $count++;
-                                                            }
-                                                            ?>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" id="saveChangesButton">Save
-                                                            changes</button>
+                                                                                data-id="<?php echo ($row['address_id']); ?>">
+                                                                            <label for="<?php echo ($row['address_id']); ?>">
+                                                                            <strong><?php echo ($row['name'] . ' - ' . $row['contact_number']); ?></strong><br>
+                                                                                <?php echo ($row['address'] . ', ' . $row['postcode'] . ', ' . $row['city'] . ', ' . $row['state']); ?>
+                                                                            </label>
+                                                                        </li>
+                                                                        <?php
+                                                                        $count++;
+                                                                    } ?>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    id="saveChangesButton">Save Changes</button>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <script>
+                                    <script>
                                         $(document).ready(function () {
                                             $('#saveChangesButton').click(function () {
-
+                                                
                                                 var selected = $('input[name="address_option"]:checked');
 
-                                                
+                                                var name = selected.data('name');
+                                                var telephone = selected.data('telephone');
                                                 var address = selected.data('address');
                                                 var city = selected.data('city');
                                                 var state = selected.data('state');
                                                 var postcode = selected.data('postcode');
-                                               
-
-
+                                                var a_id = selected.data('id');
+                                                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                                                let expires = "expires=" + d.toUTCString();
+                                                document.cookie = a+id + "=" + cvalue + ";" + expires + ";path=/";
+                                                $('input[name="name"]').val(name);
+                                                $('input[name="telephone"]').val(telephone);
                                                 $('input[name="address"]').val(address);
                                                 $('input[name="city"]').val(city);
                                                 $('input[name="state"]').val(state);
@@ -292,6 +300,7 @@ $id = $_SESSION['ID'];
                                                 $('#exampleModal').modal('hide');
                                             });
                                         });
+
                                     </script>
 
                             <div class="col-50">
@@ -399,15 +408,18 @@ $id = $_SESSION['ID'];
 
         if (isset($_POST['pay'])) {
             $not_a = array();
+            $x=0;
             for($g=3;$g<$i;$g++)
             {
                 $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0");
                 if($row5 = mysqli_fetch_assoc($query5))
                 {
-                    $not_a[$g] = $row5['product_id'];
+                    $not_a[$x] = $row5['product_name'];
+                    $not_a_id[$x] = $row5['product_id'];
+                    $x++;
                 }
             }
-
+            $address_id = $_COOKIE["a_id"];
             $currentTimestamp = time();
             $num_card = $_POST['numCard'];
             $validMonth = $_POST['validMonth'];
@@ -418,12 +430,14 @@ $id = $_SESSION['ID'];
             $num_card = str_replace(' ', '', $num_card);
 
             if(count($not_a)>0){?>
-                <script>alert('The Required Component below is not being selected!<?php for($a=0;$a<count($not_a);$a++){echo "\\n" . $not_a[$a];} ?>');</script> 
+                <script>alert('The Component below are currenly not available now.<?php 
+                for($a=0;$a<count($not_a);$a++)
+                {echo "\\n" . $not_a[$a];} ?>');</script> 
                 <?php }
             else if ("20" . $validYear < $currentYear) {
-                echo "<script>alert('Invalid Year!')</script>";
+                echo "<script>alert('Invalid Year!');</script>";
             } else if ($validMonth < $currentMonth) {
-                echo "<script>alert('Invalid Month!')</script>";
+                echo "<script>alert('Invalid Month!');</script>";
             } else {
                 if (isset($num_card)) {
                     $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
@@ -443,17 +457,24 @@ $id = $_SESSION['ID'];
                             VALUES ($id,$address_id,$order_id,$build_id,'$currentDateTime',$total)");
 
                             if (mysqli_affected_rows($connect) > 0) {
-                               // $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
+                                $update = mysqli_query($connect, "UPDATE pc_build SET pay_status = 'payed' WHERE user_id = $id AND pay_status = 'cart'");
                                 $point = (int)($total/100);
                                 mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
                                 mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$id','$order_id','$currentDateTime')");
-                                    echo "<script>window.location.href = 'main_page.php';</script>";
+                                for($g=3;$g<$i;$g++)
+                                {
+                                    $result10 = mysqli_query($connect,"SELECT stock FROM product WHERE product_id = ${$myarray[$g]}");
+                                    $row10 = mysqli_fetch_array($result10);
+                                    $stock = $row10['stock']-1;
+                                    mysqli_query($connect,"UPDATE product SET stock = $stock WHERE product_id = ${$myarray[$g]}");
+                                }
+                                    echo "<script>window.location.href = 'main_page.php;</script>";
                             }
                         } else {
-                            echo "<script>alert('Card Information Incorrect!')</script>";
+                            echo "<script>alert('Card Information Incorrect!');</script>";
                         }
                     } else {
-                        echo "<script>alert('Invalid Card Number!')</script>";
+                        echo "<script>alert('Invalid Card Number!');</script>";
                     }
                 }
             }
@@ -464,7 +485,7 @@ $id = $_SESSION['ID'];
     </div>
 </body>
 <script>
-    document.getElementById('numCard').addEventListener('input', function(event) {
+    document.getElementById('numCard').addEventListener('input', function (event) {
         let input = event.target;
         let trimmedValue = input.value.replace(/\s+/g, '');
         let formattedValue = '';
@@ -482,8 +503,8 @@ $id = $_SESSION['ID'];
 
     });
 
-    document.querySelectorAll('.validThru').forEach(function(input) {
-        input.addEventListener('input', function(event) {
+    document.querySelectorAll('.validThru').forEach(function (input) {
+        input.addEventListener('input', function (event) {
 
             if (input.value.length >= 2) {
                 input.value = input.value.slice(0, 2);
@@ -491,7 +512,7 @@ $id = $_SESSION['ID'];
 
                 let nextInput = input.nextElementSibling;
                 while (nextInput) {
-                    if (nextInput.id === 'validThru') {
+                    if (nextInput.classList.contains('validThru')) {
                         nextInput.focus();
                         break;
                     }
@@ -500,8 +521,7 @@ $id = $_SESSION['ID'];
             }
         });
     });
-
-    document.getElementById('CVV').addEventListener('input', function(event) {
+    document.getElementById('CVV').addEventListener('input', function (event) {
         let input = event.target;
 
         if (input.value.length >= 3) {
@@ -509,9 +529,8 @@ $id = $_SESSION['ID'];
             input.blur();
         }
     });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('form[name="billfrm"]').addEventListener('submit', function(event) {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form[name="billfrm"]').addEventListener('submit', function (event) {
             if (!validateForm()) {
                 event.preventDefault();
             }
@@ -551,10 +570,10 @@ $id = $_SESSION['ID'];
             return true;
         }
     });
-
     function error_alert() {
         alert("Your shopping cart is empty!");
     }
+
 </script>
 
 </html>

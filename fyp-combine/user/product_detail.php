@@ -246,17 +246,19 @@
                                             <?php if ($row['stock'] < 1): ?>
                                                 <input type="button" value="Out of Stock" class="button" disabled>
                                             <?php else: 
-                                                if($_GET['build'] == 1){
-                                                    ?>
-                                                <a href="a_product.php?pid=<?php echo $row["product_id"]?>"><input type="button" value="Add Component" class="button"
-                                                fdprocessedid="rfl2z"></a>
-                                                <?php 
-                                                } else if($_GET['build'] == 2)
-                                                {?>
-                                                <a href="customization-confirm.php"><input type="button" value="Back to PC Builder" class="button"
-                                                fdprocessedid="rfl2z"></a>
-                                                <?php }
-                                                
+                                                if(isset($_GET['build']))
+                                                {
+                                                    if($_GET['build'] == 1){
+                                                        ?>
+                                                    <a href="a_product.php?pid=<?php echo $row["product_id"]?>"><input type="button" value="Add Component" class="button"
+                                                    fdprocessedid="rfl2z"></a>
+                                                    <?php 
+                                                    } else if($_GET['build'] == 2)
+                                                    {?>
+                                                    <a href="customization-confirm.php"><input type="button" value="Back to PC Builder" class="button"
+                                                    fdprocessedid="rfl2z"></a>
+                                                    <?php }
+                                                }
                                                 else{ 
                                                     ?>
                                                 <input type="button" value="Add to Cart" class="button"
