@@ -325,7 +325,7 @@ if(isset($_SESSION['v_alert']))
                                 <?php
                                 if (isset($_SESSION['ID'])) {
 
-                                    echo '<div class="dropdown-item">Hi,' . $_SESSION["name"] . '</div>';
+                                    echo '<div class="dropdown-item">Hi,' . $_SESSION["user_name"] . '</div>';
                                     ?>
                                     <a class="dropdown-item" href="myaccount.php?ID=<?php echo $_SESSION['ID']; ?>">My
                                         Account</a>

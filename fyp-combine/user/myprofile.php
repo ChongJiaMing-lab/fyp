@@ -184,7 +184,7 @@
 											<label class="label">
 												name </label>
 											<div class="control">
-												<input type="text" class="input txt-data" value="<?php echo $row['name'] ?>"
+												<input type="text" class="input txt-data" value="<?php echo $row['user_name'] ?>"
 													disabled />
 											</div>
 										</div>

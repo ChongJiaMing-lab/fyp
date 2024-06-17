@@ -176,7 +176,7 @@
 										<div class="profile-info">
 											<div class="profile-info-detail">
 												<div class="txt-info">Name</div>
-												<div class="txt-data"><?php echo $row['name'] ?></div>
+												<div class="txt-data"><?php echo $row['user_name'] ?></div>
 											</div>
 											<div class="profile-info-detail">
 												<div class="txt-info">Email</div>

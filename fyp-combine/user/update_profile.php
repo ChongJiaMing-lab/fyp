@@ -29,7 +29,7 @@ if (isset($_POST["agree"])) {
 
 
 	$result = mysqli_query($connect, "UPDATE user_information SET 
-												 name = '$name', 
+												 user_name = '$name', 
 												 contactnumber = '$contactnumber'
 												 WHERE ID = '$id'");
 

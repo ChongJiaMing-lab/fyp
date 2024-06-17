@@ -152,7 +152,7 @@ a.button.view-password
             if ($result && $result2) {
                 // Fetch user information
                 if ($row = mysqli_fetch_assoc($result)) {
-                    $user_name = $row['name'];
+                    $user_name = $row['user_name'];
                     $user_contactnumber = $row['contactnumber'];
 
                     // Display user addresses

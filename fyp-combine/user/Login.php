@@ -257,7 +257,7 @@ if ( @ $_POST["loginbtn"] == "Login")
         else
         {
             echo'Username and Password is correct';
-		    $_SESSION['name']=$row['name'];
+		    $_SESSION['user_name']=$row['user_name'];
 			$_SESSION['ID'] = $row['ID'];
 		echo "<script>window.location.href='main_page.php';</script>";
         }

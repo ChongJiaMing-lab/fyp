@@ -229,7 +229,7 @@
 														Name </label>
 													<div class="control">
 														<input type="text" name="name" id="name" class="input txt-data"
-															value="<?php echo $row['name'] ?>" />
+															value="<?php echo $row['user_name'] ?>" />
 													</div>
 													<div class="new_require">
 														<ul>
