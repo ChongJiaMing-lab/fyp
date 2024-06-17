@@ -29,7 +29,18 @@ if (isset($_POST['cust'])) {
 
     echo $data;
 }
+//check staff (admin)id
+if (isset($_POST['id_r'])) {
+    $id = $_POST['id_r'];
+    $id_r = "SELECT * FROM staff WHERE admin_id = '$id'";
+    $result = mysqli_query($connect, $id_r);
 
+    if (mysqli_num_rows($result) > 0) {
+        echo "exists"; 
+    } else {
+        echo "not_exists"; 
+    }
+}
 //customer date range filter
 if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isset($_POST['from']) || isset($_POST['to'])) {
 
