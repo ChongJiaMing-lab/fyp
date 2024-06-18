@@ -218,7 +218,7 @@ if (isset($_POST["reset-request-submit"])) {
 		$mail->addAddress($_POST["email"]);
 
 
-		$name = $fetch["name"];
+		$name = $fetch["user_name"];
 		// HTML body
 		$mail->isHTML(true);
 		$mail->Subject = "Recover your password";

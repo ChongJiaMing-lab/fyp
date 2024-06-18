@@ -236,8 +236,8 @@
                 INNER JOIN brand b ON p.brand_id = b.brand_id
                 WHERE p.product_status ='1' 
                 ORDER BY p.product_id DESC";
-                                $statement_brand = $connect->prepare($query); // Use a different variable for statement object
-                                $execute_result_brand = $statement_brand->execute(); // Execute the statement
+                                $statement_brand = $connect->prepare($query); 
+                                $execute_result_brand = $statement_brand->execute(); 
                                 if ($execute_result_brand) {
                                     $result_brand = $statement_brand->get_result();
                                     foreach ($result_brand as $row) {
@@ -270,8 +270,8 @@
                                             WHERE p.product_status ='1' 
                                             ORDER BY p.product_id DESC";
 
-                                $statement_category = $connect->prepare($query2); // Use a different variable for statement object
-                                $execute_result_category = $statement_category->execute(); // Execute the statement
+                                $statement_category = $connect->prepare($query2); 
+                                $execute_result_category = $statement_category->execute(); 
                                 if ($execute_result_category) {
                                     $result_category = $statement_category->get_result();
                                     foreach ($result_category as $row) {
