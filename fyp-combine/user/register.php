@@ -413,7 +413,7 @@
 			}
 
 
-			if (pw_valid_value.length == 14 || pw_valid_value.length > 8) {
+			if (pw_valid_value.length > 14 ) {
 				$('.14_len').addClass('active');
 			}
 			else {

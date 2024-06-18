@@ -172,6 +172,8 @@
             background-color: skyblue !important;
             color: black;
         }
+
+        
     </style>
 </head>
 
@@ -261,11 +263,13 @@
 
                                                                 <?php
                                                                 $id = $_GET['ID'];
-                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id'";
+                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id' AND status = 1";
                                                                 $result = mysqli_query($connect, $query); ?>
 
                                                                 <ul class="flex-container longhand">
-                                                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                    <?php while ($row = mysqli_fetch_assoc($result)) {
+
+                                                                        ?>
                                                                         <li class="flex-item">
                                                                             <input type="radio" name="address_option"
                                                                                 data-name="<?php echo ($row['name']); ?>"
