@@ -11,12 +11,15 @@ $id = $_SESSION['ID'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customization</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<!-- CUSTOMIZE -->
-	<link defer id="customize_css"
-		href="https://www.techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710861150"
-		rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CUSTOMIZE -->
+    <link defer id="customize_css"
+        href="https://www.techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710861150"
+        rel="stylesheet" type="text/css" />
 
     <style>
         body {
@@ -129,15 +132,16 @@ $id = $_SESSION['ID'];
         .price-container {
             width: 100%;
             height: fit-content;
-            margin-right:30%;
+            margin-right: 30%;
         }
 
         .price-container #pricee {
             margin-left: auto;
             font-weight: bold;
         }
-        #pricee{
-            display:inline-flex;
+
+        #pricee {
+            display: inline-flex;
             width: 12%;
         }
 
@@ -147,20 +151,23 @@ $id = $_SESSION['ID'];
             margin-left: auto;
             align-items: center;
         }
-        .right td{
+
+        .right td {
             justify-content: space-between;
             text-align: right;
             margin: 10px 0 10px 0;
         }
+
         /* .right tr{
             border-bottom:0.5px solid gray;
         } */
-        #vouncher-code{
+        #vouncher-code {
             display: inline-flex;
             width: 20%;
             height: 90%;
-            border:1px gray solid;
+            border: 1px gray solid;
         }
+
         .flex-container {
             display: block;
             padding: 0;
@@ -168,158 +175,166 @@ $id = $_SESSION['ID'];
 
         .flex-item {
             display: flex;
-            align-items: center; 
+            align-items: center;
         }
 
-        #r_v{
-            margin-left : 10px;
+        #r_v {
+            margin-left: 10px;
         }
 
         .flex-item input[type="radio"] {
             margin-right: 10px;
         }
+
         .row {
-		overflow: hidden;
-		margin-top: 20px;
-	}
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
         .card {
-		display: table-row;
-		width: 90%;
-		background-color: #fff;
-		color: #989898;
-		margin-bottom: 10px;
-		font-family: 'Oswald', sans-serif;
-		text-transform: uppercase;
-		border-radius: 4px;
-		position: relative
-	}
+            display: table-row;
+            width: 90%;
+            background-color: #fff;
+            color: #989898;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            border-radius: 4px;
+            position: relative
+        }
 
-	.card+.card {
-		margin-left: 2%
-	}
+        .card+.card {
+            margin-left: 2%
+        }
 
-	.date {
-		display: table-cell;
-		width: 25%;
-		position: relative;
-		text-align: center;
-		border-right: 2px dashed #dadde6
-	}
+        .date {
+            display: table-cell;
+            width: 25%;
+            position: relative;
+            text-align: center;
+            border-right: 2px dashed #dadde6
+        }
 
-	.date:after {
-		top: auto;
-		bottom: -15px
-	}
+        .date:after {
+            top: auto;
+            bottom: -15px
+        }
 
-	.date time {
-		display: block;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%)
-	}
+        .date time {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%)
+        }
 
-	.date time span {
-		display: block
-	}
+        .date time span {
+            display: block
+        }
 
-	.date time span:first-child {
-		color: #2b2b2b;
-		font-weight: 600;
-		font-size: 250%
-	}
+        .date time span:first-child {
+            color: #2b2b2b;
+            font-weight: 600;
+            font-size: 250%
+        }
 
-	.date time span:last-child {
-		text-transform: uppercase;
-		font-weight: 600;
-		margin-top: -10px
-	}
+        .date time span:last-child {
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: -10px
+        }
 
-	.card-cont {
-		display: table-cell;
-		width: 75%;
-		font-size: 85%;
-		padding: 10px 10px 30px 50px
-	}
+        .card-cont {
+            display: table-cell;
+            width: 75%;
+            font-size: 85%;
+            padding: 10px 10px 30px 50px
+        }
 
-	.card-cont h3 {
-		color: #3C3C3C;
-		font-size: 130%
-	}
+        .card-cont h3 {
+            color: #3C3C3C;
+            font-size: 130%
+        }
 
-	.card-cont>div {
-		display: table-row
-	}
+        .card-cont>div {
+            display: table-row
+        }
 
-	.card-cont .even-date i,
-	.card-cont .even-info i,
-	.card-cont .even-date time,
-	.card-cont .even-info p {
-		display: table-cell
-	}
+        .card-cont .even-date i,
+        .card-cont .even-info i,
+        .card-cont .even-date time,
+        .card-cont .even-info p {
+            display: table-cell
+        }
 
-	.card-cont .even-date i,
-	.card-cont .even-info i {
-		padding: 5% 5% 0 0
-	}
+        .card-cont .even-date i,
+        .card-cont .even-info i {
+            padding: 5% 5% 0 0
+        }
 
-	.card-cont .even-info p {
-		padding: 30px 50px 0 0
-	}
+        .card-cont .even-info p {
+            padding: 30px 50px 0 0
+        }
 
-	.card-cont .even-date time span {
-		display: block
-	}
+        .card-cont .even-date time span {
+            display: block
+        }
 
-	.date:before,
-	.date:after {
-		content: "";
-		display: block;
-		width: 30px;
-		height: 30px;
-		background-color: #DADDE6;
-		position: absolute;
-		top: -15px;
-		right: -15px;
-		z-index: 1;
-		border-radius: 50%
-	}
+        .date:before,
+        .date:after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: #DADDE6;
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            z-index: 1;
+            border-radius: 50%
+        }
 
-	.card-cont a {
-		display: block;
-		text-decoration: none;
-		width: 80px;
-		height: 30px;
-		background-color: blue;
-		color: #fff;
-		text-align: center;
-		line-height: 30px;
-		border-radius: 2px;
-		position: absolute;
-		right: 10px;
-		bottom: 10px
-	}
+        .card-cont a {
+            display: block;
+            text-decoration: none;
+            width: 80px;
+            height: 30px;
+            background-color: blue;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 2px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px
+        }
 
-	@media screen and (max-width: 860px) {
-		.card {
-			display: block;
-			float: none;
-			width: 100%;
-			margin-bottom: 10px
-		}
+        @media screen and (max-width: 860px) {
+            .card {
+                display: block;
+                float: none;
+                width: 100%;
+                margin-bottom: 10px
+            }
 
-		.card+.card {
-			margin-left: 0
-		}
+            .card+.card {
+                margin-left: 0
+            }
 
-		.card-cont .even-date,
-		.card-cont .even-info {
-			font-size: 75%
-		}
-	}
-    
+            .card-cont .even-date,
+            .card-cont .even-info {
+                font-size: 75%
+            }
+        }
+
+        .body-style button,
+        .body-style .button {
+            border-radius: 0px;
+            text-transform: capitalize;
+            background-color: skyblue;
+        }
     </style>
 </head>
 
@@ -340,7 +355,8 @@ $id = $_SESSION['ID'];
     ?>
     <div class="header">
         <h1>Computer Builder</h2>
-            <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a>
+            <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a
+                href="customization-confirm.php">Confirm</a>
     </div>
 
     <table>
@@ -402,23 +418,23 @@ $id = $_SESSION['ID'];
         <tr>
             <td>Vouncher/Discount : <input id="vouncher-code" name='voucher_code' readonly></input>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Select
-                    </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    Select
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-body">
 
                                 <?php
-                                    $r1 = mysqli_query($connect,"SELECT * FROM voucher WHERE user_id = $id AND v_status = 0");
-                                    while($rw1= mysqli_fetch_assoc($r1))
-                                    {?>
+                                $r1 = mysqli_query($connect, "SELECT * FROM voucher WHERE user_id = $id AND v_status = 0");
+                                while ($rw1 = mysqli_fetch_assoc($r1)) { ?>
                                     <li class="flex-item">
                                         <article class="card fl-left">
                                             <section class="date">
                                                 <time>
                                                     <?php $rate = $rw1["v_rate"] * 100; ?>
-                                                    <span><?php echo $rate?></span><span>%</span>
+                                                    <span><?php echo $rate ?></span><span>%</span>
                                                 </time>
                                             </section>
                                             <section class="card-cont">
@@ -427,58 +443,65 @@ $id = $_SESSION['ID'];
                                                 <div class="even-date">
                                                     <i class="fa fa-calendar"></i>
                                                     <time>
-                                                        <span>&nbspGet a <?php echo $rate?>% with purchasing our product!</span>
-                                                        <span>&nbsp<?php echo $rw1['v_code']?></span>    
+                                                        <span>&nbspGet a <?php echo $rate ?>% with purchasing our
+                                                            product!</span>
+                                                        <span>&nbsp<?php echo $rw1['v_code'] ?></span>
                                                     </time>
                                                 </div>
                                             </section>
                                         </article>
-                                        <input type="radio" name="voucher_option" id="r_v" data-v_code = "<?php echo $rw1['v_code']?>" data-rate = "<?php echo $rw1['v_rate']?>">
-                                        </li>
-                                        <?php
-                                        
+                                        <input type="radio" name="voucher_option" id="r_v"
+                                            data-v_code="<?php echo $rw1['v_code'] ?>"
+                                            data-rate="<?php echo $rw1['v_rate'] ?>">
+                                    </li>
+                                    <?php
+
                                 }
                                 ?>
                                 </ul>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" style="width:100%;" id="saveChangesButton">Select Vouncher</button>
+                                <button type="button" class="btn btn-primary" style="width:100%;"
+                                    id="saveChangesButton">Select Vouncher</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <script>
-                                        $(document).ready(function () {
-                                            $('#saveChangesButton').click(function () {
+                    $(document).ready(function () {
+                        $('#saveChangesButton').click(function () {
 
-                                                var selected = $('input[name="voucher_option"]:checked');
-                                                var code = selected.data('v_code');
-                                                var rate = selected.data('rate');
-                                                var total = parseFloat(<?php echo $total ?>);
-                                                $('input[name="voucher_code"]').val(code);
-                                                $('span[name="dis"]').text((total*rate).toFixed(2));
-                                                $('span[name="total"]').text((total-total*rate).toFixed(2));
-                                                $('#exampleModal').modal('hide');
-                                                
-                                                var btn = document.getElementById("confirm");
-                                                var not_s = <?php echo count($not_s); ?>;
-                                                btn.addEventListener("click", function() {
-                                                    if (not_s > 0) {
-                                                        alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {echo "\\n" . $not_s[$x];} ?>');} 
-                                                        else {
-                                                        window.location.href = "payment-build.php?vid="+code;
-                                                    }
-                                                });
-                                            });
-                                        });
-                                        
-                                    </script>
+                            var selected = $('input[name="voucher_option"]:checked');
+                            var code = selected.data('v_code');
+                            var rate = selected.data('rate');
+                            var total = parseFloat(<?php echo $total ?>);
+                            $('input[name="voucher_code"]').val(code);
+                            $('span[name="dis"]').text((total * rate).toFixed(2));
+                            $('span[name="total"]').text((total - total * rate).toFixed(2));
+                            $('#exampleModal').modal('hide');
+
+                            var btn = document.getElementById("confirm");
+                            var not_s = <?php echo count($not_s); ?>;
+                            btn.addEventListener("click", function () {
+                                if (not_s > 0) {
+                                    alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {
+                                        echo "\\n" . $not_s[$x];
+                                    } ?>');
+                                }
+                                else {
+                                    window.location.href = "payment-build.php?vid=" + code;
+                                }
+                            });
+                        });
+                    });
+
+                </script>
             </td>
         </tr>
         <tr>
             <td>
-                Price: <span id=pricee>RM <?php echo number_format($total,2,'.', ''); ?></span>
+                Price: <span id=pricee>RM <?php echo number_format($total, 2, '.', ''); ?></span>
             </td>
         </tr>
         <tr>
@@ -488,7 +511,7 @@ $id = $_SESSION['ID'];
         </tr>
         <tr>
             <td>
-                Total: <span id=pricee>RM &nbsp;<span name=total><?php echo number_format($total,2,'.', ''); ?></span>
+                Total: <span id=pricee>RM &nbsp;<span name=total><?php echo number_format($total, 2, '.', ''); ?></span>
             </td>
         </tr>
         <tr>
@@ -501,10 +524,13 @@ $id = $_SESSION['ID'];
 <script>
     var btn = document.getElementById("confirm");
     var not_s = <?php echo count($not_s); ?>;
-    btn.addEventListener("click", function() {
+    btn.addEventListener("click", function () {
         if (not_s > 0) {
-            alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {echo "\\n" . $not_s[$x];} ?>');} 
-            else {
+            alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {
+                echo "\\n" . $not_s[$x];
+            } ?>');
+        }
+        else {
             window.location.href = "payment-build.php";
         }
     });

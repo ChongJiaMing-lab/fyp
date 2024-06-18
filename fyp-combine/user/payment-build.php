@@ -154,6 +154,12 @@ $id = $_SESSION['ID'];
         .product::-webkit-scrollbar {
     display: none; /* Hide scroll bar for Chrome, Safari, and Opera */
 }
+
+.body-style button, .body-style .button {
+    border-radius: 0px;
+    text-transform: capitalize;
+    background-color: skyblue !important;
+}
     </style>
 </head>
 
