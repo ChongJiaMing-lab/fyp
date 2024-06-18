@@ -3,7 +3,47 @@ include 'databaseconnect.php';
 ?>
 
 <head>
+    <script>
+        function add_check() {
+            event.preventDefault();
+            var no_error = true;
 
+            var r = document.s_form.rate.value;
+            var c = document.s_form.cost.value;
+            if (r == "") {
+                document.getElementById("check_rate").innerHTML = "Please enter a rate(1%-100%)";
+                no_error = false;
+            } else {
+                if (isNaN(r)) {
+                    document.getElementById("check_rate").innerHTML = "The rate must be numberic";
+                    no_error = false;
+                } else {
+                    if (r < 1 || r > 100) {
+                        document.getElementById("check_rate").innerHTML = "Please enter a valid rate(1%-100%)";
+                        no_error = false;
+                    } else {
+                        document.getElementById("check_rate").innerHTML = "";
+
+                    }
+                }
+            }
+
+            if (c == "") {
+                document.getElementById("check_c").innerHTML = "Please enter point cost";
+                no_error = false;
+            } else {
+                if (isNaN(c)) {
+                    document.getElementById("check_c").innerHTML = "Point cost must be numberic";
+                no_error = false;
+                } else {
+                    document.getElementById("check_c").innerHTML = "";
+                }
+            }
+        if (no_error) {
+            document.getElementById("s_form").submit();
+        }
+    }
+    </script>
 </head>
 <style>
     .card {
@@ -13,7 +53,7 @@ include 'databaseconnect.php';
 
 <body>
     <div class="main p-3">
-    <?php
+        <?php
         if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
             ?>
             <script>
@@ -30,7 +70,7 @@ include 'databaseconnect.php';
         }
         ?>
         <div class="head" style="display:flex;">
-        <i class="lni lni-offer" style="font-size:50px;"></i>
+            <i class="lni lni-offer" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px;">Voucher</Category:Components>
             </h1>
             <hr>
@@ -51,7 +91,7 @@ include 'databaseconnect.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
-                        <form action="a_voucher.php" method="POST">
+                        <form action="a_voucher.php" method="POST" id="s_form" name="s_form">
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <label for="rate">Voucher Rate</label>
@@ -61,14 +101,21 @@ include 'databaseconnect.php';
                                         <span class="input-group-text">%</span>
                                     </div>
                                 </div>
+                                <div>
+                                    <span id="check_rate" style="color:red"></span>
+                                </div>
                                 <label for="cost">Point Cost</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" id="cost" name="cost" placeholder="00">
                                 </div>
+                                <div>
+                                    <span id="check_c" style="color:red"></span>
+                                </div>
                             </div>
+                            <input type="hidden" name="voucher">
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" name="voucher">Generate</button>
+                                <button onclick="add_check();" class="btn btn-primary" name="voucher">Generate</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
@@ -93,7 +140,7 @@ include 'databaseconnect.php';
                         $rate = $row["voucher_rate"] * 100;
                         ?>
                         <tr>
-                            <td><?php echo $rate."%" ?></td>
+                            <td><?php echo $rate . "%" ?></td>
                             <td><?php echo $row["point_cost"] ?></td>
                         </tr>
                         <?php
