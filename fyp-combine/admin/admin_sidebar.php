@@ -1,4 +1,9 @@
 <?php session_start(); ?>
+<?php include 'databaseconnect.php'; ?>
+<?php
+    $check_feedback = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM feedback WHERE `read` = '0'"));
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +67,7 @@
     <div class="wrapper">
         <div class="topbar">
             <div class="logo">
-                <h2>SKT PC</h2>
+                <img src="../image/skt.png" style="width:110px; height:60px;">
             </div>
             <div class="user">
                 <div class="dropdown">
@@ -162,7 +167,13 @@
                     <a href="admin_feedback.php" class="sidebar-link">
                         <i class="lni lni-comments"></i>
                         <span>Feedback</span>
-                        <sup style="background-color:red; color:white; border-radius:50%; padding:2px 6px;">3</sup>
+                        <?php
+                        if($check_feedback > 0){ ?>
+                         <span class="badge bg-danger rounded-pill"><?php echo $check_feedback?></span>
+
+                        <?php
+                        }
+                        ?>
                     </a>
                 </li>
                 </ul>
