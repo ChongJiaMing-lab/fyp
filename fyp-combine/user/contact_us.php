@@ -179,7 +179,7 @@ a.button.view-password
 							<label class="label ">
 								Name							</label>
 							<div class="control">
-								<input class="input " type="text" name="name" value ="<?php echo $row['name']?>"readonly />
+								<input class="input " type="text" name="name" value ="<?php echo $row['user_name']?>"readonly />
 							</div>
 													</div>
 
@@ -221,55 +221,7 @@ a.button.view-password
 		
 	</div>
 </section>
-<!-- ###AIO### -->
-        <!-- BACK TO TOP BUTTON -->
-        <button onclick="backToTop()" id="backToTop" title="Back to top"><i class="fa fa-chevron-up"></i></button>
 
-        <footer id="footer" class="footer ">
-            
-            <!-- ADD TO CART POPUP  -->
-            <input type="hidden" id="current_product_id"/>
-            <input type="hidden" id="config_cart_modal" value="1">
-            <!-- YOU MIGHT NEED THIS APP -->
-            <input type="hidden" id="you_might_need_this_status" value="0">
-
-            <!-- FOOTER MODULES -->
-            <div class="container">
-
-                <div class="el_1">
-                 
-
-           
-
-
-            
-         <!-- ==== SCRIPTS ==== -->
-        <!-- JQUERY -->
-        <script defer type="text/javascript" src="catalog/view/theme/aio/js/jquery-ui-1.12.1.min.js"></script>        
-        <!-- CAROUSEL -->
-        <script defer src="catalog/view/theme/aio/plugins/carousel/slick.min.js"></script>
-		<!-- CLIPBOARD -->
-		<script defer src="catalog/view/theme/aio/plugins/clipboard.min.js"></script>
-        <!-- FUNCTIONS -->
-        <script defer type="text/javascript" src="catalog/view/theme/aio/js/apps/notifyme.js"></script>
-        <!-- SWEET ALERT -->
-        <script defer src="catalog/view/theme/aio/plugins/sweetalert/sweetalert2.all.min.js"></script>
-		<!-- PRINTTHIS -->
-		<script defer src="catalog/view/theme/aio/plugins/printThis/printThis.js?ver=1.0"></script>
-        <!-- FLATPICKR -->
-        <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script defer src="catalog/view/theme/aio/plugins/flatpickr.js?ver=1.0"></script>
-        
-        <!-- BULMA CALENDAR -->
-        <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/doc.js"></script>
-        <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.js"></script>
-        <!-- <script defer src="catalog/view/theme/aio/plugins/bulma-calendar/main.js"></script> -->
-        
-		<!-- UI CONTROL SCRIPT -->
-        <script defer src="catalog/view/theme/aio/js/ui-control.js?ver=1710049568"></script>
-
-		
-		
 			
     </body>
 </html>
@@ -288,6 +240,13 @@ if(isset($_POST["Sendbtn"]) && $_POST["Sendbtn"] == "Send") {
     $b = $_POST["name"];
     $c = $_POST["enquiry"];
 
+    if(empty($c)) {
+        echo "<script>
+                alert('Message fields cannot be empty');
+                window.history.back(); // Go back to the previous page
+              </script>";
+        exit(); 
+    }
     $result = mysqli_query($con, "INSERT INTO feedback(customer_id,email,name, message) VALUES ('$id', '$a', '$b', '$c')");
 
    

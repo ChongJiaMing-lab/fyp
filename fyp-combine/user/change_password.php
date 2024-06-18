@@ -287,12 +287,12 @@ if (isset($_GET["ID"])) {
 											var eyeIcon = document.querySelector(".view-password i");
 
 
-											if (passwordInput.type === "confirm") {
+											if (passwordInput.type === "password") {
 												passwordInput.type = "text";
 												eyeIcon.classList.remove("mdi-eye-off");
 												eyeIcon.classList.add("mdi-eye");
 											} else {
-												passwordInput.type = "confirm";
+												passwordInput.type = "password";
 												eyeIcon.classList.remove("mdi-eye");
 												eyeIcon.classList.add("mdi-eye-off");
 											}

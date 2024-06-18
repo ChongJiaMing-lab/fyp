@@ -129,6 +129,8 @@ if(isset($_SESSION['v_alert']))
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		}
+
+        
     </style>
 
 

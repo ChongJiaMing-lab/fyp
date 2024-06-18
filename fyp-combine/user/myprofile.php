@@ -135,6 +135,11 @@
     margin-bottom: 0.75rem;
     flex-direction: column;
 	}
+
+	.myaccounts .field {
+    padding-left: 12px;
+    padding-right: 2px;
+}
 	</style>
 
 

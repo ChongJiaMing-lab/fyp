@@ -29,11 +29,11 @@ if(isset($_POST["change_pass"]))
 	$change_query = mysqli_query($connect, $change);
 
 	if ($change_query) {
-		?>
-		<script>
-			alert("<?php echo "Success to change your password!" ?>");
-		</script>
-		<?php
+		
+		$ID = $_SESSION['ID'];
+		echo '<script>alert("Password change successfully");</script>';
+		echo '<script>window.location.href = "myaccount.php?ID=' . $ID . '";</script>';
+		exit;
 	}
 }
 ?>
