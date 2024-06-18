@@ -350,7 +350,7 @@
                                             <i class="fa fa-cc-mastercard" name="Credit_Cart" style="color:red;"></i>
                                         </div>
                                         <br>Name on card
-                                        <br><input type="text" class="required" id="NameCard" placeholder="ALI"
+                                        <br><input type="text" class="required" id="NameCard" name="NameCard" placeholder="ALI"
                                             autocomplete="off"></br>
                                         <br>Card Number
                                         <br><input type="text" class="required" id="numCard" name="numCard"
@@ -458,6 +458,7 @@
         $validMonth = $_POST['validMonth'];
         $validYear = $_POST['validYear'];
         $cvv = $_POST['cvv'];
+        $card_holder = $_POST['NameCard'];
         $currentMonth = date("m", $currentTimestamp);
         $currentYear = date("Y", $currentTimestamp);
         $num_card = str_replace(' ', '', $num_card);
@@ -471,7 +472,7 @@
             if (isset($num_card)) {
                 $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
                 if ($result3 = mysqli_fetch_assoc($card)) {
-                    if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv) {
+                    if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv && $result3['card_holder']==$card_holder) {
 
 
                         $user_id = $_GET['ID'];
