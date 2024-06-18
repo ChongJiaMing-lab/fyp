@@ -175,7 +175,7 @@ if (isset($_GET["ID"])) {
 
 				<!-- PASSWORD -->
 				<div class="holder">
-					<div class="title">Change Password</div>
+					<div class="title">Change password</div>
 					<form class="myaccount-body" action="update_password.php" method="post"
 						enctype="multipart/form-data">
 						<div class="myaccount-content">
