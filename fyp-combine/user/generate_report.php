@@ -136,6 +136,11 @@ if (isset($_POST["order_receipt"])) {
     $item_run = mysqli_query($connect, $item);
     $count = 1;
     $total_qty = 0;
+    $q1 = mysqli_query($connect,"SELECT v_rate FROM voucher,voucher_detail WHERE order_id = $order_id");
+    if($q1)
+    {
+        $r = mysqli_fetch_assoc($q1);
+    }
     while ($row_item = mysqli_fetch_assoc($item_run)) {
         $cart_id = $row_item["cart_id"];
         $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
@@ -156,7 +161,15 @@ if (isset($_POST["order_receipt"])) {
     $pdf->Cell(109 + 17 + 28, 10, "Sub-total(" . $total_qty . " items)", 'L,B,R', 0, 'R');
     $pdf->Cell(35, 10, number_format($row["total_amount"], 2), 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Vouncher", 'L,B,R', 0, 'R');
-    $pdf->Cell(35, 10, "-5.00", 'R,B', 1, 'R');
+    if(mysqli_num_rows($q1)>0)
+    {
+        $r = mysqli_fetch_assoc($q1);
+        $pdf->Cell(35, 10, number_format($row["total_amount"]*$r['v_rate'], 2), 'R,B', 1, 'R');
+    }else
+    {
+        $pdf->Cell(35, 10,"0.00", 'R,B', 1, 'R');
+    }
+    
     // $pdf->Cell(109 + 17 + 28, 10, "Shipping", 'L,B,R', 0, 'R');
     // $pdf->Cell(35, 10, "5.00", 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Total", 'L,B,R', 0, 'R');
