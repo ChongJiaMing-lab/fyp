@@ -17,9 +17,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="admin_sidebar.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
+<style>
+    .sidebar-item span{
+        position:relative;
+        bottom:3px;
+    }
+</style>
 <body>
     <?php
     //if(!isset($_SESSION["admin_id"]))
@@ -129,7 +135,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="admin_product.php" class="sidebar-link">
-                    <i class="lni lni-cart-full"></i>
+                        <i class="lni lni-cart-full"></i>
                         <span>Product</span>
                     </a>
                 </li>
@@ -154,8 +160,9 @@
                 </li>
                 <li class="sidebar-item">
                     <a href="admin_feedback.php" class="sidebar-link">
-                    <i class="lni lni-comments"></i>
+                        <i class="lni lni-comments"></i>
                         <span>Feedback</span>
+                        <sup style="background-color:red; color:white; border-radius:50%; padding:2px 6px;">3</sup>
                     </a>
                 </li>
                 </ul>
