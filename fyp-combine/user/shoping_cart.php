@@ -467,6 +467,11 @@
 
                                                     $('input[name="voucher_code"]').val(code);
                                                     $('#exampleModal').modal('hide');
+
+                                                    var btn = document.getElementById("my-order-checkout");
+                                                    btn.addEventListener("click", function() {
+                                                    window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>&vid='+code;
+                                                    });
                                                     });
                                                 });
                                         </script>
@@ -475,7 +480,7 @@
                             </form>
                             <?php
                             if (isset($_SESSION['ID']) && $count != 0) { ?>
-                                <button id="my-order-checkout" type="button" class="button btn-checkout" onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
+                                <button id="my-order-checkout" type="button" class="button btn-checkout" >
                                 <?php
                             } else { ?>
                                     <button id="my-order-checkout" type="button" class="button btn-checkout" onclick="error_alert()">
@@ -494,6 +499,11 @@
             </div>
         </div>
         <script>
+            var btn = document.getElementById("my-order-checkout");
+            btn.addEventListener("click", function() {
+                window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'
+            });
+
             document.addEventListener("DOMContentLoaded", function() {
 
                 function calculateTotal() {

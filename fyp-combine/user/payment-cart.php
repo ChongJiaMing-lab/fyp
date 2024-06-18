@@ -418,8 +418,24 @@
                         $count++;
                     }
                     echo "<script>var i = document.getElementById('item_c').innerHTML = '" . --$count . "'</script>";
-                    ?>
-                    <hr>
+                    
+                    if(isset($_GET['vid']))
+                        {
+                            $vid = $_GET['vid'];
+                            $result5 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
+                            $row5 = mysqli_fetch_assoc($result5);
+                            $dis = $total*$row5['v_rate'];
+                            $ttotal-=$dis;
+                        }else{
+                            $dis = 0;
+                        }
+                        ?>
+                        </div>
+                        <hr>
+                        <?php if($dis!=0)
+                        {?>
+                        <p>Voucher <span class="pricee" style="color:black"><b>- RM <?php echo number_format($dis, 2) ?></b></span></p>
+                        <?php } ?>
                     <p>Total <span class="pricee"
                             style="color:black"><b>RM<?php echo number_format($ttotal, 2) ?></b></span></p>
                     <?php if ($item != 0) { ?>
@@ -502,7 +518,11 @@
                             $point = (int) ($total / 100);
                             mysqli_query($connect, "UPDATE point SET point = point + $point WHERE user_id = $id");
                             mysqli_query($connect, "INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$ID','$order_id','$currentDateTime')");
-
+                            if(isset($_GET['vid']))
+                            {
+                                $vid = $_GET['vid'];
+                                $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($vid,$order_id)");
+                            }
                             ?>
                                 <script>
                                     Swal.fire({

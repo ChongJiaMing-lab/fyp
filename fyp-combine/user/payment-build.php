@@ -16,6 +16,7 @@ $id = $_SESSION['ID'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    
 
     <title>Checkout</title>
 
@@ -403,7 +404,10 @@ $id = $_SESSION['ID'];
                         ?>
                         </div>
                         <hr>
+                        <?php if($dis!=0)
+                        {?>
                         <p>Voucher <span class="pricee" style="color:black"><b>- RM <?php echo number_format($dis, 2) ?></b></span></p>
+                        <?php } ?>
                         <p>Total <span class="pricee" style="color:black"><b>RM <?php echo number_format($total, 2) ?></b></span></p>
                         <?php if ($item != 0) { ?>
                             <button name="pay">Pay Now</button>
@@ -487,7 +491,22 @@ $id = $_SESSION['ID'];
                                     $stock = $row10['stock']-1;
                                     mysqli_query($connect,"UPDATE product SET stock = $stock WHERE product_id = ${$myarray[$g]}");
                                 }
-                                    echo "<script>window.location.href = 'main_page.php';</script>";
+                                    ?>
+                                    <script>
+                                    ,Swal.fire({
+                                        title: "Payment was successful!",
+                                        text: "You order have been save in your order page!",
+                                        icon: "success",
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.value) {
+                                            window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
+                                        }
+                                    })
+
+
+                                </script>
+                                <?php
                             }
                         } else {
                             echo "<script>alert('Card Information Incorrect!');</script>";
@@ -520,7 +539,7 @@ $id = $_SESSION['ID'];
             input.blur();
         }
 
-    });
+    }));
 
     document.querySelectorAll('.validThru').forEach(function (input) {
         input.addEventListener('input', function (event) {
