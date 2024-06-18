@@ -314,7 +314,7 @@ $id = $_SESSION['ID'];
                                             expires = "";
                                         }
                                         document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-                                    }
+                                    };
                                     </script>
 
                             <div class="col-50">
@@ -429,7 +429,7 @@ $id = $_SESSION['ID'];
             $x=0;
             for($g=3;$g<$i;$g++)
             {
-                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0 OR product_status != 1");
+                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND (stock <=0 OR product_status != 1)");
                 if($row5 = mysqli_fetch_assoc($query5))
                 {
                     $not_a[$x] = $row5['product_name'];
@@ -464,7 +464,7 @@ $id = $_SESSION['ID'];
                         if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv && $result3['card_holder']==$card_holder) {
                             $currentDateTime = date("d-m=Y H:i:s", $currentTimestamp);
                             $name = $_POST['name'];
-                            $ph = $_POST['ph'];
+                            $ph = $_POST['telephone'];
 
                             $query = mysqli_query($connect,"INSERT INTO order_ (user_id,time_status,total_amount,address_id,delivery_status) 
                             VALUES ('$id','$currentDateTime','$total','$address_id','Processing')" );
@@ -494,7 +494,7 @@ $id = $_SESSION['ID'];
                                 }
                                     ?>
                                     <script>
-                                    ,Swal.fire({
+                                    Swal.fire({
                                         title: "Payment was successful!",
                                         text: "You order have been save in your order page!",
                                         icon: "success",
@@ -524,7 +524,7 @@ $id = $_SESSION['ID'];
     </div>
 </body>
 <script>
-    ,document.getElementById('numCard').addEventListener('input', function (event) {
+    document.getElementById('numCard').addEventListener('input', function (event) {
         let input = event.target;
         let trimmedValue = input.value.replace(/\s+/g, '');
         let formattedValue = '';
@@ -540,7 +540,7 @@ $id = $_SESSION['ID'];
             input.blur();
         }
 
-    }));
+    }); 
 
     document.querySelectorAll('.validThru').forEach(function (input) {
         input.addEventListener('input', function (event) {
