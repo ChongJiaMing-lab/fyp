@@ -152,6 +152,12 @@
                         <span>Voucher</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="admin_feedback.php" class="sidebar-link">
+                    <i class="lni lni-comments"></i>
+                        <span>Feedback</span>
+                    </a>
+                </li>
                 </ul>
             </aside>
         </div>
