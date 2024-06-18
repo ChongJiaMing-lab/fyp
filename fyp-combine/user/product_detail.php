@@ -140,7 +140,8 @@
                     if (isset($_GET["product_id"])) {
 
                         if (!isset($_SESSION["ID"])) {
-                            echo "<script>alert('ERROR TO ADD PRODUCT(You need to login first!)');</script>";
+                            echo "<script>alert('You need to login first before add the product');</script>";
+                            echo "<script>window.location.href='product_list.php';</script>";
                         }
                         $product_id = $_GET["product_id"];
                         $ID = $_SESSION["ID"];

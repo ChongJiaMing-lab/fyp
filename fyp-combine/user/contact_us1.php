@@ -132,24 +132,7 @@ a.button.view-password
         <!-- END HEADER -->
 <section id="information-contact" class="section container page-form">
 
-	<!-- BREADCUMB -->
-	<div id="breadcrumb">
-		<nav class="breadcrumb" aria-label="breadcrumbs">
-			<ul>
-								<li>
-					<a href="main_page.php">
-						<span>Home</span>
-					</a>
-				</li>
-								<li>
-					<a href="contact_us.php">
-						<span>Contact Us</span>
-					</a>
-				</li>
-							</ul>
-		</nav>
-		
-        	</div>
+	
 	
 	<div id="contents">
 
@@ -277,7 +260,7 @@ a.button.view-password
 <?php
 if(isset($_POST["Sendbtn"]) && $_POST["Sendbtn"] == "Send") {
 
-    $con = mysqli_connect('localhost', 'root', '', 'pc_store', 3306);
+    $con = mysqli_connect('localhost', 'root', '', 'fyp', 3306);
     mysqli_set_charset($con, "utf8");
 
     if(mysqli_connect_errno()) {
