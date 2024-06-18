@@ -18,12 +18,14 @@ if(isset($_POST["save_staff"]))
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['msg'] = "Staff $id added successfully!";
+        $_SESSION['title'] = "New Staff:";
+        $_SESSION['text'] = "$id";
+        $_SESSION['icon'] = "success";
         header("location: admin_staff.php");
     }
     else
     {
-        $_SESSION['msg'] = "Failed to add staff :(";
+        echo "Failed to add staff ";
         header("location: admin_staff.php");
     }
     

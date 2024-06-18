@@ -75,7 +75,7 @@ include 'databaseconnect.php';
                     <h1>User information</h1>
                     <hr>
                     <div class="card-body" style="padding:0;">
-                        <div class="info">Username: <b><?php echo $row_user["name"] ?><br></b></div>
+                        <div class="info">Username: <b><?php echo $row_user["user_name"] ?><br></b></div>
                         <div class="info">User Email:<b><?php echo $row_user["email"] ?><br></b></div>
                         <div class="info">User Numbers: <b><?php echo $row_user["contactnumber"] ?><br></b></div>
                         <div class="info">Address: <b><?php echo $row_add["name"].", ".$row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
@@ -121,14 +121,16 @@ include 'databaseconnect.php';
                             <td><?php echo $row_product["price"]; ?></td>
                             <td><?php echo $row_cart["qty"] ?></td>
                             <?php $total = $row_product["price"] * $row_cart["qty"] ?>
-                            <td>RM<?php echo $total; ?></td>
+                            <td>RM<?php echo number_format($total, 2); ?>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" style="text-align:right;"><b>Total Amount</b></td>
-                        <td>RM<?php echo $row["total_amount"] ?></td>
+                        <td>RM<?php echo number_format($row["total_amount"], 2); ?>
+                        </td>
                     </tr>
                 </tfoot>
             </table>

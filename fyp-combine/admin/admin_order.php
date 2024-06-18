@@ -16,7 +16,7 @@
                         defaultDate: "+1w",
                         changeMonth: true,
                         numberOfMonths: 1,
-                        dateFormat: 'yy/mm/dd' 
+                        dateFormat: 'yy/mm/dd'
                     })
                     .on("change", function () {
                         to.datepicker("option", "minDate", getDate(this));
@@ -58,16 +58,18 @@
     .filter label {
         margin: 0 10px 0 10px;
     }
-    .from, .to
-    {
-        border:1px solid black;
-        display:flex;
-        width:175px;
-        text-align:left;
-        margin-bottom:15px;
-        border-radius:10px;
+
+    .from,
+    .to {
+        border: 1px solid black;
+        display: flex;
+        width: 175px;
+        text-align: left;
+        margin-bottom: 15px;
+        border-radius: 10px;
     }
-    input[type=text]{
+
+    input[type=text] {
         background-color: white;
         background-image: url('searchicon.png');
         background-position: 10px 10px;
@@ -102,7 +104,7 @@
 
 <body>
     <div class="main p-3">
-    <div class="head" style="display:flex;">
+        <div class="head" style="display:flex;">
             <i class="lni lni-list" style="font-size:50px;"></i>
             <h1 style="margin: 12px 0 0 30px;">Order</h1>
             <hr>
@@ -127,7 +129,7 @@
                     <option value="d">Lowest Total</option>
                 </select>
                 <label for="from">From</label>
-                <input type="text" id="from" class="from" name="from" >
+                <input type="text" id="from" class="from" name="from">
                 <label for="to">to</label>
                 <input type="text" id="to" class="to" name="to">
             </form>
@@ -151,7 +153,7 @@
                 </thead>
                 <tbody id="table-body">
                     <?php
-                    $q = "SELECT *,user_information.name 
+                    $q = "SELECT *,user_information.user_name 
                     FROM order_ 
                     JOIN user_information ON order_.user_id = user_information.ID;                                
                     ";
@@ -175,22 +177,23 @@
                                     <?php echo $row["order_id"] ?>
                                 </th>
                                 <td>
-                                    <?php echo $row["name"]; ?><br>
+                                    <?php echo $row["user_name"]; ?><br>
                                     <!-- <div style="font-size:11px;"><i>from </i>
                                         < ?php echo $row["country"] ?> -->
                                     <!-- </div> -->
-                                </td>   
+                                </td>
                                 <td>
-                                    <?php echo $row["time_status"]?>
+                                    <?php echo $row["time_status"] ?>
                                 </td>
                                 <td>
                                     <?php echo
                                         $row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
                                         . ", " . $row_add["state"]; ?>
                                 </td>
-                             
+
                                 <td>
-                                    RM<?php echo $row["total_amount"] ?>
+                                    RM<?php echo number_format($row["total_amount"], 2); ?>
+
                                 </td>
                                 <td>
                                     <?php echo $row["delivery_status"] ?>

@@ -104,7 +104,7 @@ include 'databaseconnect.php';
                                     <?php echo $row["ID"] ?>
                                 </th>
                                 <td>
-                                    <?php echo $row["name"]; ?><br>
+                                    <?php echo $row["user_name"]; ?><br>
                                     <!-- <div style="font-size:11px;"><i>from </i> -->
                                         <!--< ?php echo $row["country"] ?> -->
                                     <!-- </div> -->

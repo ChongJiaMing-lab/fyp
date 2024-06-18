@@ -168,7 +168,6 @@ $price_arr = array_values($sales_by_day);
             label: 'Daily Sales',
             data: price_array,
             borderWidth: 3,
-            borderColor: 'orange',
             pointRadius: function (context) {
                 return context.raw > 0 ? 3 : 0;
             }

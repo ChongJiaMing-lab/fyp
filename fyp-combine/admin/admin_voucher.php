@@ -63,7 +63,7 @@ include 'databaseconnect.php';
                                 </div>
                                 <label for="cost">Point Cost</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="cost" name="cost" placeholder="00.00">
+                                    <input type="text" class="form-control" id="cost" name="cost" placeholder="00">
                                 </div>
                             </div>
                             <!-- Modal footer -->

@@ -14,13 +14,13 @@ if (isset($_POST['bid'])) {
 
 if (isset($_POST['cust'])) {
     $s = $_POST['cust'];
-    $cust_result = mysqli_query($connect, "SELECT * FROM user_information WHERE name LIKE '%$s%'");
+    $cust_result = mysqli_query($connect, "SELECT * FROM user_information WHERE user_name LIKE '%$s%'");
     $data = '';
 
     while ($row = mysqli_fetch_array($cust_result)) {
         $data .= '<tr onclick="window.location=\'cust_detail.php?ID=' . $row['ID'] . '\';">
             <th scope="row">' . $row["ID"] . '</th>
-            <td>' . $row["name"] . '<br>
+            <td>' . $row["user_name"] . '<br>
             </td>
             <td style="vertical-align: middle;">Telephone.No:' . $row["contactnumber"] . '<br>Email:' . $row["email"] . '</td>
             <td>' . $row["join_time"] . '</td>
@@ -79,7 +79,7 @@ if (isset($_POST['b'])) {
         echo "not_exists";
     }
 }
-//customer date range filter
+//order date range filter
 if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isset($_POST['from']) || isset($_POST['to'])) {
 
     if (isset($_POST['from'])) {
@@ -126,7 +126,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
     else
         $f2 = '';
 
-    $query = "SELECT *,user_information.name
+    $query = "SELECT *,user_information.user_name
     FROM order_ 
     JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
 
@@ -136,7 +136,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
     if (!empty($t))
         $query .= " AND time_status <= '$t'";
     if (!empty($o))
-        $query .= " AND name LIKE '%$o%'";
+        $query .= " AND user_name LIKE '%$o%'";
 
     if (!empty($f1))
         $query .= " AND delivery_status= '$f1'";
@@ -170,7 +170,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
         $o_output .= '<tr onclick="window.location=\'order_detail.php?order_id=' . $row['order_id'] . '\';">
         <th scope="row">' . $row["order_id"] . '</th>
         <td>
-            ' . $row["name"] . '<br>
+            ' . $row["user_name"] . '<br>
         </td>
         <td>
            ' . $row["time_status"] . '
@@ -221,7 +221,7 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
     } else
         $to = '';
 
-    $query = "SELECT *,user_information.name 
+    $query = "SELECT *,user_information.user_name 
     FROM order_ 
     JOIN user_information ON order_.user_id = user_information.ID WHERE 1";
 
@@ -247,13 +247,13 @@ if (isset($_POST['from2']) && isset($_POST['to2'])) {
         $o_output .= '<tr onclick="window.location=\'order_detail.php?order_id=' . $row['order_id'] . '\';">
         <th scope="row">' . $row["order_id"] . '</th>
         <td>
-            ' . $row["name"] . '<br>
+            ' . $row["user_name"] . '<br>
         </td>
         <td>
            ' . $row["time_status"] . '
         </td>
         <td>
-            RM' . $row["total_amount"] . '
+            RM' . number_format($row["total_amount"],2). '
         </td>
         <td>
             ' . $row["delivery_status"] . '
