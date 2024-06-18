@@ -233,7 +233,7 @@ $id = $_SESSION['ID'];
                                                             <div class="modal-body">
 
                                                                 <?php
-                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id'";
+                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id' ";
                                                                 $result = mysqli_query($connect, $query); ?>
 
                                                                 <ul class="flex-container longhand">
@@ -390,6 +390,7 @@ $id = $_SESSION['ID'];
                             $result5 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
                             $row5 = mysqli_fetch_assoc($result5);
                             $dis = $total*$row5['v_rate'];
+                            $total-=$dis;
                         }else{
                             $dis = 0;
                         }
@@ -397,7 +398,7 @@ $id = $_SESSION['ID'];
                         </div>
                         <hr>
                         <p>Voucher <span class="pricee" style="color:black"><b>- RM <?php echo number_format($dis, 2) ?></b></span></p>
-                        <p>Total <span class="pricee" style="color:black"><b>RM <?php echo number_format($total-$dis, 2) ?></b></span></p>
+                        <p>Total <span class="pricee" style="color:black"><b>RM <?php echo number_format($total, 2) ?></b></span></p>
                         <?php if ($item != 0) { ?>
                             <button name="pay">Pay Now</button>
                         <?php
@@ -418,7 +419,7 @@ $id = $_SESSION['ID'];
             $x=0;
             for($g=3;$g<$i;$g++)
             {
-                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0");
+                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0 OR product_status != 1");
                 if($row5 = mysqli_fetch_assoc($query5))
                 {
                     $not_a[$x] = $row5['product_name'];
@@ -468,6 +469,11 @@ $id = $_SESSION['ID'];
                                 $point = (int)($total/100);
                                 mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
                                 mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$id','$order_id','$currentDateTime')");
+                                if(isset($_GET['vid']))
+                                {
+                                    $vid = $_GET['vid'];
+                                    $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($vid,$order_id)");
+                                }
                                 for($g=3;$g<$i;$g++)
                                 {
                                     $result10 = mysqli_query($connect,"SELECT stock FROM product WHERE product_id = ${$myarray[$g]}");

@@ -113,7 +113,7 @@ $row = mysqli_fetch_assoc($query);
     
     if(isset($_GET["c_id"]))
     {   
-        $query2 = mysqli_query($connect,"SELECT * FROM product WHERE category_id = $c_id AND stock >0");
+        $query2 = mysqli_query($connect,"SELECT * FROM product WHERE category_id = $c_id AND stock >0 AND product_status = 1");
         while($row2 = mysqli_fetch_assoc($query2))
         {
             echo '<tr class="tbody">';

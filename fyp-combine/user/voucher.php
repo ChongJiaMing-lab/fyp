@@ -98,11 +98,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<!-- TITLE -->
 	<title>My Profile</title>
 
-	<script src="https://www.techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 
 </head>
 
@@ -305,7 +305,8 @@
 			<article class="card fl-left">
 				<section class="date">
 					<time>
-						<?php $rate = $row["voucher_rate"] * 100; ?>
+						<?php $rate = $row["voucher_rate"] * 100; 
+						$cost = $row['point_cost']?>
 						<span><?php echo $rate?></span><span>%</span>
 					</time>
 				</section>
@@ -316,6 +317,7 @@
 						<i class="fa fa-calendar"></i>
 						<time>
 							<span>&nbspGet a <?php echo $rate?>% with purchasing our product!</span>
+							<br><span>&nbspRequired <?php echo $cost?>&nbspPoint to claim</span>
 						</time>
 					</div>
 					<a href="redeem.php?id=<?php echo $row['voucher_id'] ?>">Claim</a>

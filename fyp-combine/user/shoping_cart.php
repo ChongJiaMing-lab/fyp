@@ -5,69 +5,51 @@
 
 
     <!-- BULMA -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet"
-        type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css"
-        rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css" rel="stylesheet" type="text/css" />
 
 
     <!-- MAIN STYLESHEET -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1712902977" rel="stylesheet"
-        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1712902977" rel="stylesheet" type="text/css" />
 
     <!-- CAROUSEL -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet"
-        type="text/css" />
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet"
-        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css" rel="stylesheet" type="text/css" />
 
     <!-- FONT AWESOME -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
 
     <!-- MATERIAL DESIGN ICON -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
 
     <!-- STAATLICHES -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
 
     <!-- ANIMATION -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet"
-        type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet" type="text/css" />
 
     <!-- BULMA CALENDAR -->
-    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css"
-        rel="stylesheet" type="text/css" />
+    <link defer href="https://techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css" rel="stylesheet" type="text/css" />
 
     <!-- JQUERY -->
     <script src="https://techzone.com.my/catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
-    <script defer type="text/javascript"
-        src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
+    <script defer type="text/javascript" src="https://techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
 
     <!-- TOTAL STORAGE -->
-    <script defer type="text/javascript"
-        src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
+    <script defer type="text/javascript" src="https://techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
 
     <!-- FANCYBOX -->
-    <link defer rel="stylesheet"
-        href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
+    <link defer rel="stylesheet" href="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
 
     <!-- ELEVATEZOOM -->
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
-    <script async
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
+    <script async src="https://techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
 
     <!-- LAZYLOAD -->
     <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
-    <script
-        src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
+    <script src="https://techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
 
 
 
@@ -77,17 +59,14 @@
 
 
     <!-- CUSTOMIZE -->
-    <link defer id="customize_css"
-        href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1712902977"
-        rel="stylesheet" type="text/css" />
-
-
-
+    <link defer id="customize_css" href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1712902977" rel="stylesheet" type="text/css" />
 
     <!-- TITLE -->
     <title>Shopping Cart</title>
 
     <script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
@@ -118,6 +97,152 @@
         .txt-interactt {
             color: skyblue !important;
         }
+
+        .row {
+		overflow: hidden;
+		margin-top: 20px;
+	}
+        .card {
+		display: table-row;
+		width: 90%;
+		background-color: #fff;
+		color: #989898;
+		margin-bottom: 10px;
+		font-family: 'Oswald', sans-serif;
+		text-transform: uppercase;
+		border-radius: 4px;
+		position: relative
+	}
+
+	.card+.card {
+		margin-left: 2%
+	}
+
+	.date {
+		display: table-cell;
+		width: 25%;
+		position: relative;
+		text-align: center;
+		border-right: 2px dashed #dadde6
+	}
+
+	.date:after {
+		top: auto;
+		bottom: -15px
+	}
+
+	.date time {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%)
+	}
+
+	.date time span {
+		display: block
+	}
+
+	.date time span:first-child {
+		color: #2b2b2b;
+		font-weight: 600;
+		font-size: 250%
+	}
+
+	.date time span:last-child {
+		text-transform: uppercase;
+		font-weight: 600;
+		margin-top: -10px
+	}
+
+	.card-cont {
+		display: table-cell;
+		width: 75%;
+		font-size: 85%;
+		padding: 10px 10px 30px 50px
+	}
+
+	.card-cont h3 {
+		color: #3C3C3C;
+		font-size: 130%
+	}
+
+	.card-cont>div {
+		display: table-row
+	}
+
+	.card-cont .even-date i,
+	.card-cont .even-info i,
+	.card-cont .even-date time,
+	.card-cont .even-info p {
+		display: table-cell
+	}
+
+	.card-cont .even-date i,
+	.card-cont .even-info i {
+		padding: 5% 5% 0 0
+	}
+
+	.card-cont .even-info p {
+		padding: 30px 50px 0 0
+	}
+
+	.card-cont .even-date time span {
+		display: block
+	}
+
+	.date:before,
+	.date:after {
+		content: "";
+		display: block;
+		width: 30px;
+		height: 30px;
+		background-color: #DADDE6;
+		position: absolute;
+		top: -15px;
+		right: -15px;
+		z-index: 1;
+		border-radius: 50%
+	}
+
+	.card-cont a {
+		display: block;
+		text-decoration: none;
+		width: 80px;
+		height: 30px;
+		background-color: blue;
+		color: #fff;
+		text-align: center;
+		line-height: 30px;
+		border-radius: 2px;
+		position: absolute;
+		right: 10px;
+		bottom: 10px
+	}
+
+
+	@media screen and (max-width: 860px) {
+		.card {
+			display: block;
+			float: none;
+			width: 100%;
+			margin-bottom: 10px
+		}
+
+		.card+.card {
+			margin-left: 0
+		}
+
+		.card-cont .even-date,
+		.card-cont .even-info {
+			font-size: 75%
+		}
+	}
+    .modal-content{
+        z-index: 1060 !important;
+    }
     </style>
 
 
@@ -157,32 +282,30 @@
                                     $delete = 0;
                                     while ($row = mysqli_fetch_array($result)) {
 
-                                        
+
 
                                         if ($row['qty'] > $row['stock']) {
-                                            
+
                                             $stock = $row['stock'];
                                             $cid = $row['cart_id'];
                                             if ($row['stock'] != 0) {
                                                 mysqli_query($connect, "UPDATE cart SET qty = $stock WHERE cart_id =$cid");
-                                               
                                             } else {
                                                 mysqli_query($connect, "DELETE FROM cart WHERE cart_id =$cid");
-                                                
                                             }
                                             $delete = 1;
                                         }
-                                         }
-                                           
-                                        if ($delete == 1) {
-                                            echo "<script>alert('your item quantity has been modify due to the stock limit.')</script>";
-                                            
-                                            echo "<script> window.location.href='shoping_cart.php';</script>";
-                                            exit;
-                                        }
-                                    
+                                    }
+
+                                    if ($delete == 1) {
+                                        echo "<script>alert('your item quantity has been modify due to the stock limit.')</script>";
+
+                                        echo "<script> window.location.href='shoping_cart.php';</script>";
+                                        exit;
+                                    }
+
                                     while ($row1 = mysqli_fetch_array($result1)) {
-                                        ?>
+                                ?>
 
 
                                         <!-- CHECKOUT CART LISTING -->
@@ -190,8 +313,7 @@
                                             <div class="columns is-mobile ">
                                                 <!-- IMG -->
                                                 <div class="column is-2 product-image">
-                                                    <a href=".."><img class="img-responsive"
-                                                            src="../image/<?php echo $row1['image'] ?>" /></a>
+                                                    <a href=".."><img class="img-responsive" src="../image/<?php echo $row1['image'] ?>" /></a>
                                                 </div>
 
                                                 <!-- INFO -->
@@ -200,8 +322,7 @@
                                                         <div class="column is-5 product-info">
 
                                                             <!-- PRODUCT NAME -->
-                                                            <a class="product-name"
-                                                                href=""><?php echo $row1['product_name'] ?></a>
+                                                            <a class="product-name" href=""><?php echo $row1['product_name'] ?></a>
                                                             <!-- VARIATIONS -->
                                                         </div>
 
@@ -213,21 +334,13 @@
                                                         <div class="column is-4 product-quantity">
 
                                                             <div class="input-group">
-                                                                <button type="button" id="quantity_0_minus"
-                                                                    class="button btn-number btn-minus btn-default"
-                                                                    data-type="minus" data-field="quantity[2659]">
+                                                                <button type="button" id="quantity_0_minus" class="button btn-number btn-minus btn-default" data-type="minus" data-field="quantity[2659]">
                                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                                 </button>
 
-                                                                <input type="text" id="quantity_0"
-                                                                    name="quantity[<?php echo $row1['cart_id']; ?>]"
-                                                                    class="input-quantity" value="<?php echo $row1['qty'] ?>"
-                                                                    min="1" max="999999"
-                                                                    data-stock="<?php echo $row1['stock']; ?>">
+                                                                <input type="text" id="quantity_0" name="quantity[<?php echo $row1['cart_id']; ?>]" class="input-quantity" value="<?php echo $row1['qty'] ?>" min="1" max="999999" data-stock="<?php echo $row1['stock']; ?>">
 
-                                                                <button type="button" id="quantity_0_plus"
-                                                                    class="button btn-number btn-plus btn-default"
-                                                                    data-type="plus" data-field="quantity[2659]">
+                                                                <button type="button" id="quantity_0_plus" class="button btn-number btn-plus btn-default" data-type="plus" data-field="quantity[2659]">
                                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                                 </button>
                                                             </div>
@@ -235,8 +348,7 @@
 
                                                             <!-- DELETE -->
                                                             <div class="product-delete">
-                                                                <a href="Remove(cart).php?id=<?php echo $row1['product_id']; ?>"
-                                                                    class="remove btn-del icon-delete"></a>
+                                                                <a href="Remove(cart).php?id=<?php echo $row1['product_id']; ?>" class="remove btn-del icon-delete"></a>
                                                             </div>
                                                         </div>
 
@@ -247,10 +359,8 @@
 
                                         </div>
 
-                                        <?php
+                                <?php
                                     }
-
-
                                 } else {
                                     echo "no records found :(";
                                 }
@@ -298,31 +408,84 @@
                             <form id="coupon-form" action="..." method="post" enctype="multipart/form-data">
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input type="text" id="coupon" name="coupon" placeholder="Coupon Code"
-                                            class="input coupon-code" value="">
+                                        <input type="text" id="vouncher-code" name='voucher_code' placeholder="Coupon Code" class="input coupon-code" value="" readonly>
                                     </div>
                                     <div class="control">
-                                        <button id="btn_apply_coupon" type="button"
-                                            class="button btn-coupon btn-default">
+
+                                        <button id="btn_apply_coupon" type="button" class="button btn-coupon btn-default" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Apply </button>
+                                        <div class="modal fade v" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+
+                                                        <?php
+                                                        $r1 = mysqli_query($connect, "SELECT * FROM voucher WHERE user_id = $id AND v_status = 0");
+                                                        while ($rw1 = mysqli_fetch_assoc($r1)) { ?>
+                                                            <li class="flex-item">
+                                                                <article class="card fl-left">
+                                                                    <section class="date">
+                                                                        <time>
+                                                                            <?php $rate = $rw1["v_rate"] * 100; ?>
+                                                                            <span><?php echo $rate ?></span><span>%</span>
+                                                                        </time>
+                                                                    </section>
+                                                                    <section class="card-cont">
+                                                                        <small>SKT PC</small>
+                                                                        <h3></h3>
+                                                                        <div class="even-date">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            <time>
+                                                                                <span>&nbspGet a <?php echo $rate ?>% with purchasing our product!</span>
+                                                                                <span>&nbsp<?php echo $rw1['v_code'] ?></span>
+                                                                            </time>
+                                                                        </div>
+                                                                    </section>
+                                                                </article>
+                                                                <input type="radio" name="voucher_option" id="r_v" data-v_code="<?php echo $rw1['v_code'] ?>" data-rate="<?php echo $rw1['v_rate'] ?>">
+                                                            </li>
+                                                        <?php
+
+                                                        }
+                                                        ?>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" style="width:100%;" id="saveChangesButton">Select Vouncher</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $('#saveChangesButton').click(function() {
+
+                                                    var selected = $('input[name="voucher_option"]:checked');
+                                                    var code = selected.data('v_code');
+                                                    var rate = selected.data('rate');
+
+                                                    $('input[name="voucher_code"]').val(code);
+                                                    $('#exampleModal').modal('hide');
+                                                    });
+                                                });
+                                        </script>
                                     </div>
                                 </div>
                             </form>
                             <?php
                             if (isset($_SESSION['ID']) && $count != 0) { ?>
-                                <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                    onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
-                                    <?php
+                                <button id="my-order-checkout" type="button" class="button btn-checkout" onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
+                                <?php
                             } else { ?>
-                                    <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                        onclick="error_alert()">
-                                        <?php
-                            }
-                            ?>
+                                    <button id="my-order-checkout" type="button" class="button btn-checkout" onclick="error_alert()">
+                                    <?php
+                                }
+                                    ?>
                                     <!-- CHECKOUT BUTTON -->
 
                                     PROCEED TO CHECKOUT </button>
-                                <!-- #END CHECKOUT BUTTON -->
+                                    <!-- #END CHECKOUT BUTTON -->
 
                         </div>
                     </div>
@@ -331,7 +494,7 @@
             </div>
         </div>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener("DOMContentLoaded", function() {
 
                 function calculateTotal() {
 
@@ -340,7 +503,7 @@
                     var subtotal = 0;
                     var total = 0;
 
-                    productRows.forEach(function (row) {
+                    productRows.forEach(function(row) {
 
                         var priceElement = row.querySelector('.product-price');
                         var quantityElement = row.querySelector('.input-quantity');
@@ -364,8 +527,8 @@
                 var plusButtons = document.querySelectorAll('.btn-plus');
                 var minusButtons = document.querySelectorAll('.btn-minus');
 
-                plusButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
+                plusButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
                         var inputElement = button.parentElement.querySelector('.input-quantity');
                         var currentValue = parseInt(inputElement.value);
                         var cartId = inputElement.getAttribute('name').replace('quantity[', '').replace(']', '');
@@ -381,8 +544,8 @@
                     });
                 });
 
-                minusButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
+                minusButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
                         var inputElement = button.parentElement.querySelector('.input-quantity');
                         var currentValue = parseInt(inputElement.value);
                         var cartId = inputElement.getAttribute('name').replace('quantity[', '').replace(']', '');
@@ -399,8 +562,11 @@
                     $.ajax({
                         url: 'update_cart.php',
                         method: 'POST',
-                        data: { cart_id: cart_id, new_qty: newValue },
-                        success: function (response) {
+                        data: {
+                            cart_id: cart_id,
+                            new_qty: newValue
+                        },
+                        success: function(response) {
                             alert("Record successfully updated");
                         }
                     });
