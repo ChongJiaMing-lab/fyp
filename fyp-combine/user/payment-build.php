@@ -429,7 +429,7 @@ $id = $_SESSION['ID'];
             $x=0;
             for($g=3;$g<$i;$g++)
             {
-                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND (stock <=0 OR product_status != 1)");
+                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ".${$myarray[$g]}." AND (stock <=0 OR product_status != 1)");
                 if($row5 = mysqli_fetch_assoc($query5))
                 {
                     $not_a[$x] = $row5['product_name'];
@@ -483,7 +483,10 @@ $id = $_SESSION['ID'];
                                 if(isset($_GET['vid']))
                                 {
                                     $vid = $_GET['vid'];
-                                    $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($vid,$order_id)");
+                                    $result8 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
+                                    $r8 = mysqli_fetch_assoc($result8);
+                                    $voucher_id = $r8['voucher_id'];
+                                    $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($voucher_id,$order_id)");
                                 }
                                 for($g=3;$g<$i;$g++)
                                 {
@@ -494,18 +497,17 @@ $id = $_SESSION['ID'];
                                 }
                                     ?>
                                     <script>
-                                    Swal.fire({
+                                         Swal.fire({
                                         title: "Payment was successful!",
                                         text: "You order have been save in your order page!",
                                         icon: "success",
                                         confirmButtonText: 'OK'
                                     }).then((result) => {
                                         if (result.value) {
-                                            window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
+                                            window.location.href = "main_page.php?ID=<?php echo $id; ?>";
                                         }
-                                    })
-
-
+                                    });
+                                            
                                 </script>
                                 <?php
                             }
