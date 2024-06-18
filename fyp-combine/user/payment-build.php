@@ -169,7 +169,7 @@ $id = $_SESSION['ID'];
     <div class="contenttt">
         <div class="header">
             <h1>Computer Builder</h2>
-                <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment.php">Payment</a>
+                <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment-build.php">Payment</a>
         </div>
         <form method='post' name="billfrm">
             <h2>Checkout</h2>
