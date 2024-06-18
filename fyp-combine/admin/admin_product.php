@@ -70,7 +70,8 @@
     }
 
     #check_price,
-    #check_stock {
+    #check_stock,
+    #check_i, #check_name, #check_type, #check_desc {
         color: red;
         font-size: 0.9em;
     }
@@ -99,9 +100,33 @@
         event.preventDefault();
         var no_error = true;
         
+        var i = document.p_form.img.value;
+        var n = document.p_form.product_name.value;
+        var type = document.p_form.radio.value;
+        var d =document.p_form.desc.value;
         var price = document.p_form.price.value;
         var qty = document.p_form.qty.value;
         
+        if(i == "")
+        {
+            document.getElementById("check_i").innerHTML="Product image is required";
+            no_error = false;
+        }
+        if(n == "")
+        {
+            document.getElementById("check_name").innerHTML="Please enter product name";
+            no_error = false;
+        }
+        if(type == "")
+        {
+            document.getElementById("check_type").innerHTML="Please choose one";
+            no_error = false;
+        }
+        if(d == "")
+        {
+            document.getElementById("check_desc").innerHTML="Please enter product description";
+            no_error = false;
+        }
         if (price == "")
         {
             document.getElementById("check_price").innerHTML="Please enter a price";
@@ -265,7 +290,8 @@
                                     <div class="form-group mb-4">
                                         <label for="prodcuct_title">Product:</label>
                                         <input type="text" class="form-control" name="product_name"
-                                            placeholder="product name" required>
+                                            placeholder="product name">
+                                        <span id="check_name"></span>
                                     </div>
                                 </div>
                                 <!-- brand -->
@@ -300,13 +326,16 @@
                                                 ?>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="radio"
-                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>" required />
+                                                        id="flexRadioDefault1" value="<?php echo $row['type_id'] ?>" />
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         <?php echo $row['type'] ?>
                                                     </label>
                                                 </div>
                                                 <?php
                                             }
+                                            ?>
+                                            <span id="check_type"></span>
+                                            <?php
                                         }
                                         ?>
                                     </div>
@@ -342,14 +371,16 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Description</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder="product description" name="desc" required></textarea>
+                                                placeholder="product description" name="desc"></textarea>
                                         </div>
+                                        <span id="check_desc"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="customFile">Product Image</label>
-                                        <input type="file" class="form-control" id="customFile" name="img" required />
+                                        <input type="file" class="form-control" id="customFile" name="img" />
+                                        <span id="check_i"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -452,7 +483,7 @@
             if ($sort_p == 'd') {
                 $query .= ", product.price";
             }
-        }else{
+        } else {
             $query .= " ORDER BY product.product_status";
         }
 
@@ -574,7 +605,7 @@
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                         <img src="../image/<?php echo $row['image'] ?>"
                                             style="max-height:100px; max-width:auto;" />&nbsp&nbsp&nbsp&nbsp&nbsp
-    
+
                                     </td>
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
                                         <?php echo $row['product_name'] ?>
@@ -604,20 +635,19 @@
                                         </div>
                                     </td>
                                     <?php
-                                        if($row['product_status']=="Available")
-                                        {?>
-                                            <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>" style="color:#0EAF09;">
+                                    if ($row['product_status'] == "Available") { ?>
+                                        <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>"
+                                            style="color:#0EAF09;">
                                             <?php echo $row['product_status'] ?>
                                         </td>
                                         <?php
-                                        }
-                                        else
-                                        {?>
-                                            <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>" style="color:red;">
+                                    } else { ?>
+                                        <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>"
+                                            style="color:red;">
                                             <?php echo $row['product_status'] ?>
                                         </td>
                                         <?php
-                                        }
+                                    }
                                     ?>
                             </form>
                             <td class="button-action">
@@ -713,7 +743,7 @@
                                                                     <select class="form-select"
                                                                         id="edit-category<?php echo $row["product_id"]; ?>"
                                                                         aria-label="Default select example" name="cate">
-                                                                        <?php
+                                                                  <?php
                                                                         $selected_cate = $row["category"];
                                                                         $select = mysqli_query($connect, "SELECT * FROM category where category = '$selected_cate'");
                                                                         while ($rowc = mysqli_fetch_assoc($select)) {
@@ -836,7 +866,7 @@
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    Set this product to status:<b  style="color:red;">Unavailable</b>?<br>
+                                                    Set this product to status:<b style="color:red;">Unavailable</b>?<br>
                                                     <img src="../image/<?php echo $row["image"] ?>">
                                                     <?php echo $row["product_name"] ?>
                                                 </div>

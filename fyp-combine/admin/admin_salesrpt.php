@@ -151,7 +151,7 @@ $price_arr = array_values($sales_by_day);
 
 <script>
     const ctx = document.getElementById('chart1');
-    const ctx2 = document.getElementById('chart2');
+    // const ctx2 = document.getElementById('chart2');
 
     const date_array = <?php echo json_encode($date_arr); ?>;
     const price_array = <?php echo json_encode($price_arr); ?>;
@@ -168,7 +168,6 @@ $price_arr = array_values($sales_by_day);
             label: 'Daily Sales',
             data: price_array,
             borderWidth: 3,
-            borderColor: 'orange',
             pointRadius: function (context) {
                 return context.raw > 0 ? 3 : 0;
             }

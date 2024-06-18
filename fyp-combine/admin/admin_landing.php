@@ -59,7 +59,7 @@ include 'databaseconnect.php';
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 50px;
-    align-items: center;
+    /* align-items: center; */
   }
 
   .charts h1 {
@@ -84,6 +84,11 @@ include 'databaseconnect.php';
   .recent,
   .card {
     border-radius: 12px;
+  }
+  .list-group img
+  {
+    width: 100px;
+    height: auto;max-height:
   }
 </style>
 
@@ -149,7 +154,7 @@ include 'databaseconnect.php';
       <div class="chart1">
         <div style="position: absolute; top: 255px; right: 525px;">
           <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-          <label class="btn btn-outline-primary" for="btnradio1">Current Week</label>
+          <label class="btn btn-outline-primary" for="btnradio1">This Week</label>
 
           <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
           <label class="btn btn-outline-primary" for="btnradio2">Last Week</label>
@@ -158,15 +163,38 @@ include 'databaseconnect.php';
         <canvas id="chart1"></canvas>
       </div>
       <div class="chart2">
-        <h1>Top 3 hottest product</h1>
-        <canvas id="chart2"></canvas>
+        <?php
+        $query = mysqli_query($connect, "
+    SELECT product_id, SUM(qty) as total_qty 
+    FROM cart 
+    WHERE status='payed' 
+    GROUP BY product_id 
+    ORDER BY total_qty DESC 
+    LIMIT 3
+");
+        ?>
+        <ul class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action list-group-item-primary"><h1>Best-Selling Product</h1></a>
+          <?php
+                  while ($hot = mysqli_fetch_assoc($query)) {
+                    $total_qty = $hot['total_qty'];
+                    $p_id = $hot['product_id'];
+                    $p_img = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id= '$p_id'"));
+                    $n = $p_img['product_name'];
+                    $i = $p_img["image"];
+                    ?>
+          <li class="list-group-item" style="display:flex; align-items:center"><img src="../image/<?php echo $i?>"><?php echo $n?></li>      
+          <li class="list-group-item"><b><?php echo "Sold:".$total_qty?></b></li>
+        <?php } 
+          ?>
+        </ul>
       </div>
     </div>
 
     <br>
     <hr><br>
     <?php
-    $todo = mysqli_query($connect, "SELECT *, user_information.name FROM order_ JOIN user_information ON order_.user_id = user_information.ID WHERE delivery_status = 'Processing'")
+    $todo = mysqli_query($connect, "SELECT *, user_information.user_name FROM order_ JOIN user_information ON order_.user_id = user_information.ID WHERE delivery_status = 'Processing'")
       ?>
     <div class="recent">
       <div class="recent1">
@@ -189,7 +217,7 @@ include 'databaseconnect.php';
                   style="cursor:pointer">
                   <th scope="row"><?php echo $todo_row["order_id"] ?></th>
                   <td><?php echo $todo_row["time_status"] ?></td>
-                  <td><?php echo $todo_row["name"] ?></td>
+                  <td><?php echo $todo_row["user_name"] ?></td>
                   <td><?php echo $todo_row["delivery_status"] ?></td>
                 </tr>
                 <?php
@@ -211,7 +239,7 @@ include 'databaseconnect.php';
               while ($new_row = mysqli_fetch_assoc($new_c)) {
                 ?>
                 <tr>
-                  <th scope="row"><?php echo $new_row["name"] ?></th>
+                  <th scope="row"><?php echo $new_row["user_name"] ?></th>
                   <td><?php echo $new_row["contactnumber"] ?></td>
                   <td><?php echo $new_row["email"] ?></td>
                 </tr>
@@ -272,7 +300,7 @@ $price_arr = array_values($sales_by_day);
 
 <script>
   const ctx = document.getElementById('chart1');
-  const ctx2 = document.getElementById('chart2');
+  // const ctx2 = document.getElementById('chart2');
 
   const date_array = <?php echo json_encode($date_arr); ?>;
   const price_array = <?php echo json_encode($price_arr); ?>;
@@ -318,7 +346,7 @@ $price_arr = array_values($sales_by_day);
           },
           min: startOfWeek.toISOString().split('T')[0],
           max: endOfWeek.toISOString().split('T')[0],
-          offset: true, 
+          offset: true,
         },
         y: {
           beginAtZero: true

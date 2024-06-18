@@ -21,7 +21,7 @@ include 'databaseconnect.php';
             $row = mysqli_fetch_assoc($query);
         }
         echo "User#" . "$id \n" ?>
-        <span style="font-size:35px;  font-family: Arial, Helvetica, sans-serif;max-height:30px;"><?php echo $row["name"];?></span>
+        <span style="font-size:35px;  font-family: Arial, Helvetica, sans-serif;max-height:30px;"><?php echo $row["user_name"];?></span>
         <button type="button" class="btn btn-warning" style="float:right;" onclick="history.back()">Back</button>
         <hr>
         <div class="card" style="width: 80rem;border:1px solid black;">
@@ -69,7 +69,7 @@ include 'databaseconnect.php';
                 <tr>
                     <th scope="row"><?php echo $row_order["order_id"];?></th>
                     <td><?php echo $row_order["time_status"];?></td>
-                    <td><?php echo $row_order["total_amount"];?></td>
+                    <td><?php echo number_format($row_order["total_amount"],2);?></td>
                     <td><?php echo $row_order["delivery_status"];?></td>
                 </tr>
             <?php

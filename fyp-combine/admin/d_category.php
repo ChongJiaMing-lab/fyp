@@ -15,7 +15,7 @@ if (isset($_GET["category_id"])) {
         if ($type == '1') {
             if ($check_stop > 0) {
                 $_SESSION['title'] = "Failed to delete";
-                $_SESSION['text'] = "There are $check_stop product(s) under <$ct>";
+                $_SESSION['text'] = "$check_stop product(s) is associated with <$ct>";
                 $_SESSION['icon'] = "error";
                 header("location:admin_pc.php");
                 exit();
@@ -31,7 +31,7 @@ if (isset($_GET["category_id"])) {
         } else if ($type == '2') {  
             if ($check_stop > 0) {
                 $_SESSION['title'] = "Failed to delete";
-                $_SESSION['text'] = "There are $check_stop product(s) under <$ct>";
+                $_SESSION['text'] = "$check_stop product(s) is associated with <$ct>";
                 $_SESSION['icon'] = "error";
                 header("location:admin_peri.php");
                 exit();
@@ -39,7 +39,7 @@ if (isset($_GET["category_id"])) {
                 $delp = "DELETE FROM category WHERE category_id = '$p'";
                 $query = mysqli_query($connect, $delp);
                 $_SESSION['title'] = "Success";
-                $_SESSION['test'] = "Peripherals $ct is deleted successfully";
+                $_SESSION['test'] = "Peripheral $ct is deleted successfully";
                 $_SESSION['icon'] = "success";
                 header("location:admin_peri.php");
                 exit();
@@ -61,7 +61,7 @@ if (isset($_GET["brand_id"])) {
     $name = $row["brand_name"];
     if ($brand_check > 0) {
         $_SESSION['title'] = "Failed to delete";
-        $_SESSION['text'] = "There are $brand_check product(s) under <$name>";
+        $_SESSION['text'] = "$brand_check product(s) is associated with <$name>";
         $_SESSION['icon'] = "error";
         header("location:admin_b.php");
         exit();
