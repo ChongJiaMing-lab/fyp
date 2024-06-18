@@ -180,7 +180,7 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
             . ", " . $row_add["state"] . '
         </td>
         <td>
-            RM' . $row["total_amount"] . '
+            RM' . number_format($row["total_amount"],2) . '
         </td>
         <td>
             ' . $row["delivery_status"] . '
