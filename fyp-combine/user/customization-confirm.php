@@ -335,6 +335,14 @@ $id = $_SESSION['ID'];
             text-transform: capitalize;
             background-color: skyblue;
         }
+
+        .date {
+            display: table-cell;
+            width: 30%;
+            position: relative;
+            text-align: center;
+            border-right: 2px dashed #dadde6;
+        }
     </style>
 </head>
 
