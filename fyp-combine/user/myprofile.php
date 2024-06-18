@@ -178,7 +178,7 @@
 					<!--VIEW ACCOUNT -->
 					<div id="main-content" class="edit-account" style="">
 						<div class="holder">
-							<div class="title">My Profile</div>
+							<div class="title">My profile</div>
 							<div class="myaccount-body">
 								<div class="myaccount-content form-utility">
 									<div class="field-group">
@@ -187,7 +187,7 @@
 										<!--  NAME -->
 										<div class="field">
 											<label class="label">
-												name </label>
+												Name </label>
 											<div class="control">
 												<input type="text" class="input txt-data" value="<?php echo $row['user_name'] ?>"
 													disabled />

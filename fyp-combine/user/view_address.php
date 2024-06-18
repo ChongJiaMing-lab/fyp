@@ -133,6 +133,13 @@
         .myaccounts#account-address-list .myaccount-body .address-container .address-info>div .txt-info {
             width: 90px !important;
         }
+
+        .body-style button,
+        .body-style .button {
+            border-radius: 0px;
+            text-transform: unset;
+            background-color: black;
+        }
     </style>
     <!-- END HEADER -->
     <section id="account-address-list" class="section container myaccounts">
@@ -166,7 +173,7 @@
                 ?>
                 <div class="myaccount-header">
                     <div class="title">Addresses</div>
-                    <a href="add_address.php?ID=<?php echo $id; ?>" class="button btn-address">Add New Address</a>
+                    <a href="add_address.php?ID=<?php echo $id; ?>" class="button btn-address">Add new address</a>
                 </div>
                 <?php
                 $query = "SELECT * FROM user_information WHERE ID='$id'";

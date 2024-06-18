@@ -335,8 +335,8 @@ if(isset($_SESSION['v_alert']))
                                     <a class="dropdown-item mobile" href="...s">My Addresses</a>
                                     <a class="dropdown-item mobile" href="...">Change Password</a>
                                     <a class="dropdown-item" href="orderlist.php?ID=<?php echo $_SESSION['ID']; ?>">My Order</a>
-                                    <a class="dropdown-item" href="reward_point.php">My Reward Point</a>
-                                    <a class="dropdown-item" href="..">My Store Credit</a>
+                                    <a class="dropdown-item" href="reward_point.php?ID=<?php echo $_SESSION['ID'];?>">My Reward Point</a>
+                                    
                                     <a class="dropdown-item" href="Logout.php">Logout</a>
                                     <?php
                                 } else { ?>

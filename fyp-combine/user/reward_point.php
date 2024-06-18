@@ -165,7 +165,7 @@ th{
                 ?>
 
                 <div id="main-content" class="order">
-                    <div class="title">My Reward Point
+                    <div class="title">My reward point
                         <div class="credit-balance">
                             <div class="txt-info"> Point(s)</div>
                             <div class="positive-amount">

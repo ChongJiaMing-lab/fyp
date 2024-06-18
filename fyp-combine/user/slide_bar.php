@@ -36,11 +36,10 @@ include ("data_connection.php");
 									<a href="orderlist.php?ID=<?php echo $id; ?>">My orders</a>
 								</li>
 								<!-- MY COUPON -->
-								<li class="item"><a href="...">My Voucher</a></li>
+								<li class="item"><a href="...">My voucher</a></li>
 								<!-- MY REWARD POINT -->
 								<li class="item"><a href="reward_point.php?ID=<?PHP echo $id; ?>">My reward point</a></li>
-								<!-- MY TRANSACTION -->
-								<li class="item"><a href="...">My store credit</a></li>
+								
 							</ul>
 						</div>
 					</div>
