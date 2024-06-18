@@ -9,7 +9,7 @@ if (isset($_POST["a_login"])) {
     $result = mysqli_query($connect, $find);
     $row = mysqli_fetch_array($result);
 
-    if(empty($row)) {
+    if (empty($row)) {
         $_SESSION['login_text'] = "The admin '$id' is not exist!";
         $_SESSION['login_icon'] = "error";
         header("location: admin_login.php");
@@ -19,11 +19,17 @@ if (isset($_POST["a_login"])) {
             $_SESSION['login_icon'] = "error";
             header("location: admin_login.php");
         } else {
-            $_SESSION['id'] = $row['staff_id'];
-            $_SESSION['pic'] = $row['p_pic'];
-            $_SESSION['admin_id'] = $id;
-            $_SESSION['sa'] = $row['sa'];
-            header("location: admin_landing.php");
+            if ($row["staff_status"] == 2) {
+                $_SESSION["login_text"]="The admin:$id is inactive";
+                $_SESSION["login_icon"]="error";
+                header("location: admin_login.php");
+            } else {
+                $_SESSION['id'] = $row['staff_id'];
+                // $_SESSION['pic'] = $row['p_pic'];
+                $_SESSION['admin_id'] = $id;
+                $_SESSION['sa'] = $row['sa'];
+                header("location: admin_landing.php");
+            }
         }
     }
 } ?>

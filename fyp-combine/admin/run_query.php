@@ -143,9 +143,9 @@ if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isse
 
     if (!empty($f2)) {
         if ($f2 == 'a')
-            $query .= " ORDER BY order_id";
-        else if ($f2 == 'b')
             $query .= " ORDER BY order_id DESC";
+        else if ($f2 == 'b')
+            $query .= " ORDER BY order_id";
         else if ($f2 == 'c') {
             $query .= " ORDER BY CAST(total_amount AS DECIMAL(10,2)) DESC";
         } else if ($f2 == 'd') {
