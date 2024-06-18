@@ -1,3 +1,4 @@
+<?php include "head.php" ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US" class="ready">
 
@@ -81,18 +82,20 @@
         href="https://techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1712902977"
         rel="stylesheet" type="text/css" />
 
-
-
-
     <!-- TITLE -->
     <title>Shopping Cart</title>
 
     <script src="https://techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
 <body class="body-style wide  clamp-1">
-    <?php include "head.php" ?>
+
 
 
     <style>
@@ -117,6 +120,171 @@
 
         .txt-interactt {
             color: skyblue !important;
+        }
+
+        .row {
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .card {
+            display: table-row;
+            width: 90%;
+            background-color: #fff;
+            color: #989898;
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            border-radius: 4px;
+            position: relative
+        }
+
+        .card+.card {
+            margin-left: 2%
+        }
+
+        .date {
+            display: table-cell;
+            width: 25%;
+            position: relative;
+            text-align: center;
+            border-right: 2px dashed #dadde6
+        }
+
+        .date:after {
+            top: auto;
+            bottom: -15px
+        }
+
+        .date time {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%)
+        }
+
+        .date time span {
+            display: block
+        }
+
+        .date time span:first-child {
+            color: #2b2b2b;
+            font-weight: 600;
+            font-size: 250%
+        }
+
+        .date time span:last-child {
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: -10px
+        }
+
+        .card-cont {
+            display: table-cell;
+            width: 75%;
+            font-size: 85%;
+            padding: 10px 10px 30px 50px
+        }
+
+        .card-cont h3 {
+            color: #3C3C3C;
+            font-size: 130%
+        }
+
+        .card-cont>div {
+            display: table-row
+        }
+
+        .card-cont .even-date i,
+        .card-cont .even-info i,
+        .card-cont .even-date time,
+        .card-cont .even-info p {
+            display: table-cell
+        }
+
+        .card-cont .even-date i,
+        .card-cont .even-info i {
+            padding: 5% 5% 0 0
+        }
+
+        .card-cont .even-info p {
+            padding: 30px 50px 0 0
+        }
+
+        .card-cont .even-date time span {
+            display: block
+        }
+
+        .date:before,
+        .date:after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-color: #DADDE6;
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            z-index: 1;
+            border-radius: 50%
+        }
+
+        .card-cont a {
+            display: block;
+            text-decoration: none;
+            width: 80px;
+            height: 30px;
+            background-color: blue;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 2px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .card {
+                display: block;
+                float: none;
+                width: 100%;
+                margin-bottom: 10px
+            }
+
+            .card+.card {
+                margin-left: 0
+            }
+
+            .card-cont .even-date,
+            .card-cont .even-info {
+                font-size: 75%
+            }
+        }
+
+        .modal-backdrop {
+            display: none !important;
+        }
+
+        #checkout-cart .holder .my-order-summary .my-order-summary-list .field.has-addons button {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            height: 100%;
+            width: 100%;
+            border: 1px solid #c7c7c7;
+            background-color: orange;
+        }
+
+        .date {
+            display: table-cell;
+            width: 30%;
+            position: relative;
+            text-align: center;
+            border-right: 2px dashed #dadde6;
         }
     </style>
 
@@ -157,30 +325,28 @@
                                     $delete = 0;
                                     while ($row = mysqli_fetch_array($result)) {
 
-                                        
+
 
                                         if ($row['qty'] > $row['stock']) {
-                                            
+
                                             $stock = $row['stock'];
                                             $cid = $row['cart_id'];
                                             if ($row['stock'] != 0) {
                                                 mysqli_query($connect, "UPDATE cart SET qty = $stock WHERE cart_id =$cid");
-                                               
                                             } else {
                                                 mysqli_query($connect, "DELETE FROM cart WHERE cart_id =$cid");
-                                                
                                             }
                                             $delete = 1;
                                         }
-                                         }
-                                           
-                                        if ($delete == 1) {
-                                            echo "<script>alert('your item quantity has been modify due to the stock limit.')</script>";
-                                            
-                                            echo "<script> window.location.href='shoping_cart.php';</script>";
-                                            exit;
-                                        }
-                                    
+                                    }
+
+                                    if ($delete == 1) {
+                                        echo "<script>alert('your item quantity has been modify due to the stock limit.')</script>";
+
+                                        echo "<script> window.location.href='shoping_cart.php';</script>";
+                                        exit;
+                                    }
+
                                     while ($row1 = mysqli_fetch_array($result1)) {
                                         ?>
 
@@ -249,8 +415,6 @@
 
                                         <?php
                                     }
-
-
                                 } else {
                                     echo "no records found :(";
                                 }
@@ -298,20 +462,92 @@
                             <form id="coupon-form" action="..." method="post" enctype="multipart/form-data">
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input type="text" id="coupon" name="coupon" placeholder="Coupon Code"
-                                            class="input coupon-code" value="">
+                                        <input type="text" id="vouncher-code" name='voucher_code'
+                                            placeholder="Coupon Code" class="input coupon-code" value="" readonly>
                                     </div>
                                     <div class="control">
+
                                         <button id="btn_apply_coupon" type="button"
-                                            class="button btn-coupon btn-default">
+                                            class="button btn-coupon btn-default" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
                                             Apply </button>
+                                        <div class="modal fade v" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+
+                                                        <?php
+                                                        $r1 = mysqli_query($connect, "SELECT * FROM voucher WHERE user_id = $id AND v_status = 0");
+                                                        while ($rw1 = mysqli_fetch_assoc($r1)) { ?>
+                                                            <li class="flex-item">
+                                                                <article class="card fl-left">
+                                                                    <section class="date">
+                                                                        <time>
+                                                                            <?php $rate = $rw1["v_rate"] * 100; ?>
+                                                                            <span><?php echo $rate ?></span><span>%</span>
+                                                                        </time>
+                                                                    </section>
+                                                                    <section class="card-cont">
+                                                                        <small>SKT PC</small>
+                                                                        <h3></h3>
+                                                                        <div class="even-date">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            <time>
+                                                                                <span>&nbspGet a <?php echo $rate ?>% with
+                                                                                    purchasing our product!</span>
+                                                                                <span>&nbsp<?php echo $rw1['v_code'] ?></span>
+                                                                            </time>
+                                                                        </div>
+                                                                    </section>
+                                                                    <section class="card-cont">
+                                                                        <input type="radio" name="voucher_option" id="r_v"
+                                                                            data-v_code="<?php echo $rw1['v_code'] ?>"
+                                                                            data-rate="<?php echo $rw1['v_rate'] ?>">
+                                                                    </section>
+                                                                </article>
+
+                                                            </li>
+                                                            <?php
+
+                                                        }
+                                                        ?>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            style="width:100%;" id="saveChangesButton">Select
+                                                            Vouncher</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $('#saveChangesButton').click(function () {
+
+                                                    var selected = $('input[name="voucher_option"]:checked');
+                                                    var code = selected.data('v_code');
+                                                    var rate = selected.data('rate');
+
+                                                    $('input[name="voucher_code"]').val(code);
+                                                    $('#exampleModal').modal('hide');
+
+                                                    var btn = document.getElementById("my-order-checkout");
+                                                    btn.addEventListener("click", function () {
+                                                        window.location.href = 'payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>&vid=' + code;
+                                                    });
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </form>
                             <?php
                             if (isset($_SESSION['ID']) && $count != 0) { ?>
-                                <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                    onclick="window.location.href='payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'">
+                                <button id="my-order-checkout" type="button" class="button btn-checkout">
                                     <?php
                             } else { ?>
                                     <button id="my-order-checkout" type="button" class="button btn-checkout"
@@ -331,6 +567,11 @@
             </div>
         </div>
         <script>
+            var btn = document.getElementById("my-order-checkout");
+            btn.addEventListener("click", function () {
+                window.location.href = 'payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>'
+            });
+
             document.addEventListener("DOMContentLoaded", function () {
 
                 function calculateTotal() {
@@ -399,7 +640,10 @@
                     $.ajax({
                         url: 'update_cart.php',
                         method: 'POST',
-                        data: { cart_id: cart_id, new_qty: newValue },
+                        data: {
+                            cart_id: cart_id,
+                            new_qty: newValue
+                        },
                         success: function (response) {
                             alert("Record successfully updated");
                         }

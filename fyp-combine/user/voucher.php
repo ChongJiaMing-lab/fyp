@@ -1,4 +1,3 @@
-<?php include ("data_connection.php") ?>
 <?php include ("head.php") ?>
 <!-- ###AIO### -->
 <!-- ###AIO### -->
@@ -6,107 +5,11 @@
 <html dir="ltr" lang="en-US" class="ready">
 
 <head>
-	<!-- BULMA -->
-	<link defer href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/bulma.css" rel="stylesheet"
-		type="text/css" />
-	<link defer
-		href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/bulma-extensions/bulma-checkradio.min.css"
-		rel="stylesheet" type="text/css" />
 
-
-	<!-- MAIN STYLESHEET -->
-	<link defer href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/aio.css?ver=1710861150"
-		rel="stylesheet" type="text/css" />
-
-	<!-- CAROUSEL -->
-	<link defer href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick.css" rel="stylesheet"
-		type="text/css" />
-	<link defer href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/carousel/slick-theme.css"
-		rel="stylesheet" type="text/css" />
-
-	<!-- FONT AWESOME -->
-	<link defer rel="stylesheet"
-		href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/fontawesome-5.6.3/css/all.min.css">
-
-	<!-- MATERIAL DESIGN ICON -->
-	<link defer rel="stylesheet"
-		href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/materialdesignicons-3.3.92/materialdesignicons.min.css">
-
-	<!-- STAATLICHES -->
-	<link defer rel="stylesheet"
-		href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/staatliches/staatliches.css">
-
-	<!-- ANIMATION -->
-	<link defer href="https://www.techzone.com.my/catalog/view/theme/aio/stylesheet/animate.css" rel="stylesheet"
-		type="text/css" />
-
-	<!-- BULMA CALENDAR -->
-	<link defer href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/bulma-calendar/bulma-calendar.min.css"
-		rel="stylesheet" type="text/css" />
-
-	<!-- JQUERY -->
-	<script src="https://www.techzone.com.my/catalog/view/theme/aio/js/jquery-3.3.1.min.js"></script>
-	<script defer type="text/javascript"
-		src="https://www.techzone.com.my/catalog/view/javascript/jquery/ui/external/jquery.cookie.js"></script>
-
-	<!-- TOTAL STORAGE -->
-	<script defer type="text/javascript"
-		src="https://www.techzone.com.my/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
-
-	<!-- FANCYBOX -->
-	<link defer rel="stylesheet"
-		href="https://www.techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.css">
-	<script async
-		src="https://www.techzone.com.my/catalog/view/theme/aio/plugins/fancybox3/jquery.fancybox.min.js"></script>
-
-	<!-- ELEVATEZOOM -->
-	<script async
-		src="https://www.techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.easing.min.js"></script>
-	<script async
-		src="https://www.techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.mousewheel.js"></script>
-	<script async
-		src="https://www.techzone.com.my/catalog/view/theme/aio/plugins/elevatezoom-plus/jquery.ez-plus.js"></script>
-
-	<!-- LAZYLOAD -->
-	<script
-		src="https://www.techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.min.js"></script>
-	<script
-		src="https://www.techzone.com.my/catalog/view/theme/aio/plugins/jquery.lazy-master/jquery.lazy.plugins.min.js?ver=1.0"></script>
-
-
-
-	<!-- GOOGLE RECAPTCHA -->
-	<script defer async src='https://www.google.com/recaptcha/api.js'></script>
-
-
-
-	<!-- CUSTOMIZE -->
-	<link defer id="customize_css"
-		href="https://www.techzone.com.my/catalog/view/multi_store/techzone/aio_customize_css.css?ver=1710861150"
-		rel="stylesheet" type="text/css" />
-
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
-
-	<!-- TITLE -->
-	<title>My Profile</title>
-
-	<script src="https://www.techzone.com.my/catalog/view/javascript/fbpixel-conversion-api.js"></script>
 
 </head>
 
-<style>
+<style type="text/css">
 	@import url('https://fonts.googleapis.com/css?family=Oswald');
 
 	* {
@@ -118,6 +21,9 @@
 
 	body {
 		background-color: #dadde6;
+		background-image: url("image/bg-banner.png") !important;
+		background-repeat: no-repeat;
+		background-size: cover;
 		font-family: arial
 	}
 
@@ -134,7 +40,9 @@
 		font-weight: 900;
 		border-left: 10px solid #fec500;
 		padding-left: 10px;
-		margin-bottom: 30px
+		margin-bottom: 30px;
+		font-size: 30px;
+		color: white;
 	}
 
 	.row {
@@ -278,6 +186,18 @@
 		.card-cont .even-info {
 			font-size: 75%
 		}
+
+		.dropdown-item {
+			color: #4a4a4a;
+			display: block;
+			font-size: 1.25rem !important;
+			line-height: normal;
+			padding: 0.375rem 1rem;
+			position: relative;
+		}
+
+		
+
 	}
 </style>
 
@@ -293,10 +213,10 @@
 	?>
 	<section class="container">
 		<h1>Voucher</h1>
-		<h2 style="font-size: 25px;"><?php echo "Your current point " . $row_point["point"]; ?></h2>
+		<h2 style="font-size: 25px; color:white;"><?php echo "Your current point " . $row_point["point"]; ?></h2>
 		<?php
-			 $s = "SELECT * FROM admin_voucher";
-			 $s_run = mysqli_query($connect, $s);
+		$s = "SELECT * FROM admin_voucher";
+		$s_run = mysqli_query($connect, $s);
 
 			 while($row = mysqli_fetch_assoc($s_run))
 			 {
@@ -305,7 +225,8 @@
 			<article class="card fl-left">
 				<section class="date">
 					<time>
-						<?php $rate = $row["voucher_rate"] * 100; ?>
+						<?php $rate = $row["voucher_rate"] * 100; 
+						$cost = $row['point_cost']?>
 						<span><?php echo $rate?></span><span>%</span>
 					</time>
 				</section>
@@ -316,6 +237,7 @@
 						<i class="fa fa-calendar"></i>
 						<time>
 							<span>&nbspGet a <?php echo $rate?>% with purchasing our product!</span>
+							<br><span>&nbspRequired <?php echo $cost?>&nbspPoint to claim</span>
 						</time>
 					</div>
 					<a href="redeem.php?id=<?php echo $row['voucher_id'] ?>">Claim</a>

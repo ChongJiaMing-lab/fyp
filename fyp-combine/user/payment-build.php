@@ -16,6 +16,7 @@ $id = $_SESSION['ID'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+    
 
     <title>Checkout</title>
 
@@ -154,6 +155,12 @@ $id = $_SESSION['ID'];
         .product::-webkit-scrollbar {
     display: none; /* Hide scroll bar for Chrome, Safari, and Opera */
 }
+
+.body-style button, .body-style .button {
+    border-radius: 0px;
+    text-transform: capitalize;
+    background-color: skyblue !important;
+}
     </style>
 </head>
 
@@ -162,7 +169,7 @@ $id = $_SESSION['ID'];
     <div class="contenttt">
         <div class="header">
             <h1>Computer Builder</h2>
-                <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment.php">Payment</a>
+                <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment-build.php">Payment</a>
         </div>
         <form method='post' name="billfrm">
             <h2>Checkout</h2>
@@ -233,7 +240,7 @@ $id = $_SESSION['ID'];
                                                             <div class="modal-body">
 
                                                                 <?php
-                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id'";
+                                                                $query = "SELECT * FROM user_address WHERE customer_id='$id' ";
                                                                 $result = mysqli_query($connect, $query); ?>
 
                                                                 <ul class="flex-container longhand">
@@ -317,7 +324,7 @@ $id = $_SESSION['ID'];
                                     <i class="fa fa-cc-mastercard" style="color:red;"></i>
                                 </div>
                                 <br>Name on card
-                                <br><input type="text" class="required" id="NameCard" placeholder="ALI" autocomplete="off"></br>
+                                <br><input type="text" class="required" id="NameCard" name="NameCard" placeholder="ALI" autocomplete="off"></br>
                                 <br>Card Number
                                 <br><input type="text" class="required" id="numCard" name="numCard" placeholder="1111 1111 1111 1111" autocomplete="off"></br>
 
@@ -390,14 +397,18 @@ $id = $_SESSION['ID'];
                             $result5 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
                             $row5 = mysqli_fetch_assoc($result5);
                             $dis = $total*$row5['v_rate'];
+                            $total-=$dis;
                         }else{
                             $dis = 0;
                         }
                         ?>
                         </div>
                         <hr>
+                        <?php if($dis!=0)
+                        {?>
                         <p>Voucher <span class="pricee" style="color:black"><b>- RM <?php echo number_format($dis, 2) ?></b></span></p>
-                        <p>Total <span class="pricee" style="color:black"><b>RM <?php echo number_format($total-$dis, 2) ?></b></span></p>
+                        <?php } ?>
+                        <p>Total <span class="pricee" style="color:black"><b>RM <?php echo number_format($total, 2) ?></b></span></p>
                         <?php if ($item != 0) { ?>
                             <button name="pay">Pay Now</button>
                         <?php
@@ -418,7 +429,7 @@ $id = $_SESSION['ID'];
             $x=0;
             for($g=3;$g<$i;$g++)
             {
-                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0");
+                $query5 = mysqli_query($connect, "SELECT * FROM product WHERE product_id = ${$myarray[$g]} AND stock <=0 OR product_status != 1");
                 if($row5 = mysqli_fetch_assoc($query5))
                 {
                     $not_a[$x] = $row5['product_name'];
@@ -432,6 +443,7 @@ $id = $_SESSION['ID'];
             $validMonth = $_POST['validMonth'];
             $validYear = $_POST['validYear'];
             $cvv = $_POST['cvv'];
+            $card_holder = $_POST['NameCard'];
             $currentMonth = date("m", $currentTimestamp);
             $currentYear = date("Y", $currentTimestamp);
             $num_card = str_replace(' ', '', $num_card);
@@ -449,7 +461,7 @@ $id = $_SESSION['ID'];
                 if (isset($num_card)) {
                     $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
                     if ($result3 = mysqli_fetch_assoc($card)) {
-                        if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv) {
+                        if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv && $result3['card_holder']==$card_holder) {
                             $currentDateTime = date("d-m=Y H:i:s", $currentTimestamp);
                             $name = $_POST['name'];
                             $ph = $_POST['ph'];
@@ -468,6 +480,11 @@ $id = $_SESSION['ID'];
                                 $point = (int)($total/100);
                                 mysqli_query($connect,"UPDATE point SET point = point + $point WHERE user_id = $id");
                                 mysqli_query($connect,"INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$id','$order_id','$currentDateTime')");
+                                if(isset($_GET['vid']))
+                                {
+                                    $vid = $_GET['vid'];
+                                    $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($vid,$order_id)");
+                                }
                                 for($g=3;$g<$i;$g++)
                                 {
                                     $result10 = mysqli_query($connect,"SELECT stock FROM product WHERE product_id = ${$myarray[$g]}");
@@ -475,7 +492,22 @@ $id = $_SESSION['ID'];
                                     $stock = $row10['stock']-1;
                                     mysqli_query($connect,"UPDATE product SET stock = $stock WHERE product_id = ${$myarray[$g]}");
                                 }
-                                    echo "<script>window.location.href = 'main_page.php';</script>";
+                                    ?>
+                                    <script>
+                                    ,Swal.fire({
+                                        title: "Payment was successful!",
+                                        text: "You order have been save in your order page!",
+                                        icon: "success",
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.value) {
+                                            window.location.href = "main_page.php?ID=<?php echo $ID; ?>";
+                                        }
+                                    })
+
+
+                                </script>
+                                <?php
                             }
                         } else {
                             echo "<script>alert('Card Information Incorrect!');</script>";
@@ -508,7 +540,7 @@ $id = $_SESSION['ID'];
             input.blur();
         }
 
-    });
+    }));
 
     document.querySelectorAll('.validThru').forEach(function (input) {
         input.addEventListener('input', function (event) {

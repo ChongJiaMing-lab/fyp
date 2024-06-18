@@ -20,7 +20,7 @@ if (isset($_POST["agree"])) {
 	$g = $_POST["postcode"];
 	$h = '0';
 
-	mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,state,city,postcode,default_address) VALUES ('$id','$a', '$b', '$c','$e','$f','$g','$h')");
+	mysqli_query($con, "INSERT INTO user_address(customer_id,name,contact_number,address,state,city,postcode,default_address,status) VALUES ('$id','$a', '$b', '$c','$e','$f','$g','$h',1)");
 
 
 	$ID = $_SESSION['ID'];

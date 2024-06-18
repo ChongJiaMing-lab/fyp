@@ -322,8 +322,15 @@
                                                     <div class="txt-info">Delivery Status : <?php echo $row2['delivery_status'] ?>
                                                     </div>
                                                 </div>
+                                                <div   style="text-align: right;">
+                                                    <form method="POST" action="generate_report.php?ID=<?php echo $row2['order_id']; ?>&build=1">
+                                                        <input type="hidden" name="order_id" value="<?php echo $row2["order_id"] ?>">
+                                                        <button type="submit" class="btn btn-success" name="order_receipt">Print
+                                                            Invoice</button>
+                                                    </form>
+                                                </div>
                                             </div>
-
+                                            
                                             <div class="tab-content">
                                                 <?php
 

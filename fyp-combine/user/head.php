@@ -1,7 +1,6 @@
 <?php include ("data_connection.php");
 session_start();
-if(isset($_SESSION['v_alert']))
-{
+if (isset($_SESSION['v_alert'])) {
     echo $_SESSION['v_alert'];
     unset($_SESSION['v_alert']);
 }
@@ -100,35 +99,43 @@ if(isset($_SESSION['v_alert']))
         .btn-compare {
             display: none;
         }
+
         .tabs {
-    -webkit-overflow-scrolling: touch;
-    align-items: stretch;
-    display: flex;
-    font-size: 1rem;
-    justify-content: space-between;
-    overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            align-items: stretch;
+            display: flex;
+            font-size: 1rem;
+            justify-content: space-between;
+            overflow: hidden;
         }
 
-        .body-style button, .body-style .button {
-    border-radius: 0px;
-    text-transform: capitalize;
-    background-color: black;
+        .body-style button,
+        .body-style .button {
+            border-radius: 0px;
+            text-transform: capitalize;
+            background-color: black;
         }
 
-        .title, .tabs li.is-active a, .modal-card-title {
-    color: black;
-    text-transform: unset; 
+        .title,
+        .tabs li.is-active a,
+        .modal-card-title {
+            color: black;
+            text-transform: unset;
         }
 
         .module-product .frame,
-		.tab-product .frame {
-			border-radius: 0px;
-			border: none;
-			background-color: rgba(255, 255, 255, 1);
-			vertical-align: bottom;
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		}
+        .tab-product .frame {
+            border-radius: 0px;
+            border: none;
+            background-color: rgba(255, 255, 255, 1);
+            vertical-align: bottom;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .price .price-new {
+            color:black;
+        }
     </style>
 
 
@@ -164,10 +171,10 @@ if(isset($_SESSION['v_alert']))
                     <div class="holder">
                         <div id="logo" class="">
                             <a href="...">
-                                <img class="header-logo" src="..." title="fyp" alt="fyp" />
+                                <img class="header-logo" src="../image/skt.png" title="fyp" alt="fyp" />
 
-                                <img class="mobile-header-logo" src="..." title="fyp" alt="fyp" />
-                                <img class="sticky-logo main-logo" src="..." title="fyp" alt="fyp" />
+                                <img class="mobile-header-logo" src="../image/logo.png" title="fyp" alt="fyp" />
+                                <img class="sticky-logo main-logo" src="../image/logo.png" title="fyp" alt="fyp" />
 
                             </a>
                         </div>
@@ -180,32 +187,33 @@ if(isset($_SESSION['v_alert']))
                             <div class="navbar">
 
                                 <a class="navbar-item" href="main_page.php"><span>Home</span></a>
-                               
+
                                 <div class="navbar-item has-dropdown is-hoverable">
 
 
                                     <a class="navbar-item" href="product_list.php"><span>Products</span></a>
                                     <i class="accordion"></i>
-                                </div> 
-                               
-                               
+                                </div>
+
+
                                 <a class="navbar-item" href="build_home.php"><span>PCbuild</span></a>
                                 <?php
-                                if(isset($_SESSION['ID'])) { ?>
-                                    <a class="navbar-item" href="voucher.php?ID=<?php echo $_SESSION['ID']?>"><span>Voucher</span></a>
+                                if (isset($_SESSION['ID'])) { ?>
+                                    <a class="navbar-item"
+                                        href="voucher.php?ID=<?php echo $_SESSION['ID'] ?>"><span>Voucher</span></a>
                                     <?php
-                                    }
-                                    ?>
+                                }
+                                ?>
                                 <?php
                                 if (isset($_SESSION['ID'])) { ?>
                                     <a class="navbar-item" href="contact_us.php?ID=<?php echo $_SESSION['ID']; ?>">Contact
                                         Us</a>
-                                <?php
+                                    <?php
                                 } else { ?>
                                     <a class="navbar-item" href="contact_us1.php"><span>Contact Us</span></a>
                                     <?php
                                 } ?>
-                                
+
                                 <a class="navbar-item" href="About_us.php"><span>About Us</span></a>
                             </div>
                         </div>
@@ -280,7 +288,7 @@ if(isset($_SESSION['v_alert']))
                         <div class="count-frame">
                             <?php
 
-                            $id = isset($_SESSION["ID"]) ? $_SESSION["ID"] : null; 
+                            $id = isset($_SESSION["ID"]) ? $_SESSION["ID"] : null;
                             if ($id) {
                                 // If session ID is set, fetch cart count
                                 $result = mysqli_query($connect, "SELECT * FROM cart, product WHERE cart.product_id = product.product_id AND user_id = $id AND status!='payed'");
@@ -332,16 +340,18 @@ if(isset($_SESSION['v_alert']))
                                     <a class="dropdown-item mobile" href="...">My Profile</a>
                                     <a class="dropdown-item mobile" href="...s">My Addresses</a>
                                     <a class="dropdown-item mobile" href="...">Change Password</a>
-                                    <a class="dropdown-item" href="orderlist.php?ID=<?php echo $_SESSION['ID']; ?>">My Order</a>
-                                    <a class="dropdown-item" href="reward_point.php">My Reward Point</a>
-                                    <a class="dropdown-item" href="..">My Store Credit</a>
+                                    <a class="dropdown-item" href="orderlist.php?ID=<?php echo $_SESSION['ID']; ?>">My
+                                        Order</a>
+                                    <a class="dropdown-item" href="reward_point.php?ID=<?php echo $_SESSION['ID']; ?>">My
+                                        Reward Point</a>
+
                                     <a class="dropdown-item" href="Logout.php">Logout</a>
                                     <?php
                                 } else { ?>
                                     <a class="dropdown-item" href="Login.php">Login</a>
                                     <a class="dropdown-item" href="register.php">Register</a>
-                                <?php
-                                }   
+                                    <?php
+                                }
                                 ?>
                             </div>
                         </div>
@@ -349,7 +359,7 @@ if(isset($_SESSION['v_alert']))
                 </div>
 
                 <!-- CMS BLOCK -->
-                
+
                 <div id="cms_2" class="cms-block">
                     <div class="cms-content cms_2 ">
                         <div class="cms-icon">

@@ -162,6 +162,14 @@
             text-transform: capitalize;
             background-color: black;
         }
+
+        @media (min-width: 1025px) {
+            .myaccounts#account-order-list .order-list .tabs ul li {
+                 width: 40% !important; 
+            }
+        }
+
+       
     </style>
 
     </style>
@@ -180,7 +188,7 @@
                 if ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <div id="contents">
-                    <?php include ("slide_bar.php");?>
+                        <?php include ("slide_bar.php"); ?>
                         <?php
                 }
             }
@@ -198,7 +206,6 @@
                                     <li data-tab="tab-to-pay"><a>Processing</a></li>
                                     <li data-tab="tab-to-ship"><a>To ship</a></li>
                                     <li data-tab="tab-completed"><a>Completed</a></li>
-                                    <li data-tab="tab-cancelled"><a>Cancelled</a></li>
                                 </ul>
                             </div>
 
@@ -433,7 +440,7 @@
 
                                     $first_result = mysqli_query($connect, $first);
                                     $result = mysqli_query($connect, $query);
-                                    $row = mysqli_fetch_array($result) ? $row['order_id'] : null;
+                                    $row = mysqli_fetch_array($result);
                                     $r2 = mysqli_query($connect, $q2);
                                     $rw2 = mysqli_fetch_array($r2);
 
@@ -820,19 +827,7 @@
                                     }
                                     ?>
                                 </div>
-                                <div data-content="tab-cancelled">
-                                    <div>
-                                        <div class="empty-product-listing">
-                                            <span>
-                                                Nothing to show here. <div class="buttons">
-                                                    <div class="right"><a href="product_list.php"
-                                                            class="button">Continue shopping</a></div>
-                                                </div>
-                                            </span>
-                                        </div>
 
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

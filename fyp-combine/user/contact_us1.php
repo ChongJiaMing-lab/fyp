@@ -259,7 +259,6 @@ a.button.view-password
 </html>
 <?php
 if(isset($_POST["Sendbtn"]) && $_POST["Sendbtn"] == "Send") {
-
     $con = mysqli_connect('localhost', 'root', '', 'fyp', 3306);
     mysqli_set_charset($con, "utf8");
 
@@ -267,27 +266,31 @@ if(isset($_POST["Sendbtn"]) && $_POST["Sendbtn"] == "Send") {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
     }
-	
+    
     $a = $_POST["email"];
     $b = $_POST["name"];
     $c = $_POST["enquiry"];
 
+    
+    if(empty($a) || empty($b) || empty($c)) {
+        echo "<script>
+                alert('Email, Name, and Message fields cannot be empty.');
+                window.history.back(); // Go back to the previous page
+              </script>";
+        exit(); 
+    }
+
     $result = mysqli_query($con, "INSERT INTO feedback(email,name, message) VALUES ('$a', '$b', '$c')");
 
-   
-
     if($result) {
-        // If insertion was successful, redirect to another page
+       
         echo "<script>window.location.href='success.php';</script>";
-        exit(); // Make sure to stop execution after redirection
+        exit(); 
     } else {
-        // If insertion failed, display an error message
+  
         echo "Error: " . mysqli_error($con);
     }
 
     mysqli_close($con);
 }
-
-
-
 ?>
