@@ -240,8 +240,8 @@
 			font-size: 75%
 		}
 	}
-    .modal-content{
-        z-index: 1060 !important;
+    .modal-backdrop{
+        display: none !important;
     }
     </style>
 
