@@ -217,7 +217,7 @@ include 'databaseconnect.php';
                   style="cursor:pointer">
                   <th scope="row"><?php echo $todo_row["order_id"] ?></th>
                   <td><?php echo $todo_row["time_status"] ?></td>
-                  <td><?php echo $todo_row["name"] ?></td>
+                  <td><?php echo $todo_row["user_name"] ?></td>
                   <td><?php echo $todo_row["delivery_status"] ?></td>
                 </tr>
                 <?php
@@ -239,7 +239,7 @@ include 'databaseconnect.php';
               while ($new_row = mysqli_fetch_assoc($new_c)) {
                 ?>
                 <tr>
-                  <th scope="row"><?php echo $new_row["name"] ?></th>
+                  <th scope="row"><?php echo $new_row["user_name"] ?></th>
                   <td><?php echo $new_row["contactnumber"] ?></td>
                   <td><?php echo $new_row["email"] ?></td>
                 </tr>
