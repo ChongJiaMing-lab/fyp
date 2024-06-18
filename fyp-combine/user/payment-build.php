@@ -169,7 +169,7 @@ $id = $_SESSION['ID'];
     <div class="contenttt">
         <div class="header">
             <h1>Computer Builder</h2>
-                <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment.php">Payment</a>
+                <a href="index.php">Home</a> > <a href="customization.php">Customization</a> > <a href="customization-confirm.php">Confirm</a> > <a href="payment-build.php">Payment</a>
         </div>
         <form method='post' name="billfrm">
             <h2>Checkout</h2>
@@ -324,7 +324,7 @@ $id = $_SESSION['ID'];
                                     <i class="fa fa-cc-mastercard" style="color:red;"></i>
                                 </div>
                                 <br>Name on card
-                                <br><input type="text" class="required" id="NameCard" placeholder="ALI" autocomplete="off"></br>
+                                <br><input type="text" class="required" id="NameCard" name="NameCard" placeholder="ALI" autocomplete="off"></br>
                                 <br>Card Number
                                 <br><input type="text" class="required" id="numCard" name="numCard" placeholder="1111 1111 1111 1111" autocomplete="off"></br>
 
@@ -443,6 +443,7 @@ $id = $_SESSION['ID'];
             $validMonth = $_POST['validMonth'];
             $validYear = $_POST['validYear'];
             $cvv = $_POST['cvv'];
+            $card_holder = $_POST['NameCard'];
             $currentMonth = date("m", $currentTimestamp);
             $currentYear = date("Y", $currentTimestamp);
             $num_card = str_replace(' ', '', $num_card);
@@ -460,7 +461,7 @@ $id = $_SESSION['ID'];
                 if (isset($num_card)) {
                     $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
                     if ($result3 = mysqli_fetch_assoc($card)) {
-                        if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv) {
+                        if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv && $result3['card_holder']==$card_holder) {
                             $currentDateTime = date("d-m=Y H:i:s", $currentTimestamp);
                             $name = $_POST['name'];
                             $ph = $_POST['ph'];

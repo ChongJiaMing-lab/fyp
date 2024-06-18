@@ -171,10 +171,10 @@ if (isset($_SESSION['v_alert'])) {
                     <div class="holder">
                         <div id="logo" class="">
                             <a href="...">
-                                <img class="header-logo" src="..." title="fyp" alt="fyp" />
+                                <img class="header-logo" src="../image/logo.png" title="fyp" alt="fyp" />
 
-                                <img class="mobile-header-logo" src="..." title="fyp" alt="fyp" />
-                                <img class="sticky-logo main-logo" src="..." title="fyp" alt="fyp" />
+                                <img class="mobile-header-logo" src="../image/logo.png" title="fyp" alt="fyp" />
+                                <img class="sticky-logo main-logo" src="../image/logo.png" title="fyp" alt="fyp" />
 
                             </a>
                         </div>
