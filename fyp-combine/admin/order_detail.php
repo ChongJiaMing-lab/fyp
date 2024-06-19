@@ -101,7 +101,11 @@ include 'databaseconnect.php';
 
             $total = 0;
             ?>
-            <?php if ($build_row > 0) echo "build"; else echo"cart"?>
+            <?php if ($build_row > 0) {
+                ?>
+                <h2 style="font-weight:bold">***BUILD PC***</h2>
+            <?php
+            }?>
             <h1>Item(s)</h1>
             <table class="table table-striped" style="padding:10px;">
                 <thead>
@@ -216,6 +220,19 @@ include 'databaseconnect.php';
                             <tr>
                             <?php
                             $col_build_id = $col_build['cooler']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['power_supply']; 
                             $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
