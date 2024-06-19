@@ -85,10 +85,11 @@ include 'databaseconnect.php';
   .card {
     border-radius: 12px;
   }
-  .list-group img
-  {
+
+  .list-group img {
     width: 100px;
-    height: auto;max-height:
+    height: auto;
+    max-height:
   }
 </style>
 
@@ -106,6 +107,11 @@ include 'databaseconnect.php';
     $product_row = mysqli_num_rows($product);
     $order_row = mysqli_num_rows($order);
     ?>
+    <div class="head" style="display:flex;">
+      <i class="lni lni-home" style="font-size:50px;"></i>
+      <h1 style="margin: 12px 0 0 30px;">Home Page</h1>
+      <hr>
+    </div>
     <div class="cards">
       <div class="ccard" onclick="window.location='admin_staff.php';">
         <div class="content">
@@ -152,7 +158,7 @@ include 'databaseconnect.php';
     <hr><br>
     <div class="charts">
       <div class="chart1">
-        <div style="position: absolute; top: 255px; right: 525px;">
+        <div style="position: absolute; top: 305px; right: 525px;">
           <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
           <label class="btn btn-outline-primary" for="btnradio1">This Week</label>
 
@@ -174,18 +180,21 @@ include 'databaseconnect.php';
 ");
         ?>
         <ul class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action list-group-item-primary"><h1>Best-Selling Product</h1></a>
+          <a href="#" class="list-group-item list-group-item-action list-group-item-primary">
+            <h1>Best-Selling Product</h1>
+          </a>
           <?php
-                  while ($hot = mysqli_fetch_assoc($query)) {
-                    $total_qty = $hot['total_qty'];
-                    $p_id = $hot['product_id'];
-                    $p_img = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id= '$p_id'"));
-                    $n = $p_img['product_name'];
-                    $i = $p_img["image"];
-                    ?>
-          <li class="list-group-item" style="display:flex; align-items:center"><img src="../image/<?php echo $i?>"><?php echo $n?></li>      
-          <li class="list-group-item"><b><?php echo "Sold:".$total_qty?></b></li>
-        <?php } 
+          while ($hot = mysqli_fetch_assoc($query)) {
+            $total_qty = $hot['total_qty'];
+            $p_id = $hot['product_id'];
+            $p_img = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id= '$p_id'"));
+            $n = $p_img['product_name'];
+            $i = $p_img["image"];
+            ?>
+            <li class="list-group-item" style="display:flex; align-items:center"><img
+                src="../image/<?php echo $i ?>"><?php echo $n ?></li>
+            <li class="list-group-item"><b><?php echo "Sold:" . $total_qty ?></b></li>
+          <?php }
           ?>
         </ul>
       </div>
