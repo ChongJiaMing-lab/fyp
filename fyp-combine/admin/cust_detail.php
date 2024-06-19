@@ -33,7 +33,7 @@ include 'databaseconnect.php';
                 <li class="list-group-item"> <b>Contact Number:</b> <?php echo $row["contactnumber"];?></li>
                 <li class="list-group-item"> <b>Joined at </b> <?php echo $row["join_time"];?></li>
                 <li class="list-group-item" style="display:flex; align-items:center;">
-                    <b>Address(ess):&nbsp&nbsp</b><select class="form-select"
+                    <b>Address(es):&nbsp&nbsp</b><select class="form-select"
                         style="width:70rem; border:0.1px solid black;">
                         <?php 
                         $addresses = "SELECT * FROM user_address WHERE customer_id = '$id'";
