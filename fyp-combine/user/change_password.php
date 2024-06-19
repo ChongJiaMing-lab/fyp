@@ -256,10 +256,10 @@ if (isset($_GET["ID"])) {
 								</script>
 								<div class="newpw_require">
 									<ul>
-										<li class="letter"><span></span>At least one letter</li>
-										<li class="num"><span></span>At least one number</li>
-										<li class="special"><span></span>At least one special character</li>
-										<li class="15_len"><span></span>At least 15 characters</li>
+										<li class="letter"><span></span>one letter</li>
+										<li class="num"><span></span>one number</li>
+										<li class="special"><span></span>one special character</li>
+										<li class="15_len"><span></span>15 characters</li>
 									</ul>
 								</div>
 							</div>

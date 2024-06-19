@@ -189,7 +189,7 @@
 
 				<!-- address form -->
 				<div class="holder">
-					<div class="title">Insert new address</div>
+					<div class="title">Add new address</div>
 					<div class="add-form">
 						<form id="form1" name="form1" method="post" action="update_address.php?ID=<?php echo $id; ?>">
 							<input type="hidden" name="register_token" value="TVRjeE1EQXdOalF3T0E9PQ">
