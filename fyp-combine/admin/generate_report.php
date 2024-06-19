@@ -150,10 +150,22 @@ if (isset($_POST["order_receipt"])) {
         $pdf->Cell(35, 8, number_format($row_cart['qty'] * $row_product['price'], 2), 1, 1);
         $total_qty += $row_cart['qty'];
     }
+    $voucher_rate = 0;
+    $check_voucher = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher_detail WHERE order_id = '$order_id'"));
+    if (isset($check_voucher)) {
+        $voucher = $check_voucher["voucher_id"];
+        $select_v = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher WHERE voucher_id ='$voucher'"));
+        $voucher_rate = $select_v["v_rate"];
+        $subtotal = $row["total_amount"] * (1 - $voucher_rate);
+    } else {
+        $subtotal = $row["total_amount"];
+    }
+    $mid = $row["total_amount"] - $subtotal;
+    $subtotal = $mid + $row["total_amount"];
     $pdf->Cell(109 + 17 + 28, 10, "Sub-total(" . $total_qty . " items)", 'L,B,R', 0, 'R');
     $pdf->Cell(35, 10, number_format($row["total_amount"], 2), 'R,B', 1, 'R');
-    $pdf->Cell(109 + 17 + 28, 10, "Vouncher", 'L,B,R', 0, 'R');
-    $pdf->Cell(35, 10, "-5.00", 'R,B', 1, 'R');
+    $pdf->Cell(109 + 17 + 28, 10, "Voucher(".number_format(($voucher_rate*100),2)."%)", 'L,B,R', 0, 'R');
+    $pdf->Cell(35, 10,number_format($mid,2), 'R,B', 1, 'R');
     // $pdf->Cell(109 + 17 + 28, 10, "Shipping", 'L,B,R', 0, 'R');
     // $pdf->Cell(35, 10, "5.00", 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Total(RM)", 'L,B,R', 0, 'R');
@@ -223,7 +235,7 @@ if (isset($_POST["sales_report"])) {
         $query .= " GROUP BY order_date";
     }
     $total_amount_daily = 0;
-    $final_amount =0;
+    $final_amount = 0;
     $o_run = mysqli_query($connect, $query);
     $pdf->SetFont("Arial", "", "13");
     $pdf->Cell(30, 6.5, "Date", 0, 0);
@@ -234,30 +246,30 @@ if (isset($_POST["sales_report"])) {
     $pdf->Rect(5, 5, 200, 287, 'D');
     while ($row_item = mysqli_fetch_assoc($o_run)) {
         $pdf->Cell(30, 6.5, $row_item["order_date"], 1, 0);
- 
+
 
         $query_orders = "SELECT * FROM order_ WHERE DATE(time_status) = '" . $row_item["order_date"] . "'";
         $result_orders = mysqli_query($connect, $query_orders);
-        $total_amount_daily=0;
+        $total_amount_daily = 0;
         while ($order = mysqli_fetch_assoc($result_orders)) {
 
             $pdf->Cell(17, 6.5, "" . $order["order_id"], 1, 0);
             $total_amount = $order["total_amount"];
-            $pdf->Cell(50+50, 6.5, "". number_format($total_amount,2), 1, 1);
+            $pdf->Cell(50 + 50, 6.5, "" . number_format($total_amount, 2), 1, 1);
             $total_amount_daily += $order["total_amount"];
             $pdf->Cell(30, 6.5, "", 'L,B', 0);
             $final_amount += $order["total_amount"];
         }
         $pdf->SetFont("Arial", "B", 12);
-        $pdf->Cell(17+50, 6.5, "Daily Total ", 1, 0, 'R');
+        $pdf->Cell(17 + 50, 6.5, "Daily Total ", 1, 0, 'R');
         $pdf->SetFont("Arial", "", 13);
-        $pdf->Cell(50, 6.5, "RM".number_format($total_amount_daily,2),1, 1,);
+        $pdf->Cell(50, 6.5, "RM" . number_format($total_amount_daily, 2), 1, 1, );
 
-        $pdf->Cell(50+50+17+30, 9.5, "", '', 1);
+        $pdf->Cell(50 + 50 + 17 + 30, 9.5, "", '', 1);
     }
     $pdf->SetFont("Arial", "B", 17);
-    $pdf->Cell(50+50+17, 7.5, "Total",0, 0);
-    $pdf->Cell(17, 7.5, "RM".number_format($final_amount,2),0, 1);
+    $pdf->Cell(50 + 50 + 17, 7.5, "Total", 0, 0);
+    $pdf->Cell(17, 7.5, "RM" . number_format($final_amount, 2), 0, 1);
     $pdf->Output();
 }
 ?>
