@@ -553,7 +553,7 @@
                                                                         <label style="margin-right:5px;">
                                                                             <b>Category</b>
                                                                         </label>
-                                                                        <?php echo $row['category'] ?>
+                                                                        <?php echo str_replace("_", " ", $row['category']);  ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="v_right" style="margin-left:22px;">
@@ -568,7 +568,7 @@
                                                                         <label style="margin-right:19px;">
                                                                             <b>Price</b>
                                                                         </label>
-                                                                        <?php echo $row['price'] ?>
+                                                                        RM<?php echo $row['price'] ?>
                                                                     </div>
 
                                                                     <div class="form-group mb-4">
@@ -596,7 +596,7 @@
                                         </div>
                                     </div><!-- modal end-->
 
-                                    <!-- first table row start-->
+                                    <!-- first table row st1art-->
                                     <!-- <th scope="row" data-bs-toggle="modal" data-bs-target="#v
                                     <?//php echo $row["product_id"]; ?>">
                                         <?php echo $row['product_id'] ?>
@@ -620,7 +620,7 @@
                                     </td>
 
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
-                                        <?php echo $row['category'] ?>
+                                        <?php echo str_replace("_", " ", $row['category']);  ?>
                                     </td>
 
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">

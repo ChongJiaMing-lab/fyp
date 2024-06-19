@@ -136,7 +136,7 @@
                                                 ?>
                                                 <tr>
                                                     <!-- <td><?//php echo $row["category_id"]; ?></td> -->
-                                                    <td><?php echo $row["category"] ?></td>
+                                                    <td><?php echo str_replace("_", " ", $row['category']);  ?></td>
                                                     <td class="action">
                                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                             data-bs-target="#e<?php echo $row["category_id"]; ?>">Edit</button>
@@ -157,7 +157,7 @@
                                                                                 <label>Component:</label>
                                                                                 <input type="text" class="form-control"
                                                                                     placeholder="component" name="pc"
-                                                                                    value="<?php echo $row["category"] ?>"
+                                                                                    value="<?php echo str_replace("_", " ", $row['category']);  ?>"
                                                                                     required>
                                                                             </div>
                                                                         </div>
@@ -196,7 +196,7 @@
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         Do you really want to delete this
-                                                                        component?:<br><?php echo $row["category"] ?>
+                                                                        component?:<br><?php echo str_replace("_", " ", $row['category']);  ?>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <a

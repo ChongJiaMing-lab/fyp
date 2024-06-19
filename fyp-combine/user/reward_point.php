@@ -186,7 +186,7 @@ th{
                             </tr>
                             
                                 <?php 
-                                $query4 = mysqli_query($connect,"SELECT * FROM point_details WHERE user_id = $id");
+                                $query4 = mysqli_query($connect,"SELECT * FROM point_details WHERE user_id = $id ORDER BY point_details_id desc");
                                 if(mysqli_num_rows($query4) == 0){?>
                                 <td colspan=3>You do not have any reward points yet. Start collecting now!</td>
                                 <?php 

@@ -7,7 +7,7 @@ if (isset($_POST['bid'])) {
 
     $out = '';
     while ($row = mysqli_fetch_assoc($result)) {
-        $out .= '<option value="' . $row['category_id'] . '">' . $row['category'] . '</option>';
+        $out .= '<option value="' . $row['category_id'] . '">' . str_replace("_", " ", $row['category']) . '</option>';
     }
     echo $out;
 }

@@ -2,8 +2,8 @@
 
 include ("data_connection.php");
 
-
-		$id = $_GET['ID'];
+		if(isset($_GET['id']))
+		{$id = $_GET['ID'];}
 		$query = "SELECT * FROM user_information WHERE ID='$id'";
 		$query2 = "SELECT * FROM user_address WHERE customer_id='$id'";
 		$result = mysqli_query($connect, $query);
@@ -36,7 +36,7 @@ include ("data_connection.php");
 									<a href="orderlist.php?ID=<?php echo $id; ?>">My orders</a>
 								</li>
 								<!-- MY COUPON -->
-								<li class="item"><a href="...">My voucher</a></li>
+								<li class="item"><a href="my_voucher.php">My voucher</a></li>
 								<!-- MY REWARD POINT -->
 								<li class="item"><a href="reward_point.php?ID=<?PHP echo $id; ?>">My reward point</a></li>
 								
