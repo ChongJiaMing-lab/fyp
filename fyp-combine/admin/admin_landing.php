@@ -216,7 +216,7 @@ $select_build = mysqli_query($connect, "SELECT * FROM pc_build WHERE pay_status 
                 $total_qty ++;
               }
             }
-            $total_qty = $hot['total_qty'];
+            $total_qty += $hot['total_qty'];
             $p_id = $hot['product_id'];
             $p_img = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id= '$p_id'"));
             $n = $p_img['product_name'];
