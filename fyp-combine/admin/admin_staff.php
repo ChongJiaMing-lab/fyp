@@ -227,7 +227,7 @@
       </thead>
       <tbody class="table-group-divider">
         <?php
-        $result = mysqli_query($connect, "SELECT * FROM staff ORDER BY staff_status");
+        $result = mysqli_query($connect, "SELECT * FROM staff  WHERE sa!= 1 ORDER BY staff_status");
         $count = mysqli_num_rows($result);
         $count = 1;
         if (mysqli_num_rows($result) > 0) {

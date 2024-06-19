@@ -27,7 +27,12 @@ if(isset($_GET["cat"])) {
             denyButtonText: `No`
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
+            if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+                window.location.href='customization.php';
+                exit();
+            }
+            else if (result.isConfirmed) {
           //      Swal.fire("Component has been deleted!", "", "success");
                 <?php 
                 $_SESSION['alert_c'] = 'Swal.fire("Component has been deleted!", "", "success");';
@@ -38,8 +43,6 @@ if(isset($_GET["cat"])) {
                         echo "window.location.href='customization.php';";
                     }
                 ?>
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
             }
         });
     </script>
