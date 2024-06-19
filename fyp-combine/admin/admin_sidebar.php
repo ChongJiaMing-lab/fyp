@@ -104,7 +104,12 @@
                 <!-- </a>
                 </li>
                 <hr> -->
-
+                <li class="sidebar-item">
+                    <a href="admin_landing.php" class="sidebar-link" id="admin">
+                        <i class="lni lni-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="admin_staff.php" class="sidebar-link" id="admin">
                         <i class="lni lni-user"></i>
