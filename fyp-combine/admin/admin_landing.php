@@ -271,7 +271,7 @@ $select_build = mysqli_query($connect, "SELECT * FROM pc_build WHERE pay_status 
         ?>
       <div class="recent2" style="margin-left: 25px;">
         <div class="card">
-          <h1 style="margin:15px 15px 15px 15px">Recent Customers</h1>
+          <h1 style="margin:15px 15px 15px 15px">Recent Users</h1>
           <table class="table table-borderless">
             <hr style="width:98%; margin:auto auto auto auto;">
             <tbody>
