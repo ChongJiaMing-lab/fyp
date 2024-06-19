@@ -482,12 +482,14 @@ $id = $_SESSION['ID'];
 
                             var selected = $('input[name="voucher_option"]:checked');
                             var code = selected.data('v_code');
-                            var rate = selected.data('rate');
+                            $('#exampleModal').modal('hide');
+                            if(code != NULL)
+                            {var rate = selected.data('rate');
                             var total = parseFloat(<?php echo $total ?>);
                             $('input[name="voucher_code"]').val(code);
                             $('span[name="dis"]').text((total * rate).toFixed(2));
                             $('span[name="total"]').text((total - total * rate).toFixed(2));
-                            $('#exampleModal').modal('hide');
+                            
 
                             var btn = document.getElementById("confirm");
                             var not_s = <?php echo count($not_s); ?>;
@@ -498,7 +500,7 @@ $id = $_SESSION['ID'];
                                 else {
                                     window.location.href = "payment-build.php?vid=" + code;
                                 }
-                            });
+                            });}
                         });
                     });
 
