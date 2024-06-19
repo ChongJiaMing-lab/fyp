@@ -553,6 +553,7 @@
                                     <button id="my-order-checkout" type="button" class="button btn-checkout"
                                         onclick="error_alert()">
                                         <?php
+                                        
                             }
                             ?>
                                     <!-- CHECKOUT BUTTON -->
@@ -650,7 +651,7 @@
                     });
                 }
 
-                // Calculate total when the page loads
+               
                 calculateTotal();
 
 
@@ -658,7 +659,11 @@
 
             function error_alert() {
                 alert("Your shopping cart is empty!");
+                
             }
+
+
+          
         </script>
 
     </section>
