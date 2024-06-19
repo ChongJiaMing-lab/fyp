@@ -82,10 +82,10 @@
     <hr> -->
     <form class="admin_login" action="a_login.php" method="POST">
         <h2>Admin Login</h2>
-        <p>Make sure that you had added to SuperAdmin/Admin</p>
+        <p>Make sure that you had added to Admin</p>
         <div class="form-floating mb-3">
-            <input type="test" class="form-control" id="floatingInput" placeholder="ID" name="id">
-            <label for="floatingInput">ID</label>
+            <input type="test" class="form-control" id="floatingInput" placeholder="Admin ID" name="id">
+            <label for="floatingInput">Admin ID</label>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
