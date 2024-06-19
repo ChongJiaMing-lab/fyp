@@ -101,7 +101,11 @@ include 'databaseconnect.php';
 
             $total = 0;
             ?>
-            <?php if ($build_row > 0) echo "build"; else echo"cart"?>
+            <?php if ($build_row > 0) {
+                ?>
+                <h2 style="font-weight:bold">***BUILD PC***</h2>
+            <?php
+            }?>
             <h1>Item(s)</h1>
             <table class="table table-striped" style="padding:10px;">
                 <thead>
