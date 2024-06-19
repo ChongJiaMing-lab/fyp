@@ -129,26 +129,119 @@ if (isset($_POST["order_receipt"])) {
     $pdf->Cell(35, 6.5, "Total(RM)", 1, 1);
 
     $pdf->SetFont("Arial", "");
+
     $item = "SELECT * FROM cart_order_detail WHERE order_id = '$order_id'";
     $item_run = mysqli_query($connect, $item);
     $count = 1;
     $total_qty = 0;
+
+    $select_build = "SELECT * FROM build_order_detail WHERE order_id = '$order_id'";
+    $select_order = "SELECT * FROM cart_order_detail where order_id = '$order_id'";
+    $select_build_query = mysqli_query($connect, "SELECT * FROM build_order_detail WHERE order_id = '$order_id'");
+    $build_row = mysqli_num_rows($select_build_query);
+    if ($build_row > 0) {
+        $item = $select_build;
+    } else {
+        $item = $select_order;
+    }
+    $item_run = mysqli_query($connect, $item);
+
     while ($row_item = mysqli_fetch_assoc($item_run)) {
-        $cart_id = $row_item["cart_id"];
-        $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
-        $cart_run = mysqli_query($connect, $cart);
+        if ($build_row > 0) {
+            $build_id = $row_item["build_id"];
+            $build = "SELECT * FROM pc_build WHERE build_id = '$build_id'";
+            $build_run = mysqli_query($connect, $build);
+            $col_build = mysqli_fetch_assoc($build_run);
 
-        $row_cart = mysqli_fetch_assoc($cart_run);
-        $product_id = $row_cart["product_id"];
-        $product_run = mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$product_id'");
-        $row_product = mysqli_fetch_assoc($product_run);
+            $col_build_id = $col_build['chassis'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
 
-        $pdf->Cell(9, 8, $count++, 1, 0);
-        $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
-        $pdf->Cell(17, 8, $row_cart['qty'], 1, 0);
-        $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
-        $pdf->Cell(35, 8, number_format($row_cart['qty'] * $row_product['price'], 2), 1, 1);
-        $total_qty += $row_cart['qty'];
+            $col_build_id = $col_build['motherboard'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['processor'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['graphic_card'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['ram1'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['ram2'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['memory'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['cooler'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+            $col_build_id = $col_build['power_supply'];
+            $row_product = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'"));
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, "1", 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_product['price'], 2), 1, 1);
+
+        } else {
+            $cart_id = $row_item["cart_id"];
+            $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
+            $cart_run = mysqli_query($connect, $cart);
+
+            $row_cart = mysqli_fetch_assoc($cart_run);
+            $product_id = $row_cart["product_id"];
+            $product_run = mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$product_id'");
+            $row_product = mysqli_fetch_assoc($product_run);
+
+            $pdf->Cell(9, 8, $count++, 1, 0);
+            $pdf->Cell(100, 8, $row_product['product_name'], 1, 0);
+            $pdf->Cell(17, 8, $row_cart['qty'], 1, 0);
+            $pdf->Cell(28, 8, number_format($row_product['price'], 2), 1, 0);
+            $pdf->Cell(35, 8, number_format($row_cart['qty'] * $row_product['price'], 2), 1, 1);
+            $total_qty += $row_cart['qty'];
+        }
     }
     $voucher_rate = 0;
     $check_voucher = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher_detail WHERE order_id = '$order_id'"));
@@ -163,9 +256,9 @@ if (isset($_POST["order_receipt"])) {
     $mid = $row["total_amount"] - $subtotal;
     $subtotal = $mid + $row["total_amount"];
     $pdf->Cell(109 + 17 + 28, 10, "Sub-total(" . $total_qty . " items)", 'L,B,R', 0, 'R');
-    $pdf->Cell(35, 10, number_format($row["total_amount"], 2), 'R,B', 1, 'R');
-    $pdf->Cell(109 + 17 + 28, 10, "Voucher(".number_format(($voucher_rate*100),2)."%)", 'L,B,R', 0, 'R');
-    $pdf->Cell(35, 10,number_format($mid,2), 'R,B', 1, 'R');
+    $pdf->Cell(35, 10, number_format($subtotal, 2), 'R,B', 1, 'R');
+    $pdf->Cell(109 + 17 + 28, 10, "Voucher(" . number_format(($voucher_rate * 100), 2) . "%)", 'L,B,R', 0, 'R');
+    $pdf->Cell(35, 10, number_format($mid, 2), 'R,B', 1, 'R');
     // $pdf->Cell(109 + 17 + 28, 10, "Shipping", 'L,B,R', 0, 'R');
     // $pdf->Cell(35, 10, "5.00", 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Total(RM)", 'L,B,R', 0, 'R');

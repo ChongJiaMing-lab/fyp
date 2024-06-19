@@ -226,6 +226,19 @@ include 'databaseconnect.php';
                                 <td>RM<?php echo number_format($total, 2); ?>
                                 </td>
                             </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['power_supply']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
                         <?php
                         } else {
                             $cart_id = $row_item["cart_id"];
