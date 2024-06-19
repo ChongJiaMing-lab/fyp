@@ -568,7 +568,7 @@
                                                                         <label style="margin-right:19px;">
                                                                             <b>Price</b>
                                                                         </label>
-                                                                        <?php echo $row['price'] ?>
+                                                                        RM<?php echo $row['price'] ?>
                                                                     </div>
 
                                                                     <div class="form-group mb-4">
