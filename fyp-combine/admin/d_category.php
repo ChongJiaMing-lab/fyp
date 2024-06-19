@@ -10,7 +10,7 @@ if (isset($_GET["category_id"])) {
     $check_stop = mysqli_num_rows($check);
     if ($select) {
         $row = mysqli_fetch_assoc($select);
-        $ct = $row["category"];
+        $ct = str_replace("_", " ", $row['category']);
         $type = $row['category_type'];
         if ($type == '1') {
             if ($check_stop > 0) {
