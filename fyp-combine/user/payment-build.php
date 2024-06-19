@@ -463,7 +463,7 @@ $id = $_SESSION['ID'];
                     $card = mysqli_query($connect, "SELECT * FROM credit_card WHERE card_id = '$num_card'");
                     if ($result3 = mysqli_fetch_assoc($card)) {
                         if ($result3['validMonth'] == $validMonth && $result3['validYear'] == $validYear && $result3['cvv'] == $cvv && $result3['card_holder']==$card_holder) {
-                            $currentDateTime = date("d-m=Y H:i:s", $currentTimestamp);
+                            $currentDateTime = date("d-m-Y H:i:s", $currentTimestamp);
                             $name = $_POST['name'];
                             $ph = $_POST['telephone'];
 
@@ -485,7 +485,7 @@ $id = $_SESSION['ID'];
                                 {
                                     $vid = $_GET['vid'];
                                     $result8 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
-                                    mysqli_query($connect,"UPDATE voucher SET v_status WHERE v_code = '$vid'");
+                                    mysqli_query($connect,"UPDATE voucher SET v_status = 1 WHERE v_code = '$vid'");
                                     $r8 = mysqli_fetch_assoc($result8);
                                     $voucher_id = $r8['voucher_id'];
                                     $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($voucher_id,$order_id)");
@@ -499,7 +499,7 @@ $id = $_SESSION['ID'];
                                 }
                                     ?>
                                     <script>
-                                        ,Swal.fire({
+                                        Swal.fire({
                                         title: "Payment was successful!",
                                         text: "You order have been save in your order page!",
                                         icon: "success",
