@@ -143,6 +143,7 @@ include "head.php";
 </head>
 <body>
     
+    
     <div class="header-build">
     <h1>Computer Builder</h2>
     <a href="index.php">Home</a> > <a href="customization.php">Customization</a>
@@ -162,6 +163,25 @@ else if(isset($_SESSION['alert_c'])){
 ?>
 
 <?php 
+        
+        if(!isset($_SESSION['ID']))
+        {
+            ?>
+                <script>
+                    Swal.fire({
+                    title: "Login Required",
+                    text: "Dear visitor, please login first.",
+                    
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if (result.value) {
+                    window.location.href = "login.php";}});
+                                            
+                </script>
+            <?php
+        }
+        else{
+
         
         $id = $_SESSION['ID'];
         $query = mysqli_query($connect,"SELECT * FROM pc_build WHERE user_id = $id AND pay_status != 'payed'");
@@ -279,7 +299,7 @@ else if(isset($_SESSION['alert_c'])){
             
         // }
         
-
+            }
 ?> -->
 </body>
 <script>
