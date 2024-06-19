@@ -78,7 +78,7 @@ include 'databaseconnect.php';
                         <div class="info">Username: <b><?php echo $row_user["user_name"] ?><br></b></div>
                         <div class="info">User Email:<b><?php echo $row_user["email"] ?><br></b></div>
                         <div class="info">User Numbers: <b><?php echo $row_user["contactnumber"] ?><br></b></div>
-                        <div class="info">Address: <b><?php echo $row_add["name"].", ".$row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
+                        <div class="info">Address: <b><?php echo $row_add["name"] . ", " . $row_add["address"] . ", " . $row_add["postcode"] . " " . $row_add["city"]
                             . ", " . $row_add["state"] ?><br></b></div>
                     </div>
                 </div>
@@ -127,6 +127,30 @@ include 'databaseconnect.php';
                     <?php } ?>
                 </tbody>
                 <tfoot>
+                    <?php
+                    $voucher_rate = 0;
+                    $check_voucher = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher_detail WHERE order_id = '$order_id'"));
+                    if (isset($check_voucher)) {
+                        $voucher = $check_voucher["voucher_id"];
+                        $select_v = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher WHERE voucher_id ='$voucher'"));
+                        $voucher_rate = $select_v["v_rate"];
+                        $subtotal = $row["total_amount"] * (1 - $voucher_rate);
+                    } else {
+                        $subtotal = $row["total_amount"];
+                    }
+                    $mid = $row["total_amount"] - $subtotal;
+                    $subtotal = $mid + $row["total_amount"];
+                    ?>
+                    <tr>
+                        <td colspan="3" style="text-align:right;"><b>Sub-Total</b></td>
+                        <td>RM<?php echo number_format($subtotal, 2) ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align:right;"><b>Voucher(<?php echo number_format(($voucher_rate*100),2)?>%)</b></td>
+                        <td>-RM<?php echo number_format($mid,2); ?>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="3" style="text-align:right;"><b>Total Amount</b></td>
                         <td>RM<?php echo number_format($row["total_amount"], 2); ?>
@@ -136,8 +160,8 @@ include 'databaseconnect.php';
             </table>
             <hr>
             <div style="display: flex; justify-content: space-between;">
-            <h1>Update Order Status</h1>
-            <h1>Invoice</h1>
+                <h1>Update Order Status</h1>
+                <h1>Invoice</h1>
             </div>
             <hr>
             <div style="display: flex; justify-content: space-between;">
