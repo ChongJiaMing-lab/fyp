@@ -10,7 +10,7 @@ if (isset($_GET["category_id"])) {
     $check_stop = mysqli_num_rows($check);
     if ($select) {
         $row = mysqli_fetch_assoc($select);
-        $ct = str_replace("_", " ", $row['category']);
+        $ct = $row["category"];
         $type = $row['category_type'];
         if ($type == '1') {
             if ($check_stop > 0) {
@@ -23,7 +23,7 @@ if (isset($_GET["category_id"])) {
                 $del = "DELETE FROM category WHERE category_id = '$p'";
                 $query = mysqli_query($connect, $del);
                 $_SESSION['title'] = "Success";
-                $_SESSION['test'] = "Component $ct is deleted successfully";
+                $_SESSION['text'] = "Component $ct is deleted successfully";
                 $_SESSION['icon'] = "success";
                 header("location:admin_pc.php");
                 exit();
@@ -39,7 +39,7 @@ if (isset($_GET["category_id"])) {
                 $delp = "DELETE FROM category WHERE category_id = '$p'";
                 $query = mysqli_query($connect, $delp);
                 $_SESSION['title'] = "Success";
-                $_SESSION['test'] = "Peripheral $ct is deleted successfully";
+                $_SESSION['text'] = "Peripheral $ct is deleted successfully";
                 $_SESSION['icon'] = "success";
                 header("location:admin_peri.php");
                 exit();
