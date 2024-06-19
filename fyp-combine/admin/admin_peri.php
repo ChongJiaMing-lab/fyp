@@ -89,7 +89,7 @@
                                 <div class="modal-content">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Add Peripherals</h4>
+                                        <h4 class="modal-title">Add Peripheral</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
 
