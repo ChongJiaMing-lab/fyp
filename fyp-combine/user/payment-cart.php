@@ -521,9 +521,12 @@
                             mysqli_query($connect, "INSERT INTO point_details(description,changes,user_id,order_id,time_status) VALUES ('Completed Purchased.','+$point','$ID','$order_id','$currentDateTime')");
                             if(isset($_GET['vid']))
                             {
-                                $vid = $_GET['vid'];
-                                mysqli_query($connect,"UPDATE voucher SET v_status WHERE v_code = '$vid'");
-                                $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($vid,$order_id)");
+                                $vid = $_GET['vid'];    
+                                    $result8 = mysqli_query($connect,"SELECT * FROM voucher WHERE v_code = '$vid'");
+                                    mysqli_query($connect,"UPDATE voucher SET v_status = 1 WHERE v_code = '$vid'");
+                                    $r8 = mysqli_fetch_assoc($result8);
+                                    $voucher_id = $r8['voucher_id'];
+                                    $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($voucher_id,$order_id)");
                             }
                             ?>
                                 <script>
