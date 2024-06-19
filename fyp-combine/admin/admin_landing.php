@@ -178,6 +178,7 @@ include 'databaseconnect.php';
     ORDER BY total_qty DESC 
     LIMIT 3
 ");
+$select_build = mysqli_query($connect, "SELECT * FROM pc_build WHERE pay_status = 'payed'");
         ?>
         <ul class="list-group list-group-flush">
           <a href="#" class="list-group-item list-group-item-action list-group-item-primary">
@@ -185,6 +186,36 @@ include 'databaseconnect.php';
           </a>
           <?php
           while ($hot = mysqli_fetch_assoc($query)) {
+            $total_qty = 0;
+            while($hot2 = mysqli_fetch_assoc($select_build)){
+              if($hot2["chassis"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["motherboard"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["processor"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["graphic_card"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["ram1"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["ram2"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["memory"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["cooler"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+              if($hot2["power_supply"] == $hot["product_id"]){
+                $total_qty ++;
+              }
+            }
             $total_qty = $hot['total_qty'];
             $p_id = $hot['product_id'];
             $p_img = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id= '$p_id'"));
@@ -203,7 +234,7 @@ include 'databaseconnect.php';
     <br>
     <hr><br>
     <?php
-    $todo = mysqli_query($connect, "SELECT *, user_information.user_name FROM order_ JOIN user_information ON order_.user_id = user_information.ID WHERE delivery_status = 'Processing'")
+    $todo = mysqli_query($connect, "SELECT *, user_information.user_name FROM order_ JOIN user_information ON order_.user_id = user_information.ID WHERE delivery_status = 'Processing' LIMIT 7")
       ?>
     <div class="recent">
       <div class="recent1">
