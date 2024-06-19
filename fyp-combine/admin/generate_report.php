@@ -78,6 +78,16 @@ if (isset($_POST["order_receipt"])) {
     $order_id = $_POST["o_id"];
     $pdf = new FPDF("p", "mm", "A4");
 
+    $select_build = "SELECT * FROM build_order_detail WHERE order_id = '$order_id'";
+    $select_order = "SELECT * FROM cart_order_detail where order_id = '$order_id'";
+    $select_build_query = mysqli_query($connect, "SELECT * FROM build_order_detail WHERE order_id = '$order_id'");
+    $build_row = mysqli_num_rows($select_build_query);
+    if ($build_row > 0) {
+        $item = $select_build;
+    } else {
+        $item = $select_order;
+    }
+
     $pdf->AddPage();
 
     $pdf->SetFont("Arial", "B", 35);
@@ -87,7 +97,7 @@ if (isset($_POST["order_receipt"])) {
     $pdf->SetFont("Arial", "", 14);
     $pdf->Cell(50, 5, "Thanks for choosing us!", 0, 1);
     $pdf->Cell(0, 5, "------------------------------------------------------------------------------------------------------------------", 0, 1);
-
+    
     $order = "SELECT * FROM order_ WHERE order_id = '$order_id'";
     $order_run = mysqli_query($connect, $order);
     $row = mysqli_fetch_assoc($order_run);
@@ -120,7 +130,11 @@ if (isset($_POST["order_receipt"])) {
     $pdf->SetFont("Arial", "", 14);
     $pdf->Cell(25, 5, $row['time_status'], 0, 1);
     $pdf->Cell(0, 10, "------------------------------------------------------------------------------------------------------------------", 0, 1);
-
+    if ($build_row > 0) {
+        $pdf->SetFont("Arial", "B", 15);
+         $pdf->Cell(0,5, "***BUILD PC***",0,1);
+         $pdf->Cell(0,3, "",0,1);
+    }
     $pdf->SetFont("Arial", "B");
     $pdf->Cell(9, 6.5, "#", 1, 0);
     $pdf->Cell(100, 6.5, "Product", 1, 0);
@@ -130,20 +144,10 @@ if (isset($_POST["order_receipt"])) {
 
     $pdf->SetFont("Arial", "");
 
-    $item = "SELECT * FROM cart_order_detail WHERE order_id = '$order_id'";
     $item_run = mysqli_query($connect, $item);
     $count = 1;
     $total_qty = 0;
 
-    $select_build = "SELECT * FROM build_order_detail WHERE order_id = '$order_id'";
-    $select_order = "SELECT * FROM cart_order_detail where order_id = '$order_id'";
-    $select_build_query = mysqli_query($connect, "SELECT * FROM build_order_detail WHERE order_id = '$order_id'");
-    $build_row = mysqli_num_rows($select_build_query);
-    if ($build_row > 0) {
-        $item = $select_build;
-    } else {
-        $item = $select_order;
-    }
     $item_run = mysqli_query($connect, $item);
 
     while ($row_item = mysqli_fetch_assoc($item_run)) {
