@@ -123,7 +123,7 @@
                                 <table class="table table-bordered table-stripe">
                                     <thead>
                                         <tr>
-                                            <th style="width:10%;">#</th>
+                                            <!-- <th style="width:10%;">#</th> -->
                                             <th>Pc Components</th>
                                             <th>Action</th>
                                         </tr>
@@ -135,7 +135,7 @@
                                             while ($row = mysqli_fetch_assoc($result)) {
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $row["category_id"]; ?></td>
+                                                    <!-- <td><?//php echo $row["category_id"]; ?></td> -->
                                                     <td><?php echo $row["category"] ?></td>
                                                     <td class="action">
                                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
