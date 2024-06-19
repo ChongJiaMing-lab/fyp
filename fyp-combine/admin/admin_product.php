@@ -596,7 +596,7 @@
                                         </div>
                                     </div><!-- modal end-->
 
-                                    <!-- first table row start-->
+                                    <!-- first table row st1art-->
                                     <!-- <th scope="row" data-bs-toggle="modal" data-bs-target="#v
                                     <?//php echo $row["product_id"]; ?>">
                                         <?php echo $row['product_id'] ?>
