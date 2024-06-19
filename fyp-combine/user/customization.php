@@ -246,7 +246,7 @@ else if(isset($_SESSION['alert_c'])){
                 <h1 class="small-header">CUSTOM DEKSTOP</h1>
                 <div class="cart">
                     <p>Price
-                        <span class="right">RM <?php echo $total ?></span>
+                        <span class="right">RM <?php echo number_format($total,2) ?></span>
                 </div>
                 <hr>
                 <a id="expandAllBtn">Expand All</a>
