@@ -23,7 +23,7 @@ if (isset($_GET["category_id"])) {
                 $del = "DELETE FROM category WHERE category_id = '$p'";
                 $query = mysqli_query($connect, $del);
                 $_SESSION['title'] = "Success";
-                $_SESSION['text'] = "Component $ct is deleted successfully";
+                $_SESSION['text'] = "Component <$ct> is deleted";
                 $_SESSION['icon'] = "success";
                 header("location:admin_pc.php");
                 exit();
@@ -39,7 +39,7 @@ if (isset($_GET["category_id"])) {
                 $delp = "DELETE FROM category WHERE category_id = '$p'";
                 $query = mysqli_query($connect, $delp);
                 $_SESSION['title'] = "Success";
-                $_SESSION['text'] = "Peripheral $ct is deleted successfully";
+                $_SESSION['text'] = "Peripheral <$ct> is deleted";
                 $_SESSION['icon'] = "success";
                 header("location:admin_peri.php");
                 exit();
