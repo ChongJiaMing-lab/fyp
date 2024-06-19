@@ -493,9 +493,7 @@ $id = $_SESSION['ID'];
                             var not_s = <?php echo count($not_s); ?>;
                             btn.addEventListener("click", function () {
                                 if (not_s > 0) {
-                                    alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {
-                                        echo "\\n" . $not_s[$x];
-                                    } ?>');
+                                    alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {echo "\\n" . $not_s[$x];} ?>');
                                 }
                                 else {
                                     window.location.href = "payment-build.php?vid=" + code;
@@ -534,9 +532,7 @@ $id = $_SESSION['ID'];
     var not_s = <?php echo count($not_s); ?>;
     btn.addEventListener("click", function () {
         if (not_s > 0) {
-            alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {
-                echo "\\n" . $not_s[$x];
-            } ?>');
+            alert('The Required Component below is not being selected!<?php for ($x = 0; $x < $count; $x++) {echo "\\n" . $not_s[$x];} ?>');
         }
         else {
             window.location.href = "payment-build.php";

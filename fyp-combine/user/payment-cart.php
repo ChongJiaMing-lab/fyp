@@ -522,6 +522,7 @@
                             if(isset($_GET['vid']))
                             {
                                 $vid = $_GET['vid'];
+                                mysqli_query($connect,"UPDATE voucher SET v_status WHERE v_code = '$vid'");
                                 $result9 = mysqli_query($connect,"INSERT INTO voucher_detail(voucher_id,order_id) VALUES ($vid,$order_id)");
                             }
                             ?>

@@ -344,7 +344,8 @@ if (isset($_SESSION['v_alert'])) {
                                         Order</a>
                                     <a class="dropdown-item" href="reward_point.php?ID=<?php echo $_SESSION['ID']; ?>">My
                                         Reward Point</a>
-
+                                    <a class="dropdown-item" href="my_voucher.php ">My
+                                        Voucher</a>
                                     <a class="dropdown-item" href="Logout.php">Logout</a>
                                     <?php
                                 } else { ?>
