@@ -45,7 +45,8 @@ include 'databaseconnect.php';
     <div class="main p-3">
         <div class="card" style="padding:15px;">
             <?php
-            $order_id = $_GET["order_id"] ?>
+            $order_id = $_GET["order_id"];
+            ?>
             <div class="top">
                 <div class="card" style="padding:10px 10px 10px 10px; border:0;">
                     <h1>Order Details</h1>
@@ -87,11 +88,20 @@ include 'databaseconnect.php';
             </div>
             <hr>
             <?php
-            $item = "SELECT * FROM cart_order_detail WHERE order_id = '$order_id'";
+            $select_build = "SELECT * FROM build_order_detail WHERE order_id = '$order_id'";
+            $select_order = "SELECT * FROM cart_order_detail where order_id = '$order_id'";
+            $select_build_query = mysqli_query($connect, "SELECT * FROM build_order_detail WHERE order_id = '$order_id'");
+            $build_row = mysqli_num_rows($select_build_query);
+            if ($build_row > 0) {
+                $item = $select_build;
+            } else {
+                $item = $select_order;
+            }
             $item_run = mysqli_query($connect, $item);
 
             $total = 0;
             ?>
+            <?php if ($build_row > 0) echo "build"; else echo"cart"?>
             <h1>Item(s)</h1>
             <table class="table table-striped" style="padding:10px;">
                 <thead>
@@ -105,26 +115,140 @@ include 'databaseconnect.php';
                 <tbody>
                     <?php
                     while ($row_item = mysqli_fetch_assoc($item_run)) {
-                        $cart_id = $row_item["cart_id"];
-                        $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
-                        $cart_run = mysqli_query($connect, $cart);
+                        if ($build_row > 0) {
+                            $build_id = $row_item["build_id"];
+                            $build = "SELECT * FROM pc_build WHERE build_id = '$build_id'";
+                            $build_run = mysqli_query($connect, $build);
+                            
+                            $col_build = mysqli_fetch_assoc($build_run);
+                            ?>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['chassis']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['motherboard']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['processor']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['graphic_card']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['ram1']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['ram2']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['memory']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                            <?php
+                            $col_build_id = $col_build['cooler']; 
+                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
+                                <td><?php echo $build_col["price"]; ?></td>
+                                <td>1</td>
+                                <?php $total = $build_col["price"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                        <?php
+                        } else {
+                            $cart_id = $row_item["cart_id"];
+                            $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
+                            $cart_run = mysqli_query($connect, $cart);
 
-                        $row_cart = mysqli_fetch_assoc($cart_run);
-                        $product_id = $row_cart["product_id"];
-                        $product_run = mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$product_id'");
-                        $row_product = mysqli_fetch_assoc($product_run);
-                        ?>
-                        <tr>
-                            <th scope="row"><img src="../image/<?php echo $row_product["image"]; ?>"
-                                    style="width:120px; height:auto;">
-                                &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $row_product["product_name"] ?></th>
-                            <td><?php echo $row_product["price"]; ?></td>
-                            <td><?php echo $row_cart["qty"] ?></td>
-                            <?php $total = $row_product["price"] * $row_cart["qty"] ?>
-                            <td>RM<?php echo number_format($total, 2); ?>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                            $row_cart = mysqli_fetch_assoc($cart_run);
+                            $product_id = $row_cart["product_id"];
+                            $product_run = mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$product_id'");
+                            $row_product = mysqli_fetch_assoc($product_run);
+                            ?>
+                            <tr>
+                                <th scope="row"><img src="../image/<?php echo $row_product["image"]; ?>"
+                                        style="width:120px; height:auto;">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $row_product["product_name"] ?></th>
+                                <td><?php echo $row_product["price"]; ?></td>
+                                <td><?php echo $row_cart["qty"] ?></td>
+                                <?php $total = $row_product["price"] * $row_cart["qty"] ?>
+                                <td>RM<?php echo number_format($total, 2); ?>
+                                </td>
+                            </tr>
+                        <?php }
+                    } ?>
                 </tbody>
                 <tfoot>
                     <?php
@@ -147,8 +271,10 @@ include 'databaseconnect.php';
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align:right;"><b>Voucher(<?php echo number_format(($voucher_rate*100),2)?>%)</b></td>
-                        <td>-RM<?php echo number_format($mid,2); ?>
+                        <td colspan="3" style="text-align:right;">
+                            <b>Voucher(<?php echo number_format(($voucher_rate * 100), 2) ?>%)</b>
+                        </td>
+                        <td>-RM<?php echo number_format($mid, 2); ?>
                         </td>
                     </tr>
                     <tr>
