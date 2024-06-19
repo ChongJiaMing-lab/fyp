@@ -545,21 +545,15 @@
                                     </div>
                                 </div>
                             </form>
-                            <?php
-                            if (isset($_SESSION['ID']) && $count != 0) { ?>
-                                <button id="my-order-checkout" type="button" class="button btn-checkout">
-                                    <?php
-                            } else { ?>
-                                    <button id="my-order-checkout" type="button" class="button btn-checkout"
-                                        onclick="error_alert()">
-                                        <?php
-                                        
-                            }
-                            ?>
-                                    <!-- CHECKOUT BUTTON -->
 
-                                    PROCEED TO CHECKOUT </button>
-                                <!-- #END CHECKOUT BUTTON -->
+                            <button id="my-order-checkout" type="button" class="button btn-checkout">PROCEED TO
+                                CHECKOUT</button>
+
+
+                            <!-- CHECKOUT BUTTON -->
+
+
+                            <!-- #END CHECKOUT BUTTON -->
 
                         </div>
                     </div>
@@ -651,19 +645,40 @@
                     });
                 }
 
-               
+
                 calculateTotal();
 
+                var btn = document.getElementById("my-order-checkout");
+                btn.addEventListener("click", function (event) {
+                    var productRows = document.querySelectorAll('.my-checkout-listing');
+
+                    if (productRows.length > 0) {
+                        var hasItems = false;
+
+                        productRows.forEach(function (row) {
+                            var quantityElement = row.querySelector('.input-quantity');
+                            var quantity = parseInt(quantityElement.value);
+
+                            if (quantity > 0) {
+                                hasItems = true;
+                            }
+                        });
+
+                        if (hasItems) {
+                            window.location.href = 'payment-cart.php?ID=<?php echo $_SESSION['ID']; ?>';
+                        } 
+                        
+                    } else {
+                        event.preventDefault();
+                        alert("Your shopping cart is empty!");
+                        window.location.href = 'shoping_cart.php?ID=<?php echo $_SESSION['ID']; ?>';
+                    }
+                });
 
             });
 
-            function error_alert() {
-                alert("Your shopping cart is empty!");
-                
-            }
 
 
-          
         </script>
 
     </section>
