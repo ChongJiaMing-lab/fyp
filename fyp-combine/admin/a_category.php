@@ -28,14 +28,14 @@ else if(isset($_POST["save_peri"]))
     $insert_run = mysqli_query($connect, $insert);
     if($insert_run)
     {
-        $_SESSION['title'] = "New peripherals:";
+        $_SESSION['title'] = "New peripheral:";
         $_SESSION['text'] = "$pe";
         $_SESSION['icon'] = "success";
         header("location: admin_peri.php");
     }
     else
     {
-        $_SESSION['msg'] = "Failed to add Peripherals :(";
+        $_SESSION['msg'] = "Failed to add Peripheral :(";
         header("location: admin_peri.php");
     }
     
