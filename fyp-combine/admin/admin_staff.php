@@ -234,8 +234,8 @@
           while ($row = mysqli_fetch_assoc($result)) {
             ?>
             <tr>
-              <th scope="row"><?php echo $row["staff_id"]; ?></th>
-              <!-- <td><?php //echo $row["admin_id"]; ?></td> -->
+              <!-- <th scope="row"><?//php echo $row["staff_id"]; ?></th> -->
+              <td><?php echo $row["admin_id"]; ?></td>
               <td><?php echo $row["full_name"]; ?></td>
               <td><?php echo $row["staff_email"]; ?></td>
               <td><?php echo $row["staff_tel"]; ?></td>

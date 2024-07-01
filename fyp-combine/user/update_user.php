@@ -8,7 +8,7 @@ if (isset($_POST["agree"])) {
     $f = $_POST["password"];
     $d =$_POST["cpassword"];
 	$now = new DateTime('now', new DateTimeZone('Asia/Kuala_Lumpur'));
-    $currentDateTime = $now->format('d-m-Y H:i:s');
+    $currentDateTime = $now->format('Y-m-d H:i:s');
 
     $verify_query = mysqli_query($connect, "SELECT * FROM user_information WHERE email='$a'");
     if (mysqli_num_rows($verify_query) > 0) 
