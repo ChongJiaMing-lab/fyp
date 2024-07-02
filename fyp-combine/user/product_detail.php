@@ -225,7 +225,7 @@
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                                         </button>
                                                         <input class="input" type="text" id="quantity" name="quantity" size="2"
-                                                            value="1" />
+                                                            value="1" onchange="validateQuantity()" />
                                                         <input type="hidden" id="product_id" name="product_id"
                                                             value="<?php echo $row['product_id']; ?>" />
                                                         <button type="button" class="button btn-number btn-plus" data-type="plus"
@@ -246,27 +246,24 @@
                                         <span class="btn-add-cart">
                                             <?php if ($row['stock'] < 1): ?>
                                                 <input type="button" value="Out of Stock" class="button" disabled>
-                                            <?php else: 
-                                                if(isset($_GET['build']))
-                                                {
-                                                    if($_GET['build'] == 1){
+                                            <?php else:
+                                                if (isset($_GET['build'])) {
+                                                    if ($_GET['build'] == 1) {
                                                         ?>
-                                                    <a href="a_product.php?pid=<?php echo $row["product_id"]?>"><input type="button" value="Add Component" class="button"
-                                                    fdprocessedid="rfl2z"></a>
-                                                    <?php 
-                                                    } else if($_GET['build'] == 2)
-                                                    {?>
-                                                    <a href="customization-confirm.php"><input type="button" value="Back to PC Builder" class="button"
-                                                    fdprocessedid="rfl2z"></a>
+                                                        <a href="a_product.php?pid=<?php echo $row["product_id"] ?>"><input type="button"
+                                                                value="Add Component" class="button" fdprocessedid="rfl2z"></a>
+                                                    <?php
+                                                    } else if ($_GET['build'] == 2) { ?>
+                                                            <a href="customization-confirm.php"><input type="button" value="Back to PC Builder"
+                                                                    class="button" fdprocessedid="rfl2z"></a>
                                                     <?php }
-                                                }
-                                                else{ 
+                                                } else {
                                                     ?>
-                                                <input type="button" value="Add to Cart" class="button"
-                                                    onclick="addToCart('<?php echo $row['product_id']; ?>')" fdprocessedid="rfl2z">
-                                            <?php 
-                                                } 
-                                                endif; ?>
+                                                    <input type="button" value="Add to Cart" class="button"
+                                                        onclick="addToCart('<?php echo $row['product_id']; ?>')" fdprocessedid="rfl2z">
+                                                <?php
+                                                }
+                                            endif; ?>
                                         </span>
 
                                         <script>
@@ -313,13 +310,28 @@
                                                 var input = document.getElementById('quantity');
                                                 var currentValue = parseInt(input.value);
                                                 currentValue += change;
-                                                if (currentValue < 1) currentValue = 1;  
+                                                if (currentValue < 1) currentValue = 1;
                                                 if (currentValue > stockQuantity - cartQuantity) {
                                                     alert('Quantity exceeds available stock! Current stock: ' + (stockQuantity - cartQuantity));
                                                     currentValue = stockQuantity - cartQuantity;
                                                 }
                                                 input.value = currentValue;
                                             }
+
+                                            function validateQuantity() {
+                                                var input = document.getElementById('quantity');
+                                                var currentValue = parseInt(input.value);
+                                                if (isNaN(currentValue) || currentValue < 1) {
+                                                    alert('Quantity cannot be less than 1');
+                                                    currentValue = 1;
+                                                }
+                                                if (currentValue > stockQuantity - cartQuantity) {
+                                                    alert('Quantity exceeds available stock! Current stock: ' + (stockQuantity - cartQuantity));
+                                                    currentValue = stockQuantity - cartQuantity;
+                                                }
+                                                input.value = currentValue;
+                                            }
+
 
                                             function addToCart(product_id) {
                                                 var quantity = parseInt(document.getElementById('quantity').value);
@@ -348,7 +360,7 @@
                                                 getCartQuantity(product_id);
                                             });
 
-                                           
+
                                         </script>
 
                                     </div>
