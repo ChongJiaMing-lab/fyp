@@ -182,7 +182,7 @@ if (isset($_GET["ID"])) {
 							<!-- PASSWORD -->
 							<div class="field">
 								<label class="label">
-									Old password</label>
+									Current password</label>
 								<div class="field has-addons">
 									<div class="control addon-fix">
 										<input id="old_pw" type="password" class="input " name="password1" value=""
@@ -241,7 +241,7 @@ if (isset($_GET["ID"])) {
 											var passwordInput = document.getElementsByName("password")[0];
 											var eyeIcon = document.querySelector(".view-password i");
 
-
+											
 											if (passwordInput.type === "password") {
 												passwordInput.type = "text";
 												eyeIcon.classList.remove("mdi-eye-off");
@@ -256,7 +256,7 @@ if (isset($_GET["ID"])) {
 								</script>
 								<div class="newpw_require">
 									<ul>
-										<li class="letter"><span></span>1letter</li>
+										<li class="letter"><span></span>1 letter</li>
 										<li class="num"><span></span>1 number</li>
 										<li class="special"><span></span>1 special character</li>
 										<li class="15_len"><span></span>15 characters</li>

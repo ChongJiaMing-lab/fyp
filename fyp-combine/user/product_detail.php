@@ -313,7 +313,7 @@
                                                 var input = document.getElementById('quantity');
                                                 var currentValue = parseInt(input.value);
                                                 currentValue += change;
-                                                if (currentValue < 1) currentValue = 1;  // Prevent negative quantities
+                                                if (currentValue < 1) currentValue = 1;  
                                                 if (currentValue > stockQuantity - cartQuantity) {
                                                     alert('Quantity exceeds available stock! Current stock: ' + (stockQuantity - cartQuantity));
                                                     currentValue = stockQuantity - cartQuantity;
