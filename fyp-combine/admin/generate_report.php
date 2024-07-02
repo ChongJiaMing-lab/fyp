@@ -253,12 +253,12 @@ if (isset($_POST["order_receipt"])) {
         $voucher = $check_voucher["voucher_id"];
         $select_v = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher WHERE voucher_id ='$voucher'"));
         $voucher_rate = $select_v["v_rate"];
-        $subtotal = $row["total_amount"] * (1 - $voucher_rate);
+        $subtotal = $row["total_amount"] / (1 - $voucher_rate);
     } else {
         $subtotal = $row["total_amount"];
     }
     $mid = $row["total_amount"] - $subtotal;
-    $subtotal = $mid + $row["total_amount"];
+    // $subtotal = $mid + $row["total_amount"];
     $pdf->Cell(109 + 17 + 28, 10, "Sub-total(" . $total_qty . " items)", 'L,B,R', 0, 'R');
     $pdf->Cell(35, 10, number_format($subtotal, 2), 'R,B', 1, 'R');
     $pdf->Cell(109 + 17 + 28, 10, "Voucher(" . number_format(($voucher_rate * 100), 2) . "%)", 'L,B,R', 0, 'R');
