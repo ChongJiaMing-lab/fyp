@@ -205,7 +205,7 @@
 												</div>
 												<div class="new_require">
 													<ul>
-														<li class="6_len"><span></span>Should have 6 characters</li>
+														<li class="6_len"><span></span>6 characters</li>
 													</ul>
 												</div>
 											</div>
@@ -222,7 +222,7 @@
 											</div>
 											<div class="new_require">
 												<ul>
-													<li class="15_len2"><span></span>Should have 10 number</li>
+													<li class="15_len2"><span></span>10 number(EXP:0XX-XXXXXXX)</li>
 												</ul>
 											</div>
 										</div>
@@ -389,17 +389,13 @@
 		})
 
 		$('#telephone').on('keyup', function () {
-
-			telephone_value = $(this).val();
-			if (telephone_value.length == 10 || telephone_value.length > 10) {
-				$('.15_len2').addClass('active');
-			}
-			else {
-				$('.15_len2').removeClass('active');
-			}
-
-
-		})
+						telephone_value = $(this).val();
+						if (telephone_value.match(/^0\d{2}-\d{7,8}$/)) {
+							$('.15_len2').addClass('active');
+						} else {
+							$('.15_len2').removeClass('active');
+						}
+					});
 
 		$('#postcode').on('keyup', function () {
 			let postcode_value = $(this).val();
