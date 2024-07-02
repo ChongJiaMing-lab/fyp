@@ -213,14 +213,14 @@
 
 											<div class="field-group">
 
-											<div class="field">
+												<div class="field">
 													<label class="label">
 														Email </label>
 													<div class="control">
 														<input type="text" name="name" id="name" class="input txt-data"
-															value="<?php echo $row['email'] ?> "readonly />
+															value="<?php echo $row['email'] ?> " readonly />
 													</div>
-													
+
 												</div>
 
 												<!--  NAME -->
@@ -328,17 +328,13 @@
 
 
 					$('#telephone').on('keyup', function () {
-
 						telephone_value = $(this).val();
-						if (telephone_value.length == 10 || telephone_value.length > 10) {
+						if (telephone_value.match(/^0\d{2}-\d{7,8}$/)) {
 							$('.15_len2').addClass('active');
-						}
-						else {
+						} else {
 							$('.15_len2').removeClass('active');
 						}
-
-
-					})
+					});
 
 					$('#btn_submit').on("click", function (e) {
 						e.preventDefault();

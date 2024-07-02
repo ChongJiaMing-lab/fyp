@@ -196,7 +196,7 @@
 									</div>
 									<div class="newpw_require">
 										<ul>
-											<li class="6_len"><span></span>Should have 6 characters</li>
+											<li class="6_len"><span></span>6 characters</li>
 										</ul>
 									</div>
 								</div>
@@ -208,7 +208,7 @@
 									<div class="newpw_require">
 										<ul>
 
-											<li class="15_len2"><span></span>Should have 10 number</li>		
+											<li class="15_len2"><span></span>10 number(EXP:0XX-XXXXXXX)</li>
 
 										</ul>
 									</div>
@@ -252,10 +252,10 @@
 										</script>
 										<div class="newpw_require">
 											<ul>
-												<li class="letter"><span></span>Should have one letter</li>
-												<li class="num"><span></span>Should have one number</li>
-												<li class="special"><span></span> Should have one special character</li>
-												<li class="14_len"><span></span>At least 15 characters</li>
+												<li class="letter"><span></span>1 letter</li>
+												<li class="num"><span></span>1 number</li>
+												<li class="special"><span></span>1 special character</li>
+												<li class="14_len"><span></span>15 characters</li>
 											</ul>
 										</div>
 									</div>
@@ -281,7 +281,7 @@
 									</div>
 									<div class="newpw_require">
 										<ul>
-											
+
 										</ul>
 									</div>
 								</div>
@@ -294,7 +294,7 @@
 
 									</div>
 								</div>
-								</div>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -324,13 +324,13 @@
 		</script>
 
 	</section>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 	<script>
-		 function validateEmail(email) 
-		 {
-            var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            return re.test(email);
-        }
+		function validateEmail(email) {
+			var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+			return re.test(email);
+		}
 
 		$('#email').on('keyup', function () {
 
@@ -374,17 +374,13 @@
 
 
 		$('#telephone').on('keyup', function () {
-
 			telephone_value = $(this).val();
-			if (telephone_value.length == 10 || telephone_value.length > 10) {
+			if (telephone_value.match(/^0\d{2}-\d{7,8}$/)) {
 				$('.15_len2').addClass('active');
-			}
-			else {
+			} else {
 				$('.15_len2').removeClass('active');
 			}
-
-
-		})
+		});
 
 		$('#pw_valid').on('keyup', function () {
 			pw_valid_value = $(this).val();
@@ -413,7 +409,7 @@
 			}
 
 
-			if (pw_valid_value.length > 14 ) {
+			if (pw_valid_value.length >= 14) {
 				$('.14_len').addClass('active');
 			}
 			else {
@@ -421,7 +417,7 @@
 			}
 		})
 
-		
+
 
 		$('#btn_submit').on("click", function (e) {
 			e.preventDefault();

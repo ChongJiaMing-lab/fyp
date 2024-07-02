@@ -256,9 +256,9 @@ if (isset($_GET["ID"])) {
 								</script>
 								<div class="newpw_require">
 									<ul>
-										<li class="letter"><span></span>one letter</li>
-										<li class="num"><span></span>one number</li>
-										<li class="special"><span></span>one special character</li>
+										<li class="letter"><span></span>1letter</li>
+										<li class="num"><span></span>1 number</li>
+										<li class="special"><span></span>1 special character</li>
 										<li class="15_len"><span></span>15 characters</li>
 									</ul>
 								</div>
@@ -363,7 +363,7 @@ if (isset($_GET["ID"])) {
 			}
 
 
-			if (pw_valid_value.length == 15 || pw_valid_value.length > 8) {
+			if (pw_valid_value.length >13) {
 				$('.15_len').addClass('active');
 			}
 			else {
