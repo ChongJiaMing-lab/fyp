@@ -11,7 +11,7 @@ if(isset($_POST["save_staff"]))
     $email = $_POST["email"];
     $pw = $_POST["id"];
     $tel = $_POST["tel"];
-    $jt = date("d/m/Y");
+    $jt = date("Y-m-d");
     $status = '1';
     $insert = "INSERT INTO staff(admin_id, full_name, staff_email, staff_pw, staff_tel, sa, joined_time, staff_status)
                 values('$id','$name', '$email', '$pw', '$tel', '0', '$jt', '$status')";

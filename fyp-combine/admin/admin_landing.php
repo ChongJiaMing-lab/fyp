@@ -404,6 +404,8 @@ $price_arr = array_values($sales_by_day);
     endOfWeek.setDate(startOfWeek.getDate() + 6);
     chart.options.scales.x.min = startOfWeek.toISOString().split('T')[0];
     chart.options.scales.x.max = endOfWeek.toISOString().split('T')[0];
+    console.log(chart.options.scales.x.min);
+    console.log( chart.options.scales.x.max);
     chart.update();
   });
 
@@ -416,6 +418,8 @@ $price_arr = array_values($sales_by_day);
     endOfPreviousWeek.setDate(startOfPreviousWeek.getDate() + 6);
     chart.options.scales.x.min = startOfPreviousWeek.toISOString().split('T')[0];
     chart.options.scales.x.max = endOfPreviousWeek.toISOString().split('T')[0];
+    console.log(chart.options.scales.x.min);
+    console.log( chart.options.scales.x.max);
     chart.update();
   });
 

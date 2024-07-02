@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php include 'databaseconnect.php'; ?>
 <?php
-    $check_feedback = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM feedback WHERE `read` = '0'"));
+$check_feedback = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM feedback WHERE `read` = '0'"));
 
 ?>
 <!DOCTYPE html>
@@ -26,26 +26,32 @@
 </head>
 
 <style>
-    .sidebar-item span{
-        position:relative;
-        bottom:3px;
+    .sidebar-item span {
+        position: relative;
+        bottom: 3px;
     }
 </style>
+
 <body>
     <?php
-    //if(!isset($_SESSION["admin_id"]))
-//{
-    ?>
-    <!--<form action="admin_login.php">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert"
-            style="margin: auto auto auto auto;width:50%;">
-            <strong>Hey!</strong>You should login first before you enter admin panel !
-            <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </form> -->
-    <?php
-    //exit();
-//}
+    if (!isset($_SESSION["admin_id"])) {
+        ?>
+        <script>
+            Swal.fire({
+                position: "middle",
+                icon: "warning",
+                title: "You are required to login first",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+            });
+            setTimeout(function () {
+                window.location.href = "admin_login.php";
+            }, 2200);
+        </script>
+        <?php
+        exit();
+    }
     ?>
     <?php
     if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
@@ -173,10 +179,10 @@
                         <i class="lni lni-comments"></i>
                         <span>Feedback</span>
                         <?php
-                        if($check_feedback > 0){ ?>
-                         <span class="badge bg-danger rounded-pill"><?php echo $check_feedback?></span>
+                        if ($check_feedback > 0) { ?>
+                            <span class="badge bg-danger rounded-pill"><?php echo $check_feedback ?></span>
 
-                        <?php
+                            <?php
                         }
                         ?>
                     </a>

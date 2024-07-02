@@ -71,7 +71,11 @@
 
     #check_price,
     #check_stock,
-    #check_i, #check_name, #check_type, #check_desc {
+    #check_i,
+    #check_name,
+    #check_type,
+    #check_cate,
+    #check_desc {
         color: red;
         font-size: 0.9em;
     }
@@ -106,27 +110,58 @@
         var d =document.p_form.desc.value;
         var price = document.p_form.price.value;
         var qty = document.p_form.qty.value;
+        var c = document.p_form.category.value;
         
+        if(c == "")
+        {
+            document.getElementById("check_cate").innerHTML="Select at least one category";
+            no_error = false;
+        }
+        else
+        {
+            document.getElementById("check_cate").innerHTML="";
+        }
+
         if(i == "")
         {
             document.getElementById("check_i").innerHTML="Product image is required";
             no_error = false;
         }
+        else
+        {
+            document.getElementById("check_i").innerHTML="";
+        }
+
         if(n == "")
         {
             document.getElementById("check_name").innerHTML="Please enter product name";
             no_error = false;
         }
+        else
+        {
+            document.getElementById("check_name").innerHTML="";
+        }
+
         if(type == "")
         {
             document.getElementById("check_type").innerHTML="Please choose one";
             no_error = false;
         }
+        else
+        {
+            document.getElementById("check_type").innerHTML="";
+        }
+
         if(d == "")
         {
             document.getElementById("check_desc").innerHTML="Please enter product description";
             no_error = false;
         }
+        else
+        {
+            document.getElementById("check_desc").innerHTML="";
+        }
+
         if (price == "")
         {
             document.getElementById("check_price").innerHTML="Please enter a price";
@@ -139,9 +174,16 @@
                 document.getElementById("check_price").innerHTML = "Please enter a valid price (00.00)";
                 no_error = false;
             }
-            else
-            {
-                document.getElementById("check_price").innerHTML="";
+            else{
+                if(price < 1)
+                {
+                    document.getElementById("check_price").innerHTML = "The price must be at least RM1";
+                    no_error = false;
+                }
+                else
+                {
+                    document.getElementById("check_price").innerHTML="";
+                }
             }
         }
         
@@ -159,7 +201,15 @@
             }
             else
             {
-                document.getElementById("check_stock").innerHTML="";
+                if(qty < 1)
+                {
+                    document.getElementById("check_stock").innerHTML="The stock must be at least 1";
+                    no_error = false;
+                }
+                else
+                {
+                    document.getElementById("check_price").innerHTML="";
+                }
             }
         }
         
@@ -347,6 +397,7 @@
                                         <select class="form-select" id="category" aria-label="Default select example"
                                             name="cate" required></select>
                                     </div>
+                                    <span id="check_cate"></span>
                                 </div>
 
                                 <script>
@@ -553,7 +604,7 @@
                                                                         <label style="margin-right:5px;">
                                                                             <b>Category</b>
                                                                         </label>
-                                                                        <?php echo str_replace("_", " ", $row['category']);  ?>
+                                                                        <?php echo str_replace("_", " ", $row['category']); ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="v_right" style="margin-left:22px;">
@@ -620,7 +671,7 @@
                                     </td>
 
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
-                                        <?php echo str_replace("_", " ", $row['category']);  ?>
+                                        <?php echo str_replace("_", " ", $row['category']); ?>
                                     </td>
 
                                     <td data-bs-toggle="modal" data-bs-target="#v<?php echo $row["product_id"]; ?>">
@@ -743,7 +794,7 @@
                                                                     <select class="form-select"
                                                                         id="edit-category<?php echo $row["product_id"]; ?>"
                                                                         aria-label="Default select example" name="cate">
-                                                                  <?php
+                                                                        <?php
                                                                         $selected_cate = $row["category"];
                                                                         $select = mysqli_query($connect, "SELECT * FROM category where category = '$selected_cate'");
                                                                         while ($rowc = mysqli_fetch_assoc($select)) {
