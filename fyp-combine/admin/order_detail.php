@@ -275,11 +275,11 @@ include 'databaseconnect.php';
                         $voucher = $check_voucher["voucher_id"];
                         $select_v = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM voucher WHERE voucher_id ='$voucher'"));
                         $voucher_rate = $select_v["v_rate"];
-                        $subtotal = $row["total_amount"] * (1 - $voucher_rate);
+                        $subtotal = $row["total_amount"] / (1 - $voucher_rate);
                     } else {
                         $subtotal = $row["total_amount"];
                     }
-                    $mid = $row["total_amount"] - $subtotal;
+                    $mid = $subtotal - $row["total_amount"];
                     $subtotal = $mid + $row["total_amount"];
                     ?>
                     <tr>
