@@ -132,15 +132,34 @@
             document.getElementById("check_i").innerHTML="";
         }
 
-        if(n == "")
-        {
-            document.getElementById("check_name").innerHTML="Product name is required";
+        function validate_name() {
+        return new Promise((resolve, reject) => {
+          if (n == "") {
+            document.getElementById("check_name").innerHTML = "Product name is required";
             no_error = false;
-        }
-        else
-        {
-            document.getElementById("check_name").innerHTML="";
-        }
+            resolve();
+          } 
+        else {
+            $.ajax({
+              url: 'run_query.php',
+              method: 'POST',
+              data: { p_n: n },
+              success: function (response) {
+                if (response.trim() === "exists") {
+                  document.getElementById("check_name").innerHTML = "THis product name is already taken";
+                  no_error = false;
+                } else {
+                  document.getElementById("check_name").innerHTML = "";
+                }
+                resolve();
+              },
+              error: function () {
+                reject();
+              }
+            });
+          }
+        });
+      }
 
         if(type == "")
         {
@@ -201,22 +220,26 @@
             }
             else
             {
-                if(qty < 1)
+                if(qty < 0)
                 {
-                    document.getElementById("check_stock").innerHTML="The stock must be at least 1";
+                    document.getElementById("check_stock").innerHTML="The stock can't be negative";
                     no_error = false;
                 }
                 else
                 {
-                    document.getElementById("check_price").innerHTML="";
+                    document.getElementById("check_stock").innerHTML="";
                 }
             }
         }
         
-    if(no_error == false)
-        event.preventDefault();
-    else
-        document.getElementById("p_form").submit();
+        
+        validate_name().then(() => {
+        if (no_error) {
+          document.getElementById("p_form").submit();
+        }
+      }).catch(() => {
+        console.error("An error occurred during ID validation.");
+      });
     }
     </script>
 
@@ -703,29 +726,75 @@
                             </form>
                             <td class="button-action">
 
-                            <script>
-                            function add_check<?php echo $row['product_id'] ?>()  
-                            {
-                                event.preventDefault();
-                                var no_error = true;
+                                <script>
+                                    function add_check<?php echo $row['product_id'] ?>() {
+                                        event.preventDefault();
+                                        var no_error = true;
 
-                                var n = document.e_form<?php echo $row['product_id'] ?>.product_name<?php echo $row['product_id']?>.value;
+                                        var n = document.e_form<?php echo $row['product_id'] ?>.product_name<?php echo $row['product_id'] ?>.value;
+                                        var d = document.e_form<?php echo $row['product_id'] ?>.desc<?php echo $row['product_id'] ?>.value;
+                                        var price = document.e_form<?php echo $row['product_id'] ?>.price<?php echo $row['product_id'] ?>.value;
+                                        var qty = document.e_form<?php echo $row['product_id'] ?>.qty<?php echo $row['product_id'] ?>.value;
+                                        if (n == "") {
+                                            document.getElementById("check_name<?php echo $row['product_id'] ?>").innerHTML = "Product name is required";
+                                            no_error = false;
+                                        }
+                                        else {
+                                            document.getElementById("check_name<?php echo $row['product_id'] ?>").innerHTML = "";
+                                        }
 
-                                if (n == "") 
-                                {
-                                    document.getElementById("edit_p_name<?php echo $row['product_id']?>").innerHTML = "Product name is required";
-                                    no_error = false;
-                                } 
-                                else 
-                                {
-                                    document.getElementById("edit_p_name<?php echo $row['product_id']?>").innerHTML = "";
-                                }
+                                        if (d == "") {
+                                            document.getElementById("check_desc<?php echo $row['product_id'] ?>").innerHTML = "Product description is required";
+                                            no_error = false;
+                                        }
+                                        else {
+                                            document.getElementById("check_desc<?php echo $row['product_id'] ?>").innerHTML = "";
+                                        }
 
-                                if (no_error) {
-                                    document.getElementById("e_form<?php echo $row['product_id']?>").submit();
-                                }
-                            }
-                            </script>
+                                        if (price == "") {
+                                            document.getElementById("check_price<?php echo $row['product_id'] ?>").innerHTML = "Price is required";
+                                            no_error = false;
+                                        }
+                                        else {
+                                            if (isNaN(price)) {
+                                                document.getElementById("check_price<?php echo $row['product_id'] ?>").innerHTML = "Please enter a valid price (00.00)";
+                                                no_error = false;
+                                            }
+                                            else {
+                                                if (price < 1) {
+                                                    document.getElementById("check_price<?php echo $row['product_id'] ?>").innerHTML = "The price must be at least RM1";
+                                                    no_error = false;
+                                                }
+                                                else {
+                                                    document.getElementById("check_price<?php echo $row['product_id'] ?>").innerHTML = "";
+                                                }
+                                            }
+                                        }
+
+                                        if (qty == "") {
+                                            document.getElementById("check_stock<?php echo $row['product_id'] ?>").innerHTML = "Stock is required";
+                                            no_error = false;
+                                        }
+                                        else {
+                                            if (isNaN(qty)) {
+                                                document.getElementById("check_stock<?php echo $row['product_id'] ?>").innerHTML = "Please enter a valid stock";
+                                                no_error = false;
+                                            }
+                                            else {
+                                                if (qty < 0) {
+                                                    document.getElementById("check_stock<?php echo $row['product_id'] ?>").innerHTML = "The stock can't be negative";
+                                                    no_error = false;
+                                                }
+                                                else {
+                                                    document.getElementById("check_stock<?php echo $row['product_id'] ?>").innerHTML = "";
+                                                }
+                                            }
+                                        }
+                                        if (no_error) {
+                                            document.getElementById("e_form<?php echo $row['product_id'] ?>").submit();
+                                        }
+                                    }
+                                </script>
                                 <!-- _____________________________________EDIT__________________________________________-->
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
@@ -752,11 +821,12 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group mb-4">
                                                                     <label for="prodcuct_title">Product:</label>
-                                                                    <input type="text" class="form-control" name="product_name<?php echo $row['product_id']?>"
+                                                                    <input type="text" class="form-control"
+                                                                        name="product_name<?php echo $row['product_id'] ?>"
                                                                         placeholder="product name"
                                                                         value="<?php echo $row["product_name"] ?>">
-                                                                        <span id="edit_p_name<?php echo $row['product_id']?>"></span>
-
+                                                                    <span id="check_name<?php echo $row['product_id'] ?>" style="color: red;
+                                                                    font-size: 0.9em;"></span>
                                                                 </div>
                                                             </div>
                                                             <!-- brand -->
@@ -862,8 +932,9 @@
                                                                         <textarea class="form-control"
                                                                             id="exampleFormControlTextarea1" rows="3"
                                                                             placeholder="product description"
-                                                                            name="desc"><?php echo $row["product_desc"] ?></textarea>
-                                                                        <span id="check_desc"></span>
+                                                                            name="desc<?php echo $row['product_id'] ?>"><?php echo $row["product_desc"] ?></textarea>
+                                                                        <span id="check_desc<?php echo $row['product_id'] ?>"
+                                                                            style="color: red; font-size: 0.9em;"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -884,21 +955,27 @@
                                                                     <label class="form-label" for="price">Price:</label>
                                                                     <div class="input-group mb-3">
                                                                         <span class="input-group-text">RM</span>
-                                                                        <input type="text" class="form-control" id="price"
-                                                                            name="price" value="<?php echo $row["price"] ?>">
+                                                                        <input type="text" class="form-control"
+                                                                            id="price<?php echo $row['product_id'] ?>"
+                                                                            name="price<?php echo $row['product_id'] ?>"
+                                                                            value="<?php echo $row["price"] ?>">
                                                                     </div>
-                                                                    <span id="check_price"></span>
+                                                                    <span id="check_price<?php echo $row['product_id'] ?>"
+                                                                        style="color: red; font-size: 0.9em;"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group mb-4">
                                                                     <label class="form-label" for="qty">Stock:</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control" id="qty"
-                                                                            name="qty" value="<?php echo $row["stock"] ?>">
+                                                                        <input type="text" class="form-control"
+                                                                            id="qty<?php echo $row['product_id'] ?>"
+                                                                            name="qty<?php echo $row['product_id'] ?>"
+                                                                            value="<?php echo $row["stock"] ?>">
                                                                         <span class="input-group-text">pcs</span>
                                                                     </div>
-                                                                    <span id="check_stock"></span>
+                                                                    <span id="check_stock<?php echo $row['product_id'] ?>"
+                                                                        style="color: red; font-size: 0.9em;"></span>
                                                                 </div>
                                                             </div>
                                                             <input type="hidden" name="product_id"

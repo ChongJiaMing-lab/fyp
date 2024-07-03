@@ -38,7 +38,6 @@ else if(isset($_POST["save_peri"]))
         $_SESSION['msg'] = "Failed to add Peripheral :(";
         header("location: admin_peri.php");
     }
-    
 }
 else if(isset($_POST["save_pc"]))
 {

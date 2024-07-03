@@ -79,6 +79,19 @@ if (isset($_POST['b'])) {
         echo "not_exists";
     }
 }
+
+//check add_product name
+if (isset($_POST['p_n'])) {
+    $p_n = $_POST['p_n'];
+    $c_c = "SELECT * FROM product WHERE product_name = '$p_n'";
+    $result = mysqli_query($connect, $c_c);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "exists";
+    } else {
+        echo "not_exists";
+    }
+}
 //order date range filter
 if (isset($_POST['order']) || isset($_POST['f1']) || isset($_POST['f2']) || isset($_POST['from']) || isset($_POST['to'])) {
 

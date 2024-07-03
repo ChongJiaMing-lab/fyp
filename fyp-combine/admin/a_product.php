@@ -66,18 +66,21 @@ if (isset($_GET["product_id"])) {
 //edit product
 if (isset($_POST["edit_product"])) {
     $id = $_POST["product_id"];
-    $pd = $_POST["product_name"];
-    $pd .= $id;
+    $pd = 'product_name'.$id;
+    $pd = $_POST["$pd"];
     $b = $_POST["brand"];
     $type = $_POST["edit-radio"];
     $c = $_POST["cate"];
-    $d = $_POST["desc"];
+    $d = 'desc'.$id;
+    $d = $_POST["$d"];
     if (empty($_POST["img"]))
         $img = $_POST["old-img"];
     else
         $img = $_POST["img"];
-    $price = $_POST["price"];
-    $qty = $_POST["qty"];
+    $price = 'price'.$id;
+    $price = $_POST["$price"];
+    $qty = 'qty'.$id;
+    $qty = $_POST["$qty"];
 
     $update = "UPDATE product SET category_id='$c',brand_id='$b',product_name='$pd',
                 product_desc='$d',image='$img',price='$price', stock='$qty',product_type='$type' WHERE product_id = '$id'";

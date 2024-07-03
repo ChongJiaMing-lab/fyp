@@ -13,6 +13,24 @@ if(isset($_POST["save_staff"]))
     $tel = $_POST["tel"];
     $jt = date("Y-m-d");
     $status = '1';
+    $check_email = mysqli_query($connect, "SELECT * FROM staff WHERE staff_email = '$email'");
+    if(mysqli_num_rows($check_email) > 0)
+    {
+        $_SESSION['title'] = "The email is already taken";
+        $_SESSION['text'] = "$email";
+        $_SESSION['icon'] = "warning";
+        header("location: admin_staff.php");
+        exit();
+    }
+    $check_tel = mysqli_query($connect, "SELECT * FROM staff WHERE staff_tel = '$tel'");
+    if(mysqli_num_rows($check_tel) > 0)
+    {
+        $_SESSION['title'] = "The telephone number is already taken";
+        $_SESSION['text'] = "$tel";
+        $_SESSION['icon'] = "warning";
+        header("location: admin_staff.php");
+        exit();
+    }
     $insert = "INSERT INTO staff(admin_id, full_name, staff_email, staff_pw, staff_tel, sa, joined_time, staff_status)
                 values('$id','$name', '$email', '$pw', '$tel', '0', '$jt', '$status')";
     $insert_run = mysqli_query($connect, $insert);

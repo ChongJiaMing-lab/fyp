@@ -18,69 +18,86 @@
       var email = document.s_form.email.value;
       var tel = document.s_form.tel.value;
 
-      if (id == "") {
-        document.getElementById("check_id").innerHTML = "Please enter an ID";
-        no_error = false;
-      } else {
-        if (id.length < 5) {
-          document.getElementById("check_id").innerHTML = "ID must be at least 5 characters long";
+      function validateId() {
+        return new Promise((resolve, reject) => {
+          if (id == "") {
+            document.getElementById("check_id").innerHTML = "Please enter an ID";
+            no_error = false;
+            resolve();
+          } else if (id.length < 5) {
+            document.getElementById("check_id").innerHTML = "ID must be at least 5 characters long";
+            no_error = false;
+            resolve();
+          } else {
+            $.ajax({
+              url: 'run_query.php',
+              method: 'POST',
+              data: { id_r: id },
+              success: function (response) {
+                if (response.trim() === "exists") {
+                  document.getElementById("check_id").innerHTML = "ID is already taken";
+                  no_error = false;
+                } else {
+                  document.getElementById("check_id").innerHTML = "";
+                }
+                resolve();
+              },
+              error: function () {
+                reject();
+              }
+            });
+          }
+        });
+      }
+
+      function validateName() {
+        if (name == "") {
+          document.getElementById("check_full").innerHTML = "Please enter full name";
           no_error = false;
         } else {
-          $.ajax({
-            url: 'run_query.php',
-            method: 'POST',
-            data: { id_r: id },
-            success: function (response) {
-              if (response.trim() === "exists") {
-                document.getElementById("check_id").innerHTML = "ID is already taken";
-                no_error = false;
-              } else {
-                document.getElementById("check_id").innerHTML = "";
-              }
-            }
-          });
+          document.getElementById("check_full").innerHTML = "";
         }
       }
 
-      if (name == "") {
-        document.getElementById("check_full").innerHTML = "Please enter full name";
-        no_error = false;
-      }
-      else {
-        document.getElementById("check_full").innerHTML = "";
-      }
-
-      var email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email == "") {
-        document.getElementById("check_e").innerHTML = "Please enter email";
-        no_error = false;
-      }
-      else {
-        if (!email_regex.test(email)) {
+      function validateEmail() {
+        var email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email == "") {
+          document.getElementById("check_e").innerHTML = "Please enter email";
+          no_error = false;
+        } else if (!email_regex.test(email)) {
           document.getElementById("check_e").innerHTML = "Please enter a valid email";
           no_error = false;
-        }
-        else {
+        } else {
           document.getElementById("check_e").innerHTML = "";
         }
       }
 
-      var tel_regex = /^\d{3}-\d{6,7}$/;
-      if (tel == "") {
-        document.getElementById("check_num").innerHTML = "Please enter a telephone number";
-        no_error = false;
-      } else {
-        if (!tel_regex.test(tel)) {
+      function validateTel() {
+        var tel_regex = /^\d{3}-\d{6,7}$/;
+        if (tel == "") {
+          document.getElementById("check_num").innerHTML = "Please enter a telephone number";
+          no_error = false;
+        } else if (!tel_regex.test(tel)) {
           document.getElementById("check_num").innerHTML = "Please enter a valid telephone number(01x-xxx...)";
           no_error = false;
         } else {
           document.getElementById("check_num").innerHTML = "";
         }
       }
-      if (no_error) {
-        document.getElementById("s_form").submit();
-      }
+
+      validateName();
+      validateEmail();
+      validateTel();
+
+      validateId().then(() => {
+        if (no_error) {
+          document.getElementById("s_form").submit();
+        }
+      }).catch(() => {
+        console.error("An error occurred during ID validation.");
+      });
     }
+
   </script>
   <style>
     table {
