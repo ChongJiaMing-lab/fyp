@@ -162,6 +162,14 @@
 
 			display: none;
 		}
+
+		.label-is-success::after {
+			content: "\F5E0";
+			font-size: 16px;
+			position: absolute;
+			right: 0;
+			color: #fff !important;
+		}
 	</style>
 
 
@@ -181,15 +189,16 @@
 				<div class="holder">
 					<div class="title">Edit my address</div>
 					<div class="add-form">
-					
-							<div class="myaccount-content form-utility">
-								<?php
-								$id = $_GET['ID'];
-								$query = "SELECT * FROM user_address WHERE address_id='$id'";
-								$result = mysqli_query($connect, $query);
-								if ($result) {
-									foreach ($result as $row) { ?>
-									<form id="form1" name="form1" method="post" action="upadate_editaddress.php?ID=<?php echo $id; ?>">
+
+						<div class="myaccount-content form-utility">
+							<?php
+							$id = $_GET['ID'];
+							$query = "SELECT * FROM user_address WHERE address_id='$id'";
+							$result = mysqli_query($connect, $query);
+							if ($result) {
+								foreach ($result as $row) { ?>
+									<form id="form1" name="form1" method="post"
+										action="upadate_editaddress.php?ID=<?php echo $id; ?>">
 										<div class="field-group">
 
 
@@ -245,7 +254,7 @@
 												</div>
 											</div>
 
-											<!-- ADDRESS 2 -->
+										
 
 
 
@@ -311,11 +320,11 @@
 
 
 										<?php
-									}
-								} else {
-									echo "no records found :(";
 								}
-								?>
+							} else {
+								echo "no records found :(";
+							}
+							?>
 
 
 								<!-- SUBMIT -->
@@ -324,7 +333,7 @@
 									<input type="submit" name="updatebtn" id="btn_submit" value="Save"
 										class="button btn-action" />
 								</div>
-							</div>
+						</div>
 						</form>
 					</div>
 				</div>
@@ -339,13 +348,13 @@
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 	<script>
 		$(document).ready(function () {
-			
+
 			checkName();
 			checkTelephone();
 			checkPostcode();
 		});
 
-		
+
 		function checkName() {
 			var name_value = $('#name').val();
 			if (name_value.length == 6 || name_value.length > 6) {
@@ -355,7 +364,7 @@
 			}
 		}
 
-	
+
 		function checkTelephone() {
 			var telephone_value = $('#telephone').val();
 			if (telephone_value.length == 10 || telephone_value.length > 10) {
@@ -389,13 +398,13 @@
 		})
 
 		$('#telephone').on('keyup', function () {
-						telephone_value = $(this).val();
-						if (telephone_value.match(/^0\d{2}-\d{7,8}$/)) {
-							$('.15_len2').addClass('active');
-						} else {
-							$('.15_len2').removeClass('active');
-						}
-					});
+			telephone_value = $(this).val();
+			if (telephone_value.match(/^0\d{2}-\d{7,8}$/)) {
+				$('.15_len2').addClass('active');
+			} else {
+				$('.15_len2').removeClass('active');
+			}
+		});
 
 		$('#postcode').on('keyup', function () {
 			let postcode_value = $(this).val();

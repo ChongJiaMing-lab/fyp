@@ -217,7 +217,7 @@
 													<label class="label">
 														Email </label>
 													<div class="control">
-														<input type="text" name="name" id="name" class="input txt-data"
+														<input type="text" name="name"  class="input txt-data"
 															value="<?php echo $row['email'] ?> " readonly />
 													</div>
 
@@ -228,7 +228,7 @@
 													<label class="label">
 														Name </label>
 													<div class="control">
-														<input type="text" name="name" id="name" class="input txt-data"
+														<input type="text" name="name" id="name" class="input txt-data" 
 															value="<?php echo $row['user_name'] ?>" />
 													</div>
 													<div class="new_require">

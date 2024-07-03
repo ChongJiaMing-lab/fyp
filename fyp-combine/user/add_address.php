@@ -237,7 +237,7 @@
 									<div id="address_1_display" class="field">
 										<label class="label ">
 											<span id="address_1-required" class="required"></span>
-											Address 1 </label>
+											Address </label>
 										<div class="control">
 											<input type="text" class="input " name="address_1" value="" />
 										</div>
