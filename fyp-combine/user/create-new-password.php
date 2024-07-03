@@ -201,10 +201,10 @@ date_default_timezone_set("Asia/Kuching");
 								</div>
 								<div class="newpw_require">
 									<ul>
-										<li class="letter"><span></span>At least one letter</li>
-										<li class="num"><span></span>At least one number</li>
-										<li class="special"><span></span>At least one special character</li>
-										<li class="15_len"><span></span>At least 15 characters</li>
+										<li class="letter"><span></span>1 letter</li>
+										<li class="num"><span></span>1 number</li>
+										<li class="special"><span></span>1 special character</li>
+										<li class="15_len"><span></span>15 characters</li>
 									</ul>
 								</div>
 							</div>
@@ -315,7 +315,7 @@ date_default_timezone_set("Asia/Kuching");
 			}
 
 
-			if (pw_valid_value.length == 15 || pw_valid_value.length > 8) {
+			if (pw_valid_value.length >13 ) {
 				$('.15_len').addClass('active');
 			}
 			else {
