@@ -152,6 +152,7 @@ if (isset($_POST["order_receipt"])) {
 
     while ($row_item = mysqli_fetch_assoc($item_run)) {
         if ($build_row > 0) {
+            $total_qty = 9;
             $build_id = $row_item["build_id"];
             $build = "SELECT * FROM pc_build WHERE build_id = '$build_id'";
             $build_run = mysqli_query($connect, $build);

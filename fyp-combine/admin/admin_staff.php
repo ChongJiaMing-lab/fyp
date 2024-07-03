@@ -73,7 +73,7 @@
       }
 
       function validateTel() {
-        var tel_regex = /^\d{3}-\d{6,7}$/;
+        var tel_regex = /^\d{3}-\d{6,7}$/; 
         if (tel == "") {
           document.getElementById("check_num").innerHTML = "Please enter a telephone number";
           no_error = false;
@@ -186,8 +186,8 @@
           <form action="a_staff.php" method="POST" id="s_form" name="s_form">
             <div class="modal-body">
               <div class="form-group mb-4">
-                <label>Staff ID</label>
-                <input type="text" class="form-control" placeholder="staff id" name="id" required>
+                <label>Admin ID</label>
+                <input type="text" class="form-control" placeholder="Admin id" name="id" required>
                 <span id="check_id" style="color: red;"></span>
               </div>
               <div class="form-group mb-4">
