@@ -11,7 +11,7 @@ $id = $_SESSION['ID'];
             
                     if($r2['point']<$r1['point_cost'])
                     {
-                        $_SESSION['v_alert'] = "<script>alert('You dont have enought point!')</script>";
+                        $_SESSION['v_alert'] = "<script>alert('You don't have enough point')</script>";
                         header("Location:main_page.php");
                     }
                     else{
