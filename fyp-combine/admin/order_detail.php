@@ -104,8 +104,8 @@ include 'databaseconnect.php';
             <?php if ($build_row > 0) {
                 ?>
                 <h2 style="font-weight:bold">***BUILD PC***</h2>
-            <?php
-            }?>
+                <?php
+            } ?>
             <h1>Item(s)</h1>
             <table class="table table-striped" style="padding:10px;">
                 <thead>
@@ -123,13 +123,13 @@ include 'databaseconnect.php';
                             $build_id = $row_item["build_id"];
                             $build = "SELECT * FROM pc_build WHERE build_id = '$build_id'";
                             $build_run = mysqli_query($connect, $build);
-                            
+
                             $col_build = mysqli_fetch_assoc($build_run);
                             ?>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['chassis']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['chassis'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -140,9 +140,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['motherboard']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['motherboard'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -153,9 +153,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['processor']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['processor'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -166,9 +166,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['graphic_card']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['graphic_card'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -179,9 +179,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['ram1']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['ram1'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -192,9 +192,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['ram2']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['ram2'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -205,9 +205,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['memory']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['memory'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -218,9 +218,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['cooler']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['cooler'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -231,9 +231,9 @@ include 'databaseconnect.php';
                                 </td>
                             </tr>
                             <tr>
-                            <?php
-                            $col_build_id = $col_build['power_supply']; 
-                            $build_col = mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM product WHERE product_id = '$col_build_id'"));?>
+                                <?php
+                                $col_build_id = $col_build['power_supply'];
+                                $build_col = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM product WHERE product_id = '$col_build_id'")); ?>
                                 <th scope="row"><img src="../image/<?php echo $build_col["image"]; ?>"
                                         style="width:120px; height:auto;">
                                     &nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $build_col["product_name"] ?></th>
@@ -243,7 +243,7 @@ include 'databaseconnect.php';
                                 <td>RM<?php echo number_format($total, 2); ?>
                                 </td>
                             </tr>
-                        <?php
+                            <?php
                         } else {
                             $cart_id = $row_item["cart_id"];
                             $cart = "SELECT * FROM cart WHERE cart_id = '$cart_id'";
@@ -311,12 +311,13 @@ include 'databaseconnect.php';
                 <div>
                     <form action="" method="POST">
                         <div class="input-group" style="width: 100%; display:flex;">
-                            <select name="status" id="mySelect" class="form-select" onchange="myFunction()">
-                                <option selected>Update order status</option>
+                            <select name="status" id="mySelect" class="form-select" onchange="myFunction()"
+                                placeholder="Update order status">
+                                <option selected disabled>Update order status</option>
                                 <option value="Processing">Processing</option>
                                 <option value="Shipping">Shipping</option>
                                 <option value="Completed">Completed</option>
-                                <option value="Cancelled">Cancelled</option>
+                                <!-- <option value="Cancelled">Cancelled</option> -->
                             </select>
                             <button type="submit" name="update_order" id="btn" class="btn btn-primary text-white"
                                 disabled>Update</button>
