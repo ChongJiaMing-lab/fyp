@@ -67,6 +67,7 @@ if (isset($_GET["product_id"])) {
 if (isset($_POST["edit_product"])) {
     $id = $_POST["product_id"];
     $pd = $_POST["product_name"];
+    $pd .= $id;
     $b = $_POST["brand"];
     $type = $_POST["edit-radio"];
     $c = $_POST["cate"];

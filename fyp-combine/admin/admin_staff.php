@@ -124,22 +124,22 @@
         <hr>
       </div>
       <?php
-        if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
-            ?>
-            <script>
-                Swal.fire({
-                    title: "<?php echo $_SESSION['title']; ?>",
-                    text: "<?php echo $_SESSION['text']; ?>",
-                    icon: "<?php echo $_SESSION['icon']; ?>"
-                });
-            </script>
-            <?php
-            unset($_SESSION['img']);
-            unset($_SESSION['title']);
-            unset($_SESSION['text']);
-            unset($_SESSION['icon']);
-        }
+      if (isset($_SESSION['title']) && $_SESSION['title'] != '') {
         ?>
+        <script>
+          Swal.fire({
+            title: "<?php echo $_SESSION['title']; ?>",
+            text: "<?php echo $_SESSION['text']; ?>",
+            icon: "<?php echo $_SESSION['icon']; ?>"
+          });
+        </script>
+        <?php
+        unset($_SESSION['img']);
+        unset($_SESSION['title']);
+        unset($_SESSION['text']);
+        unset($_SESSION['icon']);
+      }
+      ?>
       <div class="btns">
         <?php
         if (isset($_SESSION['sa']) && $_SESSION['sa'] == 1) {
@@ -240,8 +240,9 @@
               <td><?php echo $row["staff_email"]; ?></td>
               <td><?php echo $row["staff_tel"]; ?></td>
               <td><?php echo $row["joined_time"]; ?></td>
-              <?php if($row["staff_status"]==1){?> <td style="color:#0EAF09">Active</td><?php } 
-                        else{?> <td style="color:red;">Inactive</td><?php } ?>
+              <?php if ($row["staff_status"] == 1) { ?>
+                <td style="color:#0EAF09">Active</td><?php } else { ?>
+                <td style="color:red;">Inactive</td><?php } ?>
               <!-- 1 = active, 2 = unactive -->
               <?php if (isset($_SESSION['sa']) && $_SESSION['sa'] == 1) {
                 if ($row["staff_status"] == 1) {

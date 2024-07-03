@@ -114,7 +114,7 @@
         
         if(c == "")
         {
-            document.getElementById("check_cate").innerHTML="Select at least one category";
+            document.getElementById("check_cate").innerHTML="Select one category";
             no_error = false;
         }
         else
@@ -134,7 +134,7 @@
 
         if(n == "")
         {
-            document.getElementById("check_name").innerHTML="Please enter product name";
+            document.getElementById("check_name").innerHTML="Product name is required";
             no_error = false;
         }
         else
@@ -144,7 +144,7 @@
 
         if(type == "")
         {
-            document.getElementById("check_type").innerHTML="Please choose one";
+            document.getElementById("check_type").innerHTML="Select one type";
             no_error = false;
         }
         else
@@ -154,7 +154,7 @@
 
         if(d == "")
         {
-            document.getElementById("check_desc").innerHTML="Please enter product description";
+            document.getElementById("check_desc").innerHTML="Product description is required";
             no_error = false;
         }
         else
@@ -164,7 +164,7 @@
 
         if (price == "")
         {
-            document.getElementById("check_price").innerHTML="Please enter a price";
+            document.getElementById("check_price").innerHTML="Price is required";
             no_error = false;
         }
         else
@@ -189,7 +189,7 @@
         
         if (qty == "")
         {
-            document.getElementById("check_stock").innerHTML="Please enter a stock";
+            document.getElementById("check_stock").innerHTML="Stock is required";
             no_error = false;
         }
         else
@@ -702,6 +702,30 @@
                                     ?>
                             </form>
                             <td class="button-action">
+
+                            <script>
+                            function add_check<?php echo $row['product_id'] ?>()  
+                            {
+                                event.preventDefault();
+                                var no_error = true;
+
+                                var n = document.e_form<?php echo $row['product_id'] ?>.product_name<?php echo $row['product_id']?>.value;
+
+                                if (n == "") 
+                                {
+                                    document.getElementById("edit_p_name<?php echo $row['product_id']?>").innerHTML = "Product name is required";
+                                    no_error = false;
+                                } 
+                                else 
+                                {
+                                    document.getElementById("edit_p_name<?php echo $row['product_id']?>").innerHTML = "";
+                                }
+
+                                if (no_error) {
+                                    document.getElementById("e_form<?php echo $row['product_id']?>").submit();
+                                }
+                            }
+                            </script>
                                 <!-- _____________________________________EDIT__________________________________________-->
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
@@ -719,16 +743,20 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <!-- Modal body -->
-                                                <form id="p_form" action="a_product.php" method="POST">
+                                                <form id="e_form<?php echo $row['product_id'] ?>"
+                                                    name="e_form<?php echo $row['product_id'] ?>" action="a_product.php"
+                                                    method="POST">
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <!-- product title -->
                                                             <div class="col-md-12">
                                                                 <div class="form-group mb-4">
                                                                     <label for="prodcuct_title">Product:</label>
-                                                                    <input type="text" class="form-control" name="product_name"
+                                                                    <input type="text" class="form-control" name="product_name<?php echo $row['product_id']?>"
                                                                         placeholder="product name"
                                                                         value="<?php echo $row["product_name"] ?>">
+                                                                        <span id="edit_p_name<?php echo $row['product_id']?>"></span>
+
                                                                 </div>
                                                             </div>
                                                             <!-- brand -->
@@ -835,6 +863,7 @@
                                                                             id="exampleFormControlTextarea1" rows="3"
                                                                             placeholder="product description"
                                                                             name="desc"><?php echo $row["product_desc"] ?></textarea>
+                                                                        <span id="check_desc"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -876,10 +905,13 @@
                                                                 value="<?php echo $row["product_id"]; ?>">
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="edit_product">
                                                     <!-- Modal footer -->
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary"
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick="add_check<?php echo $row['product_id'] ?>()"
                                                             name="edit_product">Update</button>
+
                                                         <button type="button" class="btn btn-danger"
                                                             data-bs-dismiss="modal">Cancel</button>
                                                     </div>
