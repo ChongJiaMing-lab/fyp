@@ -334,10 +334,11 @@ if (isset($_POST["sales_report"])) {
     $total_amount_daily = 0;
     $final_amount = 0;
     $o_run = mysqli_query($connect, $query);
+    $pdf->SetFont("Arial", "B", "13");
+    $pdf->Cell(30, 6.5, "Date", 1, 0);
+    $pdf->Cell(17, 6.5, "Order#", 1, 0);
+    $pdf->Cell(50, 6.5, "Order Total(RM)", 1, 0);
     $pdf->SetFont("Arial", "", "13");
-    $pdf->Cell(30, 6.5, "Date", 0, 0);
-    $pdf->Cell(17, 6.5, "Order#", 0, 0);
-    $pdf->Cell(50, 6.5, "Order Total(RM)", 0, 0);
     $pdf->Cell(50, 6.5, "", 0, 1);
     $pdf->Cell(50, 1.5, "", 0, 1);
     $pdf->Rect(5, 5, 200, 287, 'D');
@@ -365,7 +366,7 @@ if (isset($_POST["sales_report"])) {
         $pdf->Cell(50 + 50 + 17 + 30, 9.5, "", '', 1);
     }
     $pdf->SetFont("Arial", "B", 17);
-    $pdf->Cell(50 + 50 + 17, 7.5, "Total", 0, 0);
+    $pdf->Cell(50 + 50 + 17, 7.5, "Total:", 0, 0, 'R');
     $pdf->Cell(17, 7.5, "RM" . number_format($final_amount, 2), 0, 1);
     $pdf->Output();
 }
