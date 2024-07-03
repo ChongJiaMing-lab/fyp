@@ -233,7 +233,7 @@
 													</div>
 													<div class="new_require">
 														<ul>
-															<li class="6_len"><span></span>Should have 6 characters</li>
+															<li class="6_len"><span></span>6 characters</li>
 														</ul>
 													</div>
 												</div>
@@ -242,7 +242,7 @@
 												<!-- TELEPHONE -->
 												<div class="field">
 													<label class="label">
-														Contact number </label>
+														Contact number</label>
 													<div class="control">
 														<input type="text" name="contactnumber" id="telephone"
 															class="input txt-data"
@@ -251,7 +251,7 @@
 													<div class="new_require">
 														<ul>
 
-															<li class="15_len2"><span></span>Should have 10 number</li>
+															<li class="15_len2"><span></span>10 number(EXP:0XX-XXXXXXX)</li>
 
 														</ul>
 													</div>

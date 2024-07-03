@@ -132,7 +132,7 @@
 
 	.title {
 		color: black;
-
+		text-transform: none !important;
 	}
 
 	input.button.btn-login {
@@ -177,7 +177,7 @@
 							<input type="hidden" name="register_token" value="TVRjeE1EQXdOalF3T0E9PQ">
 							<div class="form-body">
 								<div class="field">
-									<label class="label">Email Address</label>
+									<label class="label">Email Address *</label>
 									<div class="control">
 										<input type="text" class="input" id="email" name="email" value="" />
 									</div>
@@ -185,12 +185,12 @@
 										<ul>
 											<li class="letter1"><span></span></li>
 											<li class="email"><span></span></li>
-											<li class="email-format"><span>Invalid Email format</span></li>
+											<li class="email-format"><span>Please enter a valid email address.</span></li>
 										</ul>
 									</div>
 								</div>
 								<div class="field">
-									<label class="label">Name</label>
+									<label class="label">Name *</label>
 									<div class="control">
 										<input type="text" class="input" id="name" name="Name" value="" />
 									</div>
@@ -201,7 +201,7 @@
 									</div>
 								</div>
 								<div class="field">
-									<label class="label">Contact Number</label>
+									<label class="label">Contact Number *</label>
 									<div class="control">
 										<input type="text" class="input" id="telephone" name="telephone" value="" />
 									</div>
@@ -216,7 +216,7 @@
 								<div class="field-group">
 									<div class="field">
 										<label class="label">
-											Password</label>
+											Password *</label>
 										<div class="field has-addons">
 											<div class="control addon-fix">
 												<input id="pw_valid" type="password" class="input " name="password"
@@ -267,7 +267,7 @@
 								<!-- PASSWORD -->
 								<div class="field">
 									<label class="label">
-										Comfirm Password</label>
+										Comfirm Password *</label>
 									<div class="field has-addons">
 										<div class="control addon-fix">
 											<input id="cf_pass" type="password" class="input " name="cpassword" value=""
