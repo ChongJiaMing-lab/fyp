@@ -216,7 +216,7 @@
                             <div class="title">Order #<?php echo $order_id ?></div>
                             <div class="myaccount-body">
                                 <div class="address-container">
-                                    <div class="txt-info">Name : <?php echo $row2['name'] ?></div>
+                                    <div class="txt-info">Name : <?php echo $row2['user_name'] ?></div>
                                     <div class="txt-info">Contact Number : <?php echo $row2['contact_number'] ?></div>
                                     <div class="txt-info">Address : <?php echo $row2['address'] ?></div>
                                     <div class="txt-info">Total payment : RM<?php echo $row2['total_amount'] ?></div>
